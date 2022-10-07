@@ -1,4 +1,5 @@
 package org.example.world;
 
-public class Terrain {
+abstract class Terrain {
+    public abstract boolean isWalkable();
 }
