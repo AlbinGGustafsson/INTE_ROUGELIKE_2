@@ -1,24 +1,10 @@
 package org.example.world;
 
-public class Door extends Entity implements NonStackable{
+public class Door extends Terrain{
 
     private Direction direction;
-    private Room room;
-
-    public Door(Room room, int x, int y) {
-        this.room = room;
-        if (y == 0){
-            direction = Direction.NORTH;
-        }
-        if (y == room.getRoomHeight()-1){
-            direction = Direction.SOUTH;
-        }
-        if (x == 0){
-            direction = Direction.WEST;
-        }
-        if (x == room.getRoomWidth()-1){
-            direction = Direction.EAST;
-        }
+    public Door(Direction direction) {
+        this.direction = direction;
     }
 
     public Direction getDirection() {
@@ -29,7 +15,5 @@ public class Door extends Entity implements NonStackable{
     public String toString() {
         return "D";
     }
-
-
 
 }
