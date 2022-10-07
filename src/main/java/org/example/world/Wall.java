@@ -8,7 +8,7 @@ public class Wall extends Terrain{
     }
 
     @Override
-    public boolean isWalkable() {
+    public boolean canAddEntity() {
         return false;
     }
 }

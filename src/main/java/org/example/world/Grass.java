@@ -8,7 +8,7 @@ public class Grass extends Terrain{
     }
 
     @Override
-    public boolean isWalkable() {
+    public boolean canAddEntity() {
         return true;
     }
 }

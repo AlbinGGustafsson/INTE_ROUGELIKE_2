@@ -5,17 +5,17 @@ import java.util.Optional;
 
 public class Tile {
     private ArrayList<Entity> entities = new ArrayList<>();
-    private Terrain terrainType;
+    private Terrain terrain;
 
     public Tile(Terrain terrainType) {
-        this.terrainType = terrainType;
+        this.terrain = terrainType;
     }
 
-    public void setTerrainType(Terrain terrainType) {
-        this.terrainType = terrainType;
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
     }
-    public Terrain getTerrainType() {
-        return terrainType;
+    public Terrain getTerrain() {
+        return terrain;
     }
 
     public void addEntity(Entity e){
@@ -26,23 +26,28 @@ public class Tile {
         entities.remove(e);
     }
 
-    public boolean isWalkable(){
+    public boolean canAddEntity(){
 
-        if (!terrainType.isWalkable()){
+        if (!terrain.canAddEntity()){
             return false;
         }
+        //Om en tile har en nonStackable entity så går det inte att addera andra entities.
         if (entities.stream().anyMatch(e -> e instanceof NonStackable)){
             return false;
         }
         return true;
     }
 
+    public ArrayList<Entity> getEntities() {
+        return entities;
+    }
+
     @Override
     public String toString() {
-        Optional<Entity> nonStackableEntity = entities.stream().filter(entity -> entity instanceof NonStackable).findFirst();
+        Optional<Entity> nonStackableEntity = entities.stream().filter(entity -> entity instanceof NonStackable || entity instanceof Door).findFirst();
         if (nonStackableEntity.isPresent()){
             return nonStackableEntity.get().toString();
         }
-            return terrainType.toString();
+            return terrain.toString();
     }
 }
