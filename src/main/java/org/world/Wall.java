@@ -1,4 +1,4 @@
-package org.example.world;
+package org.world;
 
 public class Wall extends Terrain{
 
@@ -8,7 +8,7 @@ public class Wall extends Terrain{
     }
 
     @Override
-    public boolean isWalkable() {
+    public boolean canAddEntity() {
         return false;
     }
 }

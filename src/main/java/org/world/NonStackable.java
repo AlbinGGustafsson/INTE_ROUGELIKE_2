@@ -1,4 +1,4 @@
-package org.example.world;
+package org.world;
 
 public interface NonStackable {
     
