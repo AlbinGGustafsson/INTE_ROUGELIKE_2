@@ -1,9 +1,7 @@
-package Monster;
+package org.example.Monster;
 
-import org.testng.annotations.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 public class MonsterTest {
 
     private static final int CORRECT_LEVEL_VALUE = 10;

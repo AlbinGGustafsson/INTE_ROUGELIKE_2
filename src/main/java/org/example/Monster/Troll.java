@@ -1,4 +1,4 @@
-package Monster;
+package org.example.Monster;
 
 public class Troll extends Monster{
 
