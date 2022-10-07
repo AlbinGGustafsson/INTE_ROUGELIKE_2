@@ -7,14 +7,15 @@ public class World {
     private int worldHeight = 10;
     private int worldWidth = 10;
 
+    private RoomLoader roomLoader = new RoomLoader();
     private ArrayList<ArrayList<Room>> world = new ArrayList<>();
     public World() {
 
-        for (int i = 0; i < worldHeight; i++){
+        for (int y = 0; y < worldHeight; y++){
             ArrayList<Room> row = new ArrayList<>();
             world.add(row);
-            for (int j = 0; j < worldWidth; j++){
-                row.add(new Room());
+            for (int x = 0; x < worldWidth; x++){
+                row.add(roomLoader.createRoom(x, y, this));
             }
         }
     }

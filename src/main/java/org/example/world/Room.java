@@ -2,69 +2,61 @@ package org.example.world;
 
 import java.util.ArrayList;
 
-public class Room {
+public abstract class Room {
 
-    private int roomHeight = 9;
-    private int roomWidth = 9;
-    private int horizontalDoorPlacement = roomHeight / 2;
-    private int verticalDoorPlacement = roomWidth / 2;
+    private int x, y;
+    private World world;
 
-    ArrayList<ArrayList<Tile>> room = new ArrayList<>();
+    protected ArrayList<ArrayList<Tile>> room = new ArrayList<>();
 
-    public Room() {
-        for (int i = 0; i < roomHeight; i++) {
-            ArrayList<Tile> row = new ArrayList();
-            room.add(row);
-            for (int j = 0; j < roomWidth; j++) {
-                if (i == 0 || i == roomHeight - 1 || j == 0 || j == roomWidth - 1) {
-                    if (i == horizontalDoorPlacement || j == verticalDoorPlacement) {
-                        Tile tile = new Tile(new Grass());
-                        row.add(tile);
-                        tile.addEntity(new Door(this, j, i));
-                    } else {
-                        row.add(new Tile(new Wall()));
-                    }
-                } else {
-                    row.add(new Tile(new Grass()));
-                }
-            }
-        }
+    public Room(ArrayList<ArrayList<Tile>> room, World world, int x, int y) {
+        this.room = room;
+        this.x = x;
+        this.y = y;
+        this.world = world;
     }
 
-    public void addEntity(Entity entity, int x, int y) {
-        Tile tile = room.get(y).get(x);
-
-        if (tile.canAddEntity()) {
-            tile.addEntity(entity);
-        } else {
-            //System.out.println("Cant add other entity");
-        }
-
+    public void addNonStackableEntity(NonStackableEntity e, int x, int y) {
+        room.get(y).get(x).setNonStackableEntity(e);
     }
 
-    public Tile getTile(int x, int y) {
+    public void removeNonStackableEntity(int x, int y){
+        room.get(y).get(x).removeNonStackableEntity();
+    }
+
+    public Tile getTile(int x, int y){
         return room.get(y).get(x);
     }
 
-    public int getRoomHeight() {
-        return roomHeight;
+    public int getX() {
+        return x;
     }
 
-    public int getRoomWidth() {
-        return roomWidth;
+    public int getY() {
+        return y;
     }
+
+    public World getWorld() {
+        return world;
+    }
+
+    public int getRoomHeight(){
+        return room.size();
+    }
+    public int getRoomWidth(){
+        return room.get(0).size();
+    }
+
+    public abstract String roomType();
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Room: X = %d Y = %d %n", x, y));
         for (var row : room) {
             sb.append(row + "\n");
         }
         return sb.toString();
-    }
-
-    public String roomType() {
-        return "R";
     }
 
 }

@@ -1,10 +1,10 @@
 package org.example.world;
 
-public class Wall extends Terrain implements NonWalkable{
+public class Floor extends Terrain{
 
     @Override
     public String toString() {
-        return "W";
+        return "F";
     }
 
 }
