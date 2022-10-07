@@ -1,2 +1,5 @@
-public class Player extends GameCharacter{
+package org.example;
+
+
+public class Player extends GameCharacter {
 }
