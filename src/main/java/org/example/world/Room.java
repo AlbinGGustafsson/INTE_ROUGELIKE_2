@@ -22,6 +22,14 @@ public class Room {
             }
         }
     }
+
+    public void addEntity(Entity entity, int x, int y){
+        room.get(y).get(x).addEntity(entity);
+    }
+    public Tile getTile(int x, int y){
+        return room.get(y).get(x);
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
