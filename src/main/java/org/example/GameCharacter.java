@@ -5,4 +5,6 @@ public abstract class GameCharacter {
     String lore;
     Race race;
 
+    public GameCharacter(String name, Race race) {
+    }
 }

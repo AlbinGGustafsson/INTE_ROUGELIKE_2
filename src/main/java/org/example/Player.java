@@ -11,4 +11,8 @@ public class Player extends GameCharacter {
     Ring ring2;
     Necklace necklace;
     Belt belt;
+
+    public Player(String name, Race race) {
+        super(name, race);
+    }
 }
