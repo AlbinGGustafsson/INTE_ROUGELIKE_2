@@ -1,3 +1,5 @@
+package org.example.world;
+
 import java.util.ArrayList;
 
 public class Tile {
