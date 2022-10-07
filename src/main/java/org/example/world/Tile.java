@@ -44,7 +44,7 @@ public class Tile {
 
     @Override
     public String toString() {
-        Optional<Entity> nonStackableEntity = entities.stream().filter(entity -> entity instanceof NonStackable || entity instanceof Door).findFirst();
+        Optional<Entity> nonStackableEntity = entities.stream().filter(entity -> entity instanceof NonStackable).findFirst();
         if (nonStackableEntity.isPresent()){
             return nonStackableEntity.get().toString();
         }

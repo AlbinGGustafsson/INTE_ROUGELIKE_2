@@ -1,6 +1,6 @@
 package org.example.world;
 
-public class Door extends Entity{
+public class Door extends Entity implements NonStackable{
 
     private Direction direction;
     private Room room;
