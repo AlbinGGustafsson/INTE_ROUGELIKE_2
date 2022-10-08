@@ -2,20 +2,22 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class InventoryTest {
     @Test
     public void creatingInventoryGivesNoError(){
         Inventory i = new Inventory();
-        assertEquals(8, i.getSize());
+        assertEquals(8, i.getCapacity());
     }
 
     @Test
     public void upgradingInventoryCreatesRightSize(){
         Inventory i = new Inventory();
         i.upgradeInventory();
-        assertEquals(16, i.getSize());
+        assertEquals(16, i.getCapacity());
     }
 
     @Test
@@ -36,12 +38,34 @@ public class InventoryTest {
         });
     }
 
-    @Test
+    /*@Test
     public void arraySizeIsSameAsSize(){
         Inventory i = new Inventory();
-        assertEquals(i.getSize(), i.getInventoryArray().length);
+        assertEquals(i.getCapacity(), i.getInventoryArray().length);
+    }*/
+
+    @Test
+    public void addingItemAddsTheItem(){
+        Inventory i = new Inventory();
+        Bow b = new Bow("", "", 4, 142);
+        i.add(b);
+        assertTrue(i.contains(b));
+
     }
 
-
+    @Test
+    public void addingItemPastCapacityThrowsException(){
+        Inventory i = new Inventory();
+        Bow b = new Bow("", "", 4, 142);
+        i.add(b);
+        i.add(b);
+        i.add(b);
+        i.add(b);
+        i.add(b);
+        i.add(b);
+        i.add(b);
+        i.add(b);
+        assertThrows(IllegalInventorySizeException.class, () -> i.add(b));
+    }
 
 }
