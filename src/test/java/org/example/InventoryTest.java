@@ -9,8 +9,8 @@ import static org.junit.jupiter.api.Assertions.*;
 public class InventoryTest {
     @Test
     public void creatingInventoryGivesNoError(){
-        Inventory i = new Inventory();
-        assertEquals(8, i.getCapacity());
+
+        assertEquals(8, new Inventory().getCapacity());
     }
 
     @Test
@@ -54,6 +54,7 @@ public class InventoryTest {
     }
 
     @Test
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     public void addingItemPastCapacityThrowsException(){
         Inventory i = new Inventory();
         Bow b = new Bow("", "", 4, 142);
@@ -66,6 +67,12 @@ public class InventoryTest {
         i.add(b);
         i.add(b);
         assertThrows(IllegalInventorySizeException.class, () -> i.add(b));
+    }
+
+    @Test
+    public void addingNullThrowsException(){
+
+        assertThrows(NullPointerException.class, ()->new Inventory().add(null));
     }
 
 }
