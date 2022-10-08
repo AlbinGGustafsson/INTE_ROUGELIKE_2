@@ -1,6 +1,6 @@
 package org.example;
 
-public abstract class Armor extends Gear{
+public abstract class Armor extends Gear implements ArmorRatingScaling{
 
     protected int armorRating;
 

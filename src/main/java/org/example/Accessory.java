@@ -1,6 +1,6 @@
 package org.example;
 
-public abstract class Accessory extends Gear{
+public abstract class Accessory extends Gear implements PercentDmgScaling{
     protected int percentDmgIncrease;
 
     public Accessory(String name, String description, int ilvl, int percentDmgIncrease) {
