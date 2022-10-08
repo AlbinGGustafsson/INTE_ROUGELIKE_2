@@ -1,6 +1,6 @@
 package org.example;
 
-public abstract class Gear extends Item {
+public abstract class Gear extends Item implements Equipable{
     private static final int MAX_ITEM_LEVEL = 100;
     private static final double MAX_QUALITY = 1.0;
     private static final double MIN_QUALITY = 0.1;
@@ -14,11 +14,6 @@ public abstract class Gear extends Item {
         setRating(rating);
 
         }
-
-
-
-
-
 
 
     protected abstract int getMaxRating();
@@ -42,4 +37,8 @@ public abstract class Gear extends Item {
         this.rating = rating;
     }
 
+    @Override
+    public boolean canBeEquippedBy(Player player) {
+        return player.getLevel() >= itemlevel;
+    }
 }

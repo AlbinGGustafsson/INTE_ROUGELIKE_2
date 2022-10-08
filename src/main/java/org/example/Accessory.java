@@ -23,4 +23,9 @@ public abstract class Accessory extends Gear implements PercentDmgScaling{
     protected void throwException(){
         throw new IllegalPercentDmgIncreaseException();
     }
+
+    @Override
+    public boolean isCompatibleWith(Equipable equipable) {
+        return true;
+    }
 }

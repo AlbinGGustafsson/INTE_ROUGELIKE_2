@@ -25,4 +25,9 @@ public abstract class Armor extends Gear implements ArmorRatingScaling{
     protected void throwException(){
         throw new IllegalArmorRatingException();
     }
+
+    @Override
+    public boolean isCompatibleWith(Equipable equipable) {
+        return true;
+    }
 }
