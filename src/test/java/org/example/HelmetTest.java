@@ -14,12 +14,17 @@ class HelmetTest {
     @Test
     public void creatingTooStrongHelmetThrowsException(){
 
-        assertThrows(IllegalArmorRatingException.class, () -> {new Helmet("","",4, 301);});
+        assertThrows(IllegalArmorRatingException.class, () -> {new Helmet("","",4, Integer.MAX_VALUE);});
     }
 
     @Test
     public void creatingTooLowilvlThrowsException(){
         assertThrows(IllegalItemLevelException.class, () -> {new Helmet("","",0, 100);});
+    }
+
+    @Test
+    public void creatingNullNameThrowsException(){
+        assertThrows(NullPointerException.class, () -> {new Helmet(null, "", 4, 100);});
     }
 
 }
