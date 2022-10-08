@@ -9,11 +9,9 @@ public class Helmet extends Armor{
     }
 
     @Override
-    protected void checkArmorRating(int armorRating) {
-        if (armorRating > MAX_ARMOR_RATING){
-            throw new IllegalArmorRatingException();
-        }
-
+    protected int getMaxArmorRating() {
+        return MAX_ARMOR_RATING;
     }
+
 
 }

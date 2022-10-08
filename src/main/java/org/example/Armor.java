@@ -1,12 +1,15 @@
 package org.example;
 
 public abstract class Armor extends Gear{
+
     protected int armorRating;
 
 
     public Armor(String name, String description, int ilvl, int armorRating) {
         super(name, description, ilvl);
-        checkArmorRating(armorRating);
+        if (!hasValidArmorRating(armorRating)) {
+            throw new IllegalArmorRatingException();
+        }
         this.armorRating = armorRating;
     }
 
@@ -14,7 +17,11 @@ public abstract class Armor extends Gear{
         return armorRating;
     }
 
-    protected abstract void checkArmorRating(int armorRating);
+    private boolean hasValidArmorRating(int armorRating){
+        return armorRating <= getMaxArmorRating() && armorRating >= 0;
+    }
+
+    protected abstract int getMaxArmorRating();
 
 
 }

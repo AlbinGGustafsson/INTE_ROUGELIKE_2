@@ -6,7 +6,9 @@ public class Gloves extends Armor{
     }
 
     @Override
-    protected void checkArmorRating(int armorRating) {
-
+    protected int getMaxArmorRating() {
+        return 0;
     }
+
+
 }
