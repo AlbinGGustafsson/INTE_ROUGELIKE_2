@@ -7,7 +7,7 @@ public abstract class Room {
     private int x, y;
     private World world;
 
-    protected ArrayList<ArrayList<Tile>> room = new ArrayList<>();
+    protected ArrayList<ArrayList<Tile>> room;
 
     public Room(ArrayList<ArrayList<Tile>> room, World world, int x, int y) {
         this.room = room;
