@@ -7,10 +7,9 @@ public class Chestpiece extends Armor {
         super(name, description, ilvl, armorRating);
     }
 
+
     @Override
-    protected int getMaxArmorRating() {
+    protected int getMaxRating() {
         return MAX_ARMOR_RATING;
     }
-
-
 }

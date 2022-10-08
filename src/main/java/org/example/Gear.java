@@ -5,14 +5,27 @@ public abstract class Gear extends Item {
     private static final double MAX_QUALITY = 1.0;
     private static final double MIN_QUALITY = 0.1;
     protected int itemlevel;
+    protected int rating;
     protected double quality = 1.0;
 
-    public Gear(String name, String description, int ilvl) {
+    public Gear(String name, String description, int ilvl, int rating) {
         super(name, description);
         setItemlevel(ilvl);
-    }
+        setRating(rating);
 
-    protected boolean hasValidRating(int rating, int max_rating, int min_rating) {
+        }
+
+
+
+
+
+
+
+    protected abstract int getMaxRating();
+    protected abstract int getMinRating();
+    protected abstract void throwException();
+
+    protected boolean hasInvalidRating(int rating, int max_rating, int min_rating) {
         return rating > max_rating || rating < min_rating;
     }
 
@@ -22,4 +35,11 @@ public abstract class Gear extends Item {
         }
         itemlevel = ilvl;
     }
+    private void setRating(int rating) {
+        if (hasInvalidRating(rating, getMaxRating(), getMinRating())) {
+            throwException();
+        }
+        this.rating = rating;
+    }
+
 }

@@ -14,7 +14,7 @@ class HelmetTest {
     @Test
     public void creatingTooStrongHelmetThrowsException(){
 
-        assertThrows(IllegalArmorRatingException.class, () -> new Helmet("","",4, Integer.MAX_VALUE));
+        assertThrows(IllegalArmorRatingException.class, () -> new Helmet("","",4, 500000));
     }
 
     @Test

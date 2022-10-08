@@ -2,20 +2,25 @@ package org.example;
 
 public abstract class Accessory extends Gear implements PercentDmgScaling{
     private static final int MIN_PERCENT_DMG_INCREASE = 1;
-    protected int percentDmgIncrease;
+
 
     public Accessory(String name, String description, int ilvl, int percentDmgIncrease) {
-        super(name, description, ilvl);
-        if (hasValidRating(percentDmgIncrease, getMaxPercentDmgIncrease(), MIN_PERCENT_DMG_INCREASE)){
-            throw new IllegalPercentDmgIncreaseException();
-        }
-        this.percentDmgIncrease = percentDmgIncrease;
+        super(name, description, ilvl, percentDmgIncrease);
+
     }
 
-    public int getPercentDmgIncrease(){
-        return percentDmgIncrease;
+    @Override
+    public int getPercentDmgIncrease() {
+        return rating;
     }
 
+    @Override
+    protected int getMinRating(){
+        return MIN_PERCENT_DMG_INCREASE;
+    }
 
-    protected abstract int getMaxPercentDmgIncrease();
+    @Override
+    protected void throwException(){
+        throw new IllegalPercentDmgIncreaseException();
+    }
 }

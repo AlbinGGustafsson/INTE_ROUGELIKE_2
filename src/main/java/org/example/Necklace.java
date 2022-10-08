@@ -8,8 +8,10 @@ public class Necklace extends Accessory{
         super(name, description, ilvl, percentDmgIncrease);
     }
 
+
+
     @Override
-    protected int getMaxPercentDmgIncrease() {
+    protected int getMaxRating() {
         return MAX_PERCENT_DMG_INCREASE;
     }
 }
