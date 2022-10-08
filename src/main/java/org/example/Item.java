@@ -8,8 +8,8 @@ public abstract class Item {
     protected String description;
 
     public Item(String name, String description) {
-        Objects.requireNonNull(this.name = name);
-        Objects.requireNonNull(this.description = description);
+        this.name = Objects.requireNonNull(name);
+        this.description = Objects.requireNonNull(description);
     }
 
     public void drop(){
