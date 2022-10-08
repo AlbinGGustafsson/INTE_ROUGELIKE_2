@@ -12,6 +12,10 @@ public abstract class Gear extends Item {
         setItemlevel(ilvl);
     }
 
+    protected boolean hasValidRating(int rating, int max_rating, int min_rating) {
+        return rating > max_rating || rating < min_rating;
+    }
+
     private void setItemlevel(int ilvl){
         if (MAX_ITEM_LEVEL < ilvl || ilvl < 1){
             throw new IllegalItemLevelException();

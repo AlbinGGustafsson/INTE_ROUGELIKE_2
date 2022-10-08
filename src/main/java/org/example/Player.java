@@ -3,7 +3,7 @@ package org.example;
 
 public class Player extends GameCharacter {
     private static final int MAX_LEVEL = 100;
-    int level;
+    int level = 1;
     Helmet helmet;
     Chestpiece chest;
     Gloves gloves;
