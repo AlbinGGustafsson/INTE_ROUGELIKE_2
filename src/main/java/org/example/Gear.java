@@ -1,10 +1,11 @@
 package org.example;
 
-public abstract class Gear {
+public abstract class Gear extends Item {
     private static final int MAX_ITEM_LEVEL = 100;
     protected int itemlevel;
 
-    public Gear(int ilvl) {
+    public Gear(String name, String description, int ilvl) {
+        super(name, description);
         setItemlevel(ilvl);
     }
 

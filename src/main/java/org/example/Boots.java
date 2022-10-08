@@ -1,8 +1,8 @@
 package org.example;
 
 public class Boots extends Armor{
-    public Boots(int ilvl, int armorRating) {
-        super(ilvl, armorRating);
+    public Boots(String name, String description, int ilvl, int armorRating) {
+        super(name, description, ilvl, armorRating);
     }
 
     @Override

@@ -2,7 +2,7 @@ package org.example;
 
 public class Necklace extends Accessory{
 
-    public Necklace(int ilvl) {
-        super(ilvl);
+    public Necklace(String name, String description, int ilvl) {
+        super(name, description, ilvl);
     }
 }

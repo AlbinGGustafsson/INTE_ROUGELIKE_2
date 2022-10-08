@@ -1,7 +1,7 @@
 package org.example;
 
 public abstract class Weapon extends Gear{
-    public Weapon(int ilvl) {
-        super(ilvl);
+    public Weapon(String name, String description, int ilvl) {
+        super(name, description, ilvl);
     }
 }

@@ -3,9 +3,9 @@ package org.example;
 public class Helmet extends Armor{
     private static final int MAX_ARMOR_RATING = 300;
 
-    public Helmet(int ilvl, int armorRating){
+    public Helmet(String name, String description, int ilvl, int armorRating){
 
-        super(ilvl, armorRating);
+        super(name, description, ilvl, armorRating);
     }
 
     @Override

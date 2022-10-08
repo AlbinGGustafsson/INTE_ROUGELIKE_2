@@ -1,7 +1,7 @@
 package org.example;
 
 public class Ring extends Accessory{
-    public Ring(int ilvl) {
-        super(ilvl);
+    public Ring(String name, String description, int ilvl) {
+        super(name, description, ilvl);
     }
 }
