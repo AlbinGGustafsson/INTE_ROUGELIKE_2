@@ -3,11 +3,14 @@ package org.example.Monster;
 abstract class Monster  {
 
     //private String[] terrainType;
-      private int level;
+      private final int level;
       private int health;
 
 
       public Monster(int level){
+        if(level < 1){
+          throw new IllegalArgumentException();
+        }
            this.level = level;
            setHealth();
       }
@@ -16,7 +19,7 @@ abstract class Monster  {
 
       public abstract void die();
 
-      public abstract int attackDamage();
+      public abstract double attackDamage();
 
       public abstract void attack();
 

@@ -17,7 +17,7 @@ public class Vampyre extends Monster {
     }
 
     @Override
-    public int attackDamage() {
+    public double attackDamage() {
         return 0;
     }
 
