@@ -8,12 +8,18 @@ import java.util.ArrayList;
 
 public class RoomLoader {
 
-    public Room createRoom(int roomX, int roomY, World world){
+    public Room createRoom(int roomNumber, World world){
+
+        String file = "";
+
+        if (roomNumber == 0){
+            file = "rooms/1.txt";
+        }
 
         ArrayList<ArrayList<Tile>> roomList = new ArrayList<>();
 
         try {
-            FileReader fileReader = new FileReader("rooms/1.txt");
+            FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String roomType = bufferedReader.readLine();
@@ -34,21 +40,17 @@ public class RoomLoader {
                     if (chars[x] == 'F'){
                         row.add(new Tile(new Floor()));
                     }
-                    if (chars[x] == 'D'){
-                        row.add(new Tile(new Door(calculateDoorDirection(x, y, roomHeight, roomWidth))));
+                    if (chars[x] == 'L'){
+                        row.add(new Tile(new Door(Direction.LEFT)));
+                    }
+                    if (chars[x] == 'R'){
+                        row.add(new Tile(new Door(Direction.RIGHT)));
                     }
                 }
             }
 
-            if (roomType.equals("DungeonRoom")){
-                return new DungeonRoom(roomList, world, roomX, roomY);
-            }
-            if (roomType.equals("VoidRoom")){
-                return new VoidRoom(roomList, world, roomX, roomY);
-            }
-            if (roomType.equals("CorridorRoom")){
-                return new CorridorRoom(roomList, world, roomX, roomY);
-            }
+            //Här ska väl ett rum retureras
+
 
         }catch (FileNotFoundException fe){
 
@@ -58,19 +60,4 @@ public class RoomLoader {
 
         return null;
     }
-
-    private Direction calculateDoorDirection(int x, int y, int roomHeight, int roomWidth){
-        if (y == 0){
-            return Direction.NORTH;
-        }
-        if (y == roomHeight-1){
-            return Direction.SOUTH;
-        }
-        if (x == 0){
-            return Direction.WEST;
-        }
-
-        return Direction.EAST;
-    }
-
 }
