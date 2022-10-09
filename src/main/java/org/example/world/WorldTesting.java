@@ -1,5 +1,6 @@
 package org.example.world;
 
+import org.example.Monster.Troll;
 import org.example.Player;
 import org.example.Race;
 
@@ -11,7 +12,8 @@ public class WorldTesting {
     public static void main(String[] args) throws IOException {
 
         World world = new World();
-
+        Troll troll = new Troll(10);
+        world.getRoom(0).setNonStackableEntity(troll, 1, 2);
         world.getRoom(0).setNonStackableEntity(new Stone(), 5, 5);
         Player eloy = new Player("Eloy", Race.HUMAN);
         eloy.spawnPlayer(world);

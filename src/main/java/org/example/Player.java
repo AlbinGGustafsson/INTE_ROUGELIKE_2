@@ -20,6 +20,14 @@ public class Player extends MovableCharacter {
         equipment = new Equipment(inventory);
     }
 
+    public double getAttackDamage(){
+        return level*5.5 + 1000;
+    }
+
+    public int getHealth(){
+        return level * 10 + 500;
+    }
+
     public int getLevel(){
         return level;
     }

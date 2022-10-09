@@ -1,13 +1,15 @@
 package org.example.world;
 
 import org.example.GameCharacter;
+import org.example.Monster.Monster;
+import org.example.Player;
 import org.example.Race;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class MovableCharacter extends GameCharacter{
+public abstract class MovableCharacter extends GameCharacter{
 
     private ArrayList<String> terrains = new ArrayList<>();
     private int playerXPos, playerYPos;
@@ -87,6 +89,15 @@ public class MovableCharacter extends GameCharacter{
             return true;
         }
 
+        if(tile.getNonStackableEntity() instanceof Monster e) {
+            System.out.println("You have encountered a MONSTER AHHHH!");
+            if(e.battleWithPlayer((Player) this)){
+                tile.removeNonStackableEntity();
+                return false;
+            }
+            return true;
+        }
+
         return false;
     }
 
@@ -130,6 +141,14 @@ public class MovableCharacter extends GameCharacter{
 
     public List<String> getTerrains() {
         return Collections.unmodifiableList(terrains);
+    }
+
+    public int getPlayerXPos() {
+        return playerXPos;
+    }
+
+    public int getPlayerYPos() {
+        return playerYPos;
     }
 
     @Override
