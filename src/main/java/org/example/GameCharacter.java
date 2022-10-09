@@ -1,6 +1,8 @@
 package org.example;
 
-public abstract class GameCharacter {
+import org.example.world.NonStackableEntity;
+
+public abstract class GameCharacter implements NonStackableEntity {
     String name;
     String lore;
     Race race;

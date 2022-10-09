@@ -1,5 +1,8 @@
 package org.example.world;
 
+import org.example.Player;
+import org.example.Race;
+
 import java.util.Scanner;
 
 public class WorldTesting {
@@ -10,7 +13,7 @@ public class WorldTesting {
 
 
         world.getRoom(0).setNonStackableEntity(new Stone(), 5, 5);
-        PlayerExample eloy = new PlayerExample();
+        Player eloy = new Player("Eloy", Race.HUMAN);
         eloy.spawnPlayer(world);
 
         Scanner scanner = new Scanner(System.in);

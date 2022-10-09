@@ -50,17 +50,17 @@ public class RoomLoader {
                 roomList.add(row);
                 for (int x = 0; x < roomWidth; x++) {
                     if (chars[x] == 'W') {
-                        row.add(new Tile(new Wall(), roomInCreation));
+                        row.add(new Tile(new Wall()));
                     }
                     if (chars[x] == 'F') {
-                        row.add(new Tile(new Floor(),roomInCreation));
+                        row.add(new Tile(new Floor()));
                     }
                     if (chars[x] == 'L') {
-                        row.add(new Tile(new Door(DoorDirection.LEFT),roomInCreation));
+                        row.add(new Tile(new Door(DoorDirection.LEFT)));
                         roomInCreation.setLeftDoorPos(x, y);
                     }
                     if (chars[x] == 'R') {
-                        row.add(new Tile(new Door(DoorDirection.RIGHT),roomInCreation));
+                        row.add(new Tile(new Door(DoorDirection.RIGHT)));
                         roomInCreation.setRightDoorPos(x, y);
                     }
                 }

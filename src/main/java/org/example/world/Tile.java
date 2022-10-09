@@ -3,15 +3,13 @@ package org.example.world;
 import org.example.Item;
 
 public class Tile {
-    private Room room;
 
     private Item item;
     private Terrain terrain;
     private NonStackableEntity nonStackableEntity;
 
-    public Tile(Terrain terrainType, Room room) {
+    public Tile(Terrain terrainType) {
         this.terrain = terrainType;
-        this.room = room;
     }
 
     public NonStackableEntity getNonStackableEntity() {
