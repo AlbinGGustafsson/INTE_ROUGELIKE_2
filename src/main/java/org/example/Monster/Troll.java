@@ -25,7 +25,7 @@ public class Troll extends Monster{
     }
 
     @Override
-    public int attackDamage() {
+    public double attackDamage() {
         return  getLevel()*COEFFICIENT_FOR_ATTACK_DAMAGE_SCALING + LEVEL_ONE_ATTACK_DAMAGE;
     }
 

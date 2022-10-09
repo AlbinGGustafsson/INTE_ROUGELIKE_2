@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MonsterTest {
 
     private static final int CORRECT_LEVEL_VALUE = 10;
+    private static final int TO_LOW_LEVEL_VALUE = -1;
 
     @Test
     void calculateHealthReturnsCorrectValue(){
@@ -18,5 +19,12 @@ public class MonsterTest {
         Troll troll = new Troll(CORRECT_LEVEL_VALUE);
         int expected = 50;
         assertEquals(expected, troll.attackDamage());
+    }
+
+    @Test
+    void ConstructorThrowsExceptionWhenGivenValueIsToLow(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Troll troll = new Troll(TO_LOW_LEVEL_VALUE);
+        });
     }
 }
