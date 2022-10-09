@@ -56,11 +56,11 @@ public class RoomLoader {
                         row.add(new Tile(new Floor()));
                     }
                     if (chars[x] == 'L') {
-                        row.add(new Tile(new Door(DoorDirection.LEFT)));
+                        row.add(new Tile(new LeftDoor()));
                         roomInCreation.setLeftDoorPos(x, y);
                     }
                     if (chars[x] == 'R') {
-                        row.add(new Tile(new Door(DoorDirection.RIGHT)));
+                        row.add(new Tile(new RightDoor()));
                         roomInCreation.setRightDoorPos(x, y);
                     }
                     if (chars[x] == 'W') {
