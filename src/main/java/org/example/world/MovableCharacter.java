@@ -3,24 +3,26 @@ package org.example.world;
 import org.example.GameCharacter;
 import org.example.Race;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
-public class MovableCharacter extends GameCharacter{
+public abstract class MovableCharacter extends GameCharacter{
 
-    private ArrayList<String> terrains = new ArrayList<>();
+    private HashSet<Terrain> terrains = new HashSet<>();
+
+    //kanske ska heta något annat än player om andra sker föruom player ska ärva från MovableCharacter
     private int playerXPos, playerYPos;
     private Room room;
 
     public MovableCharacter(String name, Race race) {
         super(name, race);
-        terrains.add("floor");
-        terrains.add("door");
-
-        //terrains.add("water");
+        terrains.add(new Floor());
+        terrains.add(new LeftDoor());
+        terrains.add(new RightDoor());
     }
 
+    //Dessa metoder är väl ändå player specifika
     public void spawnPlayer(World world){
         room = world.getRoom(0);
         room.getTile(1,1).setNonStackableEntity(this);
@@ -32,6 +34,15 @@ public class MovableCharacter extends GameCharacter{
         room = null;
         playerXPos = -1;
         playerYPos = -1;
+    }
+    //
+
+    public void addTerrain(Terrain t){
+        terrains.add(t);
+    }
+
+    public void removeTerrain(Terrain t){
+        terrains.remove(t);
     }
 
     public void moveRight(){
@@ -69,15 +80,32 @@ public class MovableCharacter extends GameCharacter{
     private boolean interactWithTile(int x, int y){
         Tile tile = room.getTile(x, y);
 
-        if (tile.getTerrain() instanceof Water && !terrains.contains("water")){
+        if (tile.getTerrain() instanceof Water && !terrains.contains(new Water())){
             System.out.println("You cant swim");
             return true;
         }
 
-        if (tile.getTerrain() instanceof Door d){
-            room = changeRoom(d);
+        if (tile.getTerrain() instanceof Floor && !terrains.contains(new Floor())){
+            System.out.println("You cant go on floor");
             return true;
         }
+
+        if (tile.getTerrain() instanceof Door door){
+
+            if (door instanceof LeftDoor && !terrains.contains(new LeftDoor())){
+                System.out.println("You cant use left door");
+                return true;
+            }
+
+            if (door instanceof RightDoor && !terrains.contains(new RightDoor())){
+                System.out.println("You cant use right door");
+                return true;
+            }
+            room = changeRoom(door);
+            return true;
+        }
+
+
         if (tile.getTerrain() instanceof Wall){
             System.out.println("There is a wall in the way");
             return true;
@@ -92,13 +120,12 @@ public class MovableCharacter extends GameCharacter{
 
     private Room changeRoom(Door d){
 
-        DoorDirection direction = d.getDirection();
         Room oldRoom = room;
         int oldRoomNumber = oldRoom.getRoomNumber();
         World world = oldRoom.getWorld();
         Room newRoom = null;
 
-        if (direction == DoorDirection.LEFT){
+        if (d instanceof LeftDoor){
             newRoom = world.getRoom(oldRoom.getRoomNumber() - 1);
             oldRoom.removeNonStackableEntity(playerXPos, playerYPos);
             playerXPos = newRoom.getRightDoorXPos() - 1;
@@ -107,7 +134,7 @@ public class MovableCharacter extends GameCharacter{
             System.out.println("Walking through door to the left");
         }
 
-        if (direction == DoorDirection.RIGHT){
+        if (d instanceof RightDoor){
 
             try{
                 newRoom = world.getRoom(oldRoomNumber + 1);
@@ -128,8 +155,8 @@ public class MovableCharacter extends GameCharacter{
         return room;
     }
 
-    public List<String> getTerrains() {
-        return Collections.unmodifiableList(terrains);
+    public Set<Terrain> getTerrains() {
+        return Collections.unmodifiableSet(terrains);
     }
 
     @Override

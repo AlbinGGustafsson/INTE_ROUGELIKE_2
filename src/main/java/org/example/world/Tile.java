@@ -30,12 +30,11 @@ public class Tile {
 
     public boolean canSetEntity(NonStackableEntity entity){
 
-        //Todo
-        //kolla på  den.
-        //meiningen är att den ska kolla om något kan vara på en terräng.
-//        if (entity instanceof MovableCharacter p && p.getTerrains().contains(terrain.getTypeName())){
-//            return true;
-//        }
+        //Kollar om en movable character kan vara på tilens terräng
+        if (entity instanceof MovableCharacter mc && !mc.getTerrains().contains(terrain)){
+            return false;
+        }
+
         return !(nonStackableEntity != null || terrain instanceof Solid);
     }
 

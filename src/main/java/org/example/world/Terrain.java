@@ -18,4 +18,25 @@ abstract class Terrain {
     public String getTypeName() {
         return typeName;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Terrain terrain = (Terrain) o;
+
+        if (Double.compare(terrain.weight, weight) != 0) return false;
+        return Objects.equals(typeName, terrain.typeName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        temp = Double.doubleToLongBits(weight);
+        result = (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (typeName != null ? typeName.hashCode() : 0);
+        return result;
+    }
 }

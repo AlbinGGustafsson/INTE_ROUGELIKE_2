@@ -1,0 +1,8 @@
+NormalRoom
+5
+5
+#####
+LFFF#
+#FFF#
+#FFFR
+#####
