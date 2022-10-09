@@ -75,4 +75,13 @@ public class InventoryTest {
         assertThrows(NullPointerException.class, ()->new Inventory().add(null));
     }
 
+    @Test
+    public void removingItemFromInventoryWorks(){
+        Inventory i = new Inventory();
+        Bow b = new Bow("", "", 12, 123);
+        i.add(b);
+        i.remove(b);
+        assertFalse(i.contains(b));
+    }
+
 }
