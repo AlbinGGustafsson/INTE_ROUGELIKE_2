@@ -68,8 +68,6 @@ public class RoomLoader {
 
             return roomInCreation;
 
-            //Här ska väl ett rum retureras
-
         } catch (FileNotFoundException fe) {
             fe.printStackTrace();
 
