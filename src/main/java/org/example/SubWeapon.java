@@ -17,4 +17,9 @@ public abstract class SubWeapon extends Weapon {
     protected int getMinRating() {
         return MIN_RATING;
     }
+
+    @Override
+    protected boolean instanceOfOppositeWeapon(Equipable equipable) {
+        return equipable instanceof PrimaryWeapon;
+    }
 }

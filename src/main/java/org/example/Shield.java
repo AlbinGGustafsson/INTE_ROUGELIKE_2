@@ -7,6 +7,11 @@ public class Shield extends SubWeapon implements ArmorRatingScaling{
     }
 
     @Override
+    protected boolean instanceOfMatchingWeapons(Equipable equipable) {
+        return equipable instanceof Sword || equipable instanceof Wand;
+    }
+
+    @Override
     protected void throwException() {
         throw new IllegalArmorRatingException();
     }
@@ -15,4 +20,6 @@ public class Shield extends SubWeapon implements ArmorRatingScaling{
     public int getArmorRating() {
         return rating;
     }
+
+
 }

@@ -14,4 +14,9 @@ public class Quiver extends SubWeapon implements AttackDmgScaling{
     protected void throwException() {
         throw new IllegalAttackDmgException();
     }
+
+    @Override
+    protected boolean instanceOfMatchingWeapons(Equipable equipable) {
+        return equipable instanceof Bow;
+    }
 }

@@ -9,6 +9,11 @@ public class Wand extends PrimaryWeapon implements SpellDmgScaling{
     }
 
     @Override
+    protected boolean instanceOfMatchingWeapons(Equipable equipable) {
+        return false;
+    }
+
+    @Override
     public int getSpellDmg() {
         return rating;
     }
@@ -18,4 +23,6 @@ public class Wand extends PrimaryWeapon implements SpellDmgScaling{
     protected void throwException() {
         throw new IllegalSpellDmgException();
     }
+
+
 }

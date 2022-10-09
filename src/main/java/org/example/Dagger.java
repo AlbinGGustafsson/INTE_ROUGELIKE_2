@@ -6,6 +6,11 @@ public class Dagger extends SubWeapon implements AttackDmgScaling{
     }
 
     @Override
+    protected boolean instanceOfMatchingWeapons(Equipable equipable) {
+        return equipable instanceof Sword;
+    }
+
+    @Override
     public int getAttackDmg() {
         return rating;
     }
@@ -14,4 +19,6 @@ public class Dagger extends SubWeapon implements AttackDmgScaling{
     protected void throwException() {
         throw new IllegalAttackDmgException();
     }
+
+
 }

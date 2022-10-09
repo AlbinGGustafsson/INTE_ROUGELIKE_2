@@ -8,6 +8,11 @@ public class Tome extends SubWeapon implements SpellDmgScaling{
     }
 
     @Override
+    protected boolean instanceOfMatchingWeapons(Equipable equipable) {
+        return equipable instanceof Wand;
+    }
+
+    @Override
     protected void throwException() {
         throw new IllegalSpellDmgException();
     }
@@ -16,4 +21,6 @@ public class Tome extends SubWeapon implements SpellDmgScaling{
     public int getSpellDmg() {
         return rating;
     }
+
+
 }

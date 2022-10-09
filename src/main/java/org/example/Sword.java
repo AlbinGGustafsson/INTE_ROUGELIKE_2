@@ -10,6 +10,10 @@ public class Sword extends PrimaryWeapon implements AttackDmgScaling{
 
     }
 
+    @Override
+    protected boolean instanceOfMatchingWeapons(Equipable equipable) {
+        return false;
+    }
 
 
     @Override
@@ -21,4 +25,6 @@ public class Sword extends PrimaryWeapon implements AttackDmgScaling{
     protected void throwException() {
         throw new IllegalAttackDmgException();
     }
+
+
 }
