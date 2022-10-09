@@ -1,53 +1,71 @@
 package org.example.world;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
-public class RoomLoader {
+public class RoomCreator {
 
     private Random random = new Random();
 
+    //kanske inte ska vara en konstant i framtiden
+    private static final int BOSS_ROOM_CHANCE = 10;
 
-    public Room createRoom(int roomNumber, World world) {
+    private String generateRoomFilePath(int roomNumber) {
+
+        try {
+            File normalRoomsFolder = new File("rooms/NormalRooms/");
+            File[] normalRooms = normalRoomsFolder.listFiles();
+
+            File bossRoomsFolder = new File("rooms/BossRooms/");
+            File[] bossRooms = bossRoomsFolder.listFiles();
+
+            File startRoomsFolder = new File("rooms/startRooms/");
+            File[] startRooms = startRoomsFolder.listFiles();
+
+            if (roomNumber == 0) {
+                int startRoomIndex = random.nextInt(startRooms.length);
+                return startRooms[startRoomIndex].getPath();
+            } else if (random.nextInt(BOSS_ROOM_CHANCE) == BOSS_ROOM_CHANCE - 1) {
+                int bossRoomIndex = random.nextInt(bossRooms.length);
+                return bossRooms[bossRoomIndex].getPath();
+            }
+            int normalRoomIndex = random.nextInt(normalRooms.length);
+            return normalRooms[normalRoomIndex].getPath();
+        } catch (NullPointerException npe) {
+            System.err.println("No file in directory");
+        }
+        return null;
+    }
+
+    public Room loadRoom(int roomNumber, World world) {
 
         //todo
         //Bryt ut detta till egen metod
-        String roomType = "";
-        String file = "";
-        if (roomNumber == 0) {
-            file = "rooms/StartRoom.txt";
-            roomType = "StartRoom";
-        } else if (random.nextInt(10) == 9) {
-            file = "rooms/BossRoom1.txt";
-            roomType = "BossRoom";
-        }else {
-            file = "rooms/NormalRoom1.txt";
-            roomType = "NormalRoom";
-        }
 
-        ArrayList<ArrayList<Tile>> roomList = new ArrayList<>();
+        String filePath = generateRoomFilePath(roomNumber);
+
+        ArrayList<ArrayList<Tile>> room = new ArrayList<>();
 
         try {
-            FileReader fileReader = new FileReader(file);
+            FileReader fileReader = new FileReader(filePath);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             //todo
             //borde ha ett minvärde på kanske.... 5
             //kanske ska fånga lite exceptions också
 
-            Room roomInCreation = new Room(roomList, world, roomNumber, roomType);
-
+            String roomType = bufferedReader.readLine();
             int roomHeight = Integer.parseInt(bufferedReader.readLine());
             int roomWidth = Integer.parseInt(bufferedReader.readLine());
+
+            Room roomInCreation = new Room(room, world, roomNumber, roomType);
 
             for (int y = 0; y < roomHeight; y++) {
                 char[] chars = bufferedReader.readLine().toCharArray();
                 ArrayList<Tile> row = new ArrayList<>();
-                roomList.add(row);
+                room.add(row);
                 for (int x = 0; x < roomWidth; x++) {
                     if (chars[x] == '#') {
                         row.add(new Tile(new Wall()));
@@ -78,7 +96,6 @@ public class RoomLoader {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
         return null;
     }
 }

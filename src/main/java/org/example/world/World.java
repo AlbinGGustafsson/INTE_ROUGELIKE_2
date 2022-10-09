@@ -3,7 +3,7 @@ package org.example.world;
 import java.util.ArrayList;
 
 public class World {
-    private RoomLoader roomLoader = new RoomLoader();
+    private RoomCreator roomLoader = new RoomCreator();
     private ArrayList<Room> world = new ArrayList<>();
 
     public World() {
@@ -11,7 +11,7 @@ public class World {
     }
 
     public void addRoom() {
-        Room room = roomLoader.createRoom(world.size(), this);
+        Room room = roomLoader.loadRoom(world.size(), this);
         world.add(room);
     }
 

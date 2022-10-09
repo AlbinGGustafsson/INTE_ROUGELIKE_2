@@ -5,12 +5,13 @@ import org.example.Race;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public abstract class MovableCharacter extends GameCharacter{
 
     private HashSet<Terrain> terrains = new HashSet<>();
+
+    //kanske ska heta något annat än player om andra sker föruom player ska ärva från MovableCharacter
     private int playerXPos, playerYPos;
     private Room room;
 
@@ -21,6 +22,7 @@ public abstract class MovableCharacter extends GameCharacter{
         terrains.add(new RightDoor());
     }
 
+    //Dessa metoder är väl ändå player specifika
     public void spawnPlayer(World world){
         room = world.getRoom(0);
         room.getTile(1,1).setNonStackableEntity(this);
@@ -33,6 +35,7 @@ public abstract class MovableCharacter extends GameCharacter{
         playerXPos = -1;
         playerYPos = -1;
     }
+    //
 
     public void addTerrain(Terrain t){
         terrains.add(t);
@@ -87,18 +90,18 @@ public abstract class MovableCharacter extends GameCharacter{
             return true;
         }
 
-        if (tile.getTerrain() instanceof Door d){
+        if (tile.getTerrain() instanceof Door door){
 
-            if (d instanceof LeftDoor && !terrains.contains(new LeftDoor())){
+            if (door instanceof LeftDoor && !terrains.contains(new LeftDoor())){
                 System.out.println("You cant use left door");
                 return true;
             }
 
-            if (d instanceof RightDoor && !terrains.contains(new RightDoor())){
+            if (door instanceof RightDoor && !terrains.contains(new RightDoor())){
                 System.out.println("You cant use right door");
                 return true;
             }
-            room = changeRoom(d);
+            room = changeRoom(door);
             return true;
         }
 

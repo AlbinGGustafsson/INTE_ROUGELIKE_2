@@ -1,11 +1,12 @@
+BossRoom
 9
 9
 #########
-#FFFFFFW#
 #FFFFFFF#
 #FFFFFFF#
-#FFFFFFFR
-#FFFFFFF#
+#FF###FF#
+LFF###FFR
+#FF###FF#
 #FFFFFFF#
 #FFFFFFF#
 #########

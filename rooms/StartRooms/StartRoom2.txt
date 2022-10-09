@@ -1,0 +1,12 @@
+StartRoom
+9
+9
+#########
+#FFFFFFF#
+#FFFFFFF#
+#FFFFFFF#
+#FFFFFFFR
+#FFFFFFF#
+#FFFFFFF#
+#FFFFFFF#
+#########
