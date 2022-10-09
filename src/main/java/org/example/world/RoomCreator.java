@@ -12,6 +12,10 @@ public class RoomCreator {
     //kanske inte ska vara en konstant i framtiden
     private static final int BOSS_ROOM_CHANCE = 10;
 
+
+    //todo
+    //Se över hur exceptions ska hanteras
+    //om det inte finns en fil i directoryt som man kollar i så kommer null returneras som room och vi kommer få ett null pointer senare
     private String generateRoomFilePath(int roomNumber) {
 
         try {
@@ -33,10 +37,10 @@ public class RoomCreator {
             }
             int normalRoomIndex = random.nextInt(normalRooms.length);
             return normalRooms[normalRoomIndex].getPath();
-        } catch (NullPointerException npe) {
+        } catch (NullPointerException | IllegalArgumentException e) {
             System.err.println("No file in directory");
         }
-        return null;
+        return "";
     }
 
     public Room loadRoom(int roomNumber, World world) {
@@ -88,7 +92,7 @@ public class RoomCreator {
             return roomInCreation;
 
         } catch (FileNotFoundException fe) {
-            fe.printStackTrace();
+            System.err.println("File not found");
 
         } catch (IOException e) {
             throw new RuntimeException(e);
