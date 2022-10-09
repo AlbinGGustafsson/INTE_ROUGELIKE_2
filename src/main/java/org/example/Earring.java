@@ -1,14 +1,12 @@
 package org.example;
 
-public class Ring extends Accessory{
+public class Earring extends Accessory{
     private static final int MAX_PERCENT_DMG_INCREASE = 10;
     private static final int MAX_NUMBER_OF_SAME_TYPE_EQUIPS = 2;
 
-    public Ring(String name, String description, int ilvl, int percentDmgIncrease) {
+    public Earring(String name, String description, int ilvl, int percentDmgIncrease) {
         super(name, description, ilvl, percentDmgIncrease);
     }
-
-
 
     @Override
     protected int getMaxRating() {

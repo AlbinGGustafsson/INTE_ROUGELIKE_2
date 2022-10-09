@@ -5,6 +5,7 @@ public abstract class Armor extends Gear implements ArmorRatingScaling{
 
 
 
+
     public Armor(String name, String description, int ilvl, int armorRating) {
         super(name, description, ilvl, armorRating);
 
@@ -30,4 +31,6 @@ public abstract class Armor extends Gear implements ArmorRatingScaling{
     public boolean isCompatibleWith(Equipable equipable) {
         return true;
     }
+
+
 }
