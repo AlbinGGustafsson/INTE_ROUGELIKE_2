@@ -1,11 +1,27 @@
 package org.example;
 
-public abstract class Gear {
+public abstract class Gear extends Item implements Equipable{
     private static final int MAX_ITEM_LEVEL = 100;
+    private static final double MAX_QUALITY = 1.0;
+    private static final double MIN_QUALITY = 0.1;
     protected int itemlevel;
+    protected int rating;
+    protected double quality = 1.0;
 
-    public Gear(int ilvl) {
+    public Gear(String name, String description, int ilvl, int rating) {
+        super(name, description);
         setItemlevel(ilvl);
+        setRating(rating);
+
+        }
+
+
+    protected abstract int getMaxRating();
+    protected abstract int getMinRating();
+    protected abstract void throwException();
+
+    protected boolean hasInvalidRating(int rating, int max_rating, int min_rating) {
+        return rating > max_rating || rating < min_rating;
     }
 
     private void setItemlevel(int ilvl){
@@ -13,5 +29,16 @@ public abstract class Gear {
             throw new IllegalItemLevelException();
         }
         itemlevel = ilvl;
+    }
+    private void setRating(int rating) {
+        if (hasInvalidRating(rating, getMaxRating(), getMinRating())) {
+            throwException();
+        }
+        this.rating = rating;
+    }
+
+    @Override
+    public boolean canBeEquippedBy(Player player) {
+        return player.getLevel() >= itemlevel;
     }
 }

@@ -1,7 +1,16 @@
 package org.example;
 
 public class Ring extends Accessory{
-    public Ring(int ilvl) {
-        super(ilvl);
+    private static final int MAX_PERCENT_DMG_INCREASE = 10;
+
+    public Ring(String name, String description, int ilvl, int percentDmgIncrease) {
+        super(name, description, ilvl, percentDmgIncrease);
+    }
+
+
+
+    @Override
+    protected int getMaxRating() {
+        return MAX_PERCENT_DMG_INCREASE;
     }
 }

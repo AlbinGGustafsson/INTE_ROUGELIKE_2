@@ -1,12 +1,15 @@
 package org.example;
 
 public class Chestpiece extends Armor {
-    public Chestpiece(int ilvl, int armorRating) {
-        super(ilvl, armorRating);
+    private static final int MAX_ARMOR_RATING = 400;
+
+    public Chestpiece(String name, String description, int ilvl, int armorRating) {
+        super(name, description, ilvl, armorRating);
     }
 
-    @Override
-    protected void checkArmorRating(int armorRating) {
 
+    @Override
+    protected int getMaxRating() {
+        return MAX_ARMOR_RATING;
     }
 }

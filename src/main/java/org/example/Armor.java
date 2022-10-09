@@ -1,20 +1,33 @@
 package org.example;
 
-public abstract class Armor extends Gear{
-    protected int armorRating;
+public abstract class Armor extends Gear implements ArmorRatingScaling{
+    private static final int MIN_ARMOR_RATING = 0;
 
 
-    public Armor(int ilvl, int armorRating) {
-        super(ilvl);
-        checkArmorRating(armorRating);
-        this.armorRating = armorRating;
+
+    public Armor(String name, String description, int ilvl, int armorRating) {
+        super(name, description, ilvl, armorRating);
+
+
     }
 
+    @Override
     public int getArmorRating() {
-        return armorRating;
+        return rating;
     }
 
-    protected abstract void checkArmorRating(int armorRating);
+    @Override
+    protected int getMinRating(){
+        return MIN_ARMOR_RATING;
+    }
 
+    @Override
+    protected void throwException(){
+        throw new IllegalArmorRatingException();
+    }
 
+    @Override
+    public boolean isCompatibleWith(Equipable equipable) {
+        return true;
+    }
 }
