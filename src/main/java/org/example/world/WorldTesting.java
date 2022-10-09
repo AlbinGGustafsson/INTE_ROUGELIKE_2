@@ -1,104 +1,48 @@
 package org.example.world;
 
+import java.util.Scanner;
+
 public class WorldTesting {
 
     public static void main(String[] args) {
 
-//        World world = new World();
-//        System.out.println("World");
-//        System.out.println(world);
-//
-//        Room room = world.getRoom(0,0);
-//        room.addEntity(new Stone(), 0, 0);
-//        room.addEntity(new Stone(), 1, 1);
-//        Aksel aksel = new Aksel(1, 4, room);
-//
-//        System.out.println("Room 0, 0");
-//        System.out.println(room);
-//
-//        aksel.moveLeft();
-//
-//
-//        System.out.println(room);
-//
-//        Door door = (Door) room.getTile(4, 8).getEntities().get(0);
-//
-//        System.out.println(door.getDirection());
-
         World world = new World();
-        System.out.println(world.toString());
 
-        Room room = world.getRoom(1,1);
-        //room.addNonStackableEntity(new Stone(), 0, 0);
-        room.addNonStackableEntity(new Stone(), 1, 1);
-        room.removeNonStackableEntity(1,1);
-        room.addNonStackableEntity(new Stone(), 1, 1);
 
-        PlayerExample aksel = new PlayerExample(2,1, room);
-        System.out.println(world.getRoom(1,1));
-        aksel.moveLeft();
-        aksel.moveRight();
-        aksel.moveRight();
-        aksel.moveUp();
+        world.getRoom(0).setNonStackableEntity(new Stone(), 5, 5);
+        PlayerExample eloy = new PlayerExample();
+        eloy.spawnPlayer(world);
 
-        System.out.println(world.getRoom(1,0));
+        Scanner scanner = new Scanner(System.in);
 
-        aksel.moveDown();
+        System.out.println(eloy.getRoom());
 
-        System.out.println(world.getRoom(1,1));
+        while (true){
 
-        aksel.moveDown();
-        aksel.moveDown();
-        aksel.moveDown();
-        aksel.moveDown();
-        aksel.moveDown();
-        aksel.moveDown();
-        aksel.moveDown();
+            int command = scanner.nextInt();
+            switch (command){
+                case 8:{
+                    eloy.moveUp();
+                    break;
+                }
+                case 2:{
+                    eloy.moveDown();
+                    break;
+                }
+                case 4:{
+                    eloy.moveLeft();
+                    break;
+                }
+                case 6:{
+                    eloy.moveRight();
+                    break;
+                }
+            }
 
-        System.out.println(world.getRoom(1,2));
+            System.out.println(eloy.getRoom());
+        }
 
-        aksel.moveDown();
-        aksel.moveDown();
-        aksel.moveDown();
-        aksel.moveLeft();
-        aksel.moveLeft();
-        aksel.moveLeft();
-        aksel.moveLeft();
 
-        System.out.println(world.getRoom(0,2));
-
-        aksel.moveRight();
-
-        System.out.println(world.getRoom(1,2));
-
-        aksel.moveRight();
-        aksel.moveRight();
-        aksel.moveRight();
-        aksel.moveRight();
-        aksel.moveRight();
-        aksel.moveRight();
-        aksel.moveRight();
-
-        System.out.println(world.getRoom(2,2));
-
-        aksel.moveLeft();
-        aksel.moveLeft();
-        aksel.moveLeft();
-        aksel.moveLeft();
-        aksel.moveLeft();
-        aksel.moveLeft();
-        aksel.moveLeft();
-        aksel.moveLeft();
-        aksel.moveLeft();
-        aksel.moveLeft();
-
-        System.out.println(world.getRoom(0,2));
-        aksel.moveLeft();
-        aksel.moveLeft();
-        aksel.moveLeft();
-        aksel.moveLeft();
-        System.out.println(world.getRoom(0,2));
-        aksel.moveLeft();
 
     }
 

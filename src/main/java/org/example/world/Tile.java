@@ -2,16 +2,16 @@ package org.example.world;
 
 import org.example.Item;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 public class Tile {
+    private Room room;
+
     private Item item;
     private Terrain terrain;
     private NonStackableEntity nonStackableEntity;
 
-    public Tile(Terrain terrainType) {
+    public Tile(Terrain terrainType, Room room) {
         this.terrain = terrainType;
+        this.room = room;
     }
 
     public NonStackableEntity getNonStackableEntity() {
@@ -30,7 +30,7 @@ public class Tile {
     }
 
     public boolean canAddEntity(){
-        return !(nonStackableEntity != null || terrain instanceof NonWalkable);
+        return !(nonStackableEntity != null || terrain instanceof Solid);
 
     }
 

@@ -2,21 +2,34 @@ package org.example.world;
 
 import java.util.ArrayList;
 
-public abstract class Room {
+public class Room {
 
-    private int x, y;
+    private int leftDoorXPos, leftDoorYPos, rightDoorXPos, rightDoorYPos;
+
+    private int roomNumber;
     private World world;
+    private String RoomType;
 
     protected ArrayList<ArrayList<Tile>> room;
 
-    public Room(ArrayList<ArrayList<Tile>> room, World world, int x, int y) {
+    public Room(ArrayList<ArrayList<Tile>> room, World world, int roomNumber, String roomType) {
         this.room = room;
-        this.x = x;
-        this.y = y;
         this.world = world;
+        this.roomNumber = roomNumber;
+        this.RoomType = roomType;
     }
 
-    public void addNonStackableEntity(NonStackableEntity e, int x, int y) {
+    public void setRightDoorPos(int rightDoorXPos, int rightDoorYPos) {
+        this.rightDoorXPos = rightDoorXPos;
+        this.rightDoorYPos = rightDoorYPos;
+    }
+
+    public void setLeftDoorPos(int leftDoorXPos, int leftDoorYPos) {
+        this.leftDoorXPos = leftDoorXPos;
+        this.leftDoorYPos = leftDoorYPos;
+    }
+
+    public void setNonStackableEntity(NonStackableEntity e, int x, int y) {
         room.get(y).get(x).setNonStackableEntity(e);
     }
 
@@ -24,35 +37,47 @@ public abstract class Room {
         room.get(y).get(x).removeNonStackableEntity();
     }
 
+    public void moveNonStackableEntity(NonStackableEntity e, int oldX, int oldY, int newX, int newY){
+        removeNonStackableEntity(oldX, oldY);
+        setNonStackableEntity(e, newX, newY);
+    }
+
+    public int getLeftDoorXPos() {
+        return leftDoorXPos;
+    }
+
+    public int getLeftDoorYPos() {
+        return leftDoorYPos;
+    }
+
+    public int getRightDoorXPos() {
+        return rightDoorXPos;
+    }
+
+    public int getRightDoorYPos() {
+        return rightDoorYPos;
+    }
+
     public Tile getTile(int x, int y){
         return room.get(y).get(x);
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
     }
 
     public World getWorld() {
         return world;
     }
 
-    public int getRoomHeight(){
-        return room.size();
-    }
-    public int getRoomWidth(){
-        return room.get(0).size();
+    public int getRoomNumber() {
+        return roomNumber;
     }
 
-    public abstract String roomType();
+    public String getRoomType() {
+        return RoomType;
+    }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("Room: X = %d Y = %d %n", x, y));
+        sb.append(String.format("Room: %s %n", roomNumber));
         for (var row : room) {
             sb.append(row + "\n");
         }

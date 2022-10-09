@@ -1,5 +1,4 @@
 package org.example.world;
 
-abstract class Entity {
-
+public interface Solid {
 }

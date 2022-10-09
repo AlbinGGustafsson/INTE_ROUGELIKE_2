@@ -3,39 +3,29 @@ package org.example.world;
 import java.util.ArrayList;
 
 public class World {
-
-    private int worldHeight = 10;
-    private int worldWidth = 10;
-
     private RoomLoader roomLoader = new RoomLoader();
-    private ArrayList<ArrayList<Room>> world = new ArrayList<>();
-    public World() {
+    private ArrayList<Room> world = new ArrayList<>();
 
-        for (int y = 0; y < worldHeight; y++){
-            ArrayList<Room> row = new ArrayList<>();
-            world.add(row);
-            for (int x = 0; x < worldWidth; x++){
-                row.add(roomLoader.createRoom(x, y, this));
-            }
-        }
+    public World() {
+        addRoom();
     }
 
-    public Room getRoom(int x, int y){
-        return world.get(y).get(x);
+    public void addRoom(){
+        Room room = roomLoader.createRoom(world.size(), this);
+        world.add(room);
+    }
+
+    public Room getRoom(int roomNumber) {
+        return world.get(roomNumber);
     }
 
     @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
-        for (var row : world){
-
-            for (var room : row){
-                sb.append(room.roomType() + "  ");
-            }
-            sb.append("\n");
+        for (Room r : world){
+            sb.append(r.getRoomType() + " ");
         }
         return sb.toString();
     }
-
 }
