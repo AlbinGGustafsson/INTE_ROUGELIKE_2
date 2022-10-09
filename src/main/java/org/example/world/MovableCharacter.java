@@ -3,13 +3,23 @@ package org.example.world;
 import org.example.GameCharacter;
 import org.example.Race;
 
-public class MovableCharacter extends GameCharacter{
-    public MovableCharacter(String name, Race race) {
-        super(name, race);
-    }
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+public class MovableCharacter extends GameCharacter{
+
+    private ArrayList<String> terrains = new ArrayList<>();
     private int playerXPos, playerYPos;
     private Room room;
+
+    public MovableCharacter(String name, Race race) {
+        super(name, race);
+        terrains.add("floor");
+        terrains.add("door");
+
+        //terrains.add("water");
+    }
 
     public void spawnPlayer(World world){
         room = world.getRoom(0);
@@ -58,6 +68,11 @@ public class MovableCharacter extends GameCharacter{
 
     private boolean interactWithTile(int x, int y){
         Tile tile = room.getTile(x, y);
+
+        if (tile.getTerrain() instanceof Water && !terrains.contains("water")){
+            System.out.println("You cant swim");
+            return true;
+        }
 
         if (tile.getTerrain() instanceof Door d){
             room = changeRoom(d);
@@ -113,9 +128,13 @@ public class MovableCharacter extends GameCharacter{
         return room;
     }
 
+    public List<String> getTerrains() {
+        return Collections.unmodifiableList(terrains);
+    }
+
     @Override
     public String toString() {
-        return "P";
+        return PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + "P" + PrintFormatConstants.RESET;
     }
 
 }

@@ -49,7 +49,7 @@ public class RoomLoader {
                 ArrayList<Tile> row = new ArrayList<>();
                 roomList.add(row);
                 for (int x = 0; x < roomWidth; x++) {
-                    if (chars[x] == 'W') {
+                    if (chars[x] == '#') {
                         row.add(new Tile(new Wall()));
                     }
                     if (chars[x] == 'F') {
@@ -61,6 +61,10 @@ public class RoomLoader {
                     }
                     if (chars[x] == 'R') {
                         row.add(new Tile(new Door(DoorDirection.RIGHT)));
+                        roomInCreation.setRightDoorPos(x, y);
+                    }
+                    if (chars[x] == 'W') {
+                        row.add(new Tile(new Water()));
                         roomInCreation.setRightDoorPos(x, y);
                     }
                 }

@@ -1,6 +1,7 @@
 package org.example.world;
 
 import org.example.Item;
+import org.example.Player;
 
 public class Tile {
 
@@ -16,9 +17,9 @@ public class Tile {
         return nonStackableEntity;
     }
 
-    public void setNonStackableEntity(NonStackableEntity nonStackable) {
-        if (canAddEntity()){
-            this.nonStackableEntity = nonStackable;
+    public void setNonStackableEntity(NonStackableEntity entity) {
+        if (canSetEntity(entity)){
+            this.nonStackableEntity = entity;
             return;
         }
         System.err.println("Finns redan en nonstackable eller det är en ogiltig terräng");
@@ -27,9 +28,15 @@ public class Tile {
         nonStackableEntity = null;
     }
 
-    public boolean canAddEntity(){
-        return !(nonStackableEntity != null || terrain instanceof Solid);
+    public boolean canSetEntity(NonStackableEntity entity){
 
+        //Todo
+        //kolla på  den.
+        //meiningen är att den ska kolla om något kan vara på en terräng.
+//        if (entity instanceof MovableCharacter p && p.getTerrains().contains(terrain.getTypeName())){
+//            return true;
+//        }
+        return !(nonStackableEntity != null || terrain instanceof Solid);
     }
 
     public void setTerrain(Terrain terrain) {

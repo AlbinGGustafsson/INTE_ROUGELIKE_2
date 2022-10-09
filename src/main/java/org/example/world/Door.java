@@ -4,6 +4,7 @@ public class Door extends Terrain{
 
     private DoorDirection direction;
     public Door(DoorDirection direction) {
+        super("door", 1.5);
         this.direction = direction;
     }
 
@@ -14,5 +15,4 @@ public class Door extends Terrain{
     public String toString() {
         return String.valueOf(direction.toString().charAt(0));
     }
-
 }
