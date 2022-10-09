@@ -4,6 +4,8 @@ public abstract class Gear extends Item implements Equipable{
     private static final int MAX_ITEM_LEVEL = 100;
     private static final double MAX_QUALITY = 1.0;
     private static final double MIN_QUALITY = 0.1;
+    private static final int MAX_NUMBER_OF_SAME_TYPE_EQUIPS = 1;
+
     protected int itemlevel;
     protected int rating;
     protected double quality = 1.0;
@@ -40,5 +42,21 @@ public abstract class Gear extends Item implements Equipable{
     @Override
     public boolean canBeEquippedBy(Player player) {
         return player.getLevel() >= itemlevel;
+    }
+
+    @Override
+    public int compareTo(Equipable o) {
+        if (o instanceof Gear){
+            if (itemlevel == ((Gear) o).itemlevel){
+                return rating - ((Gear) o).rating;
+            }
+            return itemlevel - ((Gear) o).itemlevel;
+        }
+        return -1;
+    }
+
+    @Override
+    public int maxNumberOfSameTypeEquips() {
+        return MAX_NUMBER_OF_SAME_TYPE_EQUIPS;
     }
 }

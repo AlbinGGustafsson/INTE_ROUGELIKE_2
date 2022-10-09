@@ -1,14 +1,56 @@
 package org.example;
 
-import java.util.ArrayList;
+import java.util.*;
 
-public class Equipment extends ArrayList<Equipable> {
-    private static final int GEAR_SLOTS = 8;
+public class Equipment extends TreeSet<Equipable> {
+
 
     private Inventory inventory;
 
     public Equipment(Inventory inventory) {
-        super(GEAR_SLOTS);
-        this.inventory = inventory;
+
+        this.inventory = Objects.requireNonNull(inventory);
+    }
+
+    private int getCountOf(Class<? extends Equipable> geartype){
+        int count = 0;
+        for (Equipable e: this) {
+            if (e.getClass() == geartype){
+                count++;
+            }
+        }
+
+        return count;
+
+    }
+
+    private Equipable getEquipable(Class<? extends Equipable> geartype){
+        for (Equipable e:
+             this) {
+            if (e.getClass() == geartype){
+                return e;
+            }
+        }
+        return null;
+    }
+
+
+    @Override
+    public boolean add(Equipable equipable) {
+        if (!inventory.contains(equipable)) {
+            throw new ItemNotInInventoryException();
+        }
+        Class<? extends Equipable> geartype = equipable.getClass();
+        if (getCountOf(geartype) == equipable.maxNumberOfSameTypeEquips()){
+            this.remove(getEquipable(geartype));
+        }
+        inventory.remove(equipable);
+        return super.add(equipable);
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        inventory.add((Item) o);
+        return super.remove(o);
     }
 }
