@@ -10,7 +10,7 @@ public class Wand extends PrimaryWeapon implements SpellDmgScaling{
 
     @Override
     protected boolean instanceOfMatchingWeapons(Equipable equipable) {
-        return false;
+        return equipable instanceof Tome || equipable instanceof Shield;
     }
 
     @Override

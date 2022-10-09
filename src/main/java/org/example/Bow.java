@@ -7,7 +7,7 @@ public class Bow extends PrimaryWeapon implements AttackDmgScaling{
 
     @Override
     protected boolean instanceOfMatchingWeapons(Equipable equipable) {
-        return false;
+        return equipable instanceof Quiver;
     }
 
     @Override
