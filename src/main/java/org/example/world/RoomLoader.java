@@ -49,26 +49,28 @@ public class RoomLoader {
                 ArrayList<Tile> row = new ArrayList<>();
                 roomList.add(row);
                 for (int x = 0; x < roomWidth; x++) {
-                    if (chars[x] == 'W') {
-                        row.add(new Tile(new Wall(), roomInCreation));
+                    if (chars[x] == '#') {
+                        row.add(new Tile(new Wall()));
                     }
                     if (chars[x] == 'F') {
-                        row.add(new Tile(new Floor(),roomInCreation));
+                        row.add(new Tile(new Floor()));
                     }
                     if (chars[x] == 'L') {
-                        row.add(new Tile(new Door(DoorDirection.LEFT),roomInCreation));
+                        row.add(new Tile(new Door(DoorDirection.LEFT)));
                         roomInCreation.setLeftDoorPos(x, y);
                     }
                     if (chars[x] == 'R') {
-                        row.add(new Tile(new Door(DoorDirection.RIGHT),roomInCreation));
+                        row.add(new Tile(new Door(DoorDirection.RIGHT)));
+                        roomInCreation.setRightDoorPos(x, y);
+                    }
+                    if (chars[x] == 'W') {
+                        row.add(new Tile(new Water()));
                         roomInCreation.setRightDoorPos(x, y);
                     }
                 }
             }
 
             return roomInCreation;
-
-            //Här ska väl ett rum retureras
 
         } catch (FileNotFoundException fe) {
             fe.printStackTrace();

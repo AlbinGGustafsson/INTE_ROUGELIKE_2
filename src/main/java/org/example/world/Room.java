@@ -1,5 +1,7 @@
 package org.example.world;
 
+import org.example.Player;
+
 import java.util.ArrayList;
 
 public class Room {
@@ -33,11 +35,11 @@ public class Room {
         room.get(y).get(x).setNonStackableEntity(e);
     }
 
-    public void removeNonStackableEntity(int x, int y){
+    public void removeNonStackableEntity(int x, int y) {
         room.get(y).get(x).removeNonStackableEntity();
     }
 
-    public void moveNonStackableEntity(NonStackableEntity e, int oldX, int oldY, int newX, int newY){
+    public void moveNonStackableEntity(NonStackableEntity e, int oldX, int oldY, int newX, int newY) {
         removeNonStackableEntity(oldX, oldY);
         setNonStackableEntity(e, newX, newY);
     }
@@ -58,7 +60,7 @@ public class Room {
         return rightDoorYPos;
     }
 
-    public Tile getTile(int x, int y){
+    public Tile getTile(int x, int y) {
         return room.get(y).get(x);
     }
 
@@ -70,8 +72,20 @@ public class Room {
         return roomNumber;
     }
 
-    public String getRoomType() {
+    public String mapString() {
         return RoomType;
+    }
+
+    public boolean containsPlayer() {
+
+        for (ArrayList<Tile> list : room) {
+            for (Tile t : list) {
+                if (t.getNonStackableEntity() instanceof Player) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override

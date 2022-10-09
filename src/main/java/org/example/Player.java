@@ -1,7 +1,9 @@
 package org.example;
 
+import org.example.world.MovableCharacter;
 
-public class Player extends GameCharacter {
+public class Player extends MovableCharacter {
+
     private static final int MAX_LEVEL = 100;
     private int level;
     private Equipment equipment;

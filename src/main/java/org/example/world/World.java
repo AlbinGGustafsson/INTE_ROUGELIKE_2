@@ -24,7 +24,14 @@ public class World {
 
         StringBuilder sb = new StringBuilder();
         for (Room r : world){
-            sb.append(r.getRoomType() + " ");
+
+            String s;
+            boolean containsPlayer = r.containsPlayer();
+
+            s = r.containsPlayer() ? "(P)" + r.mapString() + " " : r.mapString() + " ";
+            sb.append(s);
+
+
         }
         return sb.toString();
     }

@@ -1,21 +1,25 @@
 package org.example.world;
 
+import org.example.Player;
+import org.example.Race;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class WorldTesting {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         World world = new World();
 
-
         world.getRoom(0).setNonStackableEntity(new Stone(), 5, 5);
-        PlayerExample eloy = new PlayerExample();
+        Player eloy = new Player("Eloy", Race.HUMAN);
         eloy.spawnPlayer(world);
 
         Scanner scanner = new Scanner(System.in);
 
         System.out.println(eloy.getRoom());
+        System.out.println(world);
 
         while (true){
 
@@ -40,6 +44,7 @@ public class WorldTesting {
             }
 
             System.out.println(eloy.getRoom());
+            System.out.println(world);
         }
 
 

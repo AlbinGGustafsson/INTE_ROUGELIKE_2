@@ -4,6 +4,6 @@ public class Stone implements NonStackableEntity {
 
     @Override
     public String toString() {
-        return "S";
+        return PrintFormatConstants.BOLD + PrintFormatConstants.BLACK + "S" + PrintFormatConstants.RESET;
     }
 }
