@@ -2,18 +2,17 @@ package org.example.world;
 
 public class Door extends Terrain{
 
-    private Direction direction;
-    public Door(Direction direction) {
+    private DoorDirection direction;
+    public Door(DoorDirection direction) {
         this.direction = direction;
     }
 
-    public Direction getDirection() {
+    public DoorDirection getDirection() {
         return direction;
     }
-
     @Override
     public String toString() {
-        return "D";
+        return String.valueOf(direction.toString().charAt(0));
     }
 
 }

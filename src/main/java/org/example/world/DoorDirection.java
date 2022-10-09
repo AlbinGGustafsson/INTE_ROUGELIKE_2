@@ -1,5 +1,5 @@
 package org.example.world;
 
-public enum Direction {
+public enum DoorDirection {
     LEFT, RIGHT
 }

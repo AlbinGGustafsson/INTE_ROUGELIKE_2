@@ -1,6 +1,6 @@
 package org.example.world;
 
-public class Stone extends Entity implements NonStackableEntity {
+public class Stone implements NonStackableEntity {
 
     @Override
     public String toString() {
