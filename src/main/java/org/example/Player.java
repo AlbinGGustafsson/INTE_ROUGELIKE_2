@@ -15,6 +15,7 @@ public class Player extends GameCharacter {
         super(name, race);
         this.level = level;
         inventory = new Inventory();
+        equipment = new Equipment(inventory);
     }
 
     public int getLevel(){
@@ -28,4 +29,19 @@ public class Player extends GameCharacter {
         equipment.add(equipable);
     }
 
+    public void unequip(Equipable equipable) {
+        equipment.remove(equipable);
+    }
+
+    public void addToInventory(Item item) {
+        inventory.add(item);
+    }
+
+    public Inventory getInventory() {
+        return (Inventory) inventory.clone();
+    }
+
+    public Equipment getEquipment() {
+        return (Equipment) equipment.clone();
+    }
 }

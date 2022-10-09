@@ -50,6 +50,9 @@ public class Equipment extends TreeSet<Equipable> {
 
     @Override
     public boolean remove(Object o) {
+        if (!this.contains(o)){
+            return false;
+        }
         inventory.add((Item) o);
         return super.remove(o);
     }
