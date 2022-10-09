@@ -41,9 +41,6 @@ public class RoomCreator {
 
     public Room loadRoom(int roomNumber, World world) {
 
-        //todo
-        //Bryt ut detta till egen metod
-
         String filePath = generateRoomFilePath(roomNumber);
 
         ArrayList<ArrayList<Tile>> room = new ArrayList<>();
