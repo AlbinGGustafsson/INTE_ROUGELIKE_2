@@ -12,8 +12,8 @@ public class Player extends MovableCharacter implements Combat{
     private int exp;
     private int hp;
 
-    private Equipment equipment;
-    private Inventory inventory;
+    private final Equipment equipment;
+    private final Inventory inventory;
 
     public Player(String name, Race race) {
         this(name, race, 1);
