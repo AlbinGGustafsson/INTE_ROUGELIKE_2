@@ -2,10 +2,11 @@ package org.example;
 
 import org.example.world.MovableCharacter;
 
-public class Player extends MovableCharacter {
+public class Player extends MovableCharacter implements Combat{
 
     private static final int MAX_LEVEL = 100;
     private int level;
+    private int healthPoints;
     private Equipment equipment;
     private Inventory inventory;
 
@@ -45,5 +46,34 @@ public class Player extends MovableCharacter {
 
     public Equipment getEquipment() {
         return (Equipment) equipment.clone();
+    }
+
+    @Override
+    public int getBaseDmg() {
+        return 0;
+    }
+
+    @Override
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    @Override
+    public double getBlockChance() {
+        return 0;
+    }
+
+    @Override
+    public void takeDmg(int damage) {
+        double armorfactor = 0.12 * (getArmor()) / 100;
+        healthPoints -= damage * (1 - armorfactor);
+    }
+
+    private int getArmor() {
+        int armorrating = 0;
+        for (ArmorRatingScaling ars: (ArmorRatingScaling[]) equipment.stream().filter(equipable -> equipable instanceof ArmorRatingScaling).toArray()) {
+            armorrating += ars.getArmorRating();
+        }
+        return armorrating;
     }
 }

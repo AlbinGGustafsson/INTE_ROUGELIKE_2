@@ -1,8 +1,7 @@
-package org.example.world;
+package org.example;
 
 public interface Combat {
     int getBaseDmg();
-    int getArmorRating();
     int getHealthPoints();
     double getBlockChance();
     default void dealDmg(Combat combatTarget, int damage){
