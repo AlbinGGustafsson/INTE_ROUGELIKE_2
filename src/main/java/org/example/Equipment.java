@@ -13,8 +13,31 @@ public class Equipment extends TreeSet<Equipable> {
     }
 
     public int getArmorRating() {
-
         return this.stream().filter(equipable -> equipable instanceof ArmorRatingScaling).mapToInt(equipable -> ((ArmorRatingScaling) equipable).getArmorRating()).sum();
+    }
+    public int getAttackDmg(){
+        return (int) Math.ceil((1 + getPercentDmgScaling()) * getBaseAttackDmg());
+    }
+    public int getSpellDmg(){
+        return (int) Math.ceil((1 + getPercentDmgScaling()) * getBaseSpellDmg());
+    }
+    public double getBlockChance(){
+        if (getCountOf(Shield.class) == 1){
+            Shield shield = (Shield) getEquipable(Shield.class);
+            assert shield != null;
+            return shield.getArmorRating()/1000.0;
+        }
+        return 0;
+    }
+
+    private int getBaseAttackDmg() {
+        return this.stream().filter(equipable -> equipable instanceof AttackDmgScaling).mapToInt(equipable -> ((AttackDmgScaling) equipable).getAttackDmg()).sum();
+    }
+    private int getBaseSpellDmg() {
+        return this.stream().filter(equipable -> equipable instanceof SpellDmgScaling).mapToInt(equipable -> ((SpellDmgScaling) equipable).getSpellDmg()).sum();
+    }
+    private double getPercentDmgScaling(){
+        return this.stream().filter(equipable -> equipable instanceof PercentDmgScaling).mapToInt(equipable -> ((PercentDmgScaling) equipable).getPercentDmgIncrease()).sum()/100.0;
 
     }
 

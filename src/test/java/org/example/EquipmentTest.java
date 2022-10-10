@@ -85,4 +85,12 @@ class EquipmentTest {
         assertFalse(inventory.contains(h));
     }
 
+    @Test
+    public void hasRightBlockChance(){
+        Shield s = new Shield("", "", 12, 400);
+        inventory.add(s);
+        equipment.add(s);
+        assertEquals(0.40, equipment.getBlockChance());
+    }
+
 }

@@ -53,14 +53,6 @@ public class Player extends MovableCharacter implements Combat{
     }
 
     @Override
-    public int getBaseDmg() {
-        return 0;
-    }
-
-
-
-
-    @Override
     public double getBlockChance() {
         return 0;
     }
