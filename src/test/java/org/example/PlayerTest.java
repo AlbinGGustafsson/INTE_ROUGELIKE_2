@@ -1,11 +1,17 @@
 package org.example;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
-    private static final Player PLAYER = new Player("", Race.DWARF);
+    Player PLAYER;
+
+    @BeforeEach
+    public void setUp(){
+        PLAYER = new Player("", Race.DWARF, 5);
+    }
 
     @Test
     void equippingUnequibleGearDoesntWork() {
@@ -34,5 +40,25 @@ class PlayerTest {
         PLAYER.equip(h);
         PLAYER.unequip(h);
         assertFalse(PLAYER.getEquipment().contains(h));
+    }
+
+    @Test
+    public void rightDmgIsTaken(){
+        Chestpiece c = new Chestpiece("", "", 4, 400);
+        Helmet h = new Helmet("", "", 1, 267);
+        PLAYER.addToInventory(c);
+        PLAYER.addToInventory(h);
+        PLAYER.equip(c);
+        PLAYER.equip(h);
+        int hp = PLAYER.getHp();
+        PLAYER.takeDmg(1000);
+        assertEquals(hp - 200, PLAYER.getHp());
+    }
+
+    @Test
+    public void lvlOneZeroEquipPlayerHasRightBaseDmg(){
+        Player p = new Player("", Race.DWARF);
+        assertEquals(0, p.getBaseDmg().getMagicDmg());
+        assertEquals(11, p.getBaseDmg().getPhysDmg());
     }
 }

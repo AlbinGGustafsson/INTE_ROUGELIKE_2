@@ -9,7 +9,7 @@ public class WandTest {
 
     @Test
     public void creatingValidWandGovesNoError(){
-        assertEquals(200, DEFAULT_VALID_WAND.getSpellDmg());
+        assertEquals(200, DEFAULT_VALID_WAND.getMagicDmg());
     }
 
     @Test

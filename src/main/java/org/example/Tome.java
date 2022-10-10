@@ -1,6 +1,6 @@
 package org.example;
 
-public class Tome extends SubWeapon implements SpellDmgScaling{
+public class Tome extends SubWeapon implements MagicDmgScaling {
 
 
     public Tome(String name, String description, int ilvl, int rating) {
@@ -18,7 +18,7 @@ public class Tome extends SubWeapon implements SpellDmgScaling{
     }
 
     @Override
-    public int getSpellDmg() {
+    public int getMagicDmg() {
         return rating;
     }
 

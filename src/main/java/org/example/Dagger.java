@@ -1,6 +1,6 @@
 package org.example;
 
-public class Dagger extends SubWeapon implements AttackDmgScaling{
+public class Dagger extends SubWeapon implements PhysDmgScaling {
     public Dagger(String name, String description, int ilvl, int rating) {
         super(name, description, ilvl, rating);
     }
@@ -11,7 +11,7 @@ public class Dagger extends SubWeapon implements AttackDmgScaling{
     }
 
     @Override
-    public int getAttackDmg() {
+    public int getPhysDmg() {
         return rating;
     }
 

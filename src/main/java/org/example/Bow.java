@@ -1,6 +1,6 @@
 package org.example;
 
-public class Bow extends PrimaryWeapon implements AttackDmgScaling{
+public class Bow extends PrimaryWeapon implements PhysDmgScaling {
     public Bow(String name, String description, int ilvl, int rating) {
         super(name, description, ilvl, rating);
     }
@@ -11,7 +11,7 @@ public class Bow extends PrimaryWeapon implements AttackDmgScaling{
     }
 
     @Override
-    public int getAttackDmg() {
+    public int getPhysDmg() {
         return rating;
     }
 
