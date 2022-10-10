@@ -3,11 +3,12 @@ package org.example;
 import org.example.world.MovableCharacter;
 
 public class Player extends MovableCharacter implements Combat{
-
+    //leveling equation for player = (x-1)^4.5
     private static final int MAX_LEVEL = 100;
     private static final int BASE_PHYS_DMG = 10;
     private static final int BASE_MAGIC_DMG = 0;
     private int level;
+    private int exp;
     private int hp;
     private Equipment equipment;
     private Inventory inventory;
@@ -80,5 +81,14 @@ public class Player extends MovableCharacter implements Combat{
     @Override
     public BaseDamage getBaseDmg() {
         return new BaseDamage(getPhysDmg(), getMagicDmg(), getDmgMultiplier(), getDmgMultiplier());
+    }
+
+
+    public void gainExp(int exp) {
+        this.exp+=exp;
+    }
+
+    public int getExp() {
+        return exp;
     }
 }
