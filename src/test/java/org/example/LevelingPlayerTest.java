@@ -47,4 +47,16 @@ class LevelingPlayerTest {
         Player p2 = new Player("", Race.DWARF, 56);
         assertEquals(67862852, p2.getExp());
     }
+
+    @Test
+    void settingAboveMaxLevelInConstructorSetsMaxLevel(){
+        Player p2 = new Player("", Race.DWARF, 150);
+        assertEquals(100, p2.getLevel());
+    }
+
+    @Test
+    void settingBelowLevelOneInConstructorSetsLevelOne(){
+        Player p2 = new Player("", Race.DWARF, -1);
+        assertEquals(1, p2.getLevel());
+    }
 }
