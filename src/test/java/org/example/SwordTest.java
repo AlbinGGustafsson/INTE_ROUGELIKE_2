@@ -10,7 +10,7 @@ public class SwordTest {
     @Test
     public void creatingValidSwordGivesNoError() {
 
-        assertEquals(100, DEFAULT_VALID_SWORD.getAttackDmg());
+        assertEquals(100, DEFAULT_VALID_SWORD.getPhysDmg());
     }
 
     @Test

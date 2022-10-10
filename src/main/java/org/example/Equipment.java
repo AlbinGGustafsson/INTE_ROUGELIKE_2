@@ -15,10 +15,10 @@ public class Equipment extends TreeSet<Equipable> {
     public int getArmorRating() {
         return this.stream().filter(equipable -> equipable instanceof ArmorRatingScaling).mapToInt(equipable -> ((ArmorRatingScaling) equipable).getArmorRating()).sum();
     }
-    public int getAttackDmg(){
+    public int getPhysDmg(){
         return (int) Math.ceil((1 + getPercentDmgScaling()) * getBaseAttackDmg());
     }
-    public int getSpellDmg(){
+    public int getMagicDmg(){
         return (int) Math.ceil((1 + getPercentDmgScaling()) * getBaseSpellDmg());
     }
     public double getBlockChance(){
@@ -31,10 +31,10 @@ public class Equipment extends TreeSet<Equipable> {
     }
 
     private int getBaseAttackDmg() {
-        return this.stream().filter(equipable -> equipable instanceof AttackDmgScaling).mapToInt(equipable -> ((AttackDmgScaling) equipable).getAttackDmg()).sum();
+        return this.stream().filter(equipable -> equipable instanceof PhysDmgScaling).mapToInt(equipable -> ((PhysDmgScaling) equipable).getPhysDmg()).sum();
     }
     private int getBaseSpellDmg() {
-        return this.stream().filter(equipable -> equipable instanceof SpellDmgScaling).mapToInt(equipable -> ((SpellDmgScaling) equipable).getSpellDmg()).sum();
+        return this.stream().filter(equipable -> equipable instanceof MagicDmgScaling).mapToInt(equipable -> ((MagicDmgScaling) equipable).getMagicDmg()).sum();
     }
     private double getPercentDmgScaling(){
         return this.stream().filter(equipable -> equipable instanceof PercentDmgScaling).mapToInt(equipable -> ((PercentDmgScaling) equipable).getPercentDmgIncrease()).sum()/100.0;

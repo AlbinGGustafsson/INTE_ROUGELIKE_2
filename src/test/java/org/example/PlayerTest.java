@@ -54,4 +54,11 @@ class PlayerTest {
         PLAYER.takeDmg(1000);
         assertEquals(hp - 200, PLAYER.getHp());
     }
+
+    @Test
+    public void lvlOneZeroEquipPlayerHasRightBaseDmg(){
+        Player p = new Player("", Race.DWARF);
+        assertEquals(0, p.getBaseDmg().getMagicDmg());
+        assertEquals(11, p.getBaseDmg().getPhysDmg());
+    }
 }

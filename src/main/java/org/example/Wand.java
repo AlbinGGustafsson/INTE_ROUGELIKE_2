@@ -1,6 +1,6 @@
 package org.example;
 
-public class Wand extends PrimaryWeapon implements SpellDmgScaling{
+public class Wand extends PrimaryWeapon implements MagicDmgScaling {
 
 
     public Wand(String name, String description, int ilvl, int spellDmg) {
@@ -14,7 +14,7 @@ public class Wand extends PrimaryWeapon implements SpellDmgScaling{
     }
 
     @Override
-    public int getSpellDmg() {
+    public int getMagicDmg() {
         return rating;
     }
 

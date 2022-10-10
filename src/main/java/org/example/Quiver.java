@@ -1,12 +1,12 @@
 package org.example;
 
-public class Quiver extends SubWeapon implements AttackDmgScaling{
+public class Quiver extends SubWeapon implements PhysDmgScaling {
     public Quiver(String name, String description, int ilvl, int rating) {
         super(name, description, ilvl, rating);
     }
 
     @Override
-    public int getAttackDmg() {
+    public int getPhysDmg() {
         return rating;
     }
 
