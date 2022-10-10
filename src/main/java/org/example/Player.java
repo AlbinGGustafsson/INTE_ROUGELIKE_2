@@ -6,7 +6,7 @@ public class Player extends MovableCharacter implements Combat{
 
     private static final int MAX_LEVEL = 100;
     private int level;
-    private int healthPoints;
+    private int hp;
     private Equipment equipment;
     private Inventory inventory;
 
@@ -48,15 +48,17 @@ public class Player extends MovableCharacter implements Combat{
         return (Equipment) equipment.clone();
     }
 
+    public int getHp() {
+        return hp;
+    }
+
     @Override
     public int getBaseDmg() {
         return 0;
     }
 
-    @Override
-    public int getHealthPoints() {
-        return healthPoints;
-    }
+
+
 
     @Override
     public double getBlockChance() {
@@ -65,15 +67,11 @@ public class Player extends MovableCharacter implements Combat{
 
     @Override
     public void takeDmg(int damage) {
-        double armorfactor = 0.12 * (getArmor()) / 100;
-        healthPoints -= damage * (1 - armorfactor);
+        double armorfactor = 0.12 * equipment.getArmorRating() / 100;
+        hp -= Math.ceil(damage * (1.0 - armorfactor));
     }
 
-    private int getArmor() {
-        int armorrating = 0;
-        for (ArmorRatingScaling ars: (ArmorRatingScaling[]) equipment.stream().filter(equipable -> equipable instanceof ArmorRatingScaling).toArray()) {
-            armorrating += ars.getArmorRating();
-        }
-        return armorrating;
-    }
+
+
+
 }

@@ -12,6 +12,12 @@ public class Equipment extends TreeSet<Equipable> {
         this.inventory = Objects.requireNonNull(inventory);
     }
 
+    public int getArmorRating() {
+
+        return this.stream().filter(equipable -> equipable instanceof ArmorRatingScaling).mapToInt(equipable -> ((ArmorRatingScaling) equipable).getArmorRating()).sum();
+
+    }
+
     private int getCountOf(Class<? extends Equipable> geartype){
         int count = 0;
         for (Equipable e: this) {
@@ -33,6 +39,8 @@ public class Equipment extends TreeSet<Equipable> {
         }
         return null;
     }
+
+
 
 
     @Override

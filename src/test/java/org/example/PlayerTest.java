@@ -45,13 +45,13 @@ class PlayerTest {
     @Test
     public void rightDmgIsTaken(){
         Chestpiece c = new Chestpiece("", "", 4, 400);
-        Helmet h = new Helmet("", "", 1, 123);
+        Helmet h = new Helmet("", "", 1, 267);
         PLAYER.addToInventory(c);
         PLAYER.addToInventory(h);
         PLAYER.equip(c);
         PLAYER.equip(h);
-        int hp = PLAYER.getHealthPoints();
+        int hp = PLAYER.getHp();
         PLAYER.takeDmg(1000);
-        assertEquals(hp - 200, PLAYER.getHealthPoints());
+        assertEquals(hp - 200, PLAYER.getHp());
     }
 }
