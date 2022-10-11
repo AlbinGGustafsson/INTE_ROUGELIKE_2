@@ -5,9 +5,6 @@ import org.example.Player;
 import java.util.ArrayList;
 
 public class Room {
-
-    private Position leftDoorPos, rightDoorPos;
-
     private int roomNumber;
     private World world;
     private String RoomType;
@@ -35,14 +32,6 @@ public class Room {
             return null;
         }
         return world.getRoom(roomNumber - 1);
-    }
-
-    public void setRightDoorPos(Position position) {
-        rightDoorPos = position;
-    }
-
-    public void setLeftDoorPos(Position position) {
-        leftDoorPos = position;
     }
 
     public void setEntity(Entity entity, Position pos) {
