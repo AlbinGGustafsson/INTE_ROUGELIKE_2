@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class Door implements Entity {
 
-    //public void printWalkthru();
+    private Position position;
 
     private Direction direction;
 
@@ -21,9 +21,23 @@ public class Door implements Entity {
         return direction;
     }
 
+    public void printWalkThrough(){
+        System.out.println("Walking through door " + direction.name());
+    }
+
     @Override
     public String toString() {
         return direction.toString().substring(0,1);
+    }
+
+    @Override
+    public Position getPosition() {
+        return position;
+    }
+
+    @Override
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     @Override

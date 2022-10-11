@@ -21,17 +21,17 @@ public class Room {
         this.RoomType = roomType;
     }
 
-    public Room getNextRoom(){
-        try{
+    public Room getNextRoom() {
+        try {
             world.getRoom(roomNumber + 1);
-        }catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             world.addRoom();
         }
         return world.getRoom(roomNumber + 1);
     }
 
-    public Room getPreviousRoom(){
-        if (roomNumber == 0){
+    public Room getPreviousRoom() {
+        if (roomNumber == 0) {
             return null;
         }
         return world.getRoom(roomNumber - 1);
@@ -45,27 +45,31 @@ public class Room {
         leftDoorPos = position;
     }
 
-    public void setEntity(Entity e, Position pos) {
-        room.get(pos.getY()).get(pos.getX()).setEntity(e);
+    public void setEntity(Entity entity, Position pos) {
+        entity.setPosition(pos);
+        room.get(pos.getY()).get(pos.getX()).setEntity(entity);
     }
 
-    public void removeEntity(Position pos) {
+    public void removeEntity(Entity entity) {
+        Position pos = entity.getPosition();
         room.get(pos.getY()).get(pos.getX()).removeEntity();
     }
 
-    public void moveEntity(Entity e, Position oldPos, Position newPos) {
-        removeEntity(oldPos);
-        setEntity(e, newPos);
+    public void moveEntity(Entity entity, Position newPos) {
+        removeEntity(entity);
+        setEntity(entity, newPos);
     }
 
-    public Position getLeftDoorPos() {
-        return leftDoorPos;
+    public Door getDoor(Direction direction) {
+        for (ArrayList<Tile> list : room) {
+            for (Tile t : list) {
+                if (t.getEntity() instanceof Door d && d.getDirection().equals(direction)) {
+                    return d;
+                }
+            }
+        }
+        return null;
     }
-
-    public Position getRightDoorPos() {
-        return rightDoorPos;
-    }
-
     public Tile getTile(Position position) {
         return room.get(position.getY()).get(position.getX());
     }

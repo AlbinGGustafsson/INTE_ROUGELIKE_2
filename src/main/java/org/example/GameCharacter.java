@@ -14,9 +14,14 @@ public abstract class GameCharacter implements Entity {
     public GameCharacter(String name, Race race) {
     }
 
-
+    @Override
     public Position getPosition() {
         return position;
+    }
+
+    @Override
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
     public Room getRoom() {
