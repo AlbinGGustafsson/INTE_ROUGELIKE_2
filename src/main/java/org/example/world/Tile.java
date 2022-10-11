@@ -17,29 +17,30 @@ public class Tile {
         this.entity = entity;
     }
 
-    public Entity getNonStackableEntity() {
+    public Entity getEntity() {
         return entity;
     }
 
     public void setEntity(Entity entity) {
-        if (canSetEntity(entity)){
-            this.entity = entity;
+        if (!canSetEntity(entity)) {
+            System.err.println("Finns redan en nonstackable eller det är en ogiltig terräng");
             return;
         }
-        System.err.println("Finns redan en nonstackable eller det är en ogiltig terräng");
+        this.entity = entity;
     }
+
     public void removeEntity() {
         entity = null;
     }
 
-    public boolean canSetEntity(Entity entity){
+    public boolean canSetEntity(Entity entity) {
 
         //Kollar om en movable character kan vara på tilens terräng
-        if (entity instanceof MovableCharacter mc && !mc.getTerrains().contains(terrain.getClass())){
+        if (entity instanceof MovableCharacter mc && !mc.getTerrains().contains(terrain.getClass())) {
             return false;
         }
 
-        return (this.entity == null);
+        return this.entity == null;
     }
 
     public void setTerrain(Terrain terrain) {

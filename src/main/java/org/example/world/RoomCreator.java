@@ -68,6 +68,7 @@ public class RoomCreator {
                 ArrayList<Tile> row = new ArrayList<>();
                 room.add(row);
                 for (int x = 0; x < roomWidth; x++) {
+                    Position currentPosition = new Position(x, y);
                     if (chars[x] == '#') {
                         row.add(new Tile(new Floor(), new Wall()));
                     }
@@ -75,16 +76,16 @@ public class RoomCreator {
                         row.add(new Tile(new Floor()));
                     }
                     if (chars[x] == 'L') {
-                        row.add(new Tile(new Floor(), new Door(Direction.LEFT)));
-                        roomInCreation.setLeftDoorPos(new Position(x, y));
+                        row.add(new Tile(new Floor()));
+                        roomInCreation.setEntity(new Door(Direction.LEFT), currentPosition);
                     }
                     if (chars[x] == 'R') {
-                        row.add(new Tile(new Floor(), new Door(Direction.RIGHT)));
-                        roomInCreation.setRightDoorPos(new Position(x, y));
+                        row.add(new Tile(new Floor()));
+                        roomInCreation.setEntity(new Door(Direction.RIGHT), currentPosition);
                     }
                     if (chars[x] == 'W') {
                         row.add(new Tile(new Water()));
-                        roomInCreation.setRightDoorPos(new Position(x, y));
+
                     }
                 }
             }
