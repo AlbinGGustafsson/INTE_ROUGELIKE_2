@@ -150,6 +150,15 @@ public class Player extends MovableCharacter implements Combat{
             stone.printNonReachableMessage();
             return true;
         }
+        
+        if (tile.getEntity() instanceof Monster e) {
+            System.out.println("You have encountered a MONSTER AHHHH!");
+            if(e.battleWithPlayer((Player) this)){
+                tile.removeNonStackableEntity();
+                return false;
+            }
+            return true;
+        }
 
         return false;
     }

@@ -1,8 +1,9 @@
 package org.example.Monster;
 
-public class Vampyre extends Monster {
+import org.example.world.NonStackableEntity;
 
-    public Vampyre(int level) {
+public class Boss extends Monster {
+    public Boss(int level) {
         super(level);
     }
 
@@ -25,5 +26,4 @@ public class Vampyre extends Monster {
     public void attack() {
 
     }
-
 }

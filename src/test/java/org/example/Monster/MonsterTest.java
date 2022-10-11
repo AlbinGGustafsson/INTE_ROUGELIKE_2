@@ -1,5 +1,7 @@
 package org.example.Monster;
 
+import org.example.Player;
+import org.example.Race;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 public class MonsterTest {
@@ -26,5 +28,12 @@ public class MonsterTest {
         assertThrows(IllegalArgumentException.class, () -> {
             Troll troll = new Troll(TO_LOW_LEVEL_VALUE);
         });
+    }
+    @Test
+    void BattleWithAPlayerHasCorrectOutcome(){
+        Troll troll = new Troll(10);
+        Player player = new Player("player", Race.HUMAN, 10);
+
+        troll.battleWithPlayer(player);
     }
 }

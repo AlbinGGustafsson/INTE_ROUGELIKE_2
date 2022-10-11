@@ -2,6 +2,8 @@ package org.example.world;
 
 import javafx.geometry.Pos;
 import org.example.GameCharacter;
+import org.example.Monster.Monster;
+import org.example.Player;
 import org.example.Race;
 
 import java.util.Collections;
@@ -31,7 +33,6 @@ public abstract class MovableCharacter extends GameCharacter{
         }
         getRoom().moveEntity(this, getPosition().getPos(direction));
     }
-
 
     protected abstract boolean interactWithTile(Position position);
 

@@ -2,9 +2,9 @@ package org.example.Monster;
 
 public class Troll extends Monster{
 
-    private static final int LEVEL_ONE_HEALTH = 400;
+    private static final int LEVEL_ONE_HEALTH = 300;
     private static final int COEFFICIENT_FOR_HEALTH_SCALING = 2;
-    private static final int LEVEL_ONE_ATTACK_DAMAGE = 20;
+    private static final int LEVEL_ONE_ATTACK_DAMAGE = 400;
     private static final int COEFFICIENT_FOR_ATTACK_DAMAGE_SCALING = 3;
 
 
@@ -14,7 +14,7 @@ public class Troll extends Monster{
     }
 
     @Override
-    public int calculateHealth() {
+    public double calculateHealth() {
         return getLevel()*COEFFICIENT_FOR_HEALTH_SCALING + LEVEL_ONE_HEALTH;
 
     }
@@ -32,5 +32,9 @@ public class Troll extends Monster{
     @Override
     public void attack() {
 
+    }
+
+    public String toString(){
+        return "T";
     }
 }

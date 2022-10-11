@@ -12,7 +12,7 @@ public class Seamonster extends Monster {
     }
 
     @Override
-    public int calculateHealth() {
+    public double calculateHealth() {
         return getLevel()*COEFFICIENT_FOR_HEALTH_SCALING + LEVEL_ONE_HEALTH;
     }
 
