@@ -21,14 +21,14 @@ public class Tile {
         return entity;
     }
 
-    public void setNonStackableEntity(Entity entity) {
+    public void setEntity(Entity entity) {
         if (canSetEntity(entity)){
             this.entity = entity;
             return;
         }
         System.err.println("Finns redan en nonstackable eller det är en ogiltig terräng");
     }
-    public void removeNonStackableEntity() {
+    public void removeEntity() {
         entity = null;
     }
 

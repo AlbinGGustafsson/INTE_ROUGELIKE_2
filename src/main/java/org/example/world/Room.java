@@ -37,7 +37,6 @@ public class Room {
         return world.getRoom(roomNumber - 1);
     }
 
-
     public void setRightDoorPos(Position position) {
         rightDoorPos = position;
     }
@@ -46,17 +45,17 @@ public class Room {
         leftDoorPos = position;
     }
 
-    public void setNonStackableEntity(Entity e, Position pos) {
-        room.get(pos.getY()).get(pos.getX()).setNonStackableEntity(e);
+    public void setEntity(Entity e, Position pos) {
+        room.get(pos.getY()).get(pos.getX()).setEntity(e);
     }
 
-    public void removeNonStackableEntity(Position pos) {
-        room.get(pos.getY()).get(pos.getX()).removeNonStackableEntity();
+    public void removeEntity(Position pos) {
+        room.get(pos.getY()).get(pos.getX()).removeEntity();
     }
 
-    public void moveNonStackableEntity(Entity e, Position oldPos, Position newPos) {
-        removeNonStackableEntity(oldPos);
-        setNonStackableEntity(e, newPos);
+    public void moveEntity(Entity e, Position oldPos, Position newPos) {
+        removeEntity(oldPos);
+        setEntity(e, newPos);
     }
 
     public Position getLeftDoorPos() {
@@ -87,7 +86,7 @@ public class Room {
 
         for (ArrayList<Tile> list : room) {
             for (Tile t : list) {
-                if (t.getNonStackableEntity() instanceof Player) {
+                if (t.getEntity() instanceof Player) {
                     return true;
                 }
             }

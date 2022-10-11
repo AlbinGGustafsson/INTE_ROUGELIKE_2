@@ -137,16 +137,16 @@ public class Player extends MovableCharacter implements Combat{
             return true;
         }
 
-        if (tile.getNonStackableEntity() instanceof Door door){
+        if (tile.getEntity() instanceof Door door){
             setRoom(changeRoom(door));
             return true;
         }
 
-        if (tile.getNonStackableEntity() instanceof Wall wall){
+        if (tile.getEntity() instanceof Wall wall){
             wall.printNonReachableMessage();
             return true;
         }
-        if (tile.getNonStackableEntity() instanceof Stone stone){
+        if (tile.getEntity() instanceof Stone stone){
             stone.printNonReachableMessage();
             return true;
         }
@@ -156,7 +156,7 @@ public class Player extends MovableCharacter implements Combat{
 
     private Room changeRoom(Door d){
 
-        getRoom().removeNonStackableEntity(getPosition());
+        getRoom().removeEntity(getPosition());
         Room newRoom = null;
 
         if (d.getDirection().equals(Direction.LEFT)){
@@ -171,7 +171,7 @@ public class Player extends MovableCharacter implements Combat{
         }
 
         assert newRoom != null;
-        newRoom.setNonStackableEntity(this, getPosition());
+        newRoom.setEntity(this, getPosition());
         return newRoom;
 
     }

@@ -29,7 +29,7 @@ public abstract class MovableCharacter extends GameCharacter{
         if (interactWithTile(getPosition().getPos(direction))){
             return;
         }
-        getRoom().moveNonStackableEntity(this, getPosition(), getPosition().getPos(direction));
+        getRoom().moveEntity(this, getPosition(), getPosition().getPos(direction));
         setPos(getPosition().getPos(direction));
     }
 
