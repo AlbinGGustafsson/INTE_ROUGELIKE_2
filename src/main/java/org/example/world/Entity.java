@@ -1,6 +1,6 @@
 package org.example.world;
 
-public interface NonStackableEntity {
+public interface Entity {
     //Position getPosition();
     void printNonReachableMessage();
 }

@@ -1,6 +1,6 @@
 //package org.example.world;
 //
-//public class PlayerExample implements NonStackableEntity {
+//public class PlayerExample implements Entity {
 //
 //    private int playerXPos, playerYPos;
 //    private Room room;

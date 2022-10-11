@@ -46,7 +46,7 @@ public class Room {
         leftDoorPos = position;
     }
 
-    public void setNonStackableEntity(NonStackableEntity e, Position pos) {
+    public void setNonStackableEntity(Entity e, Position pos) {
         room.get(pos.getY()).get(pos.getX()).setNonStackableEntity(e);
     }
 
@@ -54,7 +54,7 @@ public class Room {
         room.get(pos.getY()).get(pos.getX()).removeNonStackableEntity();
     }
 
-    public void moveNonStackableEntity(NonStackableEntity e, Position oldPos, Position newPos) {
+    public void moveNonStackableEntity(Entity e, Position oldPos, Position newPos) {
         removeNonStackableEntity(oldPos);
         setNonStackableEntity(e, newPos);
     }

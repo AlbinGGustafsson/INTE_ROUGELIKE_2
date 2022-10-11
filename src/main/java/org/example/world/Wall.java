@@ -1,6 +1,6 @@
 package org.example.world;
 
-public class Wall implements NonStackableEntity{
+public class Wall implements Entity {
 
     @Override
     public String toString() {

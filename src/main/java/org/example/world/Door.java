@@ -1,9 +1,8 @@
 package org.example.world;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Door implements NonStackableEntity{
+public class Door implements Entity {
 
     //public void printWalkthru();
 
