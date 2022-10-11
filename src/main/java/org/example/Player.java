@@ -156,37 +156,24 @@ public class Player extends MovableCharacter implements Combat{
 
     private Room changeRoom(Door d){
 
-        Room oldRoom = getRoom();
-        int oldRoomNumber = oldRoom.getRoomNumber();
-        World world = oldRoom.getWorld();
+        getRoom().removeNonStackableEntity(getPosition());
         Room newRoom = null;
 
-        if (d instanceof LeftDoor){
-            newRoom = world.getRoom(oldRoom.getRoomNumber() - 1);
-            oldRoom.removeNonStackableEntity(getPosition());
-            setPos(newRoom.getRightDoorPos().getLeftPos());
-            newRoom.setNonStackableEntity(this, getPosition());
-            System.out.println("Walking through door to the left");
+        if (d instanceof LeftDoor l){
+            newRoom = getRoom().getPreviousRoom();
+            setPos(newRoom.getRightDoorPos().getPos(Direction.LEFT));
+            l.printWalkthru();
+        }
+        if (d instanceof RightDoor r){
+            newRoom = getRoom().getNextRoom();
+            setPos(newRoom.getLeftDoorPos().getPos(Direction.RIGHT));
+            r.printWalkthru();
         }
 
-        if (d instanceof RightDoor){
-
-            try{
-                newRoom = world.getRoom(oldRoomNumber + 1);
-            }catch (IndexOutOfBoundsException e) {
-                world.addRoom();
-            }
-            newRoom = world.getRoom(oldRoomNumber + 1);
-            oldRoom.removeNonStackableEntity(getPosition());
-            setPos(newRoom.getLeftDoorPos().getRightPos());
-            newRoom.setNonStackableEntity(this, getPosition());
-//            oldRoom.removeNonStackableEntity(getXPos(), getYPos());
-//            setXPos(newRoom.getLeftDoorXPos() + 1);
-//            setYPos(newRoom.getLeftDoorYPos());
-//            newRoom.setNonStackableEntity(this, getXPos(), getYPos());
-            System.out.println("Walking through door to the right");
-        }
+        assert newRoom != null;
+        newRoom.setNonStackableEntity(this, getPosition());
         return newRoom;
+
     }
 
 

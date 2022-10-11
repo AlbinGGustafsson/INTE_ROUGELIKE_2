@@ -21,6 +21,23 @@ public class Room {
         this.RoomType = roomType;
     }
 
+    public Room getNextRoom(){
+        try{
+            world.getRoom(roomNumber + 1);
+        }catch (IndexOutOfBoundsException e){
+            world.addRoom();
+        }
+        return world.getRoom(roomNumber + 1);
+    }
+
+    public Room getPreviousRoom(){
+        if (roomNumber == 0){
+            return null;
+        }
+        return world.getRoom(roomNumber - 1);
+    }
+
+
     public void setRightDoorPos(Position position) {
         rightDoorPos = position;
     }
