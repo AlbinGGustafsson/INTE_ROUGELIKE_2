@@ -17,8 +17,6 @@ public class Position {
         return y;
     }
 
-
-
     public Position getPos(Direction direction){
         switch (direction){
             case UP -> {
