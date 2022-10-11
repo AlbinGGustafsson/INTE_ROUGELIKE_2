@@ -19,6 +19,9 @@ abstract class Terrain {
         return typeName;
     }
 
+    //public abstract void printNonReachableMessage();
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

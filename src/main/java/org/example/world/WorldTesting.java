@@ -15,7 +15,7 @@ public class WorldTesting {
         world.getRoom(0).setNonStackableEntity(new Stone(), 5, 5);
         Player eloy = new Player("Eloy", Race.HUMAN);
         eloy.spawnPlayer(world);
-        eloy.addTerrain(new Water());
+        eloy.addTerrain(Water.class);
 
         Scanner scanner = new Scanner(System.in);
 
@@ -47,8 +47,6 @@ public class WorldTesting {
             System.out.println(eloy.getRoom());
             System.out.println(world);
         }
-
-
 
     }
 

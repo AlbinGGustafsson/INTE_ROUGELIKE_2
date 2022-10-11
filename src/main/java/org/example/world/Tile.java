@@ -13,6 +13,11 @@ public class Tile {
         this.terrain = terrainType;
     }
 
+    public Tile(Terrain terrainType, NonStackableEntity nonStackableEntity) {
+        this.terrain = terrainType;
+        this.nonStackableEntity = nonStackableEntity;
+    }
+
     public NonStackableEntity getNonStackableEntity() {
         return nonStackableEntity;
     }
@@ -31,11 +36,11 @@ public class Tile {
     public boolean canSetEntity(NonStackableEntity entity){
 
         //Kollar om en movable character kan vara på tilens terräng
-        if (entity instanceof MovableCharacter mc && !mc.getTerrains().contains(terrain)){
+        if (entity instanceof MovableCharacter mc && !mc.getTerrains().contains(terrain.getClass())){
             return false;
         }
 
-        return !(nonStackableEntity != null || terrain instanceof Solid);
+        return (nonStackableEntity == null);
     }
 
     public void setTerrain(Terrain terrain) {

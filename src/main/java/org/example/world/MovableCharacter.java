@@ -9,20 +9,18 @@ import java.util.Set;
 
 public abstract class MovableCharacter extends GameCharacter{
 
-    private HashSet<Terrain> terrains = new HashSet<>();
+    private HashSet<Class<? extends Terrain>> terrains = new HashSet<>();
 
     public MovableCharacter(String name, Race race) {
         super(name, race);
-        terrains.add(new Floor());
-        terrains.add(new LeftDoor());
-        terrains.add(new RightDoor());
+        terrains.add(Floor.class);
     }
 
-    public void addTerrain(Terrain t){
+    public void addTerrain(Class<? extends Terrain> t){
         terrains.add(t);
     }
 
-    public void removeTerrain(Terrain t){
+    public void removeTerrain(Class<? extends Terrain> t){
         terrains.remove(t);
     }
 
@@ -60,7 +58,7 @@ public abstract class MovableCharacter extends GameCharacter{
 
     protected abstract boolean interactWithTile(int x, int y);
 
-    public Set<Terrain> getTerrains() {
+    public Set<Class<? extends Terrain>> getTerrains() {
         return Collections.unmodifiableSet(terrains);
     }
 

@@ -69,17 +69,17 @@ public class RoomCreator {
                 room.add(row);
                 for (int x = 0; x < roomWidth; x++) {
                     if (chars[x] == '#') {
-                        row.add(new Tile(new Wall()));
+                        row.add(new Tile(new Floor(), new Wall()));
                     }
                     if (chars[x] == 'F') {
                         row.add(new Tile(new Floor()));
                     }
                     if (chars[x] == 'L') {
-                        row.add(new Tile(new LeftDoor()));
+                        row.add(new Tile(new Floor(), new LeftDoor()));
                         roomInCreation.setLeftDoorPos(x, y);
                     }
                     if (chars[x] == 'R') {
-                        row.add(new Tile(new RightDoor()));
+                        row.add(new Tile(new Floor(), new RightDoor()));
                         roomInCreation.setRightDoorPos(x, y);
                     }
                     if (chars[x] == 'W') {

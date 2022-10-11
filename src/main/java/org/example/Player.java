@@ -141,33 +141,22 @@ public class Player extends MovableCharacter implements Combat{
     protected boolean interactWithTile(int x, int y){
         Tile tile = getRoom().getTile(x, y);
 
-        if (tile.getTerrain() instanceof Water && !getTerrains().contains(new Water())){
+        if (tile.getTerrain() instanceof Water && !getTerrains().contains(Water.class)){
             System.out.println("You cant swim");
             return true;
         }
 
-        if (tile.getTerrain() instanceof Floor && !getTerrains().contains(new Floor())){
+        if (tile.getTerrain() instanceof Floor && !getTerrains().contains(Floor.class)){
             System.out.println("You cant go on floor");
             return true;
         }
 
-        if (tile.getTerrain() instanceof Door door){
-
-            if (door instanceof LeftDoor && !getTerrains().contains(new LeftDoor())){
-                System.out.println("You cant use left door");
-                return true;
-            }
-
-            if (door instanceof RightDoor && !getTerrains().contains(new RightDoor())){
-                System.out.println("You cant use right door");
-                return true;
-            }
+        if (tile.getNonStackableEntity() instanceof Door door){
             setRoom(changeRoom(door));
             return true;
         }
 
-
-        if (tile.getTerrain() instanceof Wall){
+        if (tile.getNonStackableEntity() instanceof Wall){
             System.out.println("There is a wall in the way");
             return true;
         }
