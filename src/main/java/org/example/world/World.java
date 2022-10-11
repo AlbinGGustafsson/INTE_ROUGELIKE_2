@@ -1,5 +1,7 @@
 package org.example.world;
 
+import org.example.Player;
+
 import java.util.ArrayList;
 
 public class World {

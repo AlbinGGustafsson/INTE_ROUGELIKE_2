@@ -177,10 +177,13 @@ public class Player extends MovableCharacter implements Combat{
                 world.addRoom();
             }
             newRoom = world.getRoom(oldRoomNumber + 1);
-            oldRoom.removeNonStackableEntity(getXPos(), getYPos());
-            setXPos(newRoom.getLeftDoorXPos() + 1);
-            setYPos(newRoom.getLeftDoorYPos());
-            newRoom.setNonStackableEntity(this, getXPos(), getYPos());
+            oldRoom.removeNonStackableEntity(getPosition());
+            setPos(newRoom.getLeftDoorPos().getRightPos());
+            newRoom.setNonStackableEntity(this, getPosition());
+//            oldRoom.removeNonStackableEntity(getXPos(), getYPos());
+//            setXPos(newRoom.getLeftDoorXPos() + 1);
+//            setYPos(newRoom.getLeftDoorYPos());
+//            newRoom.setNonStackableEntity(this, getXPos(), getYPos());
             System.out.println("Walking through door to the right");
         }
         return newRoom;

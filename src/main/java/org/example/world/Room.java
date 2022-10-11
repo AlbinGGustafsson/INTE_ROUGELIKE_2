@@ -29,17 +29,17 @@ public class Room {
         leftDoorPos = position;
     }
 
-    public void setNonStackableEntity(NonStackableEntity e, int x, int y) {
-        room.get(y).get(x).setNonStackableEntity(e);
+    public void setNonStackableEntity(NonStackableEntity e, Position pos) {
+        room.get(pos.getY()).get(pos.getX()).setNonStackableEntity(e);
     }
 
-    public void removeNonStackableEntity(int x, int y) {
-        room.get(y).get(x).removeNonStackableEntity();
+    public void removeNonStackableEntity(Position pos) {
+        room.get(pos.getY()).get(pos.getX()).removeNonStackableEntity();
     }
 
-    public void moveNonStackableEntity(NonStackableEntity e, int oldX, int oldY, int newX, int newY) {
-        removeNonStackableEntity(oldX, oldY);
-        setNonStackableEntity(e, newX, newY);
+    public void moveNonStackableEntity(NonStackableEntity e, Position oldPos, Position newPos) {
+        removeNonStackableEntity(oldPos);
+        setNonStackableEntity(e, newPos);
     }
 
     public Position getLeftDoorPos() {

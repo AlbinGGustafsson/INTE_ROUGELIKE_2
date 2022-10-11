@@ -76,15 +76,15 @@ public class RoomCreator {
                     }
                     if (chars[x] == 'L') {
                         row.add(new Tile(new Floor(), new LeftDoor()));
-                        roomInCreation.setLeftDoorPos(x, y);
+                        roomInCreation.setLeftDoorPos(new Position(x, y));
                     }
                     if (chars[x] == 'R') {
                         row.add(new Tile(new Floor(), new RightDoor()));
-                        roomInCreation.setRightDoorPos(x, y);
+                        roomInCreation.setRightDoorPos(new Position(x, y));
                     }
                     if (chars[x] == 'W') {
                         row.add(new Tile(new Water()));
-                        roomInCreation.setRightDoorPos(x, y);
+                        roomInCreation.setRightDoorPos(new Position(x, y));
                     }
                 }
             }

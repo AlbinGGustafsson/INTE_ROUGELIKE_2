@@ -19,14 +19,6 @@ public class PrimaryController {
     @FXML
     public void initialize() {
 
-        World world = new World();
-
-        world.getRoom(0).setNonStackableEntity(new Stone(), 5, 5);
-        Player eloy = new Player("Eloy", Race.HUMAN);
-        eloy.spawnPlayer(world);
-
-        gameArea.setText(eloy.getRoom().toString());
-
     }
 
 }

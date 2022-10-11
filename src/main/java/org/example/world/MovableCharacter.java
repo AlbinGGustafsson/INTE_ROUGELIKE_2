@@ -29,32 +29,32 @@ public abstract class MovableCharacter extends GameCharacter{
         if (interactWithTile(getPosition().getRightPos())){
             return;
         }
-        getRoom().moveNonStackableEntity(this, getXPos(), getYPos(), getXPos() + 1, getYPos());
-        setXPos(getXPos()+1);
-
+        getRoom().moveNonStackableEntity(this, getPosition(), getPosition().getRightPos());
+        setPos(getPosition().getRightPos());
     }
+
     public void moveLeft(){
-        if (interactWithTile(getXPos() - 1, getYPos())){
+        if (interactWithTile(getPosition().getLeftPos())){
             return;
         }
-        getRoom().moveNonStackableEntity(this, getXPos(), getYPos(), getXPos() - 1, getYPos());
-        setXPos(getXPos()-1);
+        getRoom().moveNonStackableEntity(this, getPosition(), getPosition().getLeftPos());
+        setPos(getPosition().getLeftPos());
     }
 
     public void moveUp(){
-        if (interactWithTile(getXPos(), getYPos() - 1)){
+        if (interactWithTile(getPosition().getUpPos())){
             return;
         }
-        getRoom().moveNonStackableEntity(this, getXPos(), getYPos(), getXPos(), getYPos() - 1);
-        setYPos(getYPos() - 1);
+        getRoom().moveNonStackableEntity(this, getPosition(), getPosition().getUpPos());
+        setPos(getPosition().getUpPos());
     }
 
     public void moveDown(){
-        if (interactWithTile(getXPos(), getYPos() + 1)){
+        if (interactWithTile(getPosition().getDownPos())){
             return;
         }
-        getRoom().moveNonStackableEntity(this, getXPos(), getYPos(), getXPos(), getYPos() + 1);
-        setYPos(getYPos() + 1);
+        getRoom().moveNonStackableEntity(this, getPosition(), getPosition().getDownPos());
+        setPos(getPosition().getDownPos());
     }
 
     protected abstract boolean interactWithTile(Position position);
