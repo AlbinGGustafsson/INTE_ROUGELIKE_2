@@ -1,7 +1,6 @@
 package org.example;
 
-import org.example.world.MovableCharacter;
-
+import org.example.world.*;
 
 public class Player extends MovableCharacter implements Combat{
     private static final int MAX_LEVEL = 100;
@@ -25,6 +24,22 @@ public class Player extends MovableCharacter implements Combat{
         inventory = new Inventory();
         equipment = new Equipment(inventory);
     }
+
+    //Dessa metoder är väl ändå player specifika
+    public void spawnPlayer(World world){
+        setRoom(world.getRoom(0));
+        getRoom().getTile(1,1).setNonStackableEntity(this);
+        setXPos(1);
+        setYPos(1);
+    }
+    public void despawnPlayer(){
+        getRoom().getTile(getXPos(), getXPos()).removeNonStackableEntity();
+        setRoom(null);
+        setXPos(-1);
+        setYPos(-1);
+    }
+
+    //
 
     public int getLevel(){
         return level;
@@ -120,6 +135,87 @@ public class Player extends MovableCharacter implements Combat{
     @Override
     public BaseDamage getBaseDmg() {
         return new BaseDamage(getPhysDmg(), getMagicDmg(), getDmgMultiplier(), getDmgMultiplier());
+    }
+
+    @Override
+    protected boolean interactWithTile(int x, int y){
+        Tile tile = getRoom().getTile(x, y);
+
+        if (tile.getTerrain() instanceof Water && !getTerrains().contains(new Water())){
+            System.out.println("You cant swim");
+            return true;
+        }
+
+        if (tile.getTerrain() instanceof Floor && !getTerrains().contains(new Floor())){
+            System.out.println("You cant go on floor");
+            return true;
+        }
+
+        if (tile.getTerrain() instanceof Door door){
+
+            if (door instanceof LeftDoor && !getTerrains().contains(new LeftDoor())){
+                System.out.println("You cant use left door");
+                return true;
+            }
+
+            if (door instanceof RightDoor && !getTerrains().contains(new RightDoor())){
+                System.out.println("You cant use right door");
+                return true;
+            }
+            setRoom(changeRoom(door));
+            return true;
+        }
+
+
+        if (tile.getTerrain() instanceof Wall){
+            System.out.println("There is a wall in the way");
+            return true;
+        }
+        if (tile.getNonStackableEntity() instanceof Stone){
+            System.out.println("There is a stone in the way");
+            return true;
+        }
+
+        return false;
+    }
+
+    private Room changeRoom(Door d){
+
+        Room oldRoom = getRoom();
+        int oldRoomNumber = oldRoom.getRoomNumber();
+        World world = oldRoom.getWorld();
+        Room newRoom = null;
+
+        if (d instanceof LeftDoor){
+            newRoom = world.getRoom(oldRoom.getRoomNumber() - 1);
+            oldRoom.removeNonStackableEntity(getXPos(), getYPos());
+            setXPos(newRoom.getRightDoorXPos() - 1);
+            setYPos(newRoom.getRightDoorYPos());
+            newRoom.setNonStackableEntity(this, getXPos(), getYPos());
+            System.out.println("Walking through door to the left");
+        }
+
+        if (d instanceof RightDoor){
+
+            try{
+                newRoom = world.getRoom(oldRoomNumber + 1);
+            }catch (IndexOutOfBoundsException e) {
+                world.addRoom();
+            }
+            newRoom = world.getRoom(oldRoomNumber + 1);
+            oldRoom.removeNonStackableEntity(getXPos(), getYPos());
+            setXPos(newRoom.getLeftDoorXPos() + 1);
+            setYPos(newRoom.getLeftDoorYPos());
+            newRoom.setNonStackableEntity(this, getXPos(), getYPos());
+            System.out.println("Walking through door to the right");
+        }
+        return newRoom;
+    }
+
+
+    @Override
+    public String toString() {
+        return PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + "P" + PrintFormatConstants.RESET;
     }
 
 
