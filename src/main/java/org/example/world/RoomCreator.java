@@ -1,21 +1,30 @@
 package org.example.world;
 
+import javafx.animation.KeyValue;
+import javafx.util.Pair;
+
 import java.io.*;
+import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 public class RoomCreator {
 
+    record RoomInformation(int roomHeight, int roomWidth, String roomType){}
     private Random random = new Random();
-
-    //kanske inte ska vara en konstant i framtiden
     private static final int BOSS_ROOM_CHANCE = 10;
 
 
+    public Room loadRoom(int roomNumber, World world) {
+        String filePath = generateRoomFilePath(roomNumber);
+        BufferedReader bufferedReader = createBufferedReader(filePath);
+        RoomInformation roomInformation = readRoomInformation(bufferedReader);
+        return createRoom(roomNumber, world, roomInformation, bufferedReader);
+    }
+
     //todo
     //Se över hur exceptions ska hanteras
-    //om det inte finns en fil i directoryt som man kollar i så kommer null returneras som room och vi kommer få ett null pointer senare
     private String generateRoomFilePath(int roomNumber) {
 
         try {
@@ -37,37 +46,48 @@ public class RoomCreator {
             }
             int normalRoomIndex = random.nextInt(normalRooms.length);
             return normalRooms[normalRoomIndex].getPath();
-        } catch (NullPointerException | IllegalArgumentException e) {
-            System.err.println("No file in directory");
+
+        } catch (NullPointerException e) {
+            throw new NullPointerException("No files found in directory");
+        }catch (IllegalArgumentException e){
+            throw new RuntimeException("Boss chance constant must be >=0");
         }
-        return "";
     }
 
-    public Room loadRoom(int roomNumber, World world) {
-
-        String filePath = generateRoomFilePath(roomNumber);
-
-        ArrayList<ArrayList<Tile>> room = new ArrayList<>();
-
+    private BufferedReader createBufferedReader(String filePath){
         try {
             FileReader fileReader = new FileReader(filePath);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+            return bufferedReader;
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("File not found");
+        }
+    }
 
-            //todo
-            //borde ha ett minvärde på kanske.... 5
-            //kanske ska fånga lite exceptions också
+    private RoomInformation readRoomInformation(BufferedReader bufferedReader){
 
+        try {
             String roomType = bufferedReader.readLine();
             int roomHeight = Integer.parseInt(bufferedReader.readLine());
             int roomWidth = Integer.parseInt(bufferedReader.readLine());
 
-            Room roomInCreation = new Room(room, world, roomNumber, roomType);
+            return new RoomInformation(roomHeight, roomWidth, roomType);
+        }catch (IOException e){
+            throw new RuntimeException();
+        }
+    }
 
-            for (int y = 0; y < roomHeight; y++) {
+    private Room createRoom(int roomNumber, World world, RoomInformation roomInformation, BufferedReader bufferedReader){
+
+        ArrayList<ArrayList<Tile>> room = new ArrayList<>();
+        Room roomInCreation = new Room(room, world, roomNumber, roomInformation.roomType);
+
+        try{
+            for (int y = 0; y < roomInformation.roomHeight; y++) {
                 char[] chars = bufferedReader.readLine().toCharArray();
                 ArrayList<Tile> row = new ArrayList<>();
                 room.add(row);
-                for (int x = 0; x < roomWidth; x++) {
+                for (int x = 0; x < roomInformation.roomWidth; x++) {
                     Position currentPosition = new Position(x, y);
                     if (chars[x] == '#') {
                         row.add(new Tile(new Floor(), new Wall()));
@@ -91,13 +111,9 @@ public class RoomCreator {
             }
 
             return roomInCreation;
-
-        } catch (FileNotFoundException fe) {
-            System.err.println("File not found");
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        }catch (IOException e){
+            throw new RuntimeException();
         }
-        return null;
+
     }
 }
