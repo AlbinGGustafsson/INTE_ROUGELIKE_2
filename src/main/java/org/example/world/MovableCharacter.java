@@ -25,37 +25,14 @@ public abstract class MovableCharacter extends GameCharacter{
         terrains.remove(t);
     }
 
-    public void moveRight(){
-        if (interactWithTile(getPosition().getRightPos())){
+    public void move(Direction direction){
+        if (interactWithTile(getPosition().getPos(direction))){
             return;
         }
-        getRoom().moveNonStackableEntity(this, getPosition(), getPosition().getRightPos());
-        setPos(getPosition().getRightPos());
+        getRoom().moveNonStackableEntity(this, getPosition(), getPosition().getPos(direction));
+        setPos(getPosition().getPos(direction));
     }
 
-    public void moveLeft(){
-        if (interactWithTile(getPosition().getLeftPos())){
-            return;
-        }
-        getRoom().moveNonStackableEntity(this, getPosition(), getPosition().getLeftPos());
-        setPos(getPosition().getLeftPos());
-    }
-
-    public void moveUp(){
-        if (interactWithTile(getPosition().getUpPos())){
-            return;
-        }
-        getRoom().moveNonStackableEntity(this, getPosition(), getPosition().getUpPos());
-        setPos(getPosition().getUpPos());
-    }
-
-    public void moveDown(){
-        if (interactWithTile(getPosition().getDownPos())){
-            return;
-        }
-        getRoom().moveNonStackableEntity(this, getPosition(), getPosition().getDownPos());
-        setPos(getPosition().getDownPos());
-    }
 
     protected abstract boolean interactWithTile(Position position);
 

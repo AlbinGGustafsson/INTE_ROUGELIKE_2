@@ -34,4 +34,9 @@ public abstract class GameCharacter implements NonStackableEntity {
     public void setRoom(Room room) {
         this.room = room;
     }
+
+    @Override
+    public void printNonReachableMessage() {
+        System.out.println("Can't walk on character");
+    }
 }

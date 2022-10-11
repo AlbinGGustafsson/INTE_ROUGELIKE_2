@@ -19,7 +19,7 @@ abstract class Terrain {
         return typeName;
     }
 
-    //public abstract void printNonReachableMessage();
+    public abstract void printNonReachableMessage();
 
 
     @Override

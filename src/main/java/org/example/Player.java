@@ -127,13 +127,13 @@ public class Player extends MovableCharacter implements Combat{
     protected boolean interactWithTile(Position position){
         Tile tile = getRoom().getTile(position);
 
-        if (tile.getTerrain() instanceof Water && !getTerrains().contains(Water.class)){
-            System.out.println("You cant swim");
+        if (tile.getTerrain() instanceof Water water && !getTerrains().contains(Water.class)){
+            water.printNonReachableMessage();
             return true;
         }
 
-        if (tile.getTerrain() instanceof Floor && !getTerrains().contains(Floor.class)){
-            System.out.println("You cant go on floor");
+        if (tile.getTerrain() instanceof Floor floor && !getTerrains().contains(Floor.class)){
+            floor.printNonReachableMessage();
             return true;
         }
 
@@ -142,12 +142,12 @@ public class Player extends MovableCharacter implements Combat{
             return true;
         }
 
-        if (tile.getNonStackableEntity() instanceof Wall){
-            System.out.println("There is a wall in the way");
+        if (tile.getNonStackableEntity() instanceof Wall wall){
+            wall.printNonReachableMessage();
             return true;
         }
-        if (tile.getNonStackableEntity() instanceof Stone){
-            System.out.println("There is a stone in the way");
+        if (tile.getNonStackableEntity() instanceof Stone stone){
+            stone.printNonReachableMessage();
             return true;
         }
 

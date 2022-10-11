@@ -17,20 +17,37 @@ public class Position {
         return y;
     }
 
-    public Position getRightPos(){
-        return new Position(x+1, y);
-    }
 
-    public Position getLeftPos(){
 
-        return new Position(x-1, y);
-    }
-    public Position getUpPos(){
-
-        return new Position(x, y-1);
-    }
-    public Position getDownPos(){
-
-        return new Position(x, y+1);
+    public Position getPos(Direction direction){
+        switch (direction){
+            case UP -> {
+                return new Position(x, y-1);
+            }
+            case DOWN ->{
+                return new Position(x, y+1);
+            }
+            case LEFT -> {
+                return new Position(x-1, y);
+            }
+            case RIGHT -> {
+                return new Position(x+1, y);
+            }
+            case UP_LEFT -> {
+                return new Position(x-1, y-1);
+            }
+            case UP_RIGHT -> {
+                return new Position(x+1, y-1);
+            }
+            case DOWN_LEFT -> {
+                return new Position(x-1, y+1);
+            }
+            case DOWN_RIGHT -> {
+                return new Position(x+1, y+1);
+            }
+            default -> {
+                return null;
+            }
+        }
     }
 }

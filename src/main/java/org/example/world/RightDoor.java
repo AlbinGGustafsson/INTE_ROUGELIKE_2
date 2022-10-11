@@ -11,4 +11,6 @@ public class RightDoor extends Door{
     public void printWalkthru() {
 
     }
+
+
 }

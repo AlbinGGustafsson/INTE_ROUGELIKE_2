@@ -7,4 +7,9 @@ public class Wall implements NonStackableEntity{
         return PrintFormatConstants.BOLD + PrintFormatConstants.BLACK + "#" + PrintFormatConstants.RESET;
     }
 
+    @Override
+    public void printNonReachableMessage() {
+
+        System.out.println("There is a wall in the way");
+    }
 }

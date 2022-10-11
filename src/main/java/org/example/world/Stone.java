@@ -6,4 +6,10 @@ public class Stone implements NonStackableEntity {
     public String toString() {
         return PrintFormatConstants.BOLD + PrintFormatConstants.BLACK + "S" + PrintFormatConstants.RESET;
     }
+
+    @Override
+    public void printNonReachableMessage() {
+
+        System.out.println("There is a stone in the way");
+    }
 }
