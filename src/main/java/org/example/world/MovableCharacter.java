@@ -1,5 +1,6 @@
 package org.example.world;
 
+import javafx.geometry.Pos;
 import org.example.GameCharacter;
 import org.example.Race;
 
@@ -25,7 +26,7 @@ public abstract class MovableCharacter extends GameCharacter{
     }
 
     public void moveRight(){
-        if (interactWithTile(getXPos() + 1, getYPos())){
+        if (interactWithTile(getPosition().getRightPos())){
             return;
         }
         getRoom().moveNonStackableEntity(this, getXPos(), getYPos(), getXPos() + 1, getYPos());
@@ -56,7 +57,7 @@ public abstract class MovableCharacter extends GameCharacter{
         setYPos(getYPos() + 1);
     }
 
-    protected abstract boolean interactWithTile(int x, int y);
+    protected abstract boolean interactWithTile(Position position);
 
     public Set<Class<? extends Terrain>> getTerrains() {
         return Collections.unmodifiableSet(terrains);

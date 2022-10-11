@@ -25,21 +25,7 @@ public class Player extends MovableCharacter implements Combat{
         equipment = new Equipment(inventory);
     }
 
-    //Dessa metoder är väl ändå player specifika
-    public void spawnPlayer(World world){
-        setRoom(world.getRoom(0));
-        getRoom().getTile(1,1).setNonStackableEntity(this);
-        setXPos(1);
-        setYPos(1);
-    }
-    public void despawnPlayer(){
-        getRoom().getTile(getXPos(), getXPos()).removeNonStackableEntity();
-        setRoom(null);
-        setXPos(-1);
-        setYPos(-1);
-    }
 
-    //
 
     public int getLevel(){
         return level;
@@ -138,8 +124,8 @@ public class Player extends MovableCharacter implements Combat{
     }
 
     @Override
-    protected boolean interactWithTile(int x, int y){
-        Tile tile = getRoom().getTile(x, y);
+    protected boolean interactWithTile(Position position){
+        Tile tile = getRoom().getTile(position);
 
         if (tile.getTerrain() instanceof Water && !getTerrains().contains(Water.class)){
             System.out.println("You cant swim");
@@ -177,10 +163,9 @@ public class Player extends MovableCharacter implements Combat{
 
         if (d instanceof LeftDoor){
             newRoom = world.getRoom(oldRoom.getRoomNumber() - 1);
-            oldRoom.removeNonStackableEntity(getXPos(), getYPos());
-            setXPos(newRoom.getRightDoorXPos() - 1);
-            setYPos(newRoom.getRightDoorYPos());
-            newRoom.setNonStackableEntity(this, getXPos(), getYPos());
+            oldRoom.removeNonStackableEntity(getPosition());
+            setPos(newRoom.getRightDoorPos().getLeftPos());
+            newRoom.setNonStackableEntity(this, getPosition());
             System.out.println("Walking through door to the left");
         }
 

@@ -6,4 +6,10 @@ public class LeftDoor extends Door {
     public String toString() {
         return "L";
     }
+
+    @Override
+    public void printWalkthru() {
+
+        System.out.println("Walking through door to the left");
+    }
 }

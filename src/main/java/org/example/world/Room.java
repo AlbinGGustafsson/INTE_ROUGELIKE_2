@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Room {
 
-    private int leftDoorXPos, leftDoorYPos, rightDoorXPos, rightDoorYPos;
+    private Position leftDoorPos, rightDoorPos;
 
     private int roomNumber;
     private World world;
@@ -21,14 +21,12 @@ public class Room {
         this.RoomType = roomType;
     }
 
-    public void setRightDoorPos(int rightDoorXPos, int rightDoorYPos) {
-        this.rightDoorXPos = rightDoorXPos;
-        this.rightDoorYPos = rightDoorYPos;
+    public void setRightDoorPos(Position position) {
+        rightDoorPos = position;
     }
 
-    public void setLeftDoorPos(int leftDoorXPos, int leftDoorYPos) {
-        this.leftDoorXPos = leftDoorXPos;
-        this.leftDoorYPos = leftDoorYPos;
+    public void setLeftDoorPos(Position position) {
+        leftDoorPos = position;
     }
 
     public void setNonStackableEntity(NonStackableEntity e, int x, int y) {
@@ -44,24 +42,16 @@ public class Room {
         setNonStackableEntity(e, newX, newY);
     }
 
-    public int getLeftDoorXPos() {
-        return leftDoorXPos;
+    public Position getLeftDoorPos() {
+        return leftDoorPos;
     }
 
-    public int getLeftDoorYPos() {
-        return leftDoorYPos;
+    public Position getRightDoorPos() {
+        return rightDoorPos;
     }
 
-    public int getRightDoorXPos() {
-        return rightDoorXPos;
-    }
-
-    public int getRightDoorYPos() {
-        return rightDoorYPos;
-    }
-
-    public Tile getTile(int x, int y) {
-        return room.get(y).get(x);
+    public Tile getTile(Position position) {
+        return room.get(position.getY()).get(position.getX());
     }
 
     public World getWorld() {
