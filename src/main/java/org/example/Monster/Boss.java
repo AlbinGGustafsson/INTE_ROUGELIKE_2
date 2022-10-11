@@ -1,6 +1,6 @@
 package org.example.Monster;
 
-import org.example.world.NonStackableEntity;
+import org.example.world.Position;
 
 public class Boss extends Monster {
     public Boss(int level) {

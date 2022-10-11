@@ -1,14 +1,18 @@
 package org.example.Monster;
 
+import org.example.BaseDamage;
+import org.example.Combat;
 import org.example.Player;
-import org.example.world.MovableCharacter;
-import org.example.world.NonStackableEntity;
+import org.example.world.Entity;
+import org.example.world.Position;
 
-public abstract class Monster implements NonStackableEntity {
+public abstract class Monster implements Entity, Combat {
 
     //private String[] terrainType;
       private final int level;
       private double health;
+
+      private Position position;
 
 
       public Monster(int level){
@@ -19,7 +23,32 @@ public abstract class Monster implements NonStackableEntity {
            setHealth();
       }
 
-      public abstract double calculateHealth();
+    @Override
+    public BaseDamage getBaseDmg() {
+        return null;
+    }
+
+    @Override
+    public double getBlockChance() {
+        return 0;
+    }
+
+    @Override
+    public void dealDmg(Combat combatTarget, int damage) {
+        Combat.super.dealDmg(combatTarget, damage);
+    }
+
+    @Override
+    public boolean blocked() {
+        return Combat.super.blocked();
+    }
+
+    @Override
+    public void takeDmg(int damage) {
+
+    }
+
+    public abstract double calculateHealth();
 
       public abstract void die();
 
@@ -39,9 +68,24 @@ public abstract class Monster implements NonStackableEntity {
         return level;
       }
 
-      public boolean battleWithPlayer(Player p){
-          double playerHealth = p.getHealth();
-          double playerAttackDamage = p.getAttackDamage();
+    @Override
+    public Position getPosition() {
+        return position;
+    }
+
+    @Override
+    public void setPosition(Position position) {
+
+    }
+
+    @Override
+    public void printNonReachableMessage() {
+
+    }
+
+    public boolean battleWithPlayer(Player p){
+          double playerHealth = p.getHp();
+          double playerAttackDamage = p.getBaseDmg().getPhysDmg();
           double monsterAttackDamage = attackDamage();
           boolean battleIsOver = false;
 

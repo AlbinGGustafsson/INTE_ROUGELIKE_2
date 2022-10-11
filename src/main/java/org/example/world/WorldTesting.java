@@ -16,8 +16,8 @@ public class WorldTesting {
 
         world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Troll troll = new Troll(10);
-        world.getRoom(0).setNonStackableEntity(troll, 1, 2);
-        world.getRoom(0).setNonStackableEntity(new Stone(), 5, 5);
+        world.getRoom(0).setEntity(troll, new Position(5,5));
+        world.getRoom(0).setEntity(new Stone(), new Position(5,5));
 
         Player eloy = new Player("Eloy", Race.HUMAN);
         world.spawnPlayer(eloy);

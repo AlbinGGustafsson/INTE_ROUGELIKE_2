@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.Monster.Monster;
 import org.example.world.*;
 
 public class Player extends MovableCharacter implements Combat{
@@ -154,7 +155,7 @@ public class Player extends MovableCharacter implements Combat{
         if (tile.getEntity() instanceof Monster e) {
             System.out.println("You have encountered a MONSTER AHHHH!");
             if(e.battleWithPlayer((Player) this)){
-                tile.removeNonStackableEntity();
+                tile.removeEntity();
                 return false;
             }
             return true;
