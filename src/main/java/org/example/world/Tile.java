@@ -14,7 +14,7 @@ public class Tile {
     }
 
     public Tile(Terrain terrainType, NonStackableEntity nonStackableEntity) {
-        this.terrain = terrainType;
+        this(terrainType);
         this.nonStackableEntity = nonStackableEntity;
     }
 
