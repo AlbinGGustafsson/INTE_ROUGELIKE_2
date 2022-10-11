@@ -127,27 +127,27 @@ public class Player extends MovableCharacter implements Combat{
     protected boolean interactWithTile(Position position){
         Tile tile = getRoom().getTile(position);
 
-        if (tile.getTerrain() instanceof Water && !getTerrains().contains(Water.class)){
-            System.out.println("You cant swim");
+        if (tile.getTerrain() instanceof Water water && !getTerrains().contains(Water.class)){
+            water.printNonReachableMessage();
             return true;
         }
 
-        if (tile.getTerrain() instanceof Floor && !getTerrains().contains(Floor.class)){
-            System.out.println("You cant go on floor");
+        if (tile.getTerrain() instanceof Floor floor && !getTerrains().contains(Floor.class)){
+            floor.printNonReachableMessage();
             return true;
         }
 
-        if (tile.getNonStackableEntity() instanceof Door door){
+        if (tile.getEntity() instanceof Door door){
             setRoom(changeRoom(door));
             return true;
         }
 
-        if (tile.getNonStackableEntity() instanceof Wall){
-            System.out.println("There is a wall in the way");
+        if (tile.getEntity() instanceof Wall wall){
+            wall.printNonReachableMessage();
             return true;
         }
-        if (tile.getNonStackableEntity() instanceof Stone){
-            System.out.println("There is a stone in the way");
+        if (tile.getEntity() instanceof Stone stone){
+            stone.printNonReachableMessage();
             return true;
         }
 
@@ -156,37 +156,24 @@ public class Player extends MovableCharacter implements Combat{
 
     private Room changeRoom(Door d){
 
-        Room oldRoom = getRoom();
-        int oldRoomNumber = oldRoom.getRoomNumber();
-        World world = oldRoom.getWorld();
+        getRoom().removeEntity(getPosition());
         Room newRoom = null;
 
-        if (d instanceof LeftDoor){
-            newRoom = world.getRoom(oldRoom.getRoomNumber() - 1);
-            oldRoom.removeNonStackableEntity(getPosition());
-            setPos(newRoom.getRightDoorPos().getLeftPos());
-            newRoom.setNonStackableEntity(this, getPosition());
-            System.out.println("Walking through door to the left");
+        if (d.getDirection().equals(Direction.LEFT)){
+            newRoom = getRoom().getPreviousRoom();
+            setPos(newRoom.getRightDoorPos().getPos(Direction.LEFT));
+            //print walkthrough
+        }
+        if (d.getDirection().equals(Direction.RIGHT)){
+            newRoom = getRoom().getNextRoom();
+            setPos(newRoom.getLeftDoorPos().getPos(Direction.RIGHT));
+            //print walkthrough
         }
 
-        if (d instanceof RightDoor){
-
-            try{
-                newRoom = world.getRoom(oldRoomNumber + 1);
-            }catch (IndexOutOfBoundsException e) {
-                world.addRoom();
-            }
-            newRoom = world.getRoom(oldRoomNumber + 1);
-            oldRoom.removeNonStackableEntity(getPosition());
-            setPos(newRoom.getLeftDoorPos().getRightPos());
-            newRoom.setNonStackableEntity(this, getPosition());
-//            oldRoom.removeNonStackableEntity(getXPos(), getYPos());
-//            setXPos(newRoom.getLeftDoorXPos() + 1);
-//            setYPos(newRoom.getLeftDoorYPos());
-//            newRoom.setNonStackableEntity(this, getXPos(), getYPos());
-            System.out.println("Walking through door to the right");
-        }
+        assert newRoom != null;
+        newRoom.setEntity(this, getPosition());
         return newRoom;
+
     }
 
 

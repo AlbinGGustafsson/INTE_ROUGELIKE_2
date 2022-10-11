@@ -12,7 +12,7 @@ public class WorldTesting {
 
         World world = new World();
 
-        world.getRoom(0).setNonStackableEntity(new Stone(), new Position(5,5));
+        world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
         world.spawnPlayer(eloy);
         eloy.addTerrain(Water.class);
@@ -27,19 +27,19 @@ public class WorldTesting {
             int command = scanner.nextInt();
             switch (command){
                 case 8:{
-                    eloy.moveUp();
+                    eloy.move(Direction.UP);
                     break;
                 }
                 case 2:{
-                    eloy.moveDown();
+                    eloy.move(Direction.DOWN);
                     break;
                 }
                 case 4:{
-                    eloy.moveLeft();
+                    eloy.move(Direction.LEFT);
                     break;
                 }
                 case 6:{
-                    eloy.moveRight();
+                    eloy.move(Direction.RIGHT);
                     break;
                 }
             }

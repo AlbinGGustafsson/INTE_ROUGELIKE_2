@@ -1,46 +1,45 @@
 package org.example.world;
 
 import org.example.Item;
-import org.example.Player;
 
 public class Tile {
 
     private Item item;
     private Terrain terrain;
-    private NonStackableEntity nonStackableEntity;
+    private Entity entity;
 
     public Tile(Terrain terrainType) {
         this.terrain = terrainType;
     }
 
-    public Tile(Terrain terrainType, NonStackableEntity nonStackableEntity) {
-        this.terrain = terrainType;
-        this.nonStackableEntity = nonStackableEntity;
+    public Tile(Terrain terrainType, Entity entity) {
+        this(terrainType);
+        this.entity = entity;
     }
 
-    public NonStackableEntity getNonStackableEntity() {
-        return nonStackableEntity;
+    public Entity getEntity() {
+        return entity;
     }
 
-    public void setNonStackableEntity(NonStackableEntity entity) {
+    public void setEntity(Entity entity) {
         if (canSetEntity(entity)){
-            this.nonStackableEntity = entity;
+            this.entity = entity;
             return;
         }
         System.err.println("Finns redan en nonstackable eller det är en ogiltig terräng");
     }
-    public void removeNonStackableEntity() {
-        nonStackableEntity = null;
+    public void removeEntity() {
+        entity = null;
     }
 
-    public boolean canSetEntity(NonStackableEntity entity){
+    public boolean canSetEntity(Entity entity){
 
         //Kollar om en movable character kan vara på tilens terräng
         if (entity instanceof MovableCharacter mc && !mc.getTerrains().contains(terrain.getClass())){
             return false;
         }
 
-        return (nonStackableEntity == null);
+        return (this.entity == null);
     }
 
     public void setTerrain(Terrain terrain) {
@@ -54,10 +53,10 @@ public class Tile {
     @Override
     public String toString() {
 
-        if (nonStackableEntity == null) {
+        if (entity == null) {
             return terrain.toString();
         }
 
-        return nonStackableEntity.toString();
+        return entity.toString();
     }
 }

@@ -11,4 +11,9 @@ public class Floor extends Terrain{
         return "F";
     }
 
+    @Override
+    public void printNonReachableMessage() {
+
+        System.out.println("You cant go on floor");
+    }
 }

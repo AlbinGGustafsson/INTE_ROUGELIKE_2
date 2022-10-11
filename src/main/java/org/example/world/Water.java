@@ -9,4 +9,10 @@ public class Water extends Terrain {
     public String toString() {
         return PrintFormatConstants.BLUE + "W" + PrintFormatConstants.BOLD;
     }
+
+    @Override
+    public void printNonReachableMessage() {
+
+        System.out.println("You cant swim");
+    }
 }

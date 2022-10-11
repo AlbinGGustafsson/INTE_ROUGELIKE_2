@@ -1,10 +1,10 @@
 package org.example;
 
-import org.example.world.NonStackableEntity;
+import org.example.world.Entity;
 import org.example.world.Position;
 import org.example.world.Room;
 
-public abstract class GameCharacter implements NonStackableEntity {
+public abstract class GameCharacter implements Entity {
     String name;
     String lore;
     Race race;
@@ -33,5 +33,10 @@ public abstract class GameCharacter implements NonStackableEntity {
 
     public void setRoom(Room room) {
         this.room = room;
+    }
+
+    @Override
+    public void printNonReachableMessage() {
+        System.out.println("Can't walk on character");
     }
 }
