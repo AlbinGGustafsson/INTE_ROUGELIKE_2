@@ -12,14 +12,14 @@ public class WorldTesting {
 
         World world = new World();
 
-        world.getRoom(0).setNonStackableEntity(new Stone(), 5, 5);
+        world.getRoom(0).setNonStackableEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
-        eloy.spawnPlayer(world);
-        eloy.addTerrain(new Water());
+        world.spawnPlayer(eloy);
+        eloy.addTerrain(Water.class);
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println(eloy.getRoom());
+        System.out.println(world.getRoom(0));
         System.out.println(world);
 
         while (true){
@@ -47,8 +47,6 @@ public class WorldTesting {
             System.out.println(eloy.getRoom());
             System.out.println(world);
         }
-
-
 
     }
 

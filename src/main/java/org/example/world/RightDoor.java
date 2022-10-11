@@ -6,4 +6,9 @@ public class RightDoor extends Door{
     public String toString() {
         return "R";
     }
+
+    @Override
+    public void printWalkthru() {
+
+    }
 }

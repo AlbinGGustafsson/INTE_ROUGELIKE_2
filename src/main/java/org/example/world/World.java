@@ -1,5 +1,7 @@
 package org.example.world;
 
+import org.example.Player;
+
 import java.util.ArrayList;
 
 public class World {
@@ -17,6 +19,13 @@ public class World {
 
     public Room getRoom(int roomNumber) {
         return world.get(roomNumber);
+    }
+
+    public void spawnPlayer(Player player){
+        Position pos = new Position(1,1);
+        player.setRoom(getRoom(0));
+        player.setPos(pos);
+        getRoom(0).setNonStackableEntity(player, player.getPosition());
     }
 
     @Override
