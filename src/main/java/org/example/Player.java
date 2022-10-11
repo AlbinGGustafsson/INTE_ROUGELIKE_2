@@ -159,15 +159,15 @@ public class Player extends MovableCharacter implements Combat{
         getRoom().removeNonStackableEntity(getPosition());
         Room newRoom = null;
 
-        if (d instanceof LeftDoor l){
+        if (d.getDirection().equals(Direction.LEFT)){
             newRoom = getRoom().getPreviousRoom();
             setPos(newRoom.getRightDoorPos().getPos(Direction.LEFT));
-            l.printWalkthru();
+            //print walkthrough
         }
-        if (d instanceof RightDoor r){
+        if (d.getDirection().equals(Direction.RIGHT)){
             newRoom = getRoom().getNextRoom();
             setPos(newRoom.getLeftDoorPos().getPos(Direction.RIGHT));
-            r.printWalkthru();
+            //print walkthrough
         }
 
         assert newRoom != null;

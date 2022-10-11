@@ -75,11 +75,11 @@ public class RoomCreator {
                         row.add(new Tile(new Floor()));
                     }
                     if (chars[x] == 'L') {
-                        row.add(new Tile(new Floor(), new LeftDoor()));
+                        row.add(new Tile(new Floor(), new Door(Direction.LEFT)));
                         roomInCreation.setLeftDoorPos(new Position(x, y));
                     }
                     if (chars[x] == 'R') {
-                        row.add(new Tile(new Floor(), new RightDoor()));
+                        row.add(new Tile(new Floor(), new Door(Direction.RIGHT)));
                         roomInCreation.setRightDoorPos(new Position(x, y));
                     }
                     if (chars[x] == 'W') {
