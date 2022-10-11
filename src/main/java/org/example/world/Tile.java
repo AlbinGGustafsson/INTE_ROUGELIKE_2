@@ -17,7 +17,7 @@ public class Tile {
         this.entity = entity;
     }
 
-    public Entity getNonStackableEntity() {
+    public Entity getEntity() {
         return entity;
     }
 
