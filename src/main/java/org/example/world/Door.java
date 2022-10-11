@@ -8,10 +8,10 @@ public class Door implements Entity {
 
     private Direction direction;
 
-    private static final Direction[] acceptedEnums = {Direction.LEFT, Direction.RIGHT};
+    private static final Direction[] acceptedDirections = {Direction.LEFT, Direction.RIGHT};
 
     public Door(Direction direction) {
-        if (!Arrays.stream(acceptedEnums).anyMatch(d -> d.equals(direction))){
+        if (!Arrays.stream(acceptedDirections).anyMatch(d -> d.equals(direction))){
             throw new IllegalArgumentException();
         }
         this.direction = direction;
