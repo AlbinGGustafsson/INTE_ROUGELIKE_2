@@ -20,7 +20,7 @@ public class Door extends Entity {
     }
 
     public void printWalkThrough(){
-        getOut().println("Walking through door " + direction.name());
+        getPrintStream().println("Walking through door " + direction.name());
     }
 
     @Override
@@ -30,6 +30,6 @@ public class Door extends Entity {
 
     @Override
     public void printNonReachableMessage() {
-        getOut().println("You cant walk through door " + direction.name());
+        getPrintStream().println("You cant walk through door " + direction.name());
     }
 }

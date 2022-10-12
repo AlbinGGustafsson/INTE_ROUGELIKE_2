@@ -35,7 +35,7 @@ public abstract class Entity {
         this.out = out;
     }
 
-    public PrintStream getOut() {
+    public PrintStream getPrintStream() {
         return out;
     }
 
