@@ -24,7 +24,6 @@ public class World {
     public void spawnPlayer(Player player){
         Position pos = new Position(1,1);
         getRoom(0).setEntity(player, pos);
-        player.updateRoom(getRoom(0));
     }
 
     @Override

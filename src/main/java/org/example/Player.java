@@ -127,14 +127,11 @@ public class Player extends MovableCharacter implements Combat{
     protected boolean interactWithTile(Position position){
         Tile tile = getRoom().getTile(position);
 
-        if (tile.getTerrain() instanceof Water water && !getTerrains().contains(Water.class)){
-            water.printNonReachableMessage();
-            return true;
-        }
-
-        if (tile.getTerrain() instanceof Floor floor && !getTerrains().contains(Floor.class)){
-            floor.printNonReachableMessage();
-            return true;
+        if (!tile.getItems().isEmpty()){
+            getPrintStream().print("You found ");
+            tile.getItems().forEach(item -> getPrintStream().print(item + " "));
+            getPrintStream().println();
+            tile.getItems().clear();
         }
 
         if (tile.getEntity() instanceof Door door){
@@ -142,13 +139,22 @@ public class Player extends MovableCharacter implements Combat{
             return true;
         }
 
-        if (tile.getEntity() instanceof Wall wall){
-            wall.printNonReachableMessage();
-            return true;
-        }
+//        if (tile.getTerrain() instanceof Water water && !getTerrains().contains(Water.class)){
+//            water.printNonReachableMessage();
+//            return true;
+//        }
+//
+//        if (tile.getTerrain() instanceof Floor floor && !getTerrains().contains(Floor.class)){
+//            floor.printNonReachableMessage();
+//            return true;
+//        }
+//        if (tile.getEntity() instanceof Wall wall){
+//            wall.printNonReachableMessage();
+//            return true;
+//        }
         if (tile.getEntity() instanceof Stone stone){
-            stone.printNonReachableMessage();
-            return true;
+            getRoom().removeEntity(stone);
+            System.out.println("Broke stone");
         }
 
         return false;

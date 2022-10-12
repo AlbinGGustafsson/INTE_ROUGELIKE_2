@@ -1,5 +1,6 @@
 package org.example.world;
 
+import javafx.geometry.Pos;
 import org.example.Player;
 
 import java.util.ArrayList;
@@ -36,7 +37,9 @@ public class Room {
 
     public void setEntity(Entity entity, Position pos) {
         Tile tile = room.get(pos.getY()).get(pos.getX());
-        if (tile.setEntity(entity)){
+        if (getTile(pos).canSetEntity(entity)) {
+            tile.setEntity(entity);
+            entity.updateRoom(this);
             entity.updatePosition(pos, this);
         }
     }
@@ -47,8 +50,10 @@ public class Room {
     }
 
     public void moveEntity(Entity entity, Position newPos) {
-        removeEntity(entity);
-        setEntity(entity, newPos);
+        if (getTile(newPos).canSetEntity(entity)){
+            removeEntity(entity);
+            setEntity(entity, newPos);
+        }
     }
 
     public Door getDoor(Direction direction) {

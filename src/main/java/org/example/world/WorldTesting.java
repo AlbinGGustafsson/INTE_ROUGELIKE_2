@@ -1,5 +1,6 @@
 package org.example.world;
 
+import org.example.Helmet;
 import org.example.Player;
 import org.example.Race;
 
@@ -16,6 +17,12 @@ public class WorldTesting {
         Player eloy = new Player("Eloy", Race.HUMAN);
         world.spawnPlayer(eloy);
         //eloy.addTerrain(Water.class);
+
+//        Albin eloy = new Albin();
+//        eloy.setEntityMover(new EntityMover(eloy));
+//        world.getRoom(0).setEntity(eloy, new Position(1,1));
+
+        world.getRoom(0).getTile(new Position(1,2)).addItem(new Helmet("Hjälm", "Skyddar huvudet", 100, 300));
 
         Scanner scanner = new Scanner(System.in);
 

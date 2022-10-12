@@ -31,7 +31,10 @@ public abstract class MovableCharacter extends GameCharacter{
         getRoom().moveEntity(this, getPosition().getPos(direction));
     }
 
-
+    /**
+     * Tries to interact with Tile on position.
+     * returns true if the interaction moved the MovableCharacter.
+     */
     protected abstract boolean interactWithTile(Position position);
 
     public Set<Class<? extends Terrain>> getTerrains() {

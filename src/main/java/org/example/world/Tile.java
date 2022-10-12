@@ -2,9 +2,11 @@ package org.example.world;
 
 import org.example.Item;
 
+import java.util.ArrayList;
+
 public class Tile {
 
-    private Item item;
+    private ArrayList<Item> items = new ArrayList<>();
     private Terrain terrain;
     private Entity entity;
 
@@ -17,31 +19,39 @@ public class Tile {
         this.entity = entity;
     }
 
+    public ArrayList<Item> getItems() {
+        return items;
+    }
+
+    public void addItem(Item item){
+        items.add(item);
+    }
+
     public Entity getEntity() {
         return entity;
     }
 
-    public boolean setEntity(Entity entity) {
-        if (canSetEntity(entity)) {
+    public void setEntity(Entity entity) {
             this.entity = entity;
-            return true;
-        }
-        System.err.println("Finns redan en nonstackable eller det är en ogiltig terräng");
-        return false;
     }
 
     public void removeEntity() {
         entity = null;
     }
 
-    private boolean canSetEntity(Entity entity) {
+    public boolean canSetEntity(Entity entity) {
 
         //Kollar om en movable character kan vara på tilens terräng
         if (entity instanceof MovableCharacter mc && !mc.getTerrains().contains(terrain.getClass())) {
+            terrain.printNonReachableMessage();
             return false;
         }
 
-        return this.entity == null;
+        if (this.entity != null){
+            this.entity.printNonReachableMessage();
+            return false;
+        }
+        return true;
     }
 
     public void setTerrain(Terrain terrain) {
