@@ -199,8 +199,9 @@ public class MovableCharacterTest {
         World world = new World(new TestableRoomCreator());
         Player player = new Player("name", Race.HUMAN);
         world.getRoom(0).setEntity(player, new Position(4,2));
+        System.out.println(world.getRoom(0));
         player.move(Direction.RIGHT);
-
+        System.out.println(world.getRoom(1));
 
         Room newRoom = world.getRoom(1);
         Position newPlayerPosition = newRoom.getDoor(Direction.LEFT).getPosition().getPos(Direction.RIGHT);

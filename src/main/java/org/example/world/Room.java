@@ -25,9 +25,8 @@ public class Room {
         if (world == null){
             return null;
         }
-        try {
-            world.getRoom(roomNumber + 1);
-        } catch (IndexOutOfBoundsException e) {
+
+        if (world.getRoom(roomNumber + 1) == null){
             world.addRoom();
         }
         return world.getRoom(roomNumber + 1);
