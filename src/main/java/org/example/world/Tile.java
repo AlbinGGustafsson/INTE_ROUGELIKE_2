@@ -3,6 +3,8 @@ package org.example.world;
 import org.example.Item;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Tile {
 
@@ -19,12 +21,20 @@ public class Tile {
         this.entity = entity;
     }
 
-    public ArrayList<Item> getItems() {
-        return items;
+    public List<Item> getItems() {
+        return Collections.unmodifiableList(items);
     }
 
-    public void addItem(Item item){
+    public void addItem(Item item) {
         items.add(item);
+    }
+
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
+
+    public void removeAllItems() {
+        items.clear();
     }
 
     public Entity getEntity() {
@@ -32,7 +42,7 @@ public class Tile {
     }
 
     public void setEntity(Entity entity) {
-            this.entity = entity;
+        this.entity = entity;
     }
 
     public void removeEntity() {
@@ -47,7 +57,7 @@ public class Tile {
             return false;
         }
 
-        if (this.entity != null){
+        if (this.entity != null) {
             //this.entity.printNonReachableMessage();
             return false;
         }

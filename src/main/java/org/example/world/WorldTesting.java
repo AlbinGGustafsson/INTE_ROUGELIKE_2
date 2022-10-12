@@ -25,7 +25,7 @@ public class WorldTesting {
 
         world.getRoom(0).setEntity(eloy, new Position(1,1));
 
-        world.getRoom(0).getTile(new Position(1,2)).addItem(new Helmet("Hjälm", "Skyddar huvudet", 100, 300));
+        world.getRoom(0).getTile(new Position(1,0)).addItem(new Helmet("Hjälm", "Skyddar huvudet", 100, 300));
 
         Scanner scanner = new Scanner(System.in);
 

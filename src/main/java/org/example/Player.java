@@ -124,14 +124,13 @@ public class Player extends MovableCharacter implements Combat{
     }
 
     @Override
-    protected boolean interactWithTile(Position position){
-        Tile tile = getRoom().getTile(position);
+    protected boolean interactWithTile(Tile tile){
 
         if (!tile.getItems().isEmpty()){
             getPrintStream().print("You found ");
             tile.getItems().forEach(item -> getPrintStream().print(item + " "));
             getPrintStream().println();
-            tile.getItems().clear();
+            tile.removeAllItems();
         }
 
         if (tile.getEntity() instanceof Door door){
@@ -149,8 +148,9 @@ public class Player extends MovableCharacter implements Combat{
             wall.printNonReachableMessage();
         }
         if (tile.getEntity() instanceof Stone stone){
-            getRoom().removeEntity(stone);
-            System.out.println("Broke stone");
+            stone.printNonReachableMessage();
+//            getRoom().removeEntity(stone);
+//            System.out.println("Broke stone");
         }
 
         return false;

@@ -1,4 +1,7 @@
-package org.example.world;
+package org.example.world.ploy;
+
+import org.example.world.Entity;
+import org.example.world.ploy.EntityMover;
 
 public class Albin extends Entity {
 

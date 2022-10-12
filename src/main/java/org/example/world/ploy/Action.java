@@ -1,8 +1,9 @@
-package org.example.world;
+package org.example.world.ploy;
 
 import org.example.Ability;
 import org.example.Combat;
 import org.example.Item;
+import org.example.world.Direction;
 
 public interface Action {
     void move(Direction direction);

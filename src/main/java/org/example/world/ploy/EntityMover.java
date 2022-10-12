@@ -1,4 +1,7 @@
-package org.example.world;
+package org.example.world.ploy;
+
+import org.example.world.Direction;
+import org.example.world.Entity;
 
 public class EntityMover {
 

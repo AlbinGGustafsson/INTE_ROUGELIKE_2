@@ -1,5 +1,7 @@
 package org.example.world;
 
+import org.example.Helmet;
+
 public class Stone extends Entity{
 
     @Override
