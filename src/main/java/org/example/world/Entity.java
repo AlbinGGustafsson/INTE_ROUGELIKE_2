@@ -26,9 +26,12 @@ public abstract class Entity {
     }
 
     public void updatePosition(Position position, Room room) {
-        if (room.getTile(position).getEntity().equals(this)){
-            this.position = position;
-        }
+
+        try{
+            if (room.getTile(position).getEntity().equals(this)){
+                this.position = position;
+            }
+        }catch (NullPointerException e){}
     }
 
     public void setPrintStream(PrintStream out){
