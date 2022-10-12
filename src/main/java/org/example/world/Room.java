@@ -4,6 +4,8 @@ import javafx.geometry.Pos;
 import org.example.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Room {
     private int roomNumber;
@@ -12,9 +14,9 @@ public class Room {
 
     protected ArrayList<ArrayList<Tile>> room;
 
-    public Room(ArrayList<ArrayList<Tile>> room, World world, int roomNumber, String roomType) {
+    public Room(ArrayList<ArrayList<Tile>> room, int roomNumber, String roomType) {
         this.room = room;
-        this.world = world;
+        //this.world = world;
         this.roomNumber = roomNumber;
         this.RoomType = roomType;
     }
@@ -82,6 +84,10 @@ public class Room {
         return RoomType;
     }
 
+    public void setWorld(World world) {
+        this.world = world;
+    }
+
     public boolean containsPlayer() {
 
         for (ArrayList<Tile> list : room) {
@@ -102,6 +108,10 @@ public class Room {
             }
         }
         return false;
+    }
+
+    public List<ArrayList<Tile>> getRoomList() {
+        return Collections.unmodifiableList(room);
     }
 
     @Override

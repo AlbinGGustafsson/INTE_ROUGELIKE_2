@@ -13,8 +13,9 @@ public class World {
     }
 
     public void addRoom() {
-        Room room = roomLoader.loadRoom(world.size(), this);
+        Room room = roomLoader.loadRoom(world.size());
         world.add(room);
+        room.setWorld(this);
     }
 
     public Room getRoom(int roomNumber) {

@@ -3,11 +3,25 @@ package org.example;
 import org.example.world.Entity;
 
 public abstract class GameCharacter extends Entity {
-    String name;
-    String lore;
-    Race race;
+    private String name;
+    private String lore;
+    private Race race;
 
     public GameCharacter(String name, Race race) {
+        this.name = name;
+        this.race = race;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public void setLore(String lore) {
+        this.lore = lore;
     }
 
     @Override

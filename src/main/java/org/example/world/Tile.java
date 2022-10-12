@@ -5,6 +5,7 @@ import org.example.Item;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class Tile {
 
@@ -75,10 +76,14 @@ public class Tile {
     @Override
     public String toString() {
 
-        if (entity == null) {
-            return terrain.toString();
+        if (entity != null) {
+            return entity.toString();
         }
 
-        return entity.toString();
+        if (!items.isEmpty()){
+            return items.get(0).toString();
+        }
+        return terrain.toString();
+
     }
 }
