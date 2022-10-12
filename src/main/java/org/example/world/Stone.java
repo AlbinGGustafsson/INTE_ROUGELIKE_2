@@ -1,8 +1,6 @@
 package org.example.world;
 
-public class Stone implements Entity {
-
-    private Position position;
+public class Stone extends Entity {
 
     @Override
     public String toString() {
@@ -10,17 +8,7 @@ public class Stone implements Entity {
     }
 
     @Override
-    public Position getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setPosition(Position position) {
-        this.position = position;
-    }
-
-    @Override
     public void printNonReachableMessage() {
-        System.out.println("There is a stone in the way");
+        getPrintStream().println("There is a stone in the way");
     }
 }

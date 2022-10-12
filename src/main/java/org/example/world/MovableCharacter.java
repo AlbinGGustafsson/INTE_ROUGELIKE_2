@@ -1,6 +1,5 @@
 package org.example.world;
 
-import javafx.geometry.Pos;
 import org.example.GameCharacter;
 import org.example.Monster.Monster;
 import org.example.Player;

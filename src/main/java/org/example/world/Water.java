@@ -12,7 +12,6 @@ public class Water extends Terrain {
 
     @Override
     public void printNonReachableMessage() {
-
-        System.out.println("You cant swim");
+        getPrintStream().println("You cant swim");
     }
 }

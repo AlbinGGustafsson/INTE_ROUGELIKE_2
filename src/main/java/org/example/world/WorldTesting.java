@@ -21,7 +21,7 @@ public class WorldTesting {
 
         Player eloy = new Player("Eloy", Race.HUMAN);
         world.spawnPlayer(eloy);
-        eloy.addTerrain(Water.class);
+        //eloy.addTerrain(Water.class);
 
         Scanner scanner = new Scanner(System.in);
 

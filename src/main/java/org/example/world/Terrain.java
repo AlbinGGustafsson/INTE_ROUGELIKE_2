@@ -1,12 +1,19 @@
 package org.example.world;
 
-import java.util.Objects;
+import java.io.PrintStream;
 
 abstract class Terrain {
 
-    private double weight;
+    private PrintStream out = System.out;
+
+    private int weight;
     private String typeName;
-    public Terrain(String typeName, double weight) {
+    public Terrain(String typeName, int weight) {
+
+        if (weight < 1 || weight > 10){
+            throw new IllegalArgumentException();
+        }
+
         this.weight = weight;
         this.typeName = typeName;
     }
@@ -19,27 +26,14 @@ abstract class Terrain {
         return typeName;
     }
 
+    public void setPrintStream(PrintStream out){
+        this.out = out;
+    }
+
+    public PrintStream getPrintStream() {
+        return out;
+    }
+
     public abstract void printNonReachableMessage();
 
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Terrain terrain = (Terrain) o;
-
-        if (Double.compare(terrain.weight, weight) != 0) return false;
-        return Objects.equals(typeName, terrain.typeName);
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        temp = Double.doubleToLongBits(weight);
-        result = (int) (temp ^ (temp >>> 32));
-        result = 31 * result + (typeName != null ? typeName.hashCode() : 0);
-        return result;
-    }
 }

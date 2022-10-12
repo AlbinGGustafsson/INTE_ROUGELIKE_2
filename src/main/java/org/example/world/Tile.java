@@ -21,19 +21,20 @@ public class Tile {
         return entity;
     }
 
-    public void setEntity(Entity entity) {
-        if (!canSetEntity(entity)) {
-            System.err.println("Finns redan en nonstackable eller det är en ogiltig terräng");
-            return;
+    public boolean setEntity(Entity entity) {
+        if (canSetEntity(entity)) {
+            this.entity = entity;
+            return true;
         }
-        this.entity = entity;
+        System.err.println("Finns redan en nonstackable eller det är en ogiltig terräng");
+        return false;
     }
 
     public void removeEntity() {
         entity = null;
     }
 
-    public boolean canSetEntity(Entity entity) {
+    private boolean canSetEntity(Entity entity) {
 
         //Kollar om en movable character kan vara på tilens terräng
         if (entity instanceof MovableCharacter mc && !mc.getTerrains().contains(terrain.getClass())) {
