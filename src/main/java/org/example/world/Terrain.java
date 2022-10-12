@@ -4,7 +4,7 @@ import java.io.PrintStream;
 
 abstract class Terrain {
 
-    private PrintStream out = System.out;
+    private static PrintStream out = System.out;
 
     private int weight;
     private String typeName;
@@ -26,7 +26,7 @@ abstract class Terrain {
         return typeName;
     }
 
-    public void setPrintStream(PrintStream out){
+    public  void setPrintStream(PrintStream out){
         this.out = out;
     }
 

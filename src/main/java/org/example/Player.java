@@ -156,28 +156,6 @@ public class Player extends MovableCharacter implements Combat{
         return false;
     }
 
-    private Room changeRoom(Door d){
-
-        getRoom().removeEntity(this);
-        Room newRoom = null;
-        Position newPos = null;
-
-        if (d.getDirection().equals(Direction.LEFT)){
-            newRoom = getRoom().getPreviousRoom();
-            newPos = newRoom.getDoor(Direction.RIGHT).getPosition().getPos(Direction.LEFT);
-        }
-        if (d.getDirection().equals(Direction.RIGHT)){
-            newRoom = getRoom().getNextRoom();
-            newPos = newRoom.getDoor(Direction.LEFT).getPosition().getPos(Direction.RIGHT);
-        }
-
-        assert newRoom != null;
-        newRoom.setEntity(this, newPos);
-        d.printWalkThrough();
-        return newRoom;
-
-    }
-
     @Override
     public String toString() {
         return PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + "P" + PrintFormatConstants.RESET;

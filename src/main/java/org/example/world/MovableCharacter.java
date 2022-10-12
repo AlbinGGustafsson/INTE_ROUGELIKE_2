@@ -32,6 +32,26 @@ public abstract class MovableCharacter extends GameCharacter{
         getRoom().moveEntity(this, getPosition().getPos(direction));
     }
 
+    public Room changeRoom(Door d){
+        getRoom().removeEntity(this);
+        Room newRoom = null;
+        Position newPos = null;
+
+        if (d.getDirection().equals(Direction.LEFT)){
+            newRoom = getRoom().getPreviousRoom();
+            newPos = newRoom.getDoor(Direction.RIGHT).getPosition().getPos(Direction.LEFT);
+        }
+        if (d.getDirection().equals(Direction.RIGHT)){
+            newRoom = getRoom().getNextRoom();
+            newPos = newRoom.getDoor(Direction.LEFT).getPosition().getPos(Direction.RIGHT);
+        }
+
+        assert newRoom != null;
+        newRoom.setEntity(this, newPos);
+        d.printWalkThrough();
+        return newRoom;
+    }
+
     /**
      * Tries to interact with Tile.
      * returns true if the interaction moved the MovableCharacter.
