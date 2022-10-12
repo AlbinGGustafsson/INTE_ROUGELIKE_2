@@ -78,7 +78,11 @@ public class Room {
         return null;
     }
     public Tile getTile(Position position) {
-        return room.get(position.getY()).get(position.getX());
+        try{
+            return room.get(position.getY()).get(position.getX());
+        }catch (IndexOutOfBoundsException e){
+            return null;
+        }
     }
 
     public World getWorld() {

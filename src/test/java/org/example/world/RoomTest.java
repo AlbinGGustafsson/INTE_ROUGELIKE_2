@@ -1,5 +1,6 @@
 package org.example.world;
 
+import org.example.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -107,22 +108,48 @@ public class RoomTest {
         assertFalse(world.getRoom(0).contains(stone));
     }
 
-
-    @Test
-    void moveEntity_to_Available_Tile(){
-
-    }
-
     @Test
     void moveEntity_to_Non_Available_Tile(){
+        World world = new World(new TestableRoomCreator());
+        Stone stone = new Stone();
+        world.getRoom(0).setEntity(stone, new Position(1,1));
+        world.getRoom(0).moveEntity(stone, new Position(1,0));
+        assertNotEquals(stone, world.getRoom(0).getTile(new Position(1,0)).getEntity());
+    }
+    @Test
+    void moveEntity_to_Available_Tile(){
+        World world = new World(new TestableRoomCreator());
+        Stone stone = new Stone();
+        world.getRoom(0).setEntity(stone, new Position(1,1));
+        world.getRoom(0).moveEntity(stone, new Position(1,2));
+        assertEquals(stone, world.getRoom(0).getTile(new Position(1,2)).getEntity());
+    }
 
+    @Test
+    void getDoor_Exists_Returns_Door(){
+        World world = new World(new TestableRoomCreator());
+        Door door = world.getRoom(0).getDoor(Direction.RIGHT);
+        assertEquals(Door.class, door.getClass());
+    }
+    @Test
+    void getDoor_Not_Exists_Returns_Null(){
+        World world = new World(new TestableRoomCreator());
+        Door door = world.getRoom(0).getDoor(Direction.LEFT);
+        assertNull(door);
+    }
+
+    @Test
+    void getTile_Position_In_Room(){
+        World world = new World(new TestableRoomCreator());
+        assertEquals(Tile.class, world.getRoom(0).getTile(new Position(0,0)).getClass());
+    }
+    @Test
+    void getTile_Position_Outside_Of_Room_Returns_null(){
+        World world = new World(new TestableRoomCreator());
+        assertNull(world.getRoom(0).getTile(new Position(20,20)));
     }
 
 
-
-    //moveEntity
-    //getDoor
-    //getTile
     //containsPlayer
     //contains
     //getRoomList Unmodifiable
