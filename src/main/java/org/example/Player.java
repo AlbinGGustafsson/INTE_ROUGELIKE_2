@@ -138,7 +138,7 @@ public class Player extends MovableCharacter implements Combat{
         }
 
         if (tile.getEntity() instanceof Door door){
-            setRoom(changeRoom(door));
+            updateRoom(changeRoom(door));
             return true;
         }
 

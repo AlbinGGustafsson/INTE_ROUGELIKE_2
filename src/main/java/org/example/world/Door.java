@@ -2,7 +2,7 @@ package org.example.world;
 
 import java.util.Arrays;
 
-public class Door implements Entity {
+public class Door extends Entity {
 
     private Position position;
 
@@ -11,7 +11,7 @@ public class Door implements Entity {
     private static final Direction[] acceptedDirections = {Direction.LEFT, Direction.RIGHT};
 
     public Door(Direction direction) {
-        if (!Arrays.stream(acceptedDirections).anyMatch(d -> d.equals(direction))){
+        if (Arrays.stream(acceptedDirections).noneMatch(d -> d.equals(direction))){
             throw new IllegalArgumentException();
         }
         this.direction = direction;
@@ -28,16 +28,6 @@ public class Door implements Entity {
     @Override
     public String toString() {
         return direction.toString().substring(0,1);
-    }
-
-    @Override
-    public Position getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setPosition(Position position) {
-        this.position = position;
     }
 
     @Override

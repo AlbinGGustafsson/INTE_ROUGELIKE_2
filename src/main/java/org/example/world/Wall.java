@@ -1,22 +1,10 @@
 package org.example.world;
 
-public class Wall implements Entity {
-
-    private Position position;
+public class Wall extends Entity {
 
     @Override
     public String toString() {
         return PrintFormatConstants.BOLD + PrintFormatConstants.BLACK + "#" + PrintFormatConstants.RESET;
-    }
-
-    @Override
-    public Position getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setPosition(Position position) {
-        this.position = position;
     }
 
     @Override

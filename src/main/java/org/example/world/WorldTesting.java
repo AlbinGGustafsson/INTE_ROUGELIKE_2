@@ -15,7 +15,7 @@ public class WorldTesting {
         world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
         world.spawnPlayer(eloy);
-        eloy.addTerrain(Water.class);
+        //eloy.addTerrain(Water.class);
 
         Scanner scanner = new Scanner(System.in);
 

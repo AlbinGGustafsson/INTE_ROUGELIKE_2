@@ -35,8 +35,10 @@ public class Room {
     }
 
     public void setEntity(Entity entity, Position pos) {
-        entity.setPosition(pos);
-        room.get(pos.getY()).get(pos.getX()).setEntity(entity);
+        Tile tile = room.get(pos.getY()).get(pos.getX());
+        if (tile.setEntity(entity)){
+            entity.updatePosition(pos, this);
+        }
     }
 
     public void removeEntity(Entity entity) {
@@ -80,6 +82,16 @@ public class Room {
         for (ArrayList<Tile> list : room) {
             for (Tile t : list) {
                 if (t.getEntity() instanceof Player) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    public boolean containsEntity(Entity entity){
+        for (ArrayList<Tile> list : room) {
+            for (Tile t : list) {
+                if (t.getEntity() != null && t.getEntity().equals(entity)) {
                     return true;
                 }
             }
