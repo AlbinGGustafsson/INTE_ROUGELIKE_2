@@ -5,6 +5,11 @@ public class Position {
     private int y;
 
     public Position(int x, int y) {
+
+        if (x < 0 || y < 0){
+            throw new IllegalArgumentException("Position values has to be >= 0");
+        }
+
         this.x = x;
         this.y = y;
     }
@@ -51,10 +56,7 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Position{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return String.format("Pos x(%d), y(%d)", x, y);
     }
 
     @Override
