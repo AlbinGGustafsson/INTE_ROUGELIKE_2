@@ -5,7 +5,6 @@ import org.example.Item;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class Tile {
 
@@ -43,7 +42,9 @@ public class Tile {
     }
 
     public void setEntity(Entity entity) {
-        this.entity = entity;
+        if (canSetEntity(entity)){
+            this.entity = entity;
+        }
     }
 
     public void removeEntity() {

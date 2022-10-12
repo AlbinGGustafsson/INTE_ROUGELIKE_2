@@ -39,8 +39,8 @@ public class MovableCharacterTest {
                 }
 
                 if (tile.getTerrain() instanceof Water w && !getTerrains().contains(Water.class)){
-                    w.printNonReachableMessage();
-                    //getPrintStream().print("You cant swim");
+                    //w.printNonReachableMessage();
+                    getPrintStream().print("You cant swim");
                 }
                 return false;
             }
@@ -160,11 +160,6 @@ public class MovableCharacterTest {
         PrintStream out = new PrintStream(output);
         mc.setPrintStream(out);
 
-        //Terrain och Entity har statisk variabel PrintStream. Ändrar jag det på ett vatten så har alla vatten den streamen.
-        //Gjorde inte så på testat ovanför.
-        Water water = new Water();
-        water.setPrintStream(out);
-
         TestableRoomCreator trc = new TestableRoomCreator();
         Room room = trc.loadRoom(0);
         Position spawnPosition = new Position(3,1);
@@ -199,9 +194,7 @@ public class MovableCharacterTest {
         World world = new World(new TestableRoomCreator());
         Player player = new Player("name", Race.HUMAN);
         world.getRoom(0).setEntity(player, new Position(4,2));
-        System.out.println(world.getRoom(0));
         player.move(Direction.RIGHT);
-        System.out.println(world.getRoom(1));
 
         Room newRoom = world.getRoom(1);
         Position newPlayerPosition = newRoom.getDoor(Direction.LEFT).getPosition().getPos(Direction.RIGHT);

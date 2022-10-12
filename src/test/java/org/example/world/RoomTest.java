@@ -1,10 +1,8 @@
 package org.example.world;
 
 import org.example.Player;
-import org.junit.jupiter.api.BeforeEach;
+import org.example.Race;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -149,9 +147,50 @@ public class RoomTest {
         assertNull(world.getRoom(0).getTile(new Position(20,20)));
     }
 
+    @Test
+    void containsPlayer_Returns_True_If_Room_Contains_Player(){
+        World world = new World(new TestableRoomCreator());
+        world.spawnPlayer(new Player("name", Race.HUMAN));
+        assertTrue(world.getRoom(0).containsPlayer());
+    }
 
-    //containsPlayer
-    //contains
-    //getRoomList Unmodifiable
-    //toString
+    @Test
+    void containsPlayer_Returns_False_If_Room_Not_Contains_Player(){
+        World world = new World(new TestableRoomCreator());
+        assertFalse(world.getRoom(0).containsPlayer());
+    }
+
+    @Test
+    void contains_Returns_True_If_Room_Contains_Entity(){
+        World world = new World(new TestableRoomCreator());
+        Stone stone = new Stone();
+        world.getRoom(0).setEntity(stone, new Position(1,1));
+        assertTrue(world.getRoom(0).contains(stone));
+    }
+
+    @Test
+    void contains_Returns_False_If_Room_Not_Contains_Entity(){
+        World world = new World(new TestableRoomCreator());
+        Stone stone = new Stone();
+        assertFalse(world.getRoom(0).contains(stone));
+    }
+
+    @Test
+    void getRoomList_Returns_Unmodifiable_List(){
+        TestableRoomCreator trc = new TestableRoomCreator();
+        Room room = trc.loadRoom(0);
+        assertThrows(UnsupportedOperationException.class,() -> room.getRoomList().clear());
+    }
+
+    @Test
+    void toString_Is_Correct(){
+        TestableRoomCreator trc = new TestableRoomCreator();
+        Room room = trc.loadRoom(0);
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("Room: %s %n", room.getRoomNumber()));
+        for (var row : room.getRoomList()) {
+            sb.append(row + "\n");
+        }
+        assertEquals(sb.toString(), room.toString());
+    }
 }

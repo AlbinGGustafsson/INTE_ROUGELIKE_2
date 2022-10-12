@@ -1,6 +1,5 @@
 package org.example.world;
 
-import javafx.geometry.Pos;
 import org.example.Player;
 
 import java.util.ArrayList;
@@ -12,10 +11,10 @@ public class Room {
     private World world;
     private String RoomType;
 
-    protected ArrayList<ArrayList<Tile>> room;
+    protected ArrayList<ArrayList<Tile>> roomList;
 
     public Room(ArrayList<ArrayList<Tile>> room, int roomNumber, String roomType) {
-        this.room = room;
+        this.roomList = room;
         this.roomNumber = roomNumber;
         this.RoomType = roomType;
     }
@@ -44,7 +43,7 @@ public class Room {
     }
 
     public void setEntity(Entity entity, Position pos) {
-        Tile tile = room.get(pos.getY()).get(pos.getX());
+        Tile tile = roomList.get(pos.getY()).get(pos.getX());
         if (getTile(pos).canSetEntity(entity)) {
             tile.setEntity(entity);
             entity.updateRoom(this);
@@ -55,7 +54,7 @@ public class Room {
     public void removeEntity(Entity entity) {
         if (contains(entity)){
             Position pos = entity.getPosition();
-            room.get(pos.getY()).get(pos.getX()).removeEntity();
+            roomList.get(pos.getY()).get(pos.getX()).removeEntity();
         }
     }
 
@@ -67,7 +66,7 @@ public class Room {
     }
 
     public Door getDoor(Direction direction) {
-        for (ArrayList<Tile> list : room) {
+        for (ArrayList<Tile> list : roomList) {
             for (Tile t : list) {
                 if (t.getEntity() instanceof Door d && d.getDirection().equals(direction)) {
                     return d;
@@ -78,7 +77,7 @@ public class Room {
     }
     public Tile getTile(Position position) {
         try{
-            return room.get(position.getY()).get(position.getX());
+            return roomList.get(position.getY()).get(position.getX());
         }catch (IndexOutOfBoundsException e){
             return null;
         }
@@ -102,7 +101,7 @@ public class Room {
 
     public boolean containsPlayer() {
 
-        for (ArrayList<Tile> list : room) {
+        for (ArrayList<Tile> list : roomList) {
             for (Tile t : list) {
                 if (t.getEntity() instanceof Player) {
                     return true;
@@ -112,7 +111,7 @@ public class Room {
         return false;
     }
     public boolean contains(Entity entity){
-        for (ArrayList<Tile> list : room) {
+        for (ArrayList<Tile> list : roomList) {
             for (Tile t : list) {
                 if (t.getEntity() != null && t.getEntity().equals(entity)) {
                     return true;
@@ -127,16 +126,17 @@ public class Room {
     }
 
     public List<ArrayList<Tile>> getRoomList() {
-        return Collections.unmodifiableList(room);
+        return Collections.unmodifiableList(roomList);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("Room: %s %n", roomNumber));
-        for (var row : room) {
+        for (var row : roomList) {
             sb.append(row + "\n");
         }
+
         return sb.toString();
     }
 
