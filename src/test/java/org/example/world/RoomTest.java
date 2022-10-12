@@ -100,9 +100,12 @@ public class RoomTest {
     }
 
     @Test
-    void moveEntity_Entity_Not_Exists_Does_Not_Throw_exception(){
-
-
+    void moveEntity_Entity_Not_Exists_Does_Nothing(){
+        World world = new World(new TestableRoomCreator());
+        Stone stone = new Stone();
+        System.out.println(world.getRoom(0));
+        world.getRoom(0).moveEntity(stone, new Position(2,1));
+        System.out.println(world.getRoom(0));
 
     }
 

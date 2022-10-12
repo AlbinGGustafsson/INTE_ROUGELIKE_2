@@ -24,7 +24,11 @@ public class World {
     }
 
     public Room getRoom(int roomNumber) {
-        return world.get(roomNumber);
+        try{
+            return world.get(roomNumber);
+        }catch (IndexOutOfBoundsException e){
+            return null;
+        }
     }
 
     public void spawnPlayer(Player player){

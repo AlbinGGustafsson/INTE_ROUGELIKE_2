@@ -24,10 +24,15 @@ public class WorldTest {
     @Test
     void spawnPlayer_Spawns_Player(){
         World world = new World(new TestableRoomCreator());
-
         Player player = new Player("name", Race.HUMAN);
         world.spawnPlayer(player);
         assertEquals(player, world.getRoom(0).getTile(new Position(1,1)).getEntity());
+    }
+
+    @Test
+    void getRoom_RoomNumber_Not_Exists_Returns_Null(){
+        World world = new World(new TestableRoomCreator());
+        assertNull(world.getRoom(1));
     }
 
     @Test
