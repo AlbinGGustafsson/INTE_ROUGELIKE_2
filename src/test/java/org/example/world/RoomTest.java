@@ -103,10 +103,8 @@ public class RoomTest {
     void moveEntity_Entity_Not_Exists_Does_Nothing(){
         World world = new World(new TestableRoomCreator());
         Stone stone = new Stone();
-        System.out.println(world.getRoom(0));
         world.getRoom(0).moveEntity(stone, new Position(2,1));
-        System.out.println(world.getRoom(0));
-
+        assertFalse(world.getRoom(0).contains(stone));
     }
 
 

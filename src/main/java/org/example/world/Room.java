@@ -61,7 +61,7 @@ public class Room {
     }
 
     public void moveEntity(Entity entity, Position newPos) {
-        if (getTile(newPos).canSetEntity(entity)){
+        if (getTile(newPos).canSetEntity(entity) && contains(entity)){
             removeEntity(entity);
             setEntity(entity, newPos);
         }
