@@ -9,7 +9,7 @@ import java.util.Set;
 
 public abstract class MovableCharacter extends GameCharacter{
 
-    private HashSet<Class<? extends Terrain>> terrains = new HashSet<>();
+    protected HashSet<Class<? extends Terrain>> terrains = new HashSet<>();
 
     public MovableCharacter(String name, Race race) {
         super(name, race);
@@ -25,14 +25,38 @@ public abstract class MovableCharacter extends GameCharacter{
     }
 
     public void move(Direction direction){
-        if (interactWithTile(getPosition().getPos(direction))){
+
+        if (interactWithTile(getRoom().getTile(getPosition().getPos(direction)))){
             return;
         }
         getRoom().moveEntity(this, getPosition().getPos(direction));
     }
 
+    public Room changeRoom(Door d){
+        getRoom().removeEntity(this);
+        Room newRoom = null;
+        Position newPos = null;
 
-    protected abstract boolean interactWithTile(Position position);
+        if (d.getDirection().equals(Direction.LEFT)){
+            newRoom = getRoom().getPreviousRoom();
+            newPos = newRoom.getDoor(Direction.RIGHT).getPosition().getPos(Direction.LEFT);
+        }
+        if (d.getDirection().equals(Direction.RIGHT)){
+            newRoom = getRoom().getNextRoom();
+            newPos = newRoom.getDoor(Direction.LEFT).getPosition().getPos(Direction.RIGHT);
+        }
+
+        assert newRoom != null;
+        newRoom.setEntity(this, newPos);
+        d.printWalkThrough();
+        return newRoom;
+    }
+
+    /**
+     * Tries to interact with Tile.
+     * returns true if the interaction moved the MovableCharacter.
+     */
+    protected abstract boolean interactWithTile(Tile tile);
 
     public Set<Class<? extends Terrain>> getTerrains() {
         return Collections.unmodifiableSet(terrains);

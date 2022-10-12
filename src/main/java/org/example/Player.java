@@ -124,56 +124,36 @@ public class Player extends MovableCharacter implements Combat{
     }
 
     @Override
-    protected boolean interactWithTile(Position position){
-        Tile tile = getRoom().getTile(position);
+    protected boolean interactWithTile(Tile tile){
 
-        if (tile.getTerrain() instanceof Water water && !getTerrains().contains(Water.class)){
-            water.printNonReachableMessage();
-            return true;
-        }
-
-        if (tile.getTerrain() instanceof Floor floor && !getTerrains().contains(Floor.class)){
-            floor.printNonReachableMessage();
-            return true;
+        if (!tile.getItems().isEmpty()){
+            getPrintStream().print("You found ");
+            tile.getItems().forEach(item -> getPrintStream().print(item + " "));
+            getPrintStream().println();
+            tile.removeAllItems();
         }
 
         if (tile.getEntity() instanceof Door door){
             updateRoom(changeRoom(door));
             return true;
         }
+        if (tile.getTerrain() instanceof Water water && !getTerrains().contains(Water.class)){
+            water.printNonReachableMessage();
+        }
 
+        if (tile.getTerrain() instanceof Floor floor && !getTerrains().contains(Floor.class)){
+            floor.printNonReachableMessage();
+        }
         if (tile.getEntity() instanceof Wall wall){
             wall.printNonReachableMessage();
-            return true;
         }
         if (tile.getEntity() instanceof Stone stone){
             stone.printNonReachableMessage();
-            return true;
+//            getRoom().removeEntity(stone);
+//            System.out.println("Broke stone");
         }
 
         return false;
-    }
-
-    private Room changeRoom(Door d){
-
-        getRoom().removeEntity(this);
-        Room newRoom = null;
-        Position newPos = null;
-
-        if (d.getDirection().equals(Direction.LEFT)){
-            newRoom = getRoom().getPreviousRoom();
-            newPos = newRoom.getDoor(Direction.RIGHT).getPosition().getPos(Direction.LEFT);
-        }
-        if (d.getDirection().equals(Direction.RIGHT)){
-            newRoom = getRoom().getNextRoom();
-            newPos = newRoom.getDoor(Direction.LEFT).getPosition().getPos(Direction.RIGHT);
-        }
-
-        assert newRoom != null;
-        newRoom.setEntity(this, newPos);
-        d.printWalkThrough();
-        return newRoom;
-
     }
 
     @Override

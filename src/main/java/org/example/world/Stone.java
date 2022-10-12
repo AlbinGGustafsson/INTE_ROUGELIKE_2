@@ -1,6 +1,8 @@
 package org.example.world;
 
-public class Stone extends Entity {
+import org.example.Helmet;
+
+public class Stone extends Entity{
 
     @Override
     public String toString() {
@@ -11,4 +13,5 @@ public class Stone extends Entity {
     public void printNonReachableMessage() {
         getPrintStream().println("There is a stone in the way");
     }
+
 }

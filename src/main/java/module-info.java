@@ -8,4 +8,6 @@ module org.example {
     exports org.example;
     exports org.example.world;
     opens org.example.world to javafx.fxml;
+    exports org.example.world.ploy;
+    opens org.example.world.ploy to javafx.fxml;
 }

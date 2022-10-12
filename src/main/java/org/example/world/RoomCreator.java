@@ -11,36 +11,72 @@ import java.util.Random;
 
 public class RoomCreator {
 
+    private static final String NORMAL_ROOMS_FOLDER_PATH = "rooms/NormalRooms/";
+    private static final String BOSS_ROOM_FOLDER_PATH = "rooms/BossRooms/";
+    private static final String START_ROOM_FOLDER_PATH = "rooms/startRooms/";
+
+    private static final String[] ACCEPTED_ROOM_TYPES = {"NormalRoom", "BossRoom", "StartRoom"};
+
     record RoomInformation(int roomHeight, int roomWidth, String roomType){}
+
     private Random random = new Random();
-    private static final int BOSS_ROOM_CHANCE = 10;
+    protected int bossRoomChance = 10;
 
-
-    public Room loadRoom(int roomNumber, World world) {
-        String filePath = generateRoomFilePath(roomNumber);
+    public Room loadRoom(int roomNumber) {
+        checkBossRoomChance();
+        String filePath = generateRoomFilePath(roomNumber, NORMAL_ROOMS_FOLDER_PATH, BOSS_ROOM_FOLDER_PATH, START_ROOM_FOLDER_PATH);
         BufferedReader bufferedReader = createBufferedReader(filePath);
         RoomInformation roomInformation = readRoomInformation(bufferedReader);
-        return createRoom(roomNumber, world, roomInformation, bufferedReader);
+        checkRoomSize(roomInformation);
+        checkRoomType(roomInformation);
+        return createRoom(roomNumber, roomInformation, bufferedReader);
+    }
+
+    protected void checkRoomSize(RoomInformation roomInformation){
+        if (roomInformation.roomWidth < 3){
+            throw new IllegalArgumentException("Room width too low");
+        }
+        if (roomInformation.roomHeight < 3){
+            throw new IllegalArgumentException("Room height too low");
+        }
+        if (roomInformation.roomWidth > 30){
+            throw new IllegalArgumentException("Room width too high");
+        }
+        if (roomInformation.roomHeight > 30){
+            throw new IllegalArgumentException("Room height too high");
+        }
+    }
+
+    protected void checkRoomType(RoomInformation roomInformation){
+        if (!Arrays.asList(ACCEPTED_ROOM_TYPES).contains(roomInformation.roomType)){
+            throw new IllegalArgumentException("Not accepted roomtype");
+        }
+    }
+
+    protected void checkBossRoomChance(){
+        if (bossRoomChance < 1){
+            throw new IllegalArgumentException("Boss chance constant must be >=0");
+        }
     }
 
     //todo
     //Se över hur exceptions ska hanteras
-    private String generateRoomFilePath(int roomNumber) {
+    protected String generateRoomFilePath(int roomNumber, String normalRoomFp, String bossRoomFp, String startRoomFp) {
 
         try {
-            File normalRoomsFolder = new File("rooms/NormalRooms/");
+            File normalRoomsFolder = new File(normalRoomFp);
             File[] normalRooms = normalRoomsFolder.listFiles();
 
-            File bossRoomsFolder = new File("rooms/BossRooms/");
+            File bossRoomsFolder = new File(bossRoomFp);
             File[] bossRooms = bossRoomsFolder.listFiles();
 
-            File startRoomsFolder = new File("rooms/startRooms/");
+            File startRoomsFolder = new File(startRoomFp);
             File[] startRooms = startRoomsFolder.listFiles();
 
             if (roomNumber == 0) {
                 int startRoomIndex = random.nextInt(startRooms.length);
                 return startRooms[startRoomIndex].getPath();
-            } else if (random.nextInt(BOSS_ROOM_CHANCE) == BOSS_ROOM_CHANCE - 1) {
+            } else if (random.nextInt(bossRoomChance) == bossRoomChance - 1) {
                 int bossRoomIndex = random.nextInt(bossRooms.length);
                 return bossRooms[bossRoomIndex].getPath();
             }
@@ -49,12 +85,10 @@ public class RoomCreator {
 
         } catch (NullPointerException e) {
             throw new NullPointerException("No files found in directory");
-        }catch (IllegalArgumentException e){
-            throw new RuntimeException("Boss chance constant must be >=0");
         }
     }
 
-    private BufferedReader createBufferedReader(String filePath){
+    protected BufferedReader createBufferedReader(String filePath){
         try {
             FileReader fileReader = new FileReader(filePath);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -64,7 +98,7 @@ public class RoomCreator {
         }
     }
 
-    private RoomInformation readRoomInformation(BufferedReader bufferedReader){
+    protected RoomInformation readRoomInformation(BufferedReader bufferedReader){
 
         try {
             String roomType = bufferedReader.readLine();
@@ -77,10 +111,10 @@ public class RoomCreator {
         }
     }
 
-    private Room createRoom(int roomNumber, World world, RoomInformation roomInformation, BufferedReader bufferedReader){
+    private Room createRoom(int roomNumber, RoomInformation roomInformation, BufferedReader bufferedReader){
 
         ArrayList<ArrayList<Tile>> room = new ArrayList<>();
-        Room roomInCreation = new Room(room, world, roomNumber, roomInformation.roomType);
+        Room roomInCreation = new Room(room, roomNumber, roomInformation.roomType);
 
         try{
             for (int y = 0; y < roomInformation.roomHeight; y++) {

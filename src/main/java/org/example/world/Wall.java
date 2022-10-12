@@ -9,7 +9,6 @@ public class Wall extends Entity {
 
     @Override
     public void printNonReachableMessage() {
-
-        System.out.println("There is a wall in the way");
+        getPrintStream().println("There is a wall in the way");
     }
 }

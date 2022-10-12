@@ -1,9 +1,13 @@
 package org.example.world;
 
+import org.example.Helmet;
 import org.example.Player;
 import org.example.Race;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.util.Scanner;
 
 public class WorldTesting {
@@ -14,8 +18,16 @@ public class WorldTesting {
 
         world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
+
         world.spawnPlayer(eloy);
-        //eloy.addTerrain(Water.class);
+
+
+        eloy.addTerrain(Water.class);
+
+        world.getRoom(0).setEntity(eloy, new Position(1,1));
+        System.out.println(eloy.getPosition());
+
+        world.getRoom(0).getTile(new Position(1,0)).addItem(new Helmet("Hjälm", "Skyddar huvudet", 100, 300));
 
         Scanner scanner = new Scanner(System.in);
 
@@ -43,6 +55,7 @@ public class WorldTesting {
                     break;
                 }
             }
+
 
             System.out.println(eloy.getRoom());
             System.out.println(world);

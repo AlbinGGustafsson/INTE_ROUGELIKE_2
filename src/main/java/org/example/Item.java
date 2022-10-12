@@ -22,8 +22,11 @@ public abstract class Item {
 
     }
 
-    public String toString(){
-
+    public String getName() {
         return name;
+    }
+
+    public String toString(){
+        return "I";
     }
 }

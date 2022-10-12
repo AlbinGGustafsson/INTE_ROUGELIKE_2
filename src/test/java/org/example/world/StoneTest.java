@@ -26,5 +26,4 @@ public class StoneTest {
         String correctString = PrintFormatConstants.BOLD + PrintFormatConstants.BLACK + "S" + PrintFormatConstants.RESET;
         assertEquals(correctString, s.toString());
     }
-
 }

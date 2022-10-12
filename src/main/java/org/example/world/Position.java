@@ -5,6 +5,11 @@ public class Position {
     private int y;
 
     public Position(int x, int y) {
+
+        if (x < 0 || y < 0){
+            throw new IllegalArgumentException("Position values has to be >= 0");
+        }
+
         this.x = x;
         this.y = y;
     }
@@ -47,5 +52,28 @@ public class Position {
                 return null;
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Pos x(%d), y(%d)", x, y);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Position position = (Position) o;
+
+        if (x != position.x) return false;
+        return y == position.y;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        return result;
     }
 }
