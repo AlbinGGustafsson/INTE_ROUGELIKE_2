@@ -16,12 +16,15 @@ public class Room {
 
     public Room(ArrayList<ArrayList<Tile>> room, int roomNumber, String roomType) {
         this.room = room;
-        //this.world = world;
         this.roomNumber = roomNumber;
         this.RoomType = roomType;
     }
 
     public Room getNextRoom() {
+
+        if (world == null){
+            return null;
+        }
         try {
             world.getRoom(roomNumber + 1);
         } catch (IndexOutOfBoundsException e) {
@@ -31,6 +34,10 @@ public class Room {
     }
 
     public Room getPreviousRoom() {
+
+        if (world == null){
+            return null;
+        }
         if (roomNumber == 0) {
             return null;
         }
@@ -47,8 +54,10 @@ public class Room {
     }
 
     public void removeEntity(Entity entity) {
-        Position pos = entity.getPosition();
-        room.get(pos.getY()).get(pos.getX()).removeEntity();
+        if (contains(entity)){
+            Position pos = entity.getPosition();
+            room.get(pos.getY()).get(pos.getX()).removeEntity();
+        }
     }
 
     public void moveEntity(Entity entity, Position newPos) {
@@ -108,6 +117,10 @@ public class Room {
             }
         }
         return false;
+    }
+
+    public String getRoomType() {
+        return RoomType;
     }
 
     public List<ArrayList<Tile>> getRoomList() {
