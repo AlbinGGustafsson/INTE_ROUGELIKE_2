@@ -11,5 +11,4 @@ public class EntityMover {
     public void move(Direction direction){
         entity.getRoom().moveEntity(entity, entity.getPosition().getPos(direction));
     }
-
 }

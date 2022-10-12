@@ -43,12 +43,12 @@ public class Tile {
 
         //Kollar om en movable character kan vara på tilens terräng
         if (entity instanceof MovableCharacter mc && !mc.getTerrains().contains(terrain.getClass())) {
-            terrain.printNonReachableMessage();
+            //terrain.printNonReachableMessage();
             return false;
         }
 
         if (this.entity != null){
-            this.entity.printNonReachableMessage();
+            //this.entity.printNonReachableMessage();
             return false;
         }
         return true;

@@ -3,6 +3,7 @@ package org.example.world;
 import org.example.GameCharacter;
 import org.example.Race;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +26,7 @@ public abstract class MovableCharacter extends GameCharacter{
     }
 
     public void move(Direction direction){
+
         if (interactWithTile(getPosition().getPos(direction))){
             return;
         }

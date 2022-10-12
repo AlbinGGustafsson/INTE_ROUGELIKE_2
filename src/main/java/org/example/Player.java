@@ -138,20 +138,16 @@ public class Player extends MovableCharacter implements Combat{
             updateRoom(changeRoom(door));
             return true;
         }
+        if (tile.getTerrain() instanceof Water water && !getTerrains().contains(Water.class)){
+            water.printNonReachableMessage();
+        }
 
-//        if (tile.getTerrain() instanceof Water water && !getTerrains().contains(Water.class)){
-//            water.printNonReachableMessage();
-//            return true;
-//        }
-//
-//        if (tile.getTerrain() instanceof Floor floor && !getTerrains().contains(Floor.class)){
-//            floor.printNonReachableMessage();
-//            return true;
-//        }
-//        if (tile.getEntity() instanceof Wall wall){
-//            wall.printNonReachableMessage();
-//            return true;
-//        }
+        if (tile.getTerrain() instanceof Floor floor && !getTerrains().contains(Floor.class)){
+            floor.printNonReachableMessage();
+        }
+        if (tile.getEntity() instanceof Wall wall){
+            wall.printNonReachableMessage();
+        }
         if (tile.getEntity() instanceof Stone stone){
             getRoom().removeEntity(stone);
             System.out.println("Broke stone");

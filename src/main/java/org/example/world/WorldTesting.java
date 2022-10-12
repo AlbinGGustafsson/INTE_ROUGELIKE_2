@@ -15,12 +15,15 @@ public class WorldTesting {
 
         world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
-        world.spawnPlayer(eloy);
-        //eloy.addTerrain(Water.class);
+        //world.spawnPlayer(eloy);
+        eloy.addTerrain(Water.class);
 
 //        Albin eloy = new Albin();
+//        EntityMover entityMover = new EntityMover(eloy);
 //        eloy.setEntityMover(new EntityMover(eloy));
-//        world.getRoom(0).setEntity(eloy, new Position(1,1));
+
+
+        world.getRoom(0).setEntity(eloy, new Position(1,1));
 
         world.getRoom(0).getTile(new Position(1,2)).addItem(new Helmet("Hjälm", "Skyddar huvudet", 100, 300));
 
