@@ -88,7 +88,7 @@ public class Room {
         }
         return false;
     }
-    public boolean containsEntity(Entity entity){
+    public boolean contains(Entity entity){
         for (ArrayList<Tile> list : room) {
             for (Tile t : list) {
                 if (t.getEntity() != null && t.getEntity().equals(entity)) {

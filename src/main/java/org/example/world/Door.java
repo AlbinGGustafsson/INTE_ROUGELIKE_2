@@ -4,8 +4,6 @@ import java.util.Arrays;
 
 public class Door extends Entity {
 
-    private Position position;
-
     private Direction direction;
 
     private static final Direction[] acceptedDirections = {Direction.LEFT, Direction.RIGHT};
@@ -22,7 +20,7 @@ public class Door extends Entity {
     }
 
     public void printWalkThrough(){
-        System.out.println("Walking through door " + direction.name());
+        getOut().println("Walking through door " + direction.name());
     }
 
     @Override
@@ -32,6 +30,6 @@ public class Door extends Entity {
 
     @Override
     public void printNonReachableMessage() {
-
+        getOut().println("You cant walk through door " + direction.name());
     }
 }

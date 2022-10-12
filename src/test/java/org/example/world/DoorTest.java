@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
@@ -13,17 +15,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DoorTest {
 
     //private static final Direction[] ALL_DIRECTIONS_NOT_LEFT_OR_RIGHT = {Direction.UP, Direction.UP_RIGHT, Direction.UP_LEFT, Direction.DOWN, Direction.DOWN_LEFT, Direction.DOWN_RIGHT};
+    private static final Direction[] ACCEPTED_DIRECTIONS = {Direction.LEFT, Direction.RIGHT};
 
-    @Test
-    void constructor_Accepts_Left_Direction(){
-        Door door = new Door(Direction.LEFT);
-        assertEquals("L", door.toString());
-    }
 
     @Test
     void constructor_Accepts_Right_Direction(){
         Door door = new Door(Direction.RIGHT);
-        assertEquals("R", door.toString());
+        assertEquals(Direction.RIGHT, door.getDirection());
+    }
+
+    @Test
+    void constructor_Accepts_Left_Direction(){
+        Door door = new Door(Direction.LEFT);
+        assertEquals(Direction.LEFT, door.getDirection());
     }
 
     @ParameterizedTest(name = "{index} int: {0}")
@@ -32,14 +36,44 @@ public class DoorTest {
         assertThrows(IllegalArgumentException.class, () -> new Door(direction));
     }
 
-    private static Stream<Direction> otherDoorDirections(){
-        return Arrays.stream(Direction.class.getEnumConstants()).filter(dir -> !(dir.equals(Direction.LEFT) || dir.equals(Direction.RIGHT)));
-        //return Arrays.stream(ALL_DIRECTIONS_NOT_LEFT_OR_RIGHT);
+    @ParameterizedTest
+    @MethodSource("acceptedDirections")
+    void printWalkThrough_Prints_Correct(Direction direction){
+        Door door = new Door(direction);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(output);
+        door.setPrintStream(out);
+        door.printWalkThrough();
+        String correctPrint = "Walking through door " + direction.name();
+        assertEquals(correctPrint, output.toString().trim());
     }
 
-    @Test
-    void printWalkThrough_Prints_Correct(){
+    @ParameterizedTest
+    @MethodSource("acceptedDirections")
+    void printNonReachableMessage_Prints_Correct(Direction direction){
+        Door door = new Door(direction);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(output);
+        door.setPrintStream(out);
+        door.printNonReachableMessage();
+        String correctPrint = "You cant walk through door " + direction.name();
+        assertEquals(correctPrint, output.toString().trim());
+    }
 
+    @ParameterizedTest
+    @MethodSource("acceptedDirections")
+    void toString_Is_Correct(Direction direction){
+        Door door = new Door(direction);
+        assertEquals(direction.toString().substring(0,1), door.toString());
+    }
+
+    private static Stream<Direction> acceptedDirections(){
+        return Arrays.stream(ACCEPTED_DIRECTIONS);
+    }
+
+    private static Stream<Direction> otherDoorDirections(){
+        return Arrays.stream(Direction.class.getEnumConstants()).filter(dir -> !Arrays.asList(ACCEPTED_DIRECTIONS).contains(dir));
+        //return Arrays.stream(ALL_DIRECTIONS_NOT_LEFT_OR_RIGHT);
     }
 
 }
