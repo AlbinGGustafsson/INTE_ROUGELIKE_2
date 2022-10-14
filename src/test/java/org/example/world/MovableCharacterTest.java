@@ -42,6 +42,11 @@ public class MovableCharacterTest {
                     //w.printNonReachableMessage();
                     getPrintStream().print("You cant swim");
                 }
+
+                if (tile.getEntity() instanceof Door door){
+                    updateRoom(changeRoom(door));
+                    return true;
+                }
                 return false;
             }
 
@@ -190,31 +195,30 @@ public class MovableCharacterTest {
     }
 
     @Test
-    void movableCharacter_Changing_Room_To_The_Left(){
+    void movableCharacter_Changing_Room_To_The_Right(){
+        mc.addTerrain(Floor.class);
         World world = new World(new TestableRoomCreator());
-        Player player = new Player("name", Race.HUMAN);
-        world.getRoom(0).setEntity(player, new Position(4,2));
-        player.move(Direction.RIGHT);
+        world.getRoom(0).setEntity(mc, new Position(4,2));
+        mc.move(Direction.RIGHT);
 
         Room newRoom = world.getRoom(1);
         Position newPlayerPosition = newRoom.getDoor(Direction.LEFT).getPosition().getPos(Direction.RIGHT);
-        assertEquals(player, newRoom.getTile(newPlayerPosition).getEntity());
-        assertFalse(world.getRoom(0).contains(player));
+        assertEquals(mc, newRoom.getTile(newPlayerPosition).getEntity());
+        assertFalse(world.getRoom(0).contains(mc));
     }
 
     @Test
-    void movableCharacter_Changing_Room_To_The_Right(){
+    void movableCharacter_Changing_Room_To_The_Left(){
+        mc.addTerrain(Floor.class);
         World world = new World(new TestableRoomCreator());
         world.addRoom();
-        Player player = new Player("name", Race.HUMAN);
-        world.getRoom(1).setEntity(player, new Position(1,2));
-        player.move(Direction.LEFT);
+        world.getRoom(1).setEntity(mc, new Position(1,2));
+        mc.move(Direction.LEFT);
 
         Room newRoom = world.getRoom(0);
         Position newPlayerPosition = newRoom.getDoor(Direction.RIGHT).getPosition().getPos(Direction.LEFT);
-        assertEquals(player, newRoom.getTile(newPlayerPosition).getEntity());
-        assertFalse(world.getRoom(1).contains(player));
+        assertEquals(mc, newRoom.getTile(newPlayerPosition).getEntity());
+        assertFalse(world.getRoom(1).contains(mc));
     }
-
 
 }
