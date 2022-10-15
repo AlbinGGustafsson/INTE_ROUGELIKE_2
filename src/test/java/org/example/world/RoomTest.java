@@ -23,17 +23,17 @@ public class RoomTest {
     }
 
     @Test
-    void getNextRoom_No_World_Returns_Null(){
+    void getNextRoom_No_World_Throws_Exception(){
         TestableRoomCreator tcr = new TestableRoomCreator();
         Room room = tcr.loadRoom(0);
-        assertNull(room.getNextRoom());
+        assertThrows(RuntimeException.class, () -> room.getNextRoom());
     }
 
     @Test
-    void getPrevRoom_No_World_Returns_Null(){
+    void getPrevRoom_No_World_Throws_Exception(){
         TestableRoomCreator tcr = new TestableRoomCreator();
         Room room = tcr.loadRoom(0);
-        assertNull(room.getPreviousRoom());
+        assertThrows(RuntimeException.class, () -> room.getPreviousRoom());
     }
 
     @Test
