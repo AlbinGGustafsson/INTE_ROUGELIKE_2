@@ -6,7 +6,7 @@ public class Goomba extends Monster {
     }
 
     @Override
-    public int calculateHealth() {
+    public double calculateHealth() {
         return 0;
     }
 

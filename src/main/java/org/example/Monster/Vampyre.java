@@ -7,7 +7,7 @@ public class Vampyre extends Monster {
     }
 
     @Override
-    public int calculateHealth() {
+    public double calculateHealth() {
         return 0;
     }
 
