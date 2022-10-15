@@ -58,10 +58,10 @@ class FXTest {
 
         //Button button = robot.lookup("#primaryButton").queryButton();
         Assertions.assertThat(robot.lookup("#primaryButton").queryButton()).hasText("Switch to Secondary View");
-        //robot.clickOn("#primaryButton");
-        setRoot("secondary");
+        robot.clickOn("#primaryButton");
+        //setRoot("secondary");
         Assertions.assertThat(robot.lookup("#secondaryButton").queryButton()).hasText("Switch to Primary View");
-        setRoot("primary");
+        //setRoot("primary");
 
     }
 }
