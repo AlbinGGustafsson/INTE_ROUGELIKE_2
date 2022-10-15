@@ -57,6 +57,7 @@ public class Room {
         if (contains(entity)){
             Position pos = entity.getPosition();
             roomList.get(pos.getY()).get(pos.getX()).removeEntity();
+            entity.updateRoom(null);
         }
     }
 

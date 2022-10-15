@@ -99,6 +99,24 @@ public class RoomTest {
     }
 
     @Test
+    void removeEntity_removed_Entity_Has_No_Room(){
+        World world = new World(new TestableRoomCreator());
+        Stone stone = new Stone();
+        world.getRoom(0).setEntity(stone, new Position(1,1));
+        world.getRoom(0).removeEntity(stone);
+        assertNull(stone.getRoom());
+    }
+
+    @Test
+    void removeEntity_removed_Entity_Has_No_Position(){
+        World world = new World(new TestableRoomCreator());
+        Stone stone = new Stone();
+        world.getRoom(0).setEntity(stone, new Position(1,1));
+        world.getRoom(0).removeEntity(stone);
+        assertNull(stone.getPosition());
+    }
+
+    @Test
     void moveEntity_Entity_Not_Exists_Does_Nothing(){
         World world = new World(new TestableRoomCreator());
         Stone stone = new Stone();

@@ -123,23 +123,29 @@ public class RoomCreator {
                 room.add(row);
                 for (int x = 0; x < roomInformation.roomWidth; x++) {
                     Position currentPosition = new Position(x, y);
-                    if (chars[x] == '#') {
-                        row.add(new Tile(new Floor(), new Wall()));
-                    }
-                    if (chars[x] == 'F') {
-                        row.add(new Tile(new Floor()));
-                    }
-                    if (chars[x] == 'L') {
-                        row.add(new Tile(new Floor()));
-                        roomInCreation.setEntity(new Door(Direction.LEFT), currentPosition);
-                    }
-                    if (chars[x] == 'R') {
-                        row.add(new Tile(new Floor()));
-                        roomInCreation.setEntity(new Door(Direction.RIGHT), currentPosition);
-                    }
-                    if (chars[x] == 'W') {
-                        row.add(new Tile(new Water()));
-
+                    switch (chars[x]){
+                        case '#':{
+                            row.add(new Tile(new Floor(), new Wall()));
+                            break;
+                        }
+                        case 'F':{
+                            row.add(new Tile(new Floor()));
+                            break;
+                        }
+                        case 'L':{
+                            row.add(new Tile(new Floor()));
+                            roomInCreation.setEntity(new Door(Direction.LEFT), currentPosition);
+                            break;
+                        }
+                        case 'R':{
+                            row.add(new Tile(new Floor()));
+                            roomInCreation.setEntity(new Door(Direction.RIGHT), currentPosition);
+                            break;
+                        }
+                        case 'W':{
+                            row.add(new Tile(new Water()));
+                            break;
+                        }
                     }
                 }
             }
