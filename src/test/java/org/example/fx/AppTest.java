@@ -88,7 +88,7 @@ class AppTest {
         robot.clickOn("#alertButton");
 
         String headerText = robot.lookup("#dp").queryAs(DialogPane.class).getHeaderText();
-        assertEquals("YOYOY!", headerText);
+        assertEquals("YOYOY", headerText);
 
         robot.clickOn("#okButton");
     }
