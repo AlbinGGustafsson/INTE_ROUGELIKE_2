@@ -1,5 +1,7 @@
 package org.example.Monster;
 
+import org.example.Combat;
+
 public class Troll extends Monster{
 
     private static final int LEVEL_ONE_HEALTH = 400;
@@ -14,7 +16,7 @@ public class Troll extends Monster{
     }
 
     @Override
-    public int calculateHealth() {
+    public double calculateHealth() {
         return getLevel()*COEFFICIENT_FOR_HEALTH_SCALING + LEVEL_ONE_HEALTH;
 
     }
@@ -31,6 +33,16 @@ public class Troll extends Monster{
 
     @Override
     public void attack() {
+
+    }
+
+    @Override
+    public void dealDmg(Combat combatTarget, double damage) {
+        super.dealDmg(combatTarget, damage);
+    }
+
+    @Override
+    public void takeDmg(double damage) {
 
     }
 }

@@ -112,8 +112,9 @@ public class Player extends MovableCharacter implements Combat{
         return equipment.getBlockChance();
     }
 
+
     @Override
-    public void takeDmg(int damage) {
+    public void takeDmg(double damage) {
         double armorfactor = 0.12 * equipment.getArmorRating() / 100;
         hp -= Math.ceil(damage * (1.0 - armorfactor));
     }
