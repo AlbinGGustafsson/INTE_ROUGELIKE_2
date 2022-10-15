@@ -1,7 +1,9 @@
 package org.example.fx;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextField;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,6 +11,7 @@ import org.testfx.api.FxRobot;
 import org.testfx.assertions.api.Assertions;
 import org.testfx.framework.junit5.ApplicationExtension;
 import org.testfx.framework.junit5.Start;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -77,5 +80,16 @@ class AppTest {
         Assertions.assertThat(robot.lookup("#secondaryButton").queryButton()).hasText(text);
 //        //setRoot("primary");
 
+    }
+
+
+    @Test
+    void test2(FxRobot robot){
+        robot.clickOn("#alertButton");
+
+        String headerText = robot.lookup("#dp").queryAs(DialogPane.class).getHeaderText();
+        assertEquals("YOYOY!", headerText);
+
+        robot.clickOn("#okButton");
     }
 }
