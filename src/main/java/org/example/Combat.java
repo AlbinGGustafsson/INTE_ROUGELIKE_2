@@ -6,7 +6,7 @@ public interface Combat {
     Random r = new Random();
     BaseDamage getBaseDmg();
     double getBlockChance();
-    default void dealDmg(Combat combatTarget, int damage){
+    default void dealDmg(Combat combatTarget, double damage){
         if (blocked()) {
             //target blocked the dmg
         }
@@ -20,5 +20,5 @@ public interface Combat {
         return r.nextDouble() < getBlockChance();
     }
 
-    void takeDmg(int damage);
+    void takeDmg(double damage);
 }

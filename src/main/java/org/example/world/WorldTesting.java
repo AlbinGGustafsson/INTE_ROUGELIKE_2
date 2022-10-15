@@ -14,14 +14,17 @@ public class WorldTesting {
         World world = new World();
 
 
-        world.getRoom(0).setEntity(new Stone(), new Position(5,5));
+       // world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Troll troll = new Troll(10);
         world.getRoom(0).setEntity(troll, new Position(5,5));
-        world.getRoom(0).setEntity(new Stone(), new Position(5,5));
+       // world.getRoom(0).setEntity(new Stone(), new Position(5,5));
+
+
 
         Player eloy = new Player("Eloy", Race.HUMAN);
         world.spawnPlayer(eloy);
         //eloy.addTerrain(Water.class);
+
 
         Scanner scanner = new Scanner(System.in);
 

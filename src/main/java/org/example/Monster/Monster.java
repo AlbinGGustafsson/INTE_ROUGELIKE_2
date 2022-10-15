@@ -6,7 +6,7 @@ import org.example.Player;
 import org.example.world.Entity;
 import org.example.world.Position;
 
-public abstract class Monster implements Entity, Combat {
+public abstract class Monster extends Entity implements Combat {
 
     //private String[] terrainType;
       private final int level;
@@ -34,7 +34,7 @@ public abstract class Monster implements Entity, Combat {
     }
 
     @Override
-    public void dealDmg(Combat combatTarget, int damage) {
+    public void dealDmg(Combat combatTarget, double damage) {
         Combat.super.dealDmg(combatTarget, damage);
     }
 
@@ -44,8 +44,8 @@ public abstract class Monster implements Entity, Combat {
     }
 
     @Override
-    public void takeDmg(int damage) {
-
+    public void takeDmg(double damage) {
+        health = health - damage;
     }
 
     public abstract double calculateHealth();
@@ -69,50 +69,38 @@ public abstract class Monster implements Entity, Combat {
       }
 
     @Override
-    public Position getPosition() {
-        return position;
-    }
-
-    @Override
-    public void setPosition(Position position) {
-
-    }
-
-    @Override
     public void printNonReachableMessage() {
 
     }
 
-    public boolean battleWithPlayer(Player p){
+    public void battleWithPlayer(Player p){
           double playerHealth = p.getHp();
-          double playerAttackDamage = p.getBaseDmg().getPhysDmg();
-          double monsterAttackDamage = attackDamage();
+          double playerAttackDamage = 100;
           boolean battleIsOver = false;
 
           do {
 
-            health = health - playerAttackDamage;
+            dealDmg(this, playerAttackDamage);
             if(health < 0){
-              battleIsOver = true;
-              System.out.println(health);
-            }else {
-
-              playerHealth = playerHealth - monsterAttackDamage;
-              System.out.println(playerHealth);
-              if (playerHealth < 0) {
+                printVictoryMessage();
                 battleIsOver = true;
-              }
+
+            }else{
+
+                dealDmg(p, attackDamage());
+                if (p.getHp() < 0){
+                    printDefeatMessage();
+                    battleIsOver = true;
+                }
             }
           }while(!battleIsOver);
-
-          if(playerHealth > 0){
-            System.out.println("You won the fight!");
-              System.out.println("Your current health " + playerHealth);
-              return true;
-          }else{
-            System.out.println("Bruh you died");
-            return false;
-          }
       }
 
+    private void printDefeatMessage() {
+        getPrintStream().println("You died, Game over");
+    }
+
+    private void printVictoryMessage() {
+        getPrintStream().println("You won the fight!!");
+    }
 }

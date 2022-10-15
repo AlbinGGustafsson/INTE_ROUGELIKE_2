@@ -3,6 +3,11 @@ package org.example.Monster;
 import org.example.Player;
 import org.example.Race;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.*;
 public class MonsterTest {
 
@@ -10,30 +15,52 @@ public class MonsterTest {
     private static final int TO_LOW_LEVEL_VALUE = -1;
 
     @Test
-    void calculateHealthReturnsCorrectValue(){
+    void calculateHealthReturnsCorrectValue() {
         Troll troll = new Troll(CORRECT_LEVEL_VALUE);
         int expected = 420;
         assertEquals(expected, troll.getHealth());
     }
 
     @Test
-    void AttackDamageIsGivenCorrectValue(){
+    void AttackDamageIsGivenCorrectValue() {
         Troll troll = new Troll(CORRECT_LEVEL_VALUE);
         int expected = 50;
         assertEquals(expected, troll.attackDamage());
     }
 
     @Test
-    void ConstructorThrowsExceptionWhenGivenValueIsToLow(){
+    void constructorThrowsExceptionWhenGivenValueIsToLow() {
         assertThrows(IllegalArgumentException.class, () -> {
             Troll troll = new Troll(TO_LOW_LEVEL_VALUE);
         });
     }
-    @Test
-    void BattleWithAPlayerHasCorrectOutcome(){
-        Troll troll = new Troll(10);
-        Player player = new Player("player", Race.HUMAN, 10);
 
+    @Test
+    void playerLossesFightPrintsCorrectMessage() {
+        Troll troll = new Troll(100);
+        Player player = new Player("player", Race.HUMAN, 10);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(output);
+        troll.setPrintStream(out);
         troll.battleWithPlayer(player);
+
+        String correctOutput = "You died, Game over";
+        assertEquals(correctOutput, output.toString().trim());
     }
+
+    @Test
+    void playerWinsFightPrintsCorrectMessage() {
+        Troll troll = new Troll(1);
+        Player player = new Player("player", Race.HUMAN, 10);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(output);
+        troll.setPrintStream(out);
+        troll.battleWithPlayer(player);
+
+        String correctOutput = "You won the fight!!";
+        assertEquals(correctOutput, output.toString().trim());
+    }
+
+
+
 }

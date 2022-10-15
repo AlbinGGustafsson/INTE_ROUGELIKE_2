@@ -114,7 +114,7 @@ public class Player extends MovableCharacter implements Combat{
     }
 
     @Override
-    public void takeDmg(int damage) {
+    public void takeDmg(double damage) {
         double armorfactor = 0.12 * equipment.getArmorRating() / 100;
         hp -= Math.ceil(damage * (1.0 - armorfactor));
     }
@@ -152,16 +152,16 @@ public class Player extends MovableCharacter implements Combat{
             return true;
         }
         
-        if (tile.getEntity() instanceof Monster e) {
-            System.out.println("You have encountered a MONSTER AHHHH!");
-            if(e.battleWithPlayer((Player) this)){
-                tile.removeEntity();
-                return false;
-            }
-            return true;
-        }
+//        if (tile.getEntity() instanceof Monster e) {
+//            System.out.println("You have encountered a MONSTER AHHHH!");
+//            if(e.battleWithPlayer((Player) this)){
+//                tile.removeEntity();
+//                return false;
+//            }
+//            return true;
+//        }
 
-        return false;
+       return false;
     }
 
     private Room changeRoom(Door d){
