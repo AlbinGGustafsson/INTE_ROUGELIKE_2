@@ -1,8 +1,6 @@
 package org.example.world;
 
-import org.example.Helmet;
-import org.example.Player;
-import org.example.Race;
+import org.example.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,14 +16,13 @@ public class WorldTesting {
 
         world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
+        NPC questGiver = new QuestGiver("Jonas", Race.HUMAN, "JonasTestDialog.txt");
 
-        //world.spawnPlayer(eloy);
+        world.getRoom(0).setEntity(questGiver, new Position(5,6));
+
+        world.spawnPlayer(eloy);
 
         eloy.addTerrain(Water.class);
-
-        RoomCreator rc = new RoomCreator();
-        Room room = rc.loadRoom(0);
-        room.setEntity(eloy, new Position(1,1));
 
         //world.getRoom(0).setEntity(eloy, new Position(1,1));
         System.out.println(eloy.getPosition());
@@ -34,10 +31,10 @@ public class WorldTesting {
 
         Scanner scanner = new Scanner(System.in);
 
-        //System.out.println(world.getRoom(0));
-        //System.out.println(world);
+        System.out.println(world.getRoom(0));
+        System.out.println(world);
 
-        System.out.println(room);
+
 
         while (true){
 
@@ -61,10 +58,8 @@ public class WorldTesting {
                 }
             }
 
-            System.out.println(room);
-
-            //System.out.println(eloy.getRoom());
-            //System.out.println(world);
+            System.out.println(eloy.getRoom());
+            System.out.println(world);
         }
 
     }

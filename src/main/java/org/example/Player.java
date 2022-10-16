@@ -153,6 +153,10 @@ public class Player extends MovableCharacter implements Combat{
 //            getRoom().removeEntity(stone);
 //            System.out.println("Broke stone");
         }
+        if(tile.getEntity() instanceof NPC npc){
+
+            npc.dialogue();
+        }
 
         return false;
     }
