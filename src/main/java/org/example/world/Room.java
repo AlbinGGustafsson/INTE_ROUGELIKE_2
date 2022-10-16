@@ -22,7 +22,8 @@ public class Room {
     public Room getNextRoom() {
 
         if (world == null){
-            return null;
+            throw new RuntimeException("Room has no world");
+            //return null;
         }
 
         if (world.getRoom(roomNumber + 1) == null){
@@ -34,7 +35,8 @@ public class Room {
     public Room getPreviousRoom() {
 
         if (world == null){
-            return null;
+            throw new RuntimeException("Room has no world");
+            //return null;
         }
         if (roomNumber == 0) {
             return null;
@@ -55,6 +57,7 @@ public class Room {
         if (contains(entity)){
             Position pos = entity.getPosition();
             roomList.get(pos.getY()).get(pos.getX()).removeEntity();
+            entity.updateRoom(null);
         }
     }
 

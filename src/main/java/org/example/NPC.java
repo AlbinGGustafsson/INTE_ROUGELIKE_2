@@ -1,15 +1,14 @@
 package org.example;
 
-public abstract class NPC extends GameCharacter{
+public class NPC extends GameCharacter{
 
-    private Boolean isVendor;
-    private Boolean isQuestGiver;
+    private Occupation occupation;
 
-    public NPC(String name, Race race){
+    public NPC(String name, Race race, Occupation... occupation){
         super(name, race);
     }
 
-    void dialogue(){
+    Dialogue dialogue(){
 
 
     }

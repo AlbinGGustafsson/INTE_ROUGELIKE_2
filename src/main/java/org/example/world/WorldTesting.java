@@ -27,7 +27,12 @@ public class WorldTesting {
 
         world.getRoom(0).setEntity(eloy, new Position(1,1));
         world.getRoom(0).setEntity(troll, new Position(3, 4));
-        System.out.println(eloy.getPosition());
+
+
+        //world.spawnPlayer(eloy);
+
+        eloy.addTerrain(Water.class);
+        //System.out.println(eloy.getPosition());
 
         world.getRoom(0).getTile(new Position(1,0)).addItem(new Helmet("Hjälm", "Skyddar huvudet", 100, 300));
 

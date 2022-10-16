@@ -221,4 +221,15 @@ public class MovableCharacterTest {
         assertFalse(world.getRoom(1).contains(mc));
     }
 
+
+    @Test
+    void movableCharacter_Changing_Room_When_Room_Has_No_World_Throws_Exception(){
+        mc.addTerrain(Floor.class);
+        TestableRoomCreator trc = new TestableRoomCreator();
+        Room room = trc.loadRoom(0);
+
+        room.setEntity(mc, new Position(4,2));
+        assertThrows(RuntimeException.class, () -> mc.move(Direction.RIGHT));
+    }
+
 }

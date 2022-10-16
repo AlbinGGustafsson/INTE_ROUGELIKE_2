@@ -39,8 +39,8 @@ public class RoomCreatorTest {
     void room_Created_Correct(){
         TestableRoomCreator trc = new TestableRoomCreator();
         Room room = trc.loadRoom(1);
-        Room normalRoomReference = createNormalRoomReference();
-        assertEquals(normalRoomReference.toString(), room.toString());
+        Room expectedRoom = createExpectedRoom();
+        assertEquals(expectedRoom.toString(), room.toString());
     }
 
     @Test
@@ -84,7 +84,7 @@ public class RoomCreatorTest {
         assertThrows(IllegalArgumentException.class, () -> rc.checkRoomType(roomInformation));
     }
 
-    private Room createNormalRoomReference(){
+    private Room createExpectedRoom(){
 
         ArrayList<ArrayList<Tile>> room = new ArrayList<>();
         ArrayList<Tile> row1 = new ArrayList<>();
