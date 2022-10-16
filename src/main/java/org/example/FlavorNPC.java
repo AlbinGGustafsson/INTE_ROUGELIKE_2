@@ -7,6 +7,11 @@ public class FlavorNPC extends NPC {
         super(name, race, filePath);
     }
 
+
+    void interact(Player player){
+
+        printDialogue();
+    }
     @Override
     public String toString() {
         return PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "N" + PrintFormatConstants.RESET;

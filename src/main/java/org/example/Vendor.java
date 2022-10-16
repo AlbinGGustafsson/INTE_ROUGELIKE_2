@@ -8,11 +8,20 @@ public class Vendor extends NPC {
     }
 
     @Override
+    void interact(Player player){
+
+        printDialogue();
+        if ("Y".equalsIgnoreCase(dialogueOption("Do you want to browse shop? [Y]"))) {
+            openShop();
+        }
+    }
+
+    @Override
     public String toString() {
         return PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "V" + PrintFormatConstants.RESET;
     }
 
-    public void openShop(){
+    private void openShop(){
 
 
     }

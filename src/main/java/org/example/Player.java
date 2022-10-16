@@ -163,6 +163,7 @@ public class Player extends MovableCharacter implements Combat{
         if(tile.getEntity() instanceof NPC npc){
 
             npc.printDialogue();
+            npc.interact(this);
         }
 
         return false;

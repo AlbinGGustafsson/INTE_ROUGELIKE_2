@@ -5,6 +5,7 @@ import org.example.world.PrintFormatConstants;
 import org.example.world.Tile;
 
 import java.io.*;
+import java.util.Scanner;
 
 public abstract class NPC extends MovableCharacter {
 
@@ -55,5 +56,17 @@ public abstract class NPC extends MovableCharacter {
 
 
         return false;
+    }
+
+    abstract void interact(Player player);
+
+    String dialogueOption(String option){
+
+        Scanner scanner = new Scanner(System.in);
+
+        getPrintStream().println(option);
+        String command = scanner.nextLine();
+
+        return command;
     }
 }
