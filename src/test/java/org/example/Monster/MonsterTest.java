@@ -2,6 +2,10 @@ package org.example.Monster;
 
 import org.example.Player;
 import org.example.Race;
+import org.example.world.Floor;
+import org.example.world.Position;
+import org.example.world.Tile;
+import org.example.world.World;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
@@ -61,6 +65,27 @@ public class MonsterTest {
         assertEquals(correctOutput, output.toString().trim());
     }
 
+    @Test
+    void InteractionWithMonsterRemovesItFromMap(){
+        Tile tile = tileAfterBattle();
+        assertFalse(tile.getEntity() instanceof Monster m);
+    }
+
+    @Test
+    void playerMovesWhenBattleIsWon(){
+        Tile tile = tileAfterBattle();
+        assertTrue(tile.getEntity() instanceof Player p);
+    }
+
+
+    private Tile tileAfterBattle(){
+        Troll troll = new Troll(1);
+        Player player = new Player("player", Race.HUMAN, 100);
+        Tile tile = new Tile(new Floor(), troll);
+        player.interactWithTile(tile);
+
+        return tile;
+    }
 
 
 }

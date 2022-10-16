@@ -1,6 +1,11 @@
 package org.example;
 
+import org.example.Monster.Monster;
 import org.example.world.*;
+import java.lang.management.ManagementFactory;
+import java.io.File;
+import java.io.IOException;
+
 
 public class Player extends MovableCharacter implements Combat{
     private static final int MAX_LEVEL = 100;
@@ -125,7 +130,8 @@ public class Player extends MovableCharacter implements Combat{
     }
 
     @Override
-    protected boolean interactWithTile(Tile tile){
+    // Sänkt skydsnivå för ett testfall
+    public boolean interactWithTile(Tile tile){
 
         if (!tile.getItems().isEmpty()){
             getPrintStream().print("You found ");
@@ -154,11 +160,22 @@ public class Player extends MovableCharacter implements Combat{
 //            System.out.println("Broke stone");
         }
 
+        if(tile.getEntity() instanceof Monster monster){
+            monster.printNonReachableMessage();
+            monster.battleWithPlayer(this);
+            tile.removeEntity();
+
+        }
+
         return false;
     }
 
     @Override
     public String toString() {
         return PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + "P" + PrintFormatConstants.RESET;
+    }
+
+    public void restartGame(){
+       // System.exit(0);
     }
 }

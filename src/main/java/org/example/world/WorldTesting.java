@@ -1,6 +1,7 @@
 package org.example.world;
 
 import org.example.Helmet;
+import org.example.Monster.Troll;
 import org.example.Player;
 import org.example.Race;
 
@@ -18,26 +19,27 @@ public class WorldTesting {
 
         world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
+        Troll troll = new Troll(10);
+        world.spawnPlayer(eloy);
+
+
+        eloy.addTerrain(Water.class);
+
+        world.getRoom(0).setEntity(eloy, new Position(1,1));
+        world.getRoom(0).setEntity(troll, new Position(3, 4));
+
 
         //world.spawnPlayer(eloy);
 
         eloy.addTerrain(Water.class);
-
-        RoomCreator rc = new RoomCreator();
-        Room room = rc.loadRoom(0);
-        room.setEntity(eloy, new Position(1,1));
-
-        //world.getRoom(0).setEntity(eloy, new Position(1,1));
-        System.out.println(eloy.getPosition());
+        //System.out.println(eloy.getPosition());
 
         world.getRoom(0).getTile(new Position(1,0)).addItem(new Helmet("Hjälm", "Skyddar huvudet", 100, 300));
 
         Scanner scanner = new Scanner(System.in);
 
-        //System.out.println(world.getRoom(0));
-        //System.out.println(world);
-
-        System.out.println(room);
+        System.out.println(world.getRoom(0));
+        System.out.println(world);
 
         while (true){
 
@@ -61,10 +63,9 @@ public class WorldTesting {
                 }
             }
 
-            System.out.println(room);
 
-            //System.out.println(eloy.getRoom());
-            //System.out.println(world);
+            System.out.println(eloy.getRoom());
+            System.out.println(world);
         }
 
     }
