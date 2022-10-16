@@ -1,6 +1,7 @@
 package org.example.world;
 
 import org.example.Item;
+import org.example.Monster.Monster;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -63,6 +64,7 @@ public class Tile {
             //this.entity.printNonReachableMessage();
             return false;
         }
+      //  if(entity instanceof Monster m && m.getTerrainType() == )
         return true;
     }
 
@@ -73,6 +75,7 @@ public class Tile {
     public Terrain getTerrain() {
         return terrain;
     }
+
 
     @Override
     public String toString() {

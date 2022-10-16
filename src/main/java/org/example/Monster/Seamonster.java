@@ -1,5 +1,9 @@
 package org.example.Monster;
 
+import org.example.Player;
+import org.example.world.Floor;
+import org.example.world.Water;
+
 public class Seamonster extends Monster {
 
     private static final int LEVEL_ONE_HEALTH = 350;
@@ -9,6 +13,8 @@ public class Seamonster extends Monster {
 
     public Seamonster(int level) {
         super(level);
+        removeTerrain(Floor.class);
+        addTerrain(Water.class);
     }
 
     @Override
@@ -16,10 +22,7 @@ public class Seamonster extends Monster {
         return getLevel()*COEFFICIENT_FOR_HEALTH_SCALING + LEVEL_ONE_HEALTH;
     }
 
-    @Override
-    public void die() {
 
-    }
 
     @Override
     public double attackDamage() {
@@ -27,7 +30,8 @@ public class Seamonster extends Monster {
     }
 
     @Override
-    public void attack() {
+    public void monsterSpecificAttack(Player p) {
 
     }
+
 }

@@ -2,6 +2,8 @@ package org.example.world;
 
 import javafx.animation.KeyValue;
 import javafx.util.Pair;
+import org.example.Monster.Goomba;
+import org.example.Monster.Troll;
 
 import java.io.*;
 import java.security.KeyPair;
@@ -146,6 +148,15 @@ public class RoomCreator {
                             row.add(new Tile(new Water()));
                             break;
                         }
+                        case 'T':{
+                            row.add(new Tile(new Floor()));
+                            roomInCreation.setEntity(new Troll(roomNumber+1), currentPosition);
+                        }
+                        case 'G':{
+                            row.add(new Tile(new Floor()));
+                            roomInCreation.setEntity(new Goomba(roomNumber+1), currentPosition);
+                        }
+
                     }
                 }
             }
