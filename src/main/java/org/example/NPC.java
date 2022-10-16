@@ -17,7 +17,7 @@ public abstract class NPC extends MovableCharacter {
         parsedDialogue = parseFile(bufferedReader);
     }
 
-    protected void dialogue(){
+    protected void printDialogue(){
 
         getPrintStream().println(PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + parsedDialogue + PrintFormatConstants.RESET);
     }
@@ -51,8 +51,9 @@ public abstract class NPC extends MovableCharacter {
         return sb.toString();
     }
 
-    @Override
-    protected boolean interactWithTile(Tile tile) {
+    protected boolean interactWithTile(Tile tile){
+
+
         return false;
     }
 }

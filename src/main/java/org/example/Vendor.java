@@ -11,4 +11,9 @@ public class Vendor extends NPC {
     public String toString() {
         return PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "V" + PrintFormatConstants.RESET;
     }
+
+    public void openShop(){
+
+
+    }
 }

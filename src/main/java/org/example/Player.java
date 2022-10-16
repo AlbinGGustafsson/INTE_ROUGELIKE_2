@@ -14,6 +14,8 @@ public class Player extends MovableCharacter implements Combat{
     private final Equipment equipment;
     private final Inventory inventory;
 
+    private final QuestLog questLog;
+
     public Player(String name, Race race) {
         this(name, race, 1);
     }
@@ -23,6 +25,7 @@ public class Player extends MovableCharacter implements Combat{
         gainExpUntilRightLevelIsReached(level);
         inventory = new Inventory();
         equipment = new Equipment(inventory);
+        questLog = new QuestLog();
     }
 
 
@@ -70,6 +73,10 @@ public class Player extends MovableCharacter implements Combat{
 
     public Equipment getEquipment() {
         return (Equipment) equipment.clone();
+    }
+
+    public QuestLog getQuestLog() {
+        return (QuestLog) questLog.clone();
     }
 
     public int getHp() {
@@ -155,7 +162,7 @@ public class Player extends MovableCharacter implements Combat{
         }
         if(tile.getEntity() instanceof NPC npc){
 
-            npc.dialogue();
+            npc.printDialogue();
         }
 
         return false;
