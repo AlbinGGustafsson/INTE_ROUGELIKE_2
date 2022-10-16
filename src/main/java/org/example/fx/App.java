@@ -1,4 +1,4 @@
-package org.example;
+package org.example.fx;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +20,10 @@ public class App extends Application {
         scene = new Scene(loadFXML("primary"), 640, 480);
         stage.setScene(scene);
         stage.show();
+    }
+
+    static void setRoot(Parent p){
+        scene.setRoot(p);
     }
 
     static void setRoot(String fxml) throws IOException {

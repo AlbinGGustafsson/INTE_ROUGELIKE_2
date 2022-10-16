@@ -33,7 +33,6 @@ public abstract class MovableCharacter extends GameCharacter{
     }
 
     public Room changeRoom(Door d){
-        getRoom().removeEntity(this);
         Room newRoom = null;
         Position newPos = null;
 
@@ -46,7 +45,7 @@ public abstract class MovableCharacter extends GameCharacter{
             newPos = newRoom.getDoor(Direction.LEFT).getPosition().getPos(Direction.RIGHT);
         }
 
-        assert newRoom != null;
+        getRoom().removeEntity(this);
         newRoom.setEntity(this, newPos);
         d.printWalkThrough();
         return newRoom;

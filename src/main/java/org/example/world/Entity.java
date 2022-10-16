@@ -20,6 +20,12 @@ public abstract class Entity {
     }
 
     public void updateRoom(Room room) {
+        if (room == null){
+            this.room = null;
+            this.position = null;
+            return;
+        }
+
         if (room.contains(this)){
             this.room = room;
         }
@@ -33,6 +39,7 @@ public abstract class Entity {
             }
         }catch (NullPointerException e){}
     }
+
 
     public void setPrintStream(PrintStream out){
         this.out = out;

@@ -10,4 +10,6 @@ module org.example {
     opens org.example.world to javafx.fxml;
     exports org.example.world.ploy;
     opens org.example.world.ploy to javafx.fxml;
+    exports org.example.fx;
+    opens org.example.fx to javafx.fxml;
 }

@@ -23,17 +23,17 @@ public class RoomTest {
     }
 
     @Test
-    void getNextRoom_No_World_Returns_Null(){
+    void getNextRoom_No_World_Throws_Exception(){
         TestableRoomCreator tcr = new TestableRoomCreator();
         Room room = tcr.loadRoom(0);
-        assertNull(room.getNextRoom());
+        assertThrows(RuntimeException.class, () -> room.getNextRoom());
     }
 
     @Test
-    void getPrevRoom_No_World_Returns_Null(){
+    void getPrevRoom_No_World_Throws_Exception(){
         TestableRoomCreator tcr = new TestableRoomCreator();
         Room room = tcr.loadRoom(0);
-        assertNull(room.getPreviousRoom());
+        assertThrows(RuntimeException.class, () -> room.getPreviousRoom());
     }
 
     @Test
@@ -96,6 +96,24 @@ public class RoomTest {
         World world = new World(new TestableRoomCreator());
         Stone stone = new Stone();
         assertDoesNotThrow(() -> world.getRoom(0).removeEntity(stone));
+    }
+
+    @Test
+    void removeEntity_removed_Entity_Has_No_Room(){
+        World world = new World(new TestableRoomCreator());
+        Stone stone = new Stone();
+        world.getRoom(0).setEntity(stone, new Position(1,1));
+        world.getRoom(0).removeEntity(stone);
+        assertNull(stone.getRoom());
+    }
+
+    @Test
+    void removeEntity_removed_Entity_Has_No_Position(){
+        World world = new World(new TestableRoomCreator());
+        Stone stone = new Stone();
+        world.getRoom(0).setEntity(stone, new Position(1,1));
+        world.getRoom(0).removeEntity(stone);
+        assertNull(stone.getPosition());
     }
 
     @Test
