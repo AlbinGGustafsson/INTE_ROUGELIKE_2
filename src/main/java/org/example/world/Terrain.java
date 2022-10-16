@@ -2,7 +2,7 @@ package org.example.world;
 
 import java.io.PrintStream;
 
-abstract class Terrain {
+public abstract class Terrain {
 
     private static PrintStream out = System.out;
 

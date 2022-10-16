@@ -18,7 +18,7 @@ public class Tile {
 
     public Tile(Terrain terrainType, Entity entity) {
         this(terrainType);
-        this.entity = entity;
+        setEntity(entity);
     }
 
     public List<Item> getItems() {
