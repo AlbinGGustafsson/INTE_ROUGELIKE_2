@@ -1,5 +1,6 @@
 package org.example.world;
 
+import javafx.scene.text.Text;
 import org.example.*;
 import org.example.characters.Player;
 import org.junit.jupiter.api.Test;
@@ -51,6 +52,19 @@ public class EntityTest {
         room.setEntity(player, new Position(2,2));
         player.updatePosition(new Position(1,1), room);
         assertNotEquals(new Position(1,1), player.getPosition());
+    }
+
+
+    @Test
+    void getText_returns_Text_Correct_Text(){
+        Entity entity = new Entity() {
+            @Override
+            public void printNonReachableMessage() {
+
+            }
+        };
+        Text text = new Text("E");
+        assertEquals(text.getText(), entity.getText().getText(), "Wrong text");
     }
 
 }

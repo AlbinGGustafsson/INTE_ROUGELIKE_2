@@ -21,4 +21,5 @@ public interface Combat {
     }
 
     void takeDmg(double damage);
+
 }

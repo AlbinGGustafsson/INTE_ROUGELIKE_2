@@ -1,6 +1,7 @@
 module org.example {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.management;
 //    requires org.testng;
 //    requires org.junit.jupiter.api;
 

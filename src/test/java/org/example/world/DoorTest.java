@@ -1,5 +1,7 @@
 package org.example.world;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -73,7 +75,32 @@ public class DoorTest {
 
     private static Stream<Direction> otherDoorDirections(){
         return Arrays.stream(Direction.class.getEnumConstants()).filter(dir -> !Arrays.asList(ACCEPTED_DIRECTIONS).contains(dir));
-        //return Arrays.stream(ALL_DIRECTIONS_NOT_LEFT_OR_RIGHT);
+    }
+
+    @Test
+    void getText_Left_Door_returns_Text_Correct_Text(){
+        Door door = new Door(Direction.LEFT);
+        Text text = new Text("L");
+        assertEquals(text.getText(), door.getText().getText());
+    }
+
+    @Test
+    void getText_Right_Door_returns_Text_Correct_Text(){
+        Door door = new Door(Direction.RIGHT);
+        Text text = new Text("R");
+        assertEquals(text.getText(), door.getText().getText());
+    }
+
+    @Test
+    void getText_Right_Door_Returns_Text_Correct_Color(){
+        Door door = new Door(Direction.RIGHT);
+        assertEquals(Color.BROWN, door.getText().getFill());
+    }
+
+    @Test
+    void getText_SLeft_Door_Returns_Text_Correct_Color(){
+        Door door = new Door(Direction.LEFT);
+        assertEquals(Color.BROWN, door.getText().getFill());
     }
 
 }

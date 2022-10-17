@@ -1,4 +1,4 @@
-package org.example.fx;
+package org.example.fx.old;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

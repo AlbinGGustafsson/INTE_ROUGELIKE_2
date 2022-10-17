@@ -70,6 +70,7 @@ public abstract class Monster extends Entity implements Combat {
 
   @Override
   public void printNonReachableMessage() {
+      getPrintStream().println("You have encountered a monster, battle will commence");
 
   }
 
@@ -90,6 +91,7 @@ public abstract class Monster extends Entity implements Combat {
         dealDmg(p, attackDamage());
         if (p.getHp() < 0){
           printDefeatMessage();
+          p.restartGame();
           battleIsOver = true;
         }
       }
@@ -103,4 +105,5 @@ public abstract class Monster extends Entity implements Combat {
   private void printVictoryMessage() {
     getPrintStream().println("You won the fight!!");
   }
+
 }

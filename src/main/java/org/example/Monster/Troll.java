@@ -1,8 +1,10 @@
 package org.example.Monster;
 
+import org.example.world.PrintFormatConstants;
+
 public class Troll extends Monster{
 
-    private static final int LEVEL_ONE_HEALTH = 400;
+    private static final int LEVEL_ONE_HEALTH = 1;
     private static final int COEFFICIENT_FOR_HEALTH_SCALING = 2;
     private static final int LEVEL_ONE_ATTACK_DAMAGE = 400;
     private static final int COEFFICIENT_FOR_ATTACK_DAMAGE_SCALING = 3;
@@ -35,6 +37,6 @@ public class Troll extends Monster{
     }
 
     public String toString(){
-        return "T";
+        return PrintFormatConstants.BOLD + PrintFormatConstants.RED + "T" + PrintFormatConstants.RESET;
     }
 }

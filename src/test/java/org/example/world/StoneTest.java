@@ -1,7 +1,10 @@
 package org.example.world;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -21,7 +24,20 @@ public class StoneTest {
     }
 
     @Test
-    void toString_Is_Correct_For_Floor() {
+    void getText_Stone_Returns_Text_Correct_Text(){
+        Stone stone = new Stone();
+        Text text = new Text("S");
+        assertEquals(text.getText(), stone.getText().getText());
+    }
+
+    @Test
+    void getText_Stone_Returns_Text_Correct_Color(){
+        Stone stone = new Stone();
+        assertEquals(Color.BLACK, stone.getText().getFill());
+    }
+
+    @Test
+    void toString_Is_Correct_For_Stone() {
         Stone s = new Stone();
         String correctString = PrintFormatConstants.BOLD + PrintFormatConstants.BLACK + "S" + PrintFormatConstants.RESET;
         assertEquals(correctString, s.toString());

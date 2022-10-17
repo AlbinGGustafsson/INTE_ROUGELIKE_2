@@ -1,5 +1,8 @@
 package org.example.world;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
 public class Water extends Terrain {
 
     public Water() {
@@ -13,5 +16,12 @@ public class Water extends Terrain {
     @Override
     public void printNonReachableMessage() {
         getPrintStream().println("You cant swim");
+    }
+
+    @Override
+    public Text getText() {
+        Text text = new Text("W");
+        text.setFill(Color.BLUE);
+        return text;
     }
 }

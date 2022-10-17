@@ -134,6 +134,18 @@ public class Room {
 
     @Override
     public String toString() {
+
+//        StringBuilder sb = new StringBuilder();
+//        for (ArrayList<Tile> list : roomList) {
+//            sb.append("\n");
+//            for (Tile t : list) {
+//                sb.append(t.toString());
+//            }
+//        }
+//
+//        return sb.toString();
+
+//
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("Room: %s %n", roomNumber));
         for (var row : roomList) {

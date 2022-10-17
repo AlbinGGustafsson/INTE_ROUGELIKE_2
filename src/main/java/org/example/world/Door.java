@@ -1,5 +1,8 @@
 package org.example.world;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
 import java.util.Arrays;
 
 public class Door extends Entity {
@@ -32,4 +35,12 @@ public class Door extends Entity {
     public void printNonReachableMessage() {
         getPrintStream().println("You cant walk through door " + direction.name());
     }
+
+    @Override
+    public Text getText() {
+        Text text = new Text(direction.toString().substring(0,1));
+        text.setFill(Color.BROWN);
+        return text;
+    }
+
 }
