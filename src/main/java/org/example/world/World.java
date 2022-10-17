@@ -1,6 +1,7 @@
 package org.example.world;
 
 import org.example.Player;
+import org.example.fx.Game;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,7 @@ public class World {
         Position pos = new Position(1,1);
         getRoom(0).setEntity(player, pos);
     }
+
     @Override
     public String toString() {
 

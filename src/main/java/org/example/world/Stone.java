@@ -1,5 +1,7 @@
 package org.example.world;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.example.Helmet;
 
 public class Stone extends Entity{
@@ -12,6 +14,14 @@ public class Stone extends Entity{
     @Override
     public void printNonReachableMessage() {
         getPrintStream().println("There is a stone in the way");
+    }
+
+
+    @Override
+    public Text getText() {
+        Text text = new Text("F");
+        text.setFill(Color.WHITE);
+        return text;
     }
 
 }

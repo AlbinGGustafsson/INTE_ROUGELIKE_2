@@ -5,15 +5,18 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
+import javafx.scene.text.TextFlow;
+import org.example.Player;
+import org.example.Race;
+import org.example.world.PrintFormatConstants;
+import org.example.world.World;
 
 import java.io.IOException;
 
 public class PrimaryController {
-
     @FXML
     TextField textField;
     @FXML
@@ -37,11 +40,6 @@ public class PrimaryController {
         var dialogPane = alert.getDialogPane();
         dialogPane.setId("dp");
         alert.showAndWait();
-    }
-
-    @FXML
-    public void initialize() {
-
     }
 
 }

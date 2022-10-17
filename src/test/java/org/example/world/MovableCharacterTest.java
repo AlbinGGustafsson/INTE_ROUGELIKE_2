@@ -1,5 +1,6 @@
 package org.example.world;
 
+import javafx.scene.text.Text;
 import org.example.Helmet;
 import org.example.Item;
 import org.example.Player;
@@ -24,8 +25,13 @@ public class MovableCharacterTest {
     @BeforeEach
     void createMovableCharacterInstance(){
         mc = new MovableCharacter("Albin", Race.HUMAN) {
+
             {
                 terrains.clear();
+            }
+            @Override
+            public Text getText() {
+                return new Text("A");
             }
             @Override
             protected boolean interactWithTile(Tile tile) {

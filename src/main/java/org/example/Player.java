@@ -1,5 +1,7 @@
 package org.example;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.example.Monster.Monster;
 import org.example.world.*;
 import java.lang.management.ManagementFactory;
@@ -177,5 +179,12 @@ public class Player extends MovableCharacter implements Combat{
 
     public void restartGame(){
        // System.exit(0);
+    }
+
+    @Override
+    public Text getText() {
+        Text text = new Text("P");
+        text.setFill(Color.PURPLE);
+        return text;
     }
 }

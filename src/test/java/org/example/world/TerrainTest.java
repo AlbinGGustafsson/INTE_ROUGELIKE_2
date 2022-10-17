@@ -1,5 +1,6 @@
 package org.example.world;
 
+import javafx.scene.text.Text;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +19,11 @@ public class TerrainTest {
                 @Override
                 public void printNonReachableMessage() {
                 }
+
+                @Override
+                public Text getText() {
+                    return new Text("T");
+                }
             };
         });
     }
@@ -29,6 +35,11 @@ public class TerrainTest {
                 @Override
                 public void printNonReachableMessage() {
                 }
+
+                @Override
+                public Text getText() {
+                    return new Text("T");
+                }
             };
         });
     }
@@ -39,6 +50,11 @@ public class TerrainTest {
             @Override
             public void printNonReachableMessage() {
             }
+
+            @Override
+            public Text getText() {
+                return new Text("T");
+            }
         };
         assertEquals(1, t.getWeight());
     }
@@ -48,6 +64,11 @@ public class TerrainTest {
         Terrain t = new Terrain("typeName", 1) {
             @Override
             public void printNonReachableMessage() {
+            }
+
+            @Override
+            public Text getText() {
+                return new Text("T");
             }
         };
         assertEquals("typeName", t.getTypeName());
