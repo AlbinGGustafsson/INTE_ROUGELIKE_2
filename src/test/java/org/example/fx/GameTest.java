@@ -1,13 +1,16 @@
 package org.example.fx;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +23,10 @@ import org.testfx.framework.junit5.Start;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @ExtendWith(ApplicationExtension.class)
 public class GameTest {
 
@@ -87,6 +94,19 @@ public class GameTest {
 
         robot.clickOn("#newGameButton");
 
+        Label nameLabel = robot.lookup("#nameLabel").queryAs(Label.class);
+        Label lvlLabel = robot.lookup("#levelLabel").queryAs(Label.class);
+        Label hpLabel = robot.lookup("#hpLabel").queryAs(Label.class);
+        Label raceLabel = robot.lookup("#raceLabel").queryAs(Label.class);
+
+        assertEquals("1", lvlLabel.getText());
+        assertEquals("0", hpLabel.getText());
+        assertEquals("ORC", raceLabel.getText());
+        assertEquals("playername", nameLabel.getText());
+
+        TextFlow gameArea = robot.lookup("#gameArea").queryTextFlow();
+
+        List<Node> texts = gameArea.getChildren().stream().toList();
     }
 
 }
