@@ -195,7 +195,6 @@ public class Player extends MovableCharacter implements Combat {
 
             }
 
-
         }
         return false;
     }

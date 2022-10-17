@@ -1,11 +1,12 @@
 package org.example.Monster;
 
+import org.example.Monster.Monster;
 import org.example.characters.Player;
 import org.example.world.Terrain;
 
-public class Vampyre extends Monster {
+public class Boss extends Monster {
 
-    public Vampyre(int level) {
+    public Boss(int level) {
         super(level);
     }
 
@@ -26,5 +27,16 @@ public class Vampyre extends Monster {
 
     }
 
+    // @Override
 
+
+    @Override
+    public void takeDmg(double damage) {
+        super.takeDmg(damage);
+    }
+
+    @Override
+    public String toString() {
+        return "B";
+    }
 }

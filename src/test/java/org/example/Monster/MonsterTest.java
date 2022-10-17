@@ -2,10 +2,10 @@ package org.example.Monster;
 
 import org.example.characters.Player;
 import org.example.Race;
-import org.example.world.Floor;
-import org.example.world.Tile;
+import org.example.world.*;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -75,6 +75,23 @@ public class MonsterTest {
     }
 
 
+    @Test
+    void seamonsterCanBePlacedOnWater(){
+        Tile tile = new Tile(new Water());
+        Seamonster s = new Seamonster(10);
+        tile.setEntity(s);
+
+        assertEquals(tile.getEntity(), s);
+    }
+
+    @Test
+    void trollCanNotBePlacedOnWater(){
+        Tile tile = new Tile(new Water());
+        Troll troll = new Troll(10);
+        tile.setEntity(troll);
+        assertNull(tile.getEntity());
+    }
+
     private Tile tileAfterBattle(){
         Troll troll = new Troll(1);
         Player player = new Player("player", Race.HUMAN, 100);
@@ -83,6 +100,8 @@ public class MonsterTest {
 
         return tile;
     }
+
+
 
 
 }

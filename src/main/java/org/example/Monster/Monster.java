@@ -3,19 +3,19 @@ package org.example.Monster;
 import org.example.BaseDamage;
 import org.example.Combat;
 import org.example.characters.Player;
-import org.example.world.Entity;
-import org.example.world.Position;
+import org.example.Race;
+import org.example.world.MovableCharacter;
 
-public abstract class Monster extends Entity implements Combat {
 
-  //private String[] terrainType;
+public abstract class Monster extends MovableCharacter implements Combat, PauseExecutionForCombat {
+
   private final int level;
   private double health;
 
-  private Position position;
-
-
   public Monster(int level){
+    super("Monster", Race.MONSTER );
+
+
     if(level < 1){
       throw new IllegalArgumentException();
     }
@@ -50,11 +50,9 @@ public abstract class Monster extends Entity implements Combat {
 
   public abstract double calculateHealth();
 
-  public abstract void die();
 
   public abstract double attackDamage();
 
-  public abstract void attack();
 
   private void setHealth(){
     this.health = calculateHealth();
@@ -74,12 +72,17 @@ public abstract class Monster extends Entity implements Combat {
 
   }
 
+
+  public abstract void monsterSpecificAttack(Player p);
+
   public void battleWithPlayer(Player p){
+    monsterSpecificAttack(p);
     double playerHealth = p.getHp();
     double playerAttackDamage = 100;
     boolean battleIsOver = false;
 
     do {
+
 
       dealDmg(this, playerAttackDamage);
       if(health < 0){
@@ -106,4 +109,9 @@ public abstract class Monster extends Entity implements Combat {
     getPrintStream().println("You won the fight!!");
   }
 
+
+  @Override
+  public String toString() {
+    return "M";
+  }
 }

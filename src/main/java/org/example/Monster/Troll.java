@@ -1,6 +1,10 @@
 package org.example.Monster;
 
+import org.example.characters.Player;
+import org.example.world.Floor;
 import org.example.world.PrintFormatConstants;
+import org.example.world.Terrain;
+import org.example.world.Water;
 
 public class Troll extends Monster{
 
@@ -21,10 +25,6 @@ public class Troll extends Monster{
 
     }
 
-    @Override
-    public void die() {
-
-    }
 
     @Override
     public double attackDamage() {
@@ -32,9 +32,10 @@ public class Troll extends Monster{
     }
 
     @Override
-    public void attack() {
+    public void monsterSpecificAttack(Player p) {
 
     }
+
 
     public String toString(){
         return PrintFormatConstants.BOLD + PrintFormatConstants.RED + "T" + PrintFormatConstants.RESET;

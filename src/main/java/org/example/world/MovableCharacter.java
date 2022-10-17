@@ -55,7 +55,9 @@ public abstract class MovableCharacter extends GameCharacter{
      * Tries to interact with Tile.
      * returns true if the interaction moved the MovableCharacter.
      */
-    protected abstract boolean interactWithTile(Tile tile);
+    protected boolean interactWithTile(Tile tile){
+        return false;
+    }
 
     public Set<Class<? extends Terrain>> getTerrains() {
         return Collections.unmodifiableSet(terrains);
