@@ -1,10 +1,12 @@
 package org.example.world;
 
+import javafx.scene.text.Text;
+
 import java.io.PrintStream;
 
-abstract class Terrain {
+public abstract class Terrain {
 
-    private static PrintStream out = System.out;
+    private static PrintStream out = new GamePrintStream();
 
     private int weight;
     private String typeName;
@@ -35,5 +37,9 @@ abstract class Terrain {
     }
 
     public abstract void printNonReachableMessage();
+
+    public Text getText(){
+        return new Text("T");
+    }
 
 }

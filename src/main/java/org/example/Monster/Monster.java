@@ -1,5 +1,7 @@
 package org.example.Monster;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.example.BaseDamage;
 import org.example.Combat;
 import org.example.Player;
@@ -105,4 +107,5 @@ public abstract class Monster extends Entity implements Combat {
   private void printVictoryMessage() {
     getPrintStream().println("You won the fight!!");
   }
+
 }

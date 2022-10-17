@@ -1,5 +1,7 @@
 package org.example.world;
 
+import javafx.scene.text.Text;
+
 import java.io.PrintStream;
 
 public abstract class Entity {
@@ -7,7 +9,7 @@ public abstract class Entity {
     //TDD gjorde så att jag insåg att det underlättar om Entity är en superklass istället för ett interface.
     //Den har en metod så man kan byta ut en printstream så att det går att testa.
     //Alla subklasser har utskrifter så det är najs att ha den metoden i en superklass
-    private static PrintStream out = System.out;
+    private static PrintStream out = new GamePrintStream();
     private Room room;
     private Position position;
 
@@ -47,6 +49,10 @@ public abstract class Entity {
 
     public PrintStream getPrintStream() {
         return out;
+    }
+
+    public Text getText(){
+        return new Text("E");
     }
 
     public abstract void printNonReachableMessage();

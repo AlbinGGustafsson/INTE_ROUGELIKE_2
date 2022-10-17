@@ -1,5 +1,6 @@
 package org.example.world;
 
+import javafx.scene.text.Text;
 import org.example.Item;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class Tile {
 
     public Tile(Terrain terrainType, Entity entity) {
         this(terrainType);
-        this.entity = entity;
+        setEntity(entity);
     }
 
     public List<Item> getItems() {
@@ -72,6 +73,19 @@ public class Tile {
 
     public Terrain getTerrain() {
         return terrain;
+    }
+
+
+
+    public Text getText(){
+        if (entity != null) {
+            return entity.getText();
+        }
+
+        if (!items.isEmpty()){
+            return new Text("I");
+        }
+        return terrain.getText();
     }
 
     @Override

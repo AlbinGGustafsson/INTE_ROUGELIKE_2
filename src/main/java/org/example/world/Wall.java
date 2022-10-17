@@ -1,5 +1,8 @@
 package org.example.world;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
 public class Wall extends Entity {
 
     @Override
@@ -11,4 +14,13 @@ public class Wall extends Entity {
     public void printNonReachableMessage() {
         getPrintStream().println("There is a wall in the way");
     }
+
+
+    @Override
+    public Text getText() {
+        Text text = new Text("#");
+        text.setFill(Color.BLACK);
+        return text;
+    }
+
 }

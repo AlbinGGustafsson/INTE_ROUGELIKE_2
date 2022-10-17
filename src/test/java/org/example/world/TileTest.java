@@ -1,5 +1,6 @@
 package org.example.world;
 
+import javafx.scene.text.Text;
 import org.example.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -96,19 +97,38 @@ public class TileTest {
     }
 
     @Test
-    void toString_Is_Correct_Only_Terrain(){
+    void getText_Correct_Only_Terrain(){
+        Tile tile = new Tile(new Floor());
+        assertEquals(tile.getTerrain().getText().getText(), tile.getText().getText());
+    }
+    @Test
+    void getText_Correct_Correct_Entity_With_All(){
+        Tile tile = new Tile(new Floor(), new Wall());
+        tile.addItem(new Helmet("name", "desc", 1, 1));
+        assertEquals(tile.getEntity().getText().getText(), tile.getText().getText());
+    }
+
+    @Test
+    void getText_Correct_Correct_Item_No_Entity(){
+        Tile tile = new Tile(new Floor());
+        tile.addItem(new Helmet("name", "desc", 1, 1));
+        assertEquals("I", tile.getText().getText());
+    }
+
+    @Test
+    void toString_Correct_Only_Terrain(){
         Tile tile = new Tile(new Floor());
         assertEquals(tile.getTerrain().toString(), tile.toString());
     }
     @Test
-    void toString_Is_Correct_Entity_With_All(){
+    void toString_Correct_Entity_With_All(){
         Tile tile = new Tile(new Floor(), new Wall());
         tile.addItem(new Helmet("name", "desc", 1, 1));
         assertEquals(tile.getEntity().toString(), tile.toString());
     }
 
     @Test
-    void toString_Is_Correct_Item_No_Entity(){
+    void toString_Correct_Item_No_Entity(){
         Tile tile = new Tile(new Floor());
         tile.addItem(new Helmet("name", "desc", 1, 1));
         assertEquals(tile.getItems().get(0).toString(), tile.toString());

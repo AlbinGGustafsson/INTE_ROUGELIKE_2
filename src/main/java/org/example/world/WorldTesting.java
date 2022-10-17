@@ -5,15 +5,20 @@ import org.example.Monster.Troll;
 import org.example.Player;
 import org.example.Race;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
 import java.util.Scanner;
 
 public class WorldTesting {
 
     public static void main(String[] args) throws IOException {
+
+        GamePrintStream gamePrintStream = new GamePrintStream();
+        gamePrintStream.println("hej");
+        gamePrintStream.println("hej2");
+        gamePrintStream.println("hej3");
+
+        System.out.println(GamePrintStream.getGameText());
+
 
         World world = new World();
 
@@ -21,6 +26,8 @@ public class WorldTesting {
         Player eloy = new Player("Eloy", Race.HUMAN);
         Troll troll = new Troll(10);
         world.spawnPlayer(eloy);
+        System.out.println(eloy.getHp());
+        System.out.println(eloy.getLevel());
 
 
         eloy.addTerrain(Water.class);

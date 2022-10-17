@@ -34,15 +34,24 @@ public class World {
         Position pos = new Position(1,1);
         getRoom(0).setEntity(player, pos);
     }
+
     @Override
     public String toString() {
 
         StringBuilder sb = new StringBuilder();
         for (Room r : world) {
             String stringToAppend;
-            stringToAppend = r.containsPlayer() ? String.format("(%sP%s)%s ", PrintFormatConstants.PURPLE, PrintFormatConstants.RESET, r.mapString()) : r.mapString() + " ";
+            stringToAppend = r.containsPlayer() ? String.format("(P)%s ", r.mapString()) : r.mapString() + " ";
             sb.append(stringToAppend);
         }
         return sb.toString();
+
+//        StringBuilder sb = new StringBuilder();
+//        for (Room r : world) {
+//            String stringToAppend;
+//            stringToAppend = r.containsPlayer() ? String.format("(%sP%s)%s ", PrintFormatConstants.PURPLE, PrintFormatConstants.RESET, r.mapString()) : r.mapString() + " ";
+//            sb.append(stringToAppend);
+//        }
+//        return sb.toString();
     }
 }

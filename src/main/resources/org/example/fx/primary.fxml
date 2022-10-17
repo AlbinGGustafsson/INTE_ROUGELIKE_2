@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="619.0" prefWidth="854.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx.PrimaryController">
+<VBox alignment="CENTER" prefHeight="619.0" prefWidth="854.0" spacing="20.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx.old.PrimaryController">
    <children>
       <TextField fx:id="textField" prefHeight="25.0" prefWidth="648.0" />
       <Label text="Primary View" />

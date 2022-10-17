@@ -1,5 +1,6 @@
 package org.example.world;
 
+import javafx.scene.text.Text;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,9 +15,14 @@ public class TerrainTest {
     void weight_Value_Above_Max_Throws_Exception() {
 
         assertThrows(IllegalArgumentException.class, () -> {
-            Terrain t = new Terrain("typeName", 11) {
+            Terrain terrain = new Terrain("typeName", 11) {
                 @Override
                 public void printNonReachableMessage() {
+                }
+
+                @Override
+                public Text getText() {
+                    return new Text("T");
                 }
             };
         });
@@ -25,9 +31,14 @@ public class TerrainTest {
     @Test
     void weight_Value_Below_Min_Throws_Exception() {
         assertThrows(IllegalArgumentException.class, () -> {
-            Terrain t = new Terrain("typeName", 0) {
+            Terrain terrain = new Terrain("typeName", 0) {
                 @Override
                 public void printNonReachableMessage() {
+                }
+
+                @Override
+                public Text getText() {
+                    return new Text("T");
                 }
             };
         });
@@ -35,21 +46,31 @@ public class TerrainTest {
 
     @Test
     void weight_Value_Sets_Correct() {
-        Terrain t = new Terrain("typeName", 1) {
+        Terrain terrain = new Terrain("typeName", 1) {
             @Override
             public void printNonReachableMessage() {
             }
+
+            @Override
+            public Text getText() {
+                return new Text("T");
+            }
         };
-        assertEquals(1, t.getWeight());
+        assertEquals(1, terrain.getWeight());
     }
 
     @Test
     void typeName_Sets_Correct() {
-        Terrain t = new Terrain("typeName", 1) {
+        Terrain terrain = new Terrain("typeName", 1) {
             @Override
             public void printNonReachableMessage() {
             }
+
+            @Override
+            public Text getText() {
+                return new Text("T");
+            }
         };
-        assertEquals("typeName", t.getTypeName());
+        assertEquals("typeName", terrain.getTypeName());
     }
 }

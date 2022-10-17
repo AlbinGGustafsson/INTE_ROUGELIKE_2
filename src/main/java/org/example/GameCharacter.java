@@ -1,5 +1,7 @@
 package org.example;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.example.world.Entity;
 
 public abstract class GameCharacter extends Entity {
@@ -28,4 +30,5 @@ public abstract class GameCharacter extends Entity {
     public void printNonReachableMessage() {
         System.out.println("Can't walk on character");
     }
+
 }
