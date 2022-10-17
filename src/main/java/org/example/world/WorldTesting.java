@@ -1,15 +1,10 @@
 package org.example.world;
 
 import org.example.Helmet;
-import org.example.Monster.Seamonster;
-import org.example.Monster.Troll;
 import org.example.characters.Player;
 import org.example.Race;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
 import java.util.Scanner;
 
 public class WorldTesting {

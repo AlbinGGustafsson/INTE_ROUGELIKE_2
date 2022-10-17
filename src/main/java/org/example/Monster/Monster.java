@@ -68,7 +68,7 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
 
   @Override
   public void printNonReachableMessage() {
-      getPrintStream().println("You have encountered a monster, battle will commence");
+    getPrintStream().println("You have encountered a monster, battle will commence");
 
   }
 
@@ -108,7 +108,6 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
   private void printVictoryMessage() {
     getPrintStream().println("You won the fight!!");
   }
-
 
   @Override
   public String toString() {

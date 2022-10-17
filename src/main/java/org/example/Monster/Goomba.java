@@ -43,14 +43,13 @@ public class Goomba extends Monster {
 
     private void checkIfLevelDifference(Player p) {
         if(p.getLevel() < getLevel()){
-             isDamageAddOnInAffect = true;
+            isDamageAddOnInAffect = true;
         }
     }
 
     private void printBattleMessage(){
         getPrintStream().println("Whom is the fool that dare engage in combat with a Goomba?");
     }
-
 
 
     public String toString(){
