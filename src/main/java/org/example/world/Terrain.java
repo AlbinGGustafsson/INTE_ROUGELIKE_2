@@ -38,6 +38,8 @@ public abstract class Terrain {
 
     public abstract void printNonReachableMessage();
 
-    public abstract Text getText();
+    public Text getText(){
+        return new Text("T");
+    }
 
 }
