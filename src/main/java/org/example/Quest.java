@@ -1,4 +1,4 @@
-package org.example.characters;
+package org.example;
 
 import org.example.Item;
 import org.example.Objective;

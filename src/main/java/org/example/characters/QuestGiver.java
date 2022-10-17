@@ -1,5 +1,6 @@
 package org.example.characters;
 
+import org.example.Quest;
 import org.example.Race;
 import org.example.world.PrintFormatConstants;
 import org.example.world.Tile;

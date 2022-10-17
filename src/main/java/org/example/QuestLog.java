@@ -1,7 +1,5 @@
 package org.example;
 
-import org.example.characters.Quest;
-
 import java.util.ArrayList;
 
 public class QuestLog extends ArrayList<Quest>{
