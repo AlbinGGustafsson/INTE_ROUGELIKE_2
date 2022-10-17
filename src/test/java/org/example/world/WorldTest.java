@@ -1,6 +1,6 @@
 package org.example.world;
 
-import org.example.Player;
+import org.example.characters.Player;
 import org.example.Race;
 import org.junit.jupiter.api.Test;
 

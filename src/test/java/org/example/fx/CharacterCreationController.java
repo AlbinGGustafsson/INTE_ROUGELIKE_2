@@ -12,7 +12,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
-import org.example.Player;
+import org.example.characters.Player;
 import org.example.Race;
 import org.example.world.World;
 

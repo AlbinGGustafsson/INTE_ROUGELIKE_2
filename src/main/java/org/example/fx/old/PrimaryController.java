@@ -9,7 +9,7 @@
 //import javafx.scene.text.Text;
 //import javafx.scene.text.TextAlignment;
 //import javafx.scene.text.TextFlow;
-//import org.example.Player;
+//import org.example.characters.Player;
 //import org.example.Race;
 //import org.example.world.PrintFormatConstants;
 //import org.example.world.World;

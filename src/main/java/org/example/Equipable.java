@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.characters.Player;
+
 @SuppressWarnings("SpellCheckingInspection")
 public interface Equipable extends Comparable<Equipable> {
     boolean canBeEquippedBy(Player player);

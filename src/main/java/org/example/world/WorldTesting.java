@@ -2,7 +2,7 @@ package org.example.world;
 
 import org.example.Helmet;
 import org.example.Monster.Troll;
-import org.example.Player;
+import org.example.characters.Player;
 import org.example.Race;
 
 import java.io.IOException;

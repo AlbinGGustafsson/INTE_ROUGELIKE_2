@@ -1,11 +1,12 @@
-package org.example;
+package org.example.characters;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import org.example.*;
 import org.example.Monster.Monster;
 import org.example.world.*;
 
-public class Player extends MovableCharacter implements Combat{
+public class Player extends MovableCharacter implements Combat {
 
     private static final String APPEARANCE_CSS_STYLE = "-fx-font-family: 'monospaced';-fx-font-size: 20;-fx-font-weight: bold";
     private static final int MAX_LEVEL = 100;

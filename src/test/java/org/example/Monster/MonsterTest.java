@@ -1,14 +1,11 @@
 package org.example.Monster;
 
-import org.example.Player;
+import org.example.characters.Player;
 import org.example.Race;
 import org.example.world.Floor;
-import org.example.world.Position;
 import org.example.world.Tile;
-import org.example.world.World;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
