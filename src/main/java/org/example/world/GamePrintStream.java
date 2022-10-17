@@ -10,10 +10,16 @@ public class GamePrintStream extends PrintStream {
     public GamePrintStream() {
         super(System.out);
     }
-
+    @Override
     public void println(String str) {
-        super.println(str);
-        gameText.append(str + "\n");
+        println(str, true);
+    }
+
+    public void println(String str, boolean printToSystemOut) {
+        if (printToSystemOut){
+            super.println(str);
+        }
+        gameText.append(str).append("\n");
     }
 
 

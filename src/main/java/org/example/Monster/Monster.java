@@ -108,11 +108,4 @@ public abstract class Monster extends Entity implements Combat {
     getPrintStream().println("You won the fight!!");
   }
 
-  @Override
-  public Text getText() {
-    Text text = new Text("M");
-    text.setFill(Color.RED);
-    return text;
-  }
-
 }

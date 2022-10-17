@@ -51,7 +51,9 @@ public abstract class Entity {
         return out;
     }
 
-    public abstract Text getText();
+    public Text getText(){
+        return new Text("E");
+    }
 
     public abstract void printNonReachableMessage();
 }

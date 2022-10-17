@@ -19,7 +19,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <TextFlow layoutX="35.0" layoutY="68.0" prefHeight="74.0" prefWidth="108.0">
+      <TextFlow fx:id="appearanceTextFlow" layoutX="35.0" layoutY="68.0" prefHeight="74.0" prefWidth="108.0">
          <children>
             <Text fx:id="appearanceText" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="82.3046875">
                <font>

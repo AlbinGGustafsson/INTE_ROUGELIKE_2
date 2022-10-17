@@ -35,6 +35,7 @@ public class Player extends MovableCharacter implements Combat{
         hp = level*10; //Ingen aning about this, eloy kan du titta på detta
 
         appearance = new Text("P");
+        appearance.setStyle("-fx-font-family: 'monospaced';-fx-font-size: 20;-fx-font-weight: bold");
         appearance.setFill(Color.PURPLE);
     }
 

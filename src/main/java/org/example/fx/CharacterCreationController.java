@@ -10,6 +10,7 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import org.example.Player;
 import org.example.Race;
 import org.example.world.World;
@@ -24,6 +25,10 @@ public class CharacterCreationController {
 
 
     private static final String CHARACTERS_TO_CHOOSE_FROM = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+
+    @FXML
+    private TextFlow appearanceTextFlow;
     @FXML
     private TextField nameTextField;
 
