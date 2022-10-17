@@ -4,8 +4,9 @@ import org.example.Race;
 import org.example.world.PrintFormatConstants;
 
 public class Vendor extends NPC {
-    public Vendor(String name, Race race, String filePath) {
-        super(name, race, filePath);
+    public Vendor(String name, Race race, String dialogueFilePath) {
+
+        super(name, race, dialogueFilePath);
     }
 
     @Override

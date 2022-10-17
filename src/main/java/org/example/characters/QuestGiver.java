@@ -8,8 +8,10 @@ import org.example.world.Tile;
 public class QuestGiver extends NPC{
 
     private Quest availableQuest;
-    public QuestGiver(String name, Race race, String filePath) {
-        super(name, race, filePath);
+    public QuestGiver(String name, Race race, String dialogueFilePath, Quest quest) {
+
+        super(name, race, dialogueFilePath);
+        availableQuest = quest;
     }
 
     @Override
@@ -27,7 +29,8 @@ public class QuestGiver extends NPC{
     protected void interact(Player player){
 
         printDialogue();
-        if (dialogueOption("Do you want to pick up quest? [Y]").equalsIgnoreCase("Y")) {
+        if(availableQuest != null && dialogueOption("Do you want to pick up quest? [Y]").equalsIgnoreCase("Y")) {
+
             player.getQuestLog().add(availableQuest);
             availableQuest = null;
         }

@@ -99,7 +99,7 @@ public class Player extends MovableCharacter implements Combat {
     }
 
     public QuestLog getQuestLog() {
-        return (QuestLog) questLog.clone();
+        return questLog;
     }
 
 

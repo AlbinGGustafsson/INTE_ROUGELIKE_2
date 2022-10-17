@@ -32,7 +32,7 @@ public class WorldTesting {
         world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
 
-        NPC jonas = new QuestGiver("Jonas", Race.HUMAN, "JonasTestDialog.txt");
+        NPC jonas = new QuestGiver("Jonas", Race.HUMAN, "JonasTestDialog.txt", new Quest("Hitta nemo", "Simma runt lite", 5));
         NPC albin = new Vendor("Albin", Race.ELF, "AlbinDialog.txt");
 
         world.getRoom(0).setEntity(jonas, new Position(5,6));

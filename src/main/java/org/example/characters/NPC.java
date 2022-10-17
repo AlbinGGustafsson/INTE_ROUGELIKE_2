@@ -11,9 +11,9 @@ public abstract class NPC extends MovableCharacter {
 
     private File dialogue;
     private String parsedDialogue;
-    protected NPC(String name, Race race, String filePath){
+    protected NPC(String name, Race race, String dialogueFilePath){
         super(name, race);
-        dialogue = new File("NPCFiles/" + filePath);
+        dialogue = new File("NPCFiles/" + dialogueFilePath);
         BufferedReader bufferedReader = loadFile();
         parsedDialogue = parseFile(bufferedReader);
     }
