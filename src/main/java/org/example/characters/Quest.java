@@ -1,8 +1,11 @@
-package org.example;
+package org.example.characters;
+
+import org.example.Item;
+import org.example.Objective;
 
 import java.util.ArrayList;
 
-public abstract class Quest {
+public class Quest {
 
     private String name;
     private String description;

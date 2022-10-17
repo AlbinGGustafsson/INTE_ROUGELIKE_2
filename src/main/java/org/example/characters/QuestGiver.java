@@ -1,5 +1,6 @@
-package org.example;
+package org.example.characters;
 
+import org.example.Race;
 import org.example.world.PrintFormatConstants;
 import org.example.world.Tile;
 
@@ -22,10 +23,10 @@ public class QuestGiver extends NPC{
     }
 
     @Override
-    void interact(Player player){
+    protected void interact(Player player){
 
         printDialogue();
-        if ("Y".equalsIgnoreCase(dialogueOption("Do you want to pick up quest? [Y]"))) {
+        if (dialogueOption("Do you want to pick up quest? [Y]").equalsIgnoreCase("Y")) {
             player.getQuestLog().add(availableQuest);
             availableQuest = null;
         }

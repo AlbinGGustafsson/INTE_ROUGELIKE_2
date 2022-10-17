@@ -1,8 +1,10 @@
-package org.example;
+package org.example.characters;
 
+import org.example.*;
+import org.example.characters.NPC;
 import org.example.world.*;
 
-public class Player extends MovableCharacter implements Combat{
+public class Player extends MovableCharacter implements Combat {
     private static final int MAX_LEVEL = 100;
     //leveling equation for player = (x-1)^4.5
     private static final int BASE_PHYS_DMG = 10;
@@ -162,7 +164,6 @@ public class Player extends MovableCharacter implements Combat{
         }
         if(tile.getEntity() instanceof NPC npc){
 
-            npc.printDialogue();
             npc.interact(this);
         }
 

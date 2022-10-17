@@ -1,6 +1,6 @@
 package org.example.world;
 
-import org.example.GameCharacter;
+import org.example.characters.GameCharacter;
 import org.example.Race;
 
 import java.util.Collections;

@@ -1,11 +1,12 @@
 package org.example.world;
 
 import org.example.*;
+import org.example.characters.NPC;
+import org.example.characters.Player;
+import org.example.characters.QuestGiver;
+import org.example.characters.Vendor;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
 import java.util.Scanner;
 
 public class WorldTesting {
@@ -16,9 +17,11 @@ public class WorldTesting {
 
         world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
-        NPC questGiver = new QuestGiver("Jonas", Race.HUMAN, "JonasTestDialog.txt");
+        NPC jonas = new QuestGiver("Jonas", Race.HUMAN, "JonasTestDialog.txt");
+        NPC albin = new Vendor("Albin", Race.ELF, "AlbinDialog.txt");
 
-        world.getRoom(0).setEntity(questGiver, new Position(5,6));
+        world.getRoom(0).setEntity(jonas, new Position(5,6));
+        world.getRoom(0).setEntity(albin, new Position(5,7));
 
         world.spawnPlayer(eloy);
 
@@ -60,6 +63,7 @@ public class WorldTesting {
 
             System.out.println(eloy.getRoom());
             System.out.println(world);
+            System.out.println(eloy.getQuestLog().toString());
         }
 
     }

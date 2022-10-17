@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.characters.Player;
+
 public abstract class Gear extends Item implements Equipable{
     private static final int MAX_ITEM_LEVEL = 100;
     private static final double MAX_QUALITY = 1.0;

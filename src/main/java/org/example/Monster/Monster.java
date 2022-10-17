@@ -2,7 +2,7 @@ package org.example.Monster;
 
 import org.example.BaseDamage;
 import org.example.Combat;
-import org.example.Player;
+import org.example.characters.Player;
 import org.example.world.Entity;
 import org.example.world.Position;
 

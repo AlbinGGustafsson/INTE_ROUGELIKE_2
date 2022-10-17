@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.characters.Quest;
+
 import java.util.ArrayList;
 
 public class QuestLog extends ArrayList<Quest>{
@@ -18,10 +20,5 @@ public class QuestLog extends ArrayList<Quest>{
 
     public ArrayList<Quest> getQuests() {
         return this;
-    }
-
-    public String toString(){
-
-        return this.toString();
     }
 }

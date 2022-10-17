@@ -1,5 +1,6 @@
-package org.example;
+package org.example.characters;
 
+import org.example.Race;
 import org.example.world.PrintFormatConstants;
 
 public class Vendor extends NPC {
@@ -8,10 +9,10 @@ public class Vendor extends NPC {
     }
 
     @Override
-    void interact(Player player){
+    protected void interact(Player player){
 
         printDialogue();
-        if ("Y".equalsIgnoreCase(dialogueOption("Do you want to browse shop? [Y]"))) {
+        if (dialogueOption("Do you want to browse shop? [Y]").equalsIgnoreCase("Y")) {
             openShop();
         }
     }

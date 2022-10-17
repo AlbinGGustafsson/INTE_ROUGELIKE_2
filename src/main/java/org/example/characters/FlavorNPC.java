@@ -1,5 +1,6 @@
-package org.example;
+package org.example.characters;
 
+import org.example.Race;
 import org.example.world.PrintFormatConstants;
 
 public class FlavorNPC extends NPC {
@@ -8,7 +9,7 @@ public class FlavorNPC extends NPC {
     }
 
 
-    void interact(Player player){
+    protected void interact(Player player){
 
         printDialogue();
     }

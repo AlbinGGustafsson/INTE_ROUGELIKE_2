@@ -2,7 +2,6 @@ package org.example.world;
 
 import org.example.Helmet;
 import org.example.Item;
-import org.example.Player;
 import org.example.Race;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,10 +1,9 @@
 package org.example.Monster;
 
-import org.example.Player;
+import org.example.characters.Player;
 import org.example.Race;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 

@@ -1,7 +1,7 @@
-package org.example;
+package org.example.characters;
 
+import org.example.Race;
 import org.example.world.MovableCharacter;
-import org.example.world.PrintFormatConstants;
 import org.example.world.Tile;
 
 import java.io.*;
@@ -20,7 +20,7 @@ public abstract class NPC extends MovableCharacter {
 
     protected void printDialogue(){
 
-        getPrintStream().println(PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + parsedDialogue + PrintFormatConstants.RESET);
+        getPrintStream().println(parsedDialogue);
     }
 
     BufferedReader loadFile(){
@@ -58,7 +58,7 @@ public abstract class NPC extends MovableCharacter {
         return false;
     }
 
-    abstract void interact(Player player);
+    protected abstract void interact(Player player);
 
     String dialogueOption(String option){
 

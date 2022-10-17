@@ -1,6 +1,6 @@
 package org.example.world;
 
-import org.example.Player;
+import org.example.characters.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
