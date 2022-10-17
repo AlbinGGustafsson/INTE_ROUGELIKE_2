@@ -4,18 +4,16 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.example.Monster.Monster;
 import org.example.world.*;
-import java.lang.management.ManagementFactory;
-import java.io.File;
-import java.io.IOException;
-
 
 public class Player extends MovableCharacter implements Combat{
 
-    private Text appearance;
+    private static final String APPEARANCE_CSS_STYLE = "-fx-font-family: 'monospaced';-fx-font-size: 20;-fx-font-weight: bold";
     private static final int MAX_LEVEL = 100;
     //leveling equation for player = (x-1)^4.5
     private static final int BASE_PHYS_DMG = 10;
     private static final int BASE_MAGIC_DMG = 0;
+
+    private Text appearance;
     private int level;
     private int exp;
     private int hp;
@@ -35,7 +33,7 @@ public class Player extends MovableCharacter implements Combat{
         hp = level*10; //Ingen aning about this, eloy kan du titta på detta
 
         appearance = new Text("P");
-        appearance.setStyle("-fx-font-family: 'monospaced';-fx-font-size: 20;-fx-font-weight: bold");
+        appearance.setStyle(APPEARANCE_CSS_STYLE);
         appearance.setFill(Color.PURPLE);
     }
 
@@ -181,7 +179,7 @@ public class Player extends MovableCharacter implements Combat{
 
     public void setAppearance(Text appearance) {
         this.appearance = appearance;
-        appearance.setStyle("-fx-font-family: 'monospaced';-fx-font-size: 20;-fx-font-weight: bold");
+        appearance.setStyle(APPEARANCE_CSS_STYLE);
     }
 
     @Override

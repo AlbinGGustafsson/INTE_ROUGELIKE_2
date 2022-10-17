@@ -20,7 +20,7 @@ public class Water extends Terrain {
 
     @Override
     public Text getText() {
-        Text text = new Text("w");
+        Text text = new Text("W");
         text.setFill(Color.BLUE);
         return text;
     }

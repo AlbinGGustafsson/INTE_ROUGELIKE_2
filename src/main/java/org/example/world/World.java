@@ -1,7 +1,6 @@
 package org.example.world;
 
 import org.example.Player;
-import org.example.fx.Game;
 
 import java.util.ArrayList;
 

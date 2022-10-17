@@ -19,8 +19,8 @@ public class Stone extends Entity{
 
     @Override
     public Text getText() {
-        Text text = new Text("F");
-        text.setFill(Color.WHITE);
+        Text text = new Text("S");
+        text.setFill(Color.BLACK);
         return text;
     }
 

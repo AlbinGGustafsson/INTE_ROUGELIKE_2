@@ -10,10 +10,9 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="284.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.fx.CharacterCreationController">
    <children>
-      <Button layoutX="263.0" layoutY="240.0" mnemonicParsing="false" onAction="#createNewGame" text="New Game" />
+      <Button fx:id="newGameButton" layoutX="263.0" layoutY="240.0" mnemonicParsing="false" onAction="#createNewGame" text="New Game" />
       <Label layoutX="26.0" layoutY="31.0" text="Player appearence">
          <font>
             <Font size="24.0" />
