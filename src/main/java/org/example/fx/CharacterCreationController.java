@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import org.example.characters.Player;
@@ -24,6 +25,8 @@ public class CharacterCreationController {
 
     private static final String CHARACTERS_TO_CHOOSE_FROM = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+    @FXML
+    private ColorPicker colorPicker;
     @FXML
     private Button newGameButton;
 
@@ -55,6 +58,8 @@ public class CharacterCreationController {
         charComboBox.getSelectionModel().select(0);
 
         appearanceText.setText(charComboBox.getSelectionModel().getSelectedItem().toString());
+        colorPicker.setValue(Color.BLACK);
+        appearanceText.setFill(colorPicker.getValue());
 
     }
     @FXML
@@ -82,7 +87,6 @@ public class CharacterCreationController {
 
     @FXML
     void colorChange(ActionEvent event) {
-        ColorPicker colorPicker = (ColorPicker) event.getSource();
         appearanceText.setFill(colorPicker.getValue());
     }
 

@@ -13,6 +13,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 
+import org.example.characters.Player;
+import org.example.world.Position;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.testfx.api.FxRobot;
@@ -33,7 +35,6 @@ public class GameTest {
     private static Scene scene;
     private static Stage stage;
 
-
     @Start
     private void start(Stage stage) throws IOException {
         GameTest.stage = stage;
@@ -42,7 +43,7 @@ public class GameTest {
         stage.show();
     }
 
-    public static void setRoot(Parent p){
+    public static void setRoot(Parent p) {
         scene.setRoot(p);
         stage.sizeToScene();
     }
@@ -56,7 +57,6 @@ public class GameTest {
         return fxmlLoader.load();
     }
 
-
     @Test
     void test(FxRobot robot) {
         ComboBox raceComboBox = robot.lookup("#raceComboBox").queryComboBox();
@@ -67,11 +67,10 @@ public class GameTest {
 
         robot.clickOn(nameField).write("playername");
 
-
         robot.clickOn(raceComboBox).clickOn("ORC");
         robot.clickOn(characterComboBox);
 
-        for (int i = 0; i < 20; i++){
+        for (int i = 0; i < 20; i++) {
             robot.press(KeyCode.DOWN).release(KeyCode.DOWN);
         }
 
@@ -81,12 +80,12 @@ public class GameTest {
 
         robot.clickOn(colorPicker);
 
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             robot.press(KeyCode.DOWN).release(KeyCode.DOWN);
         }
 
-        for (int i = 0; i < 3; i++){
-            robot.press(KeyCode.RIGHT).release(KeyCode.RIGHT);
+        for (int i = 0; i < 3; i++) {
+            robot.press(KeyCode.LEFT).release(KeyCode.LEFT);
         }
         robot.press(KeyCode.ENTER);
 
@@ -106,7 +105,30 @@ public class GameTest {
 
         TextFlow gameArea = robot.lookup("#gameArea").queryTextFlow();
 
-        List<Node> texts = gameArea.getChildren().stream().toList();
+        List<Node> tileTexts = gameArea.getChildren().stream().toList();
+
+        Player player = null;
+
+        Position position = null;
+
+        for (var node : tileTexts) {
+            if (node instanceof TileText) {
+                TileText tileText = (TileText) node;
+
+                if (tileText.getTile().getEntity() instanceof Player p) {
+                    position = p.getPosition();
+                    player = p;
+
+                }
+            }
+        }
+
+        assertEquals(new Position(1, 1), position);
+
+        assertEquals(colorPicker.getValue(), player.getText().getFill());
+
+
+
     }
 
 }
