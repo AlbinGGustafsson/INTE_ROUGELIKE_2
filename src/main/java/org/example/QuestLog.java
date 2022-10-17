@@ -2,26 +2,21 @@ package org.example;
 
 import java.util.ArrayList;
 
-public class QuestLog {
+public class QuestLog extends ArrayList<Quest>{
 
-    private ArrayList<Quest> quests;
+    @Override
+    public boolean add(Quest quest){
 
-    public QuestLog() {
-        quests = new ArrayList<>();
+        super.add(quest);
+        return true;
     }
 
-    public void addQuest(Quest q){
+    public void remove(Quest quest){
 
-        quests.add(q);
+        super.remove(quest);
     }
 
-    public void removeQuest(Quest q){
-
-        quests.remove(q);
-    }
-
-    public String toString(){
-
-        return quests.toString();
+    public ArrayList<Quest> getQuests() {
+        return this;
     }
 }

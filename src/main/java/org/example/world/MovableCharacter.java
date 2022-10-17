@@ -61,4 +61,6 @@ public abstract class MovableCharacter extends GameCharacter{
         return Collections.unmodifiableSet(terrains);
     }
 
+    public abstract String toString();
+
 }

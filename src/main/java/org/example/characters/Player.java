@@ -1,5 +1,10 @@
 package org.example.characters;
 
+import org.example.*;
+import org.example.characters.NPC;
+import org.example.world.*;
+
+public class Player extends MovableCharacter implements Combat {
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.example.*;
@@ -9,10 +14,12 @@ import org.example.world.*;
 public class Player extends MovableCharacter implements Combat {
 
     private static final String APPEARANCE_CSS_STYLE = "-fx-font-family: 'monospaced';-fx-font-size: 20;-fx-font-weight: bold";
+
     private static final int MAX_LEVEL = 100;
     //leveling equation for player = (x-1)^4.5
     private static final int BASE_PHYS_DMG = 10;
     private static final int BASE_MAGIC_DMG = 0;
+
 
     private Text appearance;
     private int level;
@@ -21,6 +28,9 @@ public class Player extends MovableCharacter implements Combat {
 
     private final Equipment equipment;
     private final Inventory inventory;
+
+
+    private final QuestLog questLog;
 
     public Player(String name, Race race) {
         this(name, race, 1);
@@ -31,11 +41,15 @@ public class Player extends MovableCharacter implements Combat {
         gainExpUntilRightLevelIsReached(level);
         inventory = new Inventory();
         equipment = new Equipment(inventory);
+
+        questLog = new QuestLog();
+
         hp = level*10; //Ingen aning about this, eloy kan du titta på detta
 
         appearance = new Text("P");
         appearance.setStyle(APPEARANCE_CSS_STYLE);
         appearance.setFill(Color.PURPLE);
+
     }
 
 
@@ -84,6 +98,11 @@ public class Player extends MovableCharacter implements Combat {
     public Equipment getEquipment() {
         return (Equipment) equipment.clone();
     }
+
+    public QuestLog getQuestLog() {
+        return (QuestLog) questLog.clone();
+    }
+
 
     public int getHp() {
         return hp;
@@ -137,9 +156,10 @@ public class Player extends MovableCharacter implements Combat {
         return new BaseDamage(getPhysDmg(), getMagicDmg(), getDmgMultiplier(), getDmgMultiplier());
     }
 
-    @Override
+
     // Sänkt skydsnivå för ett testfall
     public boolean interactWithTile(Tile tile){
+
 
         if (!tile.getItems().isEmpty()){
             getPrintStream().print("You found ");
@@ -164,9 +184,12 @@ public class Player extends MovableCharacter implements Combat {
         }
         if (tile.getEntity() instanceof Stone stone){
             stone.printNonReachableMessage();
-//            getRoom().removeEntity(stone);
-//            System.out.println("Broke stone");
         }
+
+        if(tile.getEntity() instanceof NPC npc){
+
+            npc.interact(this);
+
 
         if(tile.getEntity() instanceof Monster monster){
             monster.printNonReachableMessage();
@@ -177,6 +200,13 @@ public class Player extends MovableCharacter implements Combat {
 
         return false;
     }
+
+
+    @Override
+    public String toString() {
+        return PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + "P" + PrintFormatConstants.RESET;
+    }
+}
 
     public void setAppearance(Text appearance) {
         this.appearance = appearance;
@@ -197,3 +227,4 @@ public class Player extends MovableCharacter implements Combat {
         return appearance;
     }
 }
+

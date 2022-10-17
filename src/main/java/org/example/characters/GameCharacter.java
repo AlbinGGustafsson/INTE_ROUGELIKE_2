@@ -2,6 +2,7 @@ package org.example.characters;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+
 import org.example.Race;
 import org.example.world.Entity;
 
