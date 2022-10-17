@@ -14,16 +14,19 @@ import java.io.IOException;
 public class Game extends Application {
 
     private static Scene scene;
+    private static Stage stage;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("game"));
+        this.stage = stage;
+        scene = new Scene(loadFXML("characterCreation"));
         stage.setScene(scene);
         stage.show();
     }
 
     static void setRoot(Parent p){
         scene.setRoot(p);
+        stage.sizeToScene();
     }
 
     static void setRoot(String fxml) throws IOException {

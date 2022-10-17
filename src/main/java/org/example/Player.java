@@ -10,6 +10,8 @@ import java.io.IOException;
 
 
 public class Player extends MovableCharacter implements Combat{
+
+    private Text appearance;
     private static final int MAX_LEVEL = 100;
     //leveling equation for player = (x-1)^4.5
     private static final int BASE_PHYS_DMG = 10;
@@ -30,6 +32,10 @@ public class Player extends MovableCharacter implements Combat{
         gainExpUntilRightLevelIsReached(level);
         inventory = new Inventory();
         equipment = new Equipment(inventory);
+        hp = level*10; //Ingen aning about this, eloy kan du titta på detta
+
+        appearance = new Text("P");
+        appearance.setFill(Color.PURPLE);
     }
 
 
@@ -172,9 +178,14 @@ public class Player extends MovableCharacter implements Combat{
         return false;
     }
 
+    public void setAppearance(Text appearance) {
+        this.appearance = appearance;
+        appearance.setStyle("-fx-font-family: 'monospaced';-fx-font-size: 20;-fx-font-weight: bold");
+    }
+
     @Override
     public String toString() {
-        return PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + "P" + PrintFormatConstants.RESET;
+        return PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + appearance.getText() + PrintFormatConstants.RESET;
     }
 
     public void restartGame(){
@@ -183,8 +194,6 @@ public class Player extends MovableCharacter implements Combat{
 
     @Override
     public Text getText() {
-        Text text = new Text("P");
-        text.setFill(Color.PURPLE);
-        return text;
+        return appearance;
     }
 }

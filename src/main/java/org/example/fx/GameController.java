@@ -2,6 +2,7 @@ package org.example.fx;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -20,22 +21,53 @@ public class GameController {
     private TextFlow gameTextFlow;
 
     @FXML
+    private TextFlow mapTextFlow;
+
+    @FXML
     private ScrollPane gameTextScrollPane;
 
-    private Text gameText;
+    @FXML
+    private ScrollPane mapTextScrollPane;
 
-    Player player;
+    @FXML
+    private Label nameLabel;
+
+    @FXML
+    private Label levelLabel;
+
+    @FXML
+    private Label hpLabel;
+
+    @FXML
+    private Label raceLabel;
+
+
+    private Text gameText;
+    private Text mapText;
+
+    private Player player;
+    private World world;
 
     @FXML
     public void initialize() {
-
         gameText = new Text();
+        mapText = new Text();
+
         gameTextFlow.getChildren().add(gameText);
-        World world = new World();
-        player = new Player("Albin", Race.HUMAN);
-        world.spawnPlayer(player);
+        mapTextFlow.getChildren().add(mapText);
+        mapTextFlow.setStyle("-fx-font-size: 20;");
         gameArea.setStyle("-fx-font-family: 'monospaced';-fx-font-size: 20; -fx-background-color: #707070");
         gameArea.setTextAlignment(TextAlignment.CENTER);
+    }
+
+
+    public void setGameInformation(World world, Player player){
+        this.world = world;
+        this.player = player;
+    }
+
+    public void startNewGame(){
+        world.spawnPlayer(player);
         updateGame();
     }
 
@@ -100,6 +132,14 @@ public class GameController {
 
         gameText.setText(GamePrintStream.getGameText());
         gameTextScrollPane.setVvalue(gameTextScrollPane.getVmax());
+
+        mapText.setText(world.toString());
+        mapTextScrollPane.setVvalue(mapTextScrollPane.getVmax());
+
+        nameLabel.setText(player.getName());
+        levelLabel.setText(String.valueOf(player.getLevel()));
+        hpLabel.setText(String.valueOf(player.getHp()));
+        raceLabel.setText(player.getRace().name());
 
     }
 

@@ -54,7 +54,7 @@ public class WorldTest {
         world.addRoom();
         world.addRoom();
         world.addRoom();
-        String correctToString = String.format("(%sP%s)StartRoom NormalRoom BossRoom NormalRoom NormalRoom ", PrintFormatConstants.PURPLE, PrintFormatConstants.RESET);
+        String correctToString = "(P)StartRoom NormalRoom BossRoom NormalRoom NormalRoom ";
         assertEquals(correctToString, world.toString());
     }
 

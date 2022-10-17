@@ -26,6 +26,8 @@ public class WorldTesting {
         Player eloy = new Player("Eloy", Race.HUMAN);
         Troll troll = new Troll(10);
         world.spawnPlayer(eloy);
+        System.out.println(eloy.getHp());
+        System.out.println(eloy.getLevel());
 
 
         eloy.addTerrain(Water.class);
