@@ -50,6 +50,6 @@
       <TextField fx:id="nameTextField" layoutX="411.0" layoutY="36.0" />
       <ComboBox fx:id="raceComboBox" layoutX="410.0" layoutY="81.0" prefWidth="150.0" />
       <ComboBox fx:id="charComboBox" layoutX="410.0" layoutY="121.0" onAction="#characterChange" prefWidth="150.0" />
-      <ColorPicker layoutX="411.0" layoutY="166.0" onAction="#colorChange" prefHeight="25.0" prefWidth="150.0" />
+      <ColorPicker fx:id="colorPicker" layoutX="411.0" layoutY="166.0" onAction="#colorChange" prefHeight="25.0" prefWidth="150.0" />
    </children>
 </Pane>
