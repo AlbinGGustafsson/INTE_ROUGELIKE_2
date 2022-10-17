@@ -4,7 +4,6 @@ import org.example.*;
 import org.example.characters.NPC;
 import org.example.world.*;
 
-public class Player extends MovableCharacter implements Combat {
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.example.*;
@@ -44,7 +43,7 @@ public class Player extends MovableCharacter implements Combat {
 
         questLog = new QuestLog();
 
-        hp = level*10; //Ingen aning about this, eloy kan du titta på detta
+        //hp = level*10; //Ingen aning about this, eloy kan du titta på detta
 
         appearance = new Text("P");
         appearance.setStyle(APPEARANCE_CSS_STYLE);
@@ -158,55 +157,48 @@ public class Player extends MovableCharacter implements Combat {
 
 
     // Sänkt skydsnivå för ett testfall
-    public boolean interactWithTile(Tile tile){
+    public boolean interactWithTile(Tile tile) {
 
-
-        if (!tile.getItems().isEmpty()){
+        if (!tile.getItems().isEmpty()) {
             getPrintStream().print("You found ");
             tile.getItems().forEach(item -> getPrintStream().print(item + " "));
             getPrintStream().println();
             tile.removeAllItems();
         }
 
-        if (tile.getEntity() instanceof Door door){
+        if (tile.getEntity() instanceof Door door) {
             updateRoom(changeRoom(door));
             return true;
         }
-        if (tile.getTerrain() instanceof Water water && !getTerrains().contains(Water.class)){
+        if (tile.getTerrain() instanceof Water water && !getTerrains().contains(Water.class)) {
             water.printNonReachableMessage();
         }
 
-        if (tile.getTerrain() instanceof Floor floor && !getTerrains().contains(Floor.class)){
+        if (tile.getTerrain() instanceof Floor floor && !getTerrains().contains(Floor.class)) {
             floor.printNonReachableMessage();
         }
-        if (tile.getEntity() instanceof Wall wall){
+        if (tile.getEntity() instanceof Wall wall) {
             wall.printNonReachableMessage();
         }
-        if (tile.getEntity() instanceof Stone stone){
+        if (tile.getEntity() instanceof Stone stone) {
             stone.printNonReachableMessage();
         }
 
-        if(tile.getEntity() instanceof NPC npc){
+        if (tile.getEntity() instanceof NPC npc) {
 
             npc.interact(this);
 
+            if (tile.getEntity() instanceof Monster monster) {
+                monster.printNonReachableMessage();
+                monster.battleWithPlayer(this);
+                tile.removeEntity();
 
-        if(tile.getEntity() instanceof Monster monster){
-            monster.printNonReachableMessage();
-            monster.battleWithPlayer(this);
-            tile.removeEntity();
+            }
+
 
         }
-
         return false;
     }
-
-
-    @Override
-    public String toString() {
-        return PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + "P" + PrintFormatConstants.RESET;
-    }
-}
 
     public void setAppearance(Text appearance) {
         this.appearance = appearance;
