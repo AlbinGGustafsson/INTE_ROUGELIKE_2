@@ -31,6 +31,10 @@ public class QuestGiver extends NPC{
     }
 
 
+    public Quest getAvailableQuest() {
+        return availableQuest;
+    }
+
     @Override
     public String toString() {
         return PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "Q" + PrintFormatConstants.RESET;

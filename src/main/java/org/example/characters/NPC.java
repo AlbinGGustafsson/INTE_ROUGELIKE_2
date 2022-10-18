@@ -63,4 +63,7 @@ public abstract class NPC extends MovableCharacter {
         return command;
     }
 
+    public String getParsedDialogue() {
+        return parsedDialogue;
+    }
 }

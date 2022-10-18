@@ -2,7 +2,6 @@ package org.example.world;
 
 
 import org.example.*;
-import org.example.characters.NPC;
 import org.example.characters.Player;
 import org.example.characters.QuestGiver;
 import org.example.characters.Vendor;
@@ -37,8 +36,8 @@ public class WorldTesting {
         VendorItem spade = new VendorItem("Spade", "Kan gräva", 10);
         VendorItem hammare = new VendorItem("Hammare", "Kan slå", 5);
 
-        QuestGiver jonas = new QuestGiver("Jonas", Race.HUMAN, "JonasTestDialog.txt", new Quest("Hitta nemo", "Simma runt lite", 5));
-        Vendor albin = new Vendor("Albin", Race.ELF, "AlbinDialog.txt", new ArrayList<>(List.of(spade, hammare)));
+        QuestGiver jonas = new QuestGiver("Jonas", Race.HUMAN, "TestDialog2.txt", new Quest("Hitta nemo", "Simma runt lite", 5));
+        Vendor albin = new Vendor("Albin", Race.ELF, "TestDialog1.txt", new ArrayList<>(List.of(spade, hammare)));
 
         world.getRoom(0).setEntity(jonas, new Position(5,6));
         world.getRoom(0).setEntity(albin, new Position(5,7));
