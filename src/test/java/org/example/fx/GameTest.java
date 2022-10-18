@@ -127,8 +127,11 @@ public class GameTest {
 
         assertEquals(colorPicker.getValue(), player.getText().getFill());
 
-
-
     }
+
+//    @Test
+//    void test2(FxRobot robot) {
+//        robot.clickOn("#newGameButton");
+//    }
 
 }
