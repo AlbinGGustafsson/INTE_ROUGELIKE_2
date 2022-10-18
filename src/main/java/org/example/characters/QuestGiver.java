@@ -15,24 +15,24 @@ public class QuestGiver extends NPC{
     }
 
     @Override
-    public String toString() {
-        return PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "Q" + PrintFormatConstants.RESET;
-    }
-
-    @Override
-    protected boolean interactWithTile(Tile tile) {
-
-        return false;
-    }
-
-    @Override
-    protected void interact(Player player){
+    public void interact(Player player){
 
         printDialogue();
-        if(availableQuest != null && dialogueOption("Do you want to pick up quest? [Y]").equalsIgnoreCase("Y")) {
+        if(availableQuest != null && dialogueOption("Do you want to pick up a quest? [Y]").equalsIgnoreCase("Y")) {
 
             player.getQuestLog().add(availableQuest);
             availableQuest = null;
         }
+    }
+
+    @Override
+    protected boolean interactWithTile(Tile tile) {
+        return false;
+    }
+
+
+    @Override
+    public String toString() {
+        return PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "Q" + PrintFormatConstants.RESET;
     }
 }

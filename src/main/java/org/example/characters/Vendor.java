@@ -1,21 +1,34 @@
 package org.example.characters;
 
 import org.example.Race;
+import org.example.VendorItem;
 import org.example.world.PrintFormatConstants;
+import org.example.world.Tile;
+
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Vendor extends NPC {
-    public Vendor(String name, Race race, String dialogueFilePath) {
+
+    private ArrayList<VendorItem> stock;
+    public Vendor(String name, Race race, String dialogueFilePath, ArrayList<VendorItem> items) {
 
         super(name, race, dialogueFilePath);
+        stock = items;
     }
 
     @Override
-    protected void interact(Player player){
+    public void interact(Player player){
 
         printDialogue();
         if (dialogueOption("Do you want to browse shop? [Y]").equalsIgnoreCase("Y")) {
-            openShop();
+            openShop(player);
         }
+    }
+
+    @Override
+    protected boolean interactWithTile(Tile tile) {
+        return false;
     }
 
     @Override
@@ -23,8 +36,24 @@ public class Vendor extends NPC {
         return PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "V" + PrintFormatConstants.RESET;
     }
 
-    private void openShop(){
+    private void openShop(Player player){
 
+        Scanner scanner = new Scanner(System.in);
 
+        for(VendorItem i: stock){
+
+            getPrintStream().println(String.format("Buy %s? Yes:[Y] No: [N]", i));
+            String command = scanner.nextLine();
+
+            if(command.equalsIgnoreCase("Y")){
+                if(i.getValue() <= player.getInventory().getBalance()) {
+
+                    player.getInventory().add(i);
+                    player.getInventory().changeBalance(-i.getValue());
+                }else{
+                    getPrintStream().println("För lite cash på kontot jao");
+                }
+            }
+        }
     }
 }

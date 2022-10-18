@@ -1,14 +1,11 @@
 package org.example.characters;
 
 import org.example.*;
-import org.example.characters.NPC;
 import org.example.world.*;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import org.example.*;
 import org.example.Monster.Monster;
-import org.example.world.*;
 
 public class Player extends MovableCharacter implements Combat {
 
@@ -40,7 +37,6 @@ public class Player extends MovableCharacter implements Combat {
         gainExpUntilRightLevelIsReached(level);
         inventory = new Inventory();
         equipment = new Equipment(inventory);
-
         questLog = new QuestLog();
 
         //hp = level*10; //Ingen aning about this, eloy kan du titta på detta

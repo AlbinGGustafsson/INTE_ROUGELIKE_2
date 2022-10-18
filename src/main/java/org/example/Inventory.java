@@ -11,6 +11,8 @@ public class Inventory extends ArrayList<Item> {
 
     private int capacity;
 
+    private int balance;
+
     public Inventory(){
         this(MIN_CAPACITY);
     }
@@ -47,5 +49,14 @@ public class Inventory extends ArrayList<Item> {
             throw new IllegalInventorySizeException("Inventory is at max capacity");
         }
         return true;
+    }
+
+    public void changeBalance(int i){
+
+        balance += i;
+    }
+
+    public int getBalance() {
+        return balance;
     }
 }

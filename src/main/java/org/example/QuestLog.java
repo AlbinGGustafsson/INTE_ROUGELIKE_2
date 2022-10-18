@@ -11,11 +11,6 @@ public class QuestLog extends ArrayList<Quest>{
         return true;
     }
 
-    public void remove(Quest quest){
-
-        super.remove(quest);
-    }
-
     public ArrayList<Quest> getQuests() {
         return this;
     }

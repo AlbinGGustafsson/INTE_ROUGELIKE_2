@@ -13,6 +13,8 @@ import org.example.Race;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class WorldTesting {
@@ -32,8 +34,11 @@ public class WorldTesting {
         world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
 
-        NPC jonas = new QuestGiver("Jonas", Race.HUMAN, "JonasTestDialog.txt", new Quest("Hitta nemo", "Simma runt lite", 5));
-        NPC albin = new Vendor("Albin", Race.ELF, "AlbinDialog.txt");
+        VendorItem spade = new VendorItem("Spade", "Kan gräva", 10);
+        VendorItem hammare = new VendorItem("Hammare", "Kan slå", 5);
+
+        QuestGiver jonas = new QuestGiver("Jonas", Race.HUMAN, "JonasTestDialog.txt", new Quest("Hitta nemo", "Simma runt lite", 5));
+        Vendor albin = new Vendor("Albin", Race.ELF, "AlbinDialog.txt", new ArrayList<>(List.of(spade, hammare)));
 
         world.getRoom(0).setEntity(jonas, new Position(5,6));
         world.getRoom(0).setEntity(albin, new Position(5,7));

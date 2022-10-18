@@ -2,7 +2,6 @@ package org.example.characters;
 
 import org.example.Race;
 import org.example.world.MovableCharacter;
-import org.example.world.Tile;
 
 import java.io.*;
 import java.util.Scanner;
@@ -11,7 +10,7 @@ public abstract class NPC extends MovableCharacter {
 
     private File dialogue;
     private String parsedDialogue;
-    protected NPC(String name, Race race, String dialogueFilePath){
+    public NPC(String name, Race race, String dialogueFilePath){
         super(name, race);
         dialogue = new File("NPCFiles/" + dialogueFilePath);
         BufferedReader bufferedReader = loadFile();
@@ -23,7 +22,7 @@ public abstract class NPC extends MovableCharacter {
         getPrintStream().println(parsedDialogue);
     }
 
-    BufferedReader loadFile(){
+    private BufferedReader loadFile(){
 
         FileReader fileReader;
         try {
@@ -33,7 +32,7 @@ public abstract class NPC extends MovableCharacter {
         }
         return new BufferedReader(fileReader);
     }
-    String parseFile(BufferedReader bufferedReader){
+    private String parseFile(BufferedReader bufferedReader){
 
         String line;
 
@@ -52,15 +51,9 @@ public abstract class NPC extends MovableCharacter {
         return sb.toString();
     }
 
-    protected boolean interactWithTile(Tile tile){
+    public abstract void interact(Player player);
 
-
-        return false;
-    }
-
-    protected abstract void interact(Player player);
-
-    String dialogueOption(String option){
+    public String dialogueOption(String option){
 
         Scanner scanner = new Scanner(System.in);
 
