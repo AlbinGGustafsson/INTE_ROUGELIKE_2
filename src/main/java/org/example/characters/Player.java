@@ -25,10 +25,10 @@ public class Player extends MovableCharacter implements Combat {
 
 
     private final Equipment equipment;
-    private final Inventory inventory;
+    private Inventory inventory;
 
 
-    private final QuestLog questLog;
+    private QuestLog questLog;
 
     public Player(String name, Race race) {
         this(name, race, 1);
@@ -89,7 +89,7 @@ public class Player extends MovableCharacter implements Combat {
     }
 
     public Inventory getInventory() {
-        return (Inventory) inventory.clone();
+        return inventory;
     }
 
     public Equipment getEquipment() {
