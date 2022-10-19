@@ -18,17 +18,30 @@ public class QuestGiver extends NPC{
     public void interact(Player player){
 
         printDialogue();
-        showDialogueOption("Do you want to pick up a quest? [Y]");
-        if(availableQuest != null && readPlayerInput().equalsIgnoreCase("Y")) {
-
-            player.getQuestLog().add(availableQuest);
-            availableQuest = null;
+        if(availableQuest == null){
+            return;
         }
+        showDialogueOption("Do you want to pick up a quest? [Y]");
+        if(!readPlayerInput().equalsIgnoreCase("Y")) {
+
+            return;
+        }
+        player.getQuestLog().add(availableQuest);
+        availableQuest = null;
     }
 
     @Override
     protected boolean interactWithTile(Tile tile) {
         return false;
+    }
+
+    void giveQuest(Player player){
+
+        if(availableQuest != null && readPlayerInput().equalsIgnoreCase("Y")) {
+
+            player.getQuestLog().add(availableQuest);
+            availableQuest = null;
+        }
     }
 
 

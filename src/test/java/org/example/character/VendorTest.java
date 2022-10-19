@@ -9,7 +9,9 @@ import org.example.world.World;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +33,7 @@ public class VendorTest {
         VendorItem spade = new VendorItem("Spade", "Kan gräva", 10);
         VendorItem hammare = new VendorItem("Hammare", "Kan slå", 6);
 
-        vendor = new Vendor("name", Race.GOBLIN, "TestDialog1", new ArrayList<>(List.of(spade, hammare)));
+        vendor = new Vendor("name", Race.GOBLIN, "TestDialog1.txt", new ArrayList<>(List.of(spade, hammare)));
         player = new Player("name", Race.HUMAN);
 
         world.getRoom(0).setEntity(vendor, new Position(5,6));
@@ -44,6 +46,10 @@ public class VendorTest {
     @Test
     void vendorOffersToSellItems(){
 
+        String input = "N";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        vendor.setScanner(in);
+
         vendor.interact(player);
         assertThat(output.toString(), containsString("Do you want to browse shop? [Y]"));
 
@@ -52,27 +58,38 @@ public class VendorTest {
     @Test
     void confirmationOpensShop(){
 
+        String input = "Y\nN\nN";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        vendor.setScanner(in);
+
         vendor.interact(player);
-        if(vendor.readPlayerInput().equalsIgnoreCase("Y")) {
-              assertThat(output.toString(), containsString(String.format("Buy %s? Yes:[Y] No: [N]", vendor.getStock().get(0))));
-          }
+        assertThat(output.toString(), containsString(String.format("Buy %s? Yes:[Y] No: [N]", vendor.getStock().get(0))));
     }
 
     @Test
     void everyItemInStockIsOffered(){
 
+        String input = "Y\nN\nN";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        vendor.setScanner(in);
+
         vendor.interact(player);
         for(int i = 0; i < vendor.getStock().size(); i++){
-            if(vendor.readPlayerInput().equalsIgnoreCase("Y"))
-                assertThat(output.toString(), containsString(String.format("Buy %s? Yes:[Y] No: [N]", vendor.getStock().get(i))));
+            assertThat(output.toString(), containsString(String.format("Buy %s? Yes:[Y] No: [N]", vendor.getStock().get(i))));
         }
 
     }
 
-    @Test
-    void playerBuysItem(){
-
-    }
+//    @Test
+//    void playerBuysItem(){
+//
+//        String input = "Y\nN\nN";
+//        InputStream in = new ByteArrayInputStream(input.getBytes());
+//        vendor.setScanner(in);
+//
+//        vendor.interact(player);
+//        assertThat()
+//    }
 
     @Test
     void playerDoesNotBuyItemWithInsufficientBalance(){

@@ -4,8 +4,6 @@ import org.example.Race;
 import org.example.characters.FlavorNPC;
 import org.example.characters.NPC;
 import org.example.characters.Player;
-import org.example.world.Direction;
-import org.example.world.Position;
 import org.example.world.World;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,28 +30,30 @@ public class NPCTest {
         npc = new FlavorNPC("name", Race.ELF, "TestDialog1.txt");
         player = new Player("name", Race.HUMAN);
 
-        world.getRoom(0).setEntity(npc, new Position(5,6));
-        world.getRoom(0).setEntity(player, new Position(5,7));
-//        player.move(Direction.UP);
-
         output = new ByteArrayOutputStream();
         out = new PrintStream(output);
         npc.setPrintStream(out);
+
+//        world.getRoom(0).setEntity(npc, new Position(5,6));
+//        world.getRoom(0).setEntity(player, new Position(5,7));
+//        player.move(Direction.UP);
     }
 
 
-    @Test
-    void interactsWithPlayer(){
-
-        assertThat(player.interactWithTile(npc.getRoom().getTile(npc.getPosition())), is(true));
-
-    }
+//    @Test
+//    void interactsWithPlayer(){
+//
+//        npc.interact(player);
+//
+//        assertThat(player.interactWithTile(npc.getRoom().getTile(npc.getPosition())), is(false));
+//
+//    }
     @Test
     void interactionHasCorrectDialogue(){
 
-//        npc.interact(player);
+        npc.interact(player);
 
-        assertThat(npc.getParsedDialogue(), equalTo(output.toString()));
+        assertThat(npc.getParsedDialogue().trim(), equalTo(output.toString().trim()));
 
     }
 }

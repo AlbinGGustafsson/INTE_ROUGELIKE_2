@@ -10,6 +10,8 @@ public abstract class NPC extends MovableCharacter {
 
     private File dialogue;
     private String parsedDialogue;
+
+    private Scanner scanner = new Scanner(System.in);
     public NPC(String name, Race race, String dialogueFilePath){
         super(name, race);
         dialogue = new File("NPCFiles/" + dialogueFilePath);
@@ -58,9 +60,13 @@ public abstract class NPC extends MovableCharacter {
         getPrintStream().println(option);
     }
 
+    public void setScanner(InputStream in){
+
+        scanner = new Scanner(in);
+    }
+
     public String readPlayerInput(){
 
-        Scanner scanner = new Scanner(System.in);
         String command = scanner.nextLine();
 
         return command;
@@ -69,4 +75,10 @@ public abstract class NPC extends MovableCharacter {
     public String getParsedDialogue() {
         return parsedDialogue;
     }
+
+    public Scanner getScanner(){
+
+        return scanner;
+    }
 }
+
