@@ -42,6 +42,4 @@ public class WallTest {
         assertEquals(correctString, w.toString());
     }
 
-
-
 }

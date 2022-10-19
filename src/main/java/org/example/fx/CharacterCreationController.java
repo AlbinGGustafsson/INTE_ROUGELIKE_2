@@ -6,10 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
@@ -64,6 +61,12 @@ public class CharacterCreationController {
     }
     @FXML
     void createNewGame(ActionEvent event) throws IOException {
+
+        if (!nameInputIsCorrect()){
+            return;
+        }
+
+
         World world = new World();
         Player player = new Player(nameTextField.getText(), (Race) raceComboBox.getSelectionModel().getSelectedItem());
         player.setAppearance(appearanceText);
@@ -76,6 +79,22 @@ public class CharacterCreationController {
 
         gameController.setGameInformation(world, player);
         gameController.startNewGame();
+    }
+
+    private boolean nameInputIsCorrect(){
+        Alert nameInputAlert = new Alert(Alert.AlertType.ERROR);
+        nameInputAlert.getDialogPane().setId("nameInputDialog");
+        if (nameTextField.getText().isBlank()){
+            nameInputAlert.setHeaderText("name cant be empty");
+            nameInputAlert.showAndWait();
+            return false;
+        }
+        if (nameTextField.getText().length() > 20){
+            nameInputAlert.setHeaderText("name can only be 20 characters");
+            nameInputAlert.showAndWait();
+            return false;
+        }
+        return true;
     }
 
 
