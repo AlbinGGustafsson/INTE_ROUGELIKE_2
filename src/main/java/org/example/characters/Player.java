@@ -36,13 +36,10 @@ public class Player extends MovableCharacter implements Combat {
 
     public Player(String name, Race race, int level){
         super(name, race);
+
         throwExceptionIfLevelHasWrongValue(level);
         gainExpUntilRightLevelIsReached(level);
-
-
-
         throwExceptionIfNameHasWrongFormat();
-
 
 
         inventory = new Inventory();
