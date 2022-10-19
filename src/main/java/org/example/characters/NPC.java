@@ -53,11 +53,14 @@ public abstract class NPC extends MovableCharacter {
 
     public abstract void interact(Player player);
 
-    public String dialogueOption(String option){
-
-        Scanner scanner = new Scanner(System.in);
+    public void showDialogueOption(String option){
 
         getPrintStream().println(option);
+    }
+
+    public String readPlayerInput(){
+
+        Scanner scanner = new Scanner(System.in);
         String command = scanner.nextLine();
 
         return command;

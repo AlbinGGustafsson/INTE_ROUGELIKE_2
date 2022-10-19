@@ -27,7 +27,7 @@ public class QuestGiverTest {
 
         Quest quest = new Quest("Hitta nemo", "Simma runt lite", 5);
 
-        questGiver = new QuestGiver("name", Race.ELF, "TestDialog1", quest);
+        questGiver = new QuestGiver("name", Race.DWARF, "TestDialog1", quest);
         player = new Player("name", Race.HUMAN);
 
         world.getRoom(0).setEntity(questGiver, new Position(5,6));
@@ -50,7 +50,7 @@ public class QuestGiverTest {
     void acceptedQuestAddedToLog(){
 
         questGiver.interact(player);
-        if(questGiver.dialogueOption("Do you want to pick up a quest? [Y]").equalsIgnoreCase("Y"))
+        if(questGiver.readPlayerInput().equalsIgnoreCase("Y"))
             assertThat(player.getQuestLog().contains(questGiver.getAvailableQuest()), is(true));
     }
 
@@ -59,7 +59,7 @@ public class QuestGiverTest {
     void acceptedQuestNotOfferedAgain(){
 
         questGiver.interact(player);
-        if(questGiver.dialogueOption("Do you want to pick up a quest? [Y]").equalsIgnoreCase("Y"))
+        if(questGiver.readPlayerInput().equalsIgnoreCase("Y"))
             assertThat(output.toString().contains("Do you want to pick up a quest? [Y]"), is(false));
     }
 }

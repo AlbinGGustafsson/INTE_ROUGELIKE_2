@@ -6,7 +6,6 @@ import org.example.world.PrintFormatConstants;
 import org.example.world.Tile;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Vendor extends NPC {
 
@@ -21,7 +20,8 @@ public class Vendor extends NPC {
     public void interact(Player player){
 
         printDialogue();
-        if (dialogueOption("Do you want to browse shop? [Y]").equalsIgnoreCase("Y")) {
+        showDialogueOption("Do you want to browse shop? [Y]");
+        if (readPlayerInput().equalsIgnoreCase("Y")) {
             openShop(player);
         }
     }
@@ -38,14 +38,11 @@ public class Vendor extends NPC {
 
     private void openShop(Player player){
 
-        Scanner scanner = new Scanner(System.in);
-
         for(VendorItem i: stock){
 
-            getPrintStream().println(String.format("Buy %s? Yes:[Y] No: [N]", i));
-            String command = scanner.nextLine();
+            showDialogueOption(String.format("Buy %s? Yes:[Y] No: [N]", i));
 
-            if(command.equalsIgnoreCase("Y")){
+            if(readPlayerInput().equalsIgnoreCase("Y")){
                 try{
                     player.getInventory().add(i);
                     player.getInventory().decreaseBalance(i.getValue());
@@ -55,5 +52,9 @@ public class Vendor extends NPC {
                 }
             }
         }
+    }
+
+    public ArrayList<VendorItem> getStock() {
+        return stock;
     }
 }

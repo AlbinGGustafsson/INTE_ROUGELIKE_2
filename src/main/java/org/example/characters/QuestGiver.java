@@ -18,7 +18,8 @@ public class QuestGiver extends NPC{
     public void interact(Player player){
 
         printDialogue();
-        if(availableQuest != null && dialogueOption("Do you want to pick up a quest? [Y]").equalsIgnoreCase("Y")) {
+        showDialogueOption("Do you want to pick up a quest? [Y]");
+        if(availableQuest != null && readPlayerInput().equalsIgnoreCase("Y")) {
 
             player.getQuestLog().add(availableQuest);
             availableQuest = null;
