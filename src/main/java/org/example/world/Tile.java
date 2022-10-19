@@ -66,11 +66,6 @@ public class Tile {
         }
         return true;
     }
-
-    public void setTerrain(Terrain terrain) {
-        this.terrain = terrain;
-    }
-
     public Terrain getTerrain() {
         return terrain;
     }

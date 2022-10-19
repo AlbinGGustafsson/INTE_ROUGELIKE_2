@@ -7,9 +7,8 @@ import org.example.characters.QuestGiver;
 import org.example.characters.Vendor;
 
 import org.example.Helmet;
-import org.example.Monster.Troll;
+import org.example.characters.Player;
 import org.example.Race;
-
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,18 +19,11 @@ public class WorldTesting {
 
     public static void main(String[] args) throws IOException {
 
-        GamePrintStream gamePrintStream = new GamePrintStream();
-        gamePrintStream.println("hej");
-        gamePrintStream.println("hej2");
-        gamePrintStream.println("hej3");
-
-        System.out.println(GamePrintStream.getGameText());
-
-
         World world = new World();
 
         world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
+        Player albin = new Player("namn", null , 10);
 
         VendorItem spade = new VendorItem("Spade", "Kan gräva", 10);
         VendorItem hammare = new VendorItem("Hammare", "Kan slå", 5);
@@ -54,7 +46,6 @@ public class WorldTesting {
         eloy.addTerrain(Water.class);
 
         world.getRoom(0).setEntity(eloy, new Position(1,1));
-        world.getRoom(0).setEntity(troll, new Position(3, 4));
 
 
 
@@ -69,7 +60,6 @@ public class WorldTesting {
 
         System.out.println(world.getRoom(0));
         System.out.println(world);
-
 
         while (true){
 
@@ -96,8 +86,6 @@ public class WorldTesting {
 
             System.out.println(eloy.getRoom());
             System.out.println(world);
-            System.out.println(eloy.getQuestLog().toString());
-
         }
 
     }
