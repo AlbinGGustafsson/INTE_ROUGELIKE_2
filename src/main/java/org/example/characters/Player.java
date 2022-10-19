@@ -184,6 +184,13 @@ public class Player extends MovableCharacter implements Combat {
             stone.printNonReachableMessage();
         }
 
+        if(tile.getEntity() instanceof Monster monster){
+            monster.printNonReachableMessage();
+            monster.battleWithPlayer(this);
+            tile.removeEntity();
+
+        }
+
         if (tile.getEntity() instanceof NPC npc) {
 
             npc.interact(this);
