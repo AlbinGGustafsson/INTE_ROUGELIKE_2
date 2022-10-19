@@ -20,10 +20,12 @@ public class Player extends MovableCharacter implements Combat {
     private static final int BASE_MAGIC_DMG = 0;
 
 
+
     private Text appearance;
     private int level;
     private int exp;
     private int hp;
+
 
     private final Equipment equipment;
     private final Inventory inventory;
@@ -44,7 +46,7 @@ public class Player extends MovableCharacter implements Combat {
         questLog = new QuestLog();
 
         //hp = level*10; //Ingen aning about this, eloy kan du titta på detta
-
+        hp = level*2 + 400;
         appearance = new Text("P");
         appearance.setStyle(APPEARANCE_CSS_STYLE);
         appearance.setFill(Color.PURPLE);
@@ -122,6 +124,7 @@ public class Player extends MovableCharacter implements Combat {
     private void levelUp(){
         if (getExpRequiredForLevel(level+1) <= exp){
             level++;
+            hp = level*2 +400;
             levelUp();
         }
     }
@@ -184,6 +187,13 @@ public class Player extends MovableCharacter implements Combat {
             stone.printNonReachableMessage();
         }
 
+        if(tile.getEntity() instanceof Monster monster){
+            monster.printNonReachableMessage();
+            monster.battleWithPlayer(this);
+            tile.removeEntity();
+
+        }
+
         if (tile.getEntity() instanceof NPC npc) {
 
             npc.interact(this);
@@ -194,7 +204,6 @@ public class Player extends MovableCharacter implements Combat {
                 tile.removeEntity();
 
             }
-
 
         }
         return false;

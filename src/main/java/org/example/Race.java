@@ -6,5 +6,6 @@ public enum Race {
     DWARF,
     ORC,
     GOBLIN,
+    MONSTER,
 
 }
