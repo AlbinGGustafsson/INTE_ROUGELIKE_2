@@ -1,20 +1,34 @@
 package org.example.characters;
 
 import org.example.Race;
+import org.example.VendorItem;
 import org.example.world.PrintFormatConstants;
+import org.example.world.Tile;
+
+import java.util.ArrayList;
 
 public class Vendor extends NPC {
-    public Vendor(String name, Race race, String filePath) {
-        super(name, race, filePath);
+
+    private ArrayList<VendorItem> stock;
+    public Vendor(String name, Race race, String dialogueFilePath, ArrayList<VendorItem> items) {
+
+        super(name, race, dialogueFilePath);
+        stock = items;
     }
 
     @Override
-    protected void interact(Player player){
+    public void interact(Player player){
 
         printDialogue();
-        if (dialogueOption("Do you want to browse shop? [Y]").equalsIgnoreCase("Y")) {
-            openShop();
+        showDialogueOption("Do you want to browse shop? [Y]");
+        if (readPlayerInput().equalsIgnoreCase("Y")) {
+            openShop(player);
         }
+    }
+
+    @Override
+    protected boolean interactWithTile(Tile tile) {
+        return false;
     }
 
     @Override
@@ -22,8 +36,25 @@ public class Vendor extends NPC {
         return PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "V" + PrintFormatConstants.RESET;
     }
 
-    private void openShop(){
+    private void openShop(Player player){
 
+        for(VendorItem i: stock){
 
+            showDialogueOption(String.format("Buy %s? Yes:[Y] No: [N]", i));
+
+            if(readPlayerInput().equalsIgnoreCase("Y")){
+                try{
+                    player.getInventory().add(i);
+                    player.getInventory().decreaseBalance(i.getValue());
+
+                }catch(Exception e){
+                    getPrintStream().println(e.getMessage());
+                }
+            }
+        }
+    }
+
+    public ArrayList<VendorItem> getStock() {
+        return stock;
     }
 }

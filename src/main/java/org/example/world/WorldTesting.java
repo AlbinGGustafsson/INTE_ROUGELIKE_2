@@ -1,10 +1,18 @@
 package org.example.world;
 
+
+import org.example.*;
+import org.example.characters.Player;
+import org.example.characters.QuestGiver;
+import org.example.characters.Vendor;
+
 import org.example.Helmet;
 import org.example.characters.Player;
 import org.example.Race;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class WorldTesting {
@@ -17,6 +25,19 @@ public class WorldTesting {
         Player eloy = new Player("Eloy", Race.HUMAN);
         Player albin = new Player("namn", null , 10);
 
+        VendorItem spade = new VendorItem("Spade", "Kan gräva", 10);
+        VendorItem hammare = new VendorItem("Hammare", "Kan slå", 5);
+
+        QuestGiver jonas = new QuestGiver("Jonas", Race.HUMAN, "TestDialog2.txt", new Quest("Hitta nemo", "Simma runt lite", 5));
+        Vendor albin = new Vendor("Albin", Race.ELF, "TestDialog1.txt", new ArrayList<>(List.of(spade, hammare)));
+
+        world.getRoom(0).setEntity(jonas, new Position(5,6));
+        world.getRoom(0).setEntity(albin, new Position(5,7));
+
+        Troll troll = new Troll(10);
+        world.spawnPlayer(eloy);
+        System.out.println(eloy.getHp());
+        System.out.println(eloy.getLevel());
 
 
         world.spawnPlayer(eloy);

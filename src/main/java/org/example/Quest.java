@@ -1,43 +1,38 @@
 package org.example;
 
-import org.example.Item;
-import org.example.Objective;
-
-import java.util.ArrayList;
-
 public class Quest {
 
     private String name;
     private String description;
-    private ArrayList<Objective> objectives;
+    private boolean complete;
     private int XPReward;
-    private ArrayList<Item> itemReward;
 
     public Quest(String name, String description, int XPReward) {
         this.name = name;
         this.description = description;
         this.XPReward = XPReward;
-        objectives = new ArrayList<>();
-        itemReward = new ArrayList<>();
+        complete = false;
+
     }
 
-    public boolean isComplete(){
-        for(Objective o: objectives){
+    public boolean getCompletion(){
 
-            if(o.isComplete() == false){
+        return complete;
+    }
 
-                return false;
-            }
-        }
+    public void setCompletion(boolean b){
 
-        return true;
-
+        complete = b;
     }
 
 
 
     public String toString(){
 
-        return name + "\n\n" + description + "\n\n" + XPReward + "\n\n" + itemReward;
+        if(complete) {
+
+            return String.format("%s, %s, %d (Completed)", name, description, XPReward);
+        }
+        return String.format("%s, %s, %d", name, description, XPReward);
     }
 }

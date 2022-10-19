@@ -2,7 +2,6 @@ package org.example.characters;
 
 import org.example.Race;
 import org.example.world.MovableCharacter;
-import org.example.world.Tile;
 
 import java.io.*;
 import java.util.Scanner;
@@ -11,9 +10,11 @@ public abstract class NPC extends MovableCharacter {
 
     private File dialogue;
     private String parsedDialogue;
-    protected NPC(String name, Race race, String filePath){
+
+    private Scanner scanner = new Scanner(System.in);
+    public NPC(String name, Race race, String dialogueFilePath){
         super(name, race);
-        dialogue = new File("NPCFiles/" + filePath);
+        dialogue = new File("NPCFiles/" + dialogueFilePath);
         BufferedReader bufferedReader = loadFile();
         parsedDialogue = parseFile(bufferedReader);
     }
@@ -23,7 +24,7 @@ public abstract class NPC extends MovableCharacter {
         getPrintStream().println(parsedDialogue);
     }
 
-    BufferedReader loadFile(){
+    private BufferedReader loadFile(){
 
         FileReader fileReader;
         try {
@@ -33,7 +34,7 @@ public abstract class NPC extends MovableCharacter {
         }
         return new BufferedReader(fileReader);
     }
-    String parseFile(BufferedReader bufferedReader){
+    private String parseFile(BufferedReader bufferedReader){
 
         String line;
 
@@ -52,22 +53,32 @@ public abstract class NPC extends MovableCharacter {
         return sb.toString();
     }
 
-    protected boolean interactWithTile(Tile tile){
+    public abstract void interact(Player player);
 
-
-        return false;
-    }
-
-    protected abstract void interact(Player player);
-
-    String dialogueOption(String option){
-
-        Scanner scanner = new Scanner(System.in);
+    public void showDialogueOption(String option){
 
         getPrintStream().println(option);
+    }
+
+    public void setScanner(InputStream in){
+
+        scanner = new Scanner(in);
+    }
+
+    public String readPlayerInput(){
+
         String command = scanner.nextLine();
 
         return command;
     }
 
+    public String getParsedDialogue() {
+        return parsedDialogue;
+    }
+
+    public Scanner getScanner(){
+
+        return scanner;
+    }
 }
+
