@@ -116,7 +116,7 @@ public class GameTest {
         findUsefulComponentsGame(robot);
 
         assertEquals("1", lvlLabel.getText());
-        assertEquals("0", hpLabel.getText());
+        assertEquals("402", hpLabel.getText());
         assertEquals("HUMAN", raceLabel.getText());
         assertEquals("playername", nameLabel.getText());
 
@@ -143,7 +143,7 @@ public class GameTest {
         findUsefulComponentsGame(robot);
 
         assertEquals("1", lvlLabel.getText());
-        assertEquals("0", hpLabel.getText());
+        assertEquals("402", hpLabel.getText());
         assertEquals("ORC", raceLabel.getText());
         assertEquals("playername", nameLabel.getText());
 

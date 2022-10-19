@@ -2,6 +2,7 @@ package org.example.world;
 
 
 import org.example.*;
+import org.example.Monster.Troll;
 import org.example.characters.Player;
 import org.example.characters.QuestGiver;
 import org.example.characters.Vendor;
@@ -23,7 +24,6 @@ public class WorldTesting {
 
         world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
-        Player albin = new Player("namn", null , 10);
 
         VendorItem spade = new VendorItem("Spade", "Kan gräva", 10);
         VendorItem hammare = new VendorItem("Hammare", "Kan slå", 5);
