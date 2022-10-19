@@ -66,9 +66,23 @@ public class CharacterCreationController {
             return;
         }
 
-
         World world = new World();
-        Player player = new Player(nameTextField.getText(), (Race) raceComboBox.getSelectionModel().getSelectedItem());
+
+
+        //lek med eloy
+        Player player = null;
+        try{
+            player = new Player(nameTextField.getText(), (Race) raceComboBox.getSelectionModel().getSelectedItem());
+        }catch (IllegalArgumentException e){
+            Alert nameInputAlert = new Alert(Alert.AlertType.ERROR);
+            nameInputAlert.getDialogPane().setId("nameInputDialog");
+            nameInputAlert.setHeaderText(e.getMessage());
+            nameInputAlert.showAndWait();
+            return;
+        }
+        //lek med eloy
+
+
         player.setAppearance(appearanceText);
 
         FXMLLoader loader = new FXMLLoader(Game.class.getResource("game.fxml"));

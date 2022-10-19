@@ -36,6 +36,13 @@ public class Player extends MovableCharacter implements Combat {
 
     public Player(String name, Race race, int level){
         super(name, race);
+
+        //lek med eloy
+        if (name.equals("hej")){
+            throw new IllegalArgumentException("hej");
+        }
+        //lek med eloy
+
         gainExpUntilRightLevelIsReached(level);
         inventory = new Inventory();
         equipment = new Equipment(inventory);
