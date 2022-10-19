@@ -201,6 +201,20 @@ public class RoomTest {
     }
 
     @Test
+    void getWorld_Room_Has_World_Returns_World(){
+        World world = new World(new TestableRoomCreator());
+        assertEquals(world, world.getRoom(0).getWorld());
+    }
+
+    @Test
+    void getWorld_Room_No_World_Returns_Null(){
+        TestableRoomCreator trc = new TestableRoomCreator();
+        Room room = trc.loadRoom(0);
+        assertNull(room.getWorld());
+    }
+
+
+    @Test
     void toString_Is_Correct(){
         TestableRoomCreator trc = new TestableRoomCreator();
         Room room = trc.loadRoom(0);

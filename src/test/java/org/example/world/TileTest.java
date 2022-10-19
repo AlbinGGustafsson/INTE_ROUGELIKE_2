@@ -31,9 +31,18 @@ public class TileTest {
     void addItem_Adds_Item(){
         Tile tile = new Tile(new Floor());
         Item item = new Helmet("name", "desc", 1, 1);
-        assertFalse(tile.getItems().contains(item));
         tile.addItem(item);
         assertTrue(tile.getItems().contains(item));
+    }
+
+    @Test
+    void addItem_Multiple_Items_Adds_Items(){
+        Tile tile = new Tile(new Floor());
+        Item item = new Helmet("name", "desc", 1, 1);
+        Item item2 = new Helmet("name2", "desc2", 1, 1);
+        tile.addItem(item);
+        tile.addItem(item2);
+        assertTrue(tile.getItems().contains(item) && tile.getItems().contains(item2));
     }
 
     @Test

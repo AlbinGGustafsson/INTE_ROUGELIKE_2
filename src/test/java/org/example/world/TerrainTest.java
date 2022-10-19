@@ -19,11 +19,6 @@ public class TerrainTest {
                 @Override
                 public void printNonReachableMessage() {
                 }
-
-                @Override
-                public Text getText() {
-                    return new Text("T");
-                }
             };
         });
     }
@@ -36,10 +31,6 @@ public class TerrainTest {
                 public void printNonReachableMessage() {
                 }
 
-                @Override
-                public Text getText() {
-                    return new Text("T");
-                }
             };
         });
     }
@@ -51,10 +42,6 @@ public class TerrainTest {
             public void printNonReachableMessage() {
             }
 
-            @Override
-            public Text getText() {
-                return new Text("T");
-            }
         };
         assertEquals(1, terrain.getWeight());
     }
@@ -66,11 +53,19 @@ public class TerrainTest {
             public void printNonReachableMessage() {
             }
 
-            @Override
-            public Text getText() {
-                return new Text("T");
-            }
         };
         assertEquals("typeName", terrain.getTypeName());
+    }
+
+    @Test
+    void getText_returns_Text_Correct_Text(){
+        Terrain terrain = new Terrain("typeName", 1) {
+            @Override
+            public void printNonReachableMessage() {
+
+            }
+        };
+        Text text = new Text("T");
+        assertEquals(text.getText(), terrain.getText().getText(), "Wrong text");
     }
 }

@@ -125,7 +125,8 @@ public class GameController {
         for (var l : player.getRoom().getRoomList()){
             gameArea.getChildren().add(new Text("\n"));
             for (var t : l){
-                gameArea.getChildren().add(t.getText());
+                TileText tileText = new TileText(t.getText(), t);
+                gameArea.getChildren().add(tileText);
             }
         }
 
