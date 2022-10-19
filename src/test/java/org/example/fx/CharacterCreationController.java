@@ -80,16 +80,14 @@ public class CharacterCreationController {
         gameController.startNewGame();
     }
 
+
     private boolean nameInputIsCorrect(){
-        Alert nameInputAlert = new Alert(Alert.AlertType.ERROR);
-        nameInputAlert.getDialogPane().setId("nameInputDialog");
-        if (nameTextField.getText().isBlank()){
-            nameInputAlert.setHeaderText("name cant be empty");
-            nameInputAlert.showAndWait();
-            return false;
-        }
-        if (nameTextField.getText().length() > 20){
-            nameInputAlert.setHeaderText("name can only be 20 characters");
+        try{
+            new Player(nameTextField.getText(), (Race) raceComboBox.getSelectionModel().getSelectedItem());
+        }catch (IllegalArgumentException e){
+            Alert nameInputAlert = new Alert(Alert.AlertType.ERROR);
+            nameInputAlert.getDialogPane().setId("nameInputDialog");
+            nameInputAlert.setHeaderText(e.getMessage());
             nameInputAlert.showAndWait();
             return false;
         }

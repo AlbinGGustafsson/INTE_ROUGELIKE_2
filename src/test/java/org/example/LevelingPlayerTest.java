@@ -10,7 +10,7 @@ class LevelingPlayerTest {
 
     @BeforeEach
     void setUp(){
-        player = new Player("", Race.DWARF);
+        player = new Player("name", Race.DWARF);
     }
 
     @Test
@@ -45,19 +45,19 @@ class LevelingPlayerTest {
 
     @Test
     void settingLevelInConstructorMakesThePlayerHaveTheRightExp(){
-        Player p2 = new Player("", Race.DWARF, 56);
+        Player p2 = new Player("name", Race.DWARF, 56);
         assertEquals(67862852, p2.getExp());
     }
 
     @Test
     void settingAboveMaxLevelInConstructorSetsMaxLevel(){
-        Player p2 = new Player("", Race.DWARF, 150);
+        Player p2 = new Player("name", Race.DWARF, 150);
         assertEquals(100, p2.getLevel());
     }
 
     @Test
     void settingBelowLevelOneInConstructorSetsLevelOne(){
-        Player p2 = new Player("", Race.DWARF, -1);
+        Player p2 = new Player("name", Race.DWARF, -1);
         assertEquals(1, p2.getLevel());
     }
 }

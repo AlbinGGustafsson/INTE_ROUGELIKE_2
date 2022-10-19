@@ -37,7 +37,6 @@ public class Player extends MovableCharacter implements Combat {
     public Player(String name, Race race, int level){
         super(name, race);
 
-        throwExceptionIfLevelHasWrongValue(level);
         gainExpUntilRightLevelIsReached(level);
         throwExceptionIfNameHasWrongFormat();
 
@@ -64,7 +63,7 @@ public class Player extends MovableCharacter implements Combat {
         }
 
         if(containsWhiteSpace()){
-            throw new IllegalArgumentException("Blah Blah");
+            throw new IllegalArgumentException("name cant contain whitespace");
         }
     }
 
@@ -78,14 +77,6 @@ public class Player extends MovableCharacter implements Combat {
 
         return false;
     }
-
-    private void throwExceptionIfLevelHasWrongValue(int inputLevel) {
-        if(inputLevel < 0 || inputLevel > 100){
-            throw new IllegalArgumentException("Player bruh");
-        }
-    }
-
-
 
 
     public int getLevel(){

@@ -9,7 +9,7 @@ class EquipableTest {
 
     @Test
     void playerCanEquipValidItem() {
-        Player p = new Player("", Race.DWARF, 10);
+        Player p = new Player("name", Race.DWARF, 10);
         Helmet h = new Helmet("", "", 4, 100);
 
         assertTrue(h.canBeEquippedBy(p));
@@ -17,7 +17,7 @@ class EquipableTest {
 
     @Test
     public void playerCantEquipInvalidItem(){
-        Player p = new Player("", Race.DWARF, 10);
+        Player p = new Player("name", Race.DWARF, 10);
         Helmet h = new Helmet("", "", 40, 100);
 
         assertFalse(h.canBeEquippedBy(p));

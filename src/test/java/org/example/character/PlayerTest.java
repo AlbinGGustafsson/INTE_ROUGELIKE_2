@@ -62,7 +62,7 @@ class PlayerTest {
 
     @Test
     public void lvlOneZeroEquipPlayerHasRightBaseDmg(){
-        Player p = new Player("", Race.DWARF);
+        Player p = new Player("name", Race.DWARF);
         assertEquals(0, p.getBaseDmg().getMagicDmg());
         assertEquals(11, p.getBaseDmg().getPhysDmg());
     }
@@ -91,19 +91,5 @@ class PlayerTest {
     @Test
     void raceIsNullThrowsException(){
 
-    }
-
-    @Test
-    void tooLowLevelNumberThrowsException(){
-        assertThrows(IllegalArgumentException.class, () ->{
-            Player player = new Player("Albin", Race.HUMAN, -1);
-        });
-    }
-
-    @Test
-    void tooHighLevelNumberThrowsException(){
-        assertThrows(IllegalArgumentException.class, () ->{
-            Player player = new Player("Albin", Race.HUMAN, 101);
-        });
     }
 }
