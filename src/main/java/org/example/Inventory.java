@@ -51,9 +51,21 @@ public class Inventory extends ArrayList<Item> {
         return true;
     }
 
-    public void changeBalance(int i){
+    public void decreaseBalance(int i){
+
+        if(balance - i < 0){
+
+            throw new IllegalStateException("Balance is too low");
+        }
+
+        balance -= i;
+
+    }
+
+    public void increaseBalance(int i){
 
         balance += i;
+
     }
 
     public int getBalance() {

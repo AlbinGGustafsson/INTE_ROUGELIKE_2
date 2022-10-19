@@ -1,13 +1,14 @@
 package org.example;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class QuestLog extends ArrayList<Quest>{
 
     @Override
     public boolean add(Quest quest){
 
-        super.add(quest);
+        super.add(Objects.requireNonNull(quest));
         return true;
     }
 

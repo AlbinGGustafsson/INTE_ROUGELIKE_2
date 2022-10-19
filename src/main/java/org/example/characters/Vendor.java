@@ -46,12 +46,12 @@ public class Vendor extends NPC {
             String command = scanner.nextLine();
 
             if(command.equalsIgnoreCase("Y")){
-                if(i.getValue() <= player.getInventory().getBalance()) {
-
+                try{
                     player.getInventory().add(i);
-                    player.getInventory().changeBalance(-i.getValue());
-                }else{
-                    getPrintStream().println("För lite cash på kontot jao");
+                    player.getInventory().decreaseBalance(i.getValue());
+
+                }catch(Exception e){
+                    getPrintStream().println(e.getMessage());
                 }
             }
         }
