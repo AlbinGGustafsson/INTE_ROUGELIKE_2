@@ -1,5 +1,7 @@
-package org.example;
+package org.example.character;
 
+import org.example.Race;
+import org.example.VendorItem;
 import org.example.characters.Player;
 import org.example.characters.Vendor;
 import org.example.world.Position;

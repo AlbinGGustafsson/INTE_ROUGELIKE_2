@@ -1,8 +1,10 @@
-package org.example;
+package org.example.character;
 
+import org.example.Race;
 import org.example.characters.FlavorNPC;
 import org.example.characters.NPC;
 import org.example.characters.Player;
+import org.example.world.Direction;
 import org.example.world.Position;
 import org.example.world.World;
 import org.junit.jupiter.api.BeforeEach;
@@ -27,11 +29,12 @@ public class NPCTest {
 
         World world = new World();
 
-        npc = new FlavorNPC("name", Race.ELF, "TestDialog1");
+        npc = new FlavorNPC("name", Race.ELF, "TestDialog1.txt");
         player = new Player("name", Race.HUMAN);
 
         world.getRoom(0).setEntity(npc, new Position(5,6));
         world.getRoom(0).setEntity(player, new Position(5,7));
+//        player.move(Direction.UP);
 
         output = new ByteArrayOutputStream();
         out = new PrintStream(output);
@@ -48,9 +51,9 @@ public class NPCTest {
     @Test
     void interactionHasCorrectDialogue(){
 
-        npc.interact(player);
+//        npc.interact(player);
 
-        assertThat(npc.getParsedDialogue(), equalTo(output));
+        assertThat(npc.getParsedDialogue(), equalTo(output.toString()));
 
     }
 }

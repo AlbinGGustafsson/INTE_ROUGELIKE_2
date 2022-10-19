@@ -1,5 +1,9 @@
-package org.example;
+package org.example.character;
 
+import org.example.CannotEquipException;
+import org.example.Chestpiece;
+import org.example.Helmet;
+import org.example.Race;
 import org.example.characters.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
