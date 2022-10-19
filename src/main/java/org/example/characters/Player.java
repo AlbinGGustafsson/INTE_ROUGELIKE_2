@@ -37,13 +37,11 @@ public class Player extends MovableCharacter implements Combat {
     public Player(String name, Race race, int level){
         super(name, race);
 
-        //lek med eloy
-        if (name.equals("hej")){
-            throw new IllegalArgumentException("hej");
-        }
-        //lek med eloy
-
+        throwExceptionIfLevelHasWrongValue(level);
         gainExpUntilRightLevelIsReached(level);
+        throwExceptionIfNameHasWrongFormat();
+
+
         inventory = new Inventory();
         equipment = new Equipment(inventory);
         questLog = new QuestLog();
@@ -55,6 +53,38 @@ public class Player extends MovableCharacter implements Combat {
         appearance.setFill(Color.PURPLE);
 
     }
+
+    private void throwExceptionIfNameHasWrongFormat() {
+        if (getName().length() == 0){
+           throw new IllegalArgumentException("name cant be empty");
+        }
+
+        if (getName().length() > 20){
+            throw new IllegalArgumentException("name can only be 20 characters");
+        }
+
+        if(containsWhiteSpace()){
+            throw new IllegalArgumentException("Blah Blah");
+        }
+    }
+
+    public boolean containsWhiteSpace(){
+
+            for(int i = 0; i < getName().length(); i++){
+                if(Character.isWhitespace(getName().charAt(i))){
+                    return true;
+                }
+            }
+
+        return false;
+    }
+
+    private void throwExceptionIfLevelHasWrongValue(int inputLevel) {
+        if(inputLevel < 0 || inputLevel > 100){
+            throw new IllegalArgumentException("Player bruh");
+        }
+    }
+
 
 
 
