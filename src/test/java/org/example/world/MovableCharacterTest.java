@@ -139,8 +139,8 @@ public class MovableCharacterTest {
     }
 
     @Test
-    void getTerrains_Returns_Unmodifiable_List(){
-        assertThrows(UnsupportedOperationException.class,() -> mc.getTerrains().add(Floor.class));
+    void getTerrains_Returns_Unmodifiable_Set(){
+        assertEquals("UnmodifiableSet", mc.getTerrains().getClass().getSimpleName());
     }
 
 

@@ -197,7 +197,7 @@ public class RoomTest {
     void getRoomList_Returns_Unmodifiable_List(){
         TestableRoomCreator trc = new TestableRoomCreator();
         Room room = trc.loadRoom(0);
-        assertThrows(UnsupportedOperationException.class,() -> room.getRoomList().clear());
+        assertEquals("UnmodifiableRandomAccessList", room.getRoomList().getClass().getSimpleName());
     }
 
     @Test

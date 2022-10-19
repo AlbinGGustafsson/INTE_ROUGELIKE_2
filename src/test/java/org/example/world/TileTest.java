@@ -1,5 +1,6 @@
 package org.example.world;
 
+import com.sun.javafx.UnmodifiableArrayList;
 import org.example.*;
 import org.example.characters.Player;
 import org.junit.jupiter.api.Test;
@@ -24,7 +25,7 @@ public class TileTest {
     @Test
     void getItems_Returns_Unmodifiable_List(){
         Tile tile = new Tile(new Floor());
-        assertThrows(UnsupportedOperationException.class,() -> tile.getItems().clear());
+        assertEquals("UnmodifiableRandomAccessList", tile.getItems().getClass().getSimpleName());
     }
 
     @Test
