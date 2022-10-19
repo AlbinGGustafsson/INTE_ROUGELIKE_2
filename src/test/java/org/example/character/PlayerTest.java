@@ -15,7 +15,7 @@ class PlayerTest {
 
     @BeforeEach
     public void setUp(){
-        PLAYER = new Player("", Race.DWARF, 5);
+        PLAYER = new Player("name", Race.DWARF, 5);
     }
 
     @Test
@@ -65,5 +65,45 @@ class PlayerTest {
         Player p = new Player("", Race.DWARF);
         assertEquals(0, p.getBaseDmg().getMagicDmg());
         assertEquals(11, p.getBaseDmg().getPhysDmg());
+    }
+
+    @Test
+    void emptyStringNameThrowsException(){
+        assertThrows(IllegalArgumentException.class, () ->{
+            Player player = new Player("", Race.HUMAN, 10);
+        });
+    }
+
+    @Test
+    void spaceInStringThrowsException(){
+        assertThrows(IllegalArgumentException.class, () ->{
+            Player player = new Player("Albin Ganding", Race.HUMAN, 10);
+        });
+    }
+
+    @Test
+    void tooLongNameThrowsException(){
+        assertThrows(IllegalArgumentException.class, () ->{
+            Player player = new Player("hdhdhdhdhdhdhdhhdhdhdhdhdhdhdhdh", Race.HUMAN, 10);
+        });
+    }
+
+    @Test
+    void raceIsNullThrowsException(){
+
+    }
+
+    @Test
+    void tooLowLevelNumberThrowsException(){
+        assertThrows(IllegalArgumentException.class, () ->{
+            Player player = new Player("Albin", Race.HUMAN, -1);
+        });
+    }
+
+    @Test
+    void tooHighLevelNumberThrowsException(){
+        assertThrows(IllegalArgumentException.class, () ->{
+            Player player = new Player("Albin", Race.HUMAN, 101);
+        });
     }
 }
