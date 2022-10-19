@@ -52,6 +52,7 @@ public class Goomba extends Monster {
     }
 
 
+
     public String toString(){
         return PrintFormatConstants.BOLD + PrintFormatConstants.RED + "G" + PrintFormatConstants.RESET;
     }

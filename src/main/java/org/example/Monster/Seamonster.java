@@ -33,4 +33,5 @@ public class Seamonster extends Monster {
     public void monsterSpecificAttack(Player p) {
 
     }
+
 }
