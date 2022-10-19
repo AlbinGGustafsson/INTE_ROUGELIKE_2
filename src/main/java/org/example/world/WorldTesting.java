@@ -15,7 +15,7 @@ public class WorldTesting {
 
         world.getRoom(0).setEntity(new Stone(), new Position(5,5));
         Player eloy = new Player("Eloy", Race.HUMAN);
-
+        Player albin = new Player("namn", null , 10);
 
 
 
