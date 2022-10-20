@@ -68,7 +68,7 @@ public class CharacterCreationController {
 
         World world = new World();
         Player player = new Player(nameTextField.getText(), (Race) raceComboBox.getSelectionModel().getSelectedItem());
-        player.setAppearance(appearanceText);
+        player.setGuiAppearance(appearanceText);
 
         FXMLLoader loader = new FXMLLoader(GameTest.class.getResource("game.fxml"));
         Parent root = loader.load();

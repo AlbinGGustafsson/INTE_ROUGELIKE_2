@@ -20,8 +20,8 @@ public class RoomCreatorTest {
     @Test
     void boss_Room_Chance_Under_Min_Throws_Exception(){
         RoomCreator rc = new RoomCreator();
-        rc.bossRoomChance = 0;
-        assertThrows(IllegalArgumentException.class, () -> rc.checkBossRoomChance());
+        rc.setBossRoomChance(0);
+        assertThrows(IllegalArgumentException.class, () -> rc.throwExceptionIfBossRoomChanceNotAllowed());
     }
 
     @Test
@@ -31,7 +31,7 @@ public class RoomCreatorTest {
 
         String roomString = trc.generateRoomFilePath(0, "Dummy", "Dummy", "Dummy");
         BufferedReader bufferedReader = trc.createBufferedReader(roomString);
-        RoomCreator.RoomInformation roomInformation = trc.readRoomInformation(bufferedReader);
+        RoomCreator.RoomInformation roomInformation = trc.parseRoomInformation(bufferedReader);
         assertEquals(referenceRoomInformation, roomInformation);
     }
 
@@ -53,35 +53,35 @@ public class RoomCreatorTest {
     void room_Width_To_Low_Throws_Exception(){
         RoomCreator rc = new RoomCreator();
         RoomCreator.RoomInformation roomInformation = new RoomCreator.RoomInformation(10, 2, "NormalRoom");
-        assertThrows(IllegalArgumentException.class, () -> rc.checkRoomSize(roomInformation));
+        assertThrows(IllegalArgumentException.class, () -> rc.throwExceptionIfRoomSizeNotAllowed(roomInformation));
     }
 
     @Test
     void room_Width_To_High_Throws_Exception(){
         RoomCreator rc = new RoomCreator();
         RoomCreator.RoomInformation roomInformation = new RoomCreator.RoomInformation(10, 31, "NormalRoom");
-        assertThrows(IllegalArgumentException.class, () -> rc.checkRoomSize(roomInformation));
+        assertThrows(IllegalArgumentException.class, () -> rc.throwExceptionIfRoomSizeNotAllowed(roomInformation));
     }
 
     @Test
     void room_Height_To_Low_Throws_Exception(){
         RoomCreator rc = new RoomCreator();
         RoomCreator.RoomInformation roomInformation = new RoomCreator.RoomInformation(2, 10, "NormalRoom");
-        assertThrows(IllegalArgumentException.class, () -> rc.checkRoomSize(roomInformation));
+        assertThrows(IllegalArgumentException.class, () -> rc.throwExceptionIfRoomSizeNotAllowed(roomInformation));
     }
 
     @Test
     void room_Height_To_High_Throws_Exception(){
         RoomCreator rc = new RoomCreator();
         RoomCreator.RoomInformation roomInformation = new RoomCreator.RoomInformation(31, 10, "NormalRoom");
-        assertThrows(IllegalArgumentException.class, () -> rc.checkRoomSize(roomInformation));
+        assertThrows(IllegalArgumentException.class, () -> rc.throwExceptionIfRoomSizeNotAllowed(roomInformation));
     }
 
     @Test
     void not_Accepted_RoomType_Throws_exception(){
         RoomCreator rc = new RoomCreator();
         RoomCreator.RoomInformation roomInformation = new RoomCreator.RoomInformation(31, 10, "NotAValidRoomType");
-        assertThrows(IllegalArgumentException.class, () -> rc.checkRoomType(roomInformation));
+        assertThrows(IllegalArgumentException.class, () -> rc.throwExceptionIfRoomTypeNotAllowed(roomInformation));
     }
 
     private Room createExpectedRoom(){
