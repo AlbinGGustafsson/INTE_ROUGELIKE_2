@@ -67,7 +67,7 @@ public class CharacterCreationController {
         if (!nameInputIsCorrect()){
             return;
         }
-        new Player(nameTextField.getText(), (Race) raceComboBox.getSelectionModel().getSelectedItem());
+        Player player = new Player(nameTextField.getText(), (Race) raceComboBox.getSelectionModel().getSelectedItem());
 
         World world = new World();
 
