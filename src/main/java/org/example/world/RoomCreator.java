@@ -1,94 +1,96 @@
 package org.example.world;
 
-import javafx.animation.KeyValue;
-import javafx.util.Pair;
 import org.example.Monster.Goomba;
 import org.example.Monster.Troll;
 
 import java.io.*;
-import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 public class RoomCreator {
 
+    private static final int MIN_ROOM_SIZE = 3;
+    private static final int MAX_ROOM_SIZE = 30;
     private static final String NORMAL_ROOMS_FOLDER_PATH = "rooms/NormalRooms/";
     private static final String BOSS_ROOM_FOLDER_PATH = "rooms/BossRooms/";
     private static final String START_ROOM_FOLDER_PATH = "rooms/startRooms/";
 
     private static final String[] ACCEPTED_ROOM_TYPES = {"NormalRoom", "BossRoom", "StartRoom"};
 
-    record RoomInformation(int roomHeight, int roomWidth, String roomType){}
+    protected record RoomInformation(int roomHeight, int roomWidth, String roomType){}
 
-    private Random random = new Random();
-    protected int bossRoomChance = 10;
+    private final Random random = new Random();
+    private int bossRoomChance = 10;
 
     public Room loadRoom(int roomNumber) {
-        checkBossRoomChance();
+        throwExceptionIfBossRoomChanceNotAllowed();
         String filePath = generateRoomFilePath(roomNumber, NORMAL_ROOMS_FOLDER_PATH, BOSS_ROOM_FOLDER_PATH, START_ROOM_FOLDER_PATH);
         BufferedReader bufferedReader = createBufferedReader(filePath);
-        RoomInformation roomInformation = readRoomInformation(bufferedReader);
-        checkRoomSize(roomInformation);
-        checkRoomType(roomInformation);
+        RoomInformation roomInformation = parseRoomInformation(bufferedReader);
+        throwExceptionIfRoomSizeNotAllowed(roomInformation);
+        throwExceptionIfRoomTypeNotAllowed(roomInformation);
         return createRoom(roomNumber, roomInformation, bufferedReader);
     }
 
-    protected void checkRoomSize(RoomInformation roomInformation){
-        if (roomInformation.roomWidth < 3){
+    protected void throwExceptionIfRoomSizeNotAllowed(RoomInformation roomInformation){
+        if (roomInformation.roomWidth < MIN_ROOM_SIZE){
             throw new IllegalArgumentException("Room width too low");
         }
-        if (roomInformation.roomHeight < 3){
+        if (roomInformation.roomHeight < MIN_ROOM_SIZE){
             throw new IllegalArgumentException("Room height too low");
         }
-        if (roomInformation.roomWidth > 30){
+        if (roomInformation.roomWidth > MAX_ROOM_SIZE){
             throw new IllegalArgumentException("Room width too high");
         }
-        if (roomInformation.roomHeight > 30){
+        if (roomInformation.roomHeight > MAX_ROOM_SIZE){
             throw new IllegalArgumentException("Room height too high");
         }
     }
 
-    protected void checkRoomType(RoomInformation roomInformation){
+    protected void throwExceptionIfRoomTypeNotAllowed(RoomInformation roomInformation){
         if (!Arrays.asList(ACCEPTED_ROOM_TYPES).contains(roomInformation.roomType)){
             throw new IllegalArgumentException("Not accepted roomtype");
         }
     }
 
-    protected void checkBossRoomChance(){
+    protected void throwExceptionIfBossRoomChanceNotAllowed(){
         if (bossRoomChance < 1){
             throw new IllegalArgumentException("Boss chance constant must be >=0");
         }
     }
 
-    //todo
-    //Se över hur exceptions ska hanteras
     protected String generateRoomFilePath(int roomNumber, String normalRoomFp, String bossRoomFp, String startRoomFp) {
 
         try {
-            File normalRoomsFolder = new File(normalRoomFp);
-            File[] normalRooms = normalRoomsFolder.listFiles();
-
-            File bossRoomsFolder = new File(bossRoomFp);
-            File[] bossRooms = bossRoomsFolder.listFiles();
-
-            File startRoomsFolder = new File(startRoomFp);
-            File[] startRooms = startRoomsFolder.listFiles();
-
-            if (roomNumber == 0) {
-                int startRoomIndex = random.nextInt(startRooms.length);
-                return startRooms[startRoomIndex].getPath();
-            } else if (random.nextInt(bossRoomChance) == bossRoomChance - 1) {
-                int bossRoomIndex = random.nextInt(bossRooms.length);
-                return bossRooms[bossRoomIndex].getPath();
-            }
-            int normalRoomIndex = random.nextInt(normalRooms.length);
-            return normalRooms[normalRoomIndex].getPath();
+            File[] normalRooms = createFileArray(normalRoomFp);
+            File[] bossRooms = createFileArray(bossRoomFp);
+            File[] startRooms = createFileArray(startRoomFp);
+            return getGeneratedFilePath(roomNumber, normalRooms, bossRooms, startRooms);
 
         } catch (NullPointerException e) {
             throw new NullPointerException("No files found in directory");
         }
     }
+
+    private String getGeneratedFilePath(int roomNumber, File[] startRooms, File[] bossRooms, File[] normalRooms){
+
+        if (roomNumber == 0) {
+            int startRoomIndex = random.nextInt(startRooms.length);
+            return startRooms[startRoomIndex].getPath();
+        } else if (random.nextInt(bossRoomChance) == bossRoomChance - 1) {
+            int bossRoomIndex = random.nextInt(bossRooms.length);
+            return bossRooms[bossRoomIndex].getPath();
+        }
+        int normalRoomIndex = random.nextInt(normalRooms.length);
+        return normalRooms[normalRoomIndex].getPath();
+    }
+
+    private File[] createFileArray(String folderPath){
+        File roomFolder = new File(folderPath);
+        return roomFolder.listFiles();
+    }
+
 
     protected BufferedReader createBufferedReader(String filePath){
         try {
@@ -100,7 +102,7 @@ public class RoomCreator {
         }
     }
 
-    protected RoomInformation readRoomInformation(BufferedReader bufferedReader){
+    protected RoomInformation parseRoomInformation(BufferedReader bufferedReader){
 
         try {
             String roomType = bufferedReader.readLine();
@@ -165,6 +167,9 @@ public class RoomCreator {
         }catch (IOException e){
             throw new RuntimeException();
         }
+    }
 
+    public void setBossRoomChance(int bossRoomChance) {
+        this.bossRoomChance = bossRoomChance;
     }
 }
