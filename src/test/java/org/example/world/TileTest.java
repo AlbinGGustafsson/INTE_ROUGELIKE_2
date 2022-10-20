@@ -1,6 +1,5 @@
 package org.example.world;
 
-import com.sun.javafx.UnmodifiableArrayList;
 import org.example.*;
 import org.example.characters.Player;
 import org.junit.jupiter.api.Test;
