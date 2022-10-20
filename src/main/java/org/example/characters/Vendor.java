@@ -21,9 +21,10 @@ public class Vendor extends NPC {
 
         printDialogue();
         showDialogueOption("Do you want to browse shop? [Y]");
-        if (readPlayerInput().equalsIgnoreCase("Y")) {
-            openShop(player);
+        if (!readPlayerInput().equalsIgnoreCase("Y")) {
+            return;
         }
+        openShop(player);
     }
 
     @Override
@@ -36,7 +37,7 @@ public class Vendor extends NPC {
         return PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "V" + PrintFormatConstants.RESET;
     }
 
-    private void openShop(Player player){
+    public void openShop(Player player){
 
         for(VendorItem i: stock){
 

@@ -35,16 +35,6 @@ public class QuestGiver extends NPC{
         return false;
     }
 
-    void giveQuest(Player player){
-
-        if(availableQuest != null && readPlayerInput().equalsIgnoreCase("Y")) {
-
-            player.getQuestLog().add(availableQuest);
-            availableQuest = null;
-        }
-    }
-
-
     public Quest getAvailableQuest() {
         return availableQuest;
     }
