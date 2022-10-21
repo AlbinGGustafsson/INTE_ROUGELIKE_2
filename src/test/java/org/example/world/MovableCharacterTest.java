@@ -237,4 +237,16 @@ public class MovableCharacterTest {
         assertThrows(RuntimeException.class, () -> mc.move(Direction.RIGHT));
     }
 
+
+    @Test
+    void default_interactWithTile_Returns_False(){
+        mc = new MovableCharacter("name", Race.HUMAN) {
+            @Override
+            public String toString() {
+                return null;
+            }
+        };
+        assertFalse(mc.interactWithTile(new Tile(new Floor())));
+    }
+
 }
