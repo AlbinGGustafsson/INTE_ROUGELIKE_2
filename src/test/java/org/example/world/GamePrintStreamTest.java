@@ -7,6 +7,7 @@ public class GamePrintStreamTest {
 
     @Test
     void println_Appends_Line_StringBuilder(){
+        GamePrintStream.clearGameText();
         GamePrintStream gamePrintStream = new GamePrintStream();
         gamePrintStream.println("line");
 
@@ -15,6 +16,7 @@ public class GamePrintStreamTest {
 
     @Test
     void multiple_Println_Appends_Line_StringBuilder(){
+        GamePrintStream.clearGameText();
         GamePrintStream gamePrintStream = new GamePrintStream();
         gamePrintStream.println("line1",false);
         gamePrintStream.println("line2",false);
