@@ -66,7 +66,7 @@ public class RoomCreator {
             File[] normalRooms = createFileArray(normalRoomFp);
             File[] bossRooms = createFileArray(bossRoomFp);
             File[] startRooms = createFileArray(startRoomFp);
-            return getGeneratedFilePath(roomNumber, normalRooms, bossRooms, startRooms);
+            return getGeneratedFilePath(roomNumber, startRooms, bossRooms, normalRooms);
 
         } catch (NullPointerException e) {
             throw new NullPointerException("No files found in directory");
