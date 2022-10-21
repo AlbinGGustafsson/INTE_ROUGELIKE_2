@@ -8,7 +8,7 @@ pipeline {
 
         stage ('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true -Dtest=!org.example.fx.GameTest install'
+                sh 'mvn -Dmaven.test.failure.ignore=true install'
             }
             post {
                 success {

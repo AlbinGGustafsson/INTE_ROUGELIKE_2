@@ -49,6 +49,9 @@
                     <argLine>
                         --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
                     </argLine>
+                    <excludes>
+                        <exclude>**/GameTest.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
