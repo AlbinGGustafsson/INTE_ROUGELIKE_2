@@ -23,6 +23,11 @@ public class Position {
     }
 
     public Position getPos(Direction direction){
+
+        if (direction == null){
+            return null;
+        }
+
         switch (direction){
             case UP -> {
                 return new Position(x, y-1);
@@ -48,10 +53,8 @@ public class Position {
             case DOWN_RIGHT -> {
                 return new Position(x+1, y+1);
             }
-            default -> {
-                return null;
-            }
         }
+        return null;
     }
 
     @Override
