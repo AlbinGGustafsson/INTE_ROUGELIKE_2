@@ -39,7 +39,7 @@ public class Room {
             //return null;
         }
         if (roomNumber == 0) {
-            return null;
+            throw new RuntimeException("Cant go left from room number 0");
         }
         return world.getRoom(roomNumber - 1);
     }

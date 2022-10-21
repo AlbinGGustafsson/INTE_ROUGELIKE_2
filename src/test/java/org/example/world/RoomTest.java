@@ -52,10 +52,9 @@ public class RoomTest {
     }
 
     @Test
-    void getPrevRoom_Not_Exist_Returns_Null(){
+    void getPrevRoom_Not_Exist_Throws_Exception(){
         World world = new World(new TestableRoomCreator());
-        Room prevRoom = world.getRoom(0).getPreviousRoom();
-        assertNull(prevRoom);
+        assertThrows(RuntimeException.class, () -> world.getRoom(0).getPreviousRoom());
     }
 
     @Test
