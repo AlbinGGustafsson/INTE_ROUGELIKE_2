@@ -77,14 +77,12 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
 
   public void battleWithPlayer(Player p){
     monsterSpecificAttack(p);
-    double playerHealth = p.getHp();
     double playerAttackDamage = 100;
     boolean battleIsOver = false;
 
     do {
 
-
-      dealDmg(this, playerAttackDamage);
+      p.dealDmg(this, playerAttackDamage);
       if(health < 0){
         printVictoryMessage();
         battleIsOver = true;
@@ -109,8 +107,4 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
     getPrintStream().println("You won the fight!!");
   }
 
-  @Override
-  public String toString() {
-    return "M";
-  }
 }

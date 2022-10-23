@@ -27,4 +27,8 @@ public class Vampyre extends Monster {
     }
 
 
+    @Override
+    public String toString() {
+        return null;
+    }
 }

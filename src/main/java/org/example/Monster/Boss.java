@@ -35,4 +35,8 @@ public class Boss extends Monster {
         super.takeDmg(damage);
     }
 
+    @Override
+    public String toString() {
+        return null;
+    }
 }

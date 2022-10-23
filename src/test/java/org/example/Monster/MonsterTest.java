@@ -15,30 +15,10 @@ public class MonsterTest {
     private static final int CORRECT_LEVEL_VALUE = 10;
     private static final int TO_LOW_LEVEL_VALUE = -1;
 
-    @Test
-    void calculateHealthReturnsCorrectValue() {
-        Troll troll = new Troll(CORRECT_LEVEL_VALUE);
-        int expected = 420;
-        assertEquals(expected, troll.getHealth());
-    }
-
-    @Test
-    void AttackDamageIsGivenCorrectValue() {
-        Troll troll = new Troll(CORRECT_LEVEL_VALUE);
-        int expected = 50;
-        assertEquals(expected, troll.attackDamage());
-    }
-
-    @Test
-    void constructorThrowsExceptionWhenGivenValueIsToLow() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            Troll troll = new Troll(TO_LOW_LEVEL_VALUE);
-        });
-    }
 
     @Test
     void playerLossesFightPrintsCorrectMessage() {
-        Troll troll = new Troll(100);
+        Monster troll = new Troll(100);
         Player player = new Player("player", Race.HUMAN, 10);
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(output);
@@ -51,8 +31,8 @@ public class MonsterTest {
 
     @Test
     void playerWinsFightPrintsCorrectMessage() {
-        Troll troll = new Troll(1);
-        Player player = new Player("player", Race.HUMAN, 10);
+        Monster troll = new Troll(1);
+        Player player = new Player("player", Race.HUMAN, 100);
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(output);
         troll.setPrintStream(out);
@@ -84,16 +64,9 @@ public class MonsterTest {
         assertEquals(tile.getEntity(), s);
     }
 
-    @Test
-    void trollCanNotBePlacedOnWater(){
-        Tile tile = new Tile(new Water());
-        Troll troll = new Troll(10);
-        tile.setEntity(troll);
-        assertNull(tile.getEntity());
-    }
 
     private Tile tileAfterBattle(){
-        Troll troll = new Troll(1);
+        Monster troll = new Troll(1);
         Player player = new Player("player", Race.HUMAN, 100);
         Tile tile = new Tile(new Floor(), troll);
         player.interactWithTile(tile);

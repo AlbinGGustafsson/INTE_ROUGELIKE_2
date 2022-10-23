@@ -34,4 +34,8 @@ public class Seamonster extends Monster {
 
     }
 
+    @Override
+    public String toString() {
+        return null;
+    }
 }

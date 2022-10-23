@@ -19,7 +19,7 @@ public class Goomba extends Monster {
 
     @Override
     public double calculateHealth() {
-        return 0;
+        return getLevel()* 2.5 + 50;
     }
 
 
