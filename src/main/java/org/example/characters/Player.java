@@ -12,7 +12,6 @@ public class Player extends MovableCharacter implements Combat {
     private static final String APPEARANCE_CSS_STYLE = "-fx-font-family: 'monospaced';-fx-font-size: 20;-fx-font-weight: bold";
 
     private static final int MAX_LEVEL = 100;
-    //leveling equation for player = (x-1)^4.5
     private static final int BASE_PHYS_DMG = 10;
     private static final int BASE_MAGIC_DMG = 0;
 
@@ -39,6 +38,7 @@ public class Player extends MovableCharacter implements Combat {
 
         gainExpUntilRightLevelIsReached(level);
         throwExceptionIfNameHasWrongFormat();
+        throwExceptionIfRaceIsWrong();
 
 
         inventory = new Inventory();
@@ -47,8 +47,13 @@ public class Player extends MovableCharacter implements Combat {
 
         //hp = level*10; //Ingen aning about this, eloy kan du titta på detta
         hp = level*2 + 400;
-
         setDefaultGuiAppearance();
+    }
+
+    private void throwExceptionIfRaceIsWrong() {
+        if(getRace() == null){
+            throw new IllegalArgumentException("race can not be empty");
+        }
     }
 
     private void throwExceptionIfNameHasWrongFormat() {
@@ -72,7 +77,6 @@ public class Player extends MovableCharacter implements Combat {
                     return true;
                 }
             }
-
         return false;
     }
 
@@ -95,6 +99,7 @@ public class Player extends MovableCharacter implements Combat {
     public void addToInventory(Item item) {
         inventory.add(item);
     }
+
 
     public void gainExp(int exp) {
         if (this.exp + exp <= maxExp()){
@@ -241,6 +246,7 @@ public class Player extends MovableCharacter implements Combat {
         guiAppearance.setStyle(APPEARANCE_CSS_STYLE);
         guiAppearance.setFill(Color.PURPLE);
     }
+
 
     @Override
     public String toString() {

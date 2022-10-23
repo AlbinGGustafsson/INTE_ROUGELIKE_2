@@ -143,4 +143,13 @@ public class TileTest {
         assertEquals(tile.getItems().get(0).toString(), tile.toString());
     }
 
+    @Test
+    void set_Terrain_Sets_Terrain(){
+        Tile tile = new Tile(new Floor());
+        Terrain water = new Water();
+        tile.setTerrain(water);
+        assertEquals(water, tile.getTerrain());
+
+    }
+
 }

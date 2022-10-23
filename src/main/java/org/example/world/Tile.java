@@ -48,6 +48,10 @@ public class Tile {
         }
     }
 
+    public void setTerrain(Terrain terrain){
+        this.terrain = terrain;
+    }
+
     public void removeEntity() {
         entity = null;
     }

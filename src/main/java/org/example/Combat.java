@@ -4,7 +4,9 @@ import java.util.Random;
 
 public interface Combat {
     Random r = new Random();
-    BaseDamage getBaseDmg();
+    default BaseDamage getBaseDmg(){
+        return new BaseDamage(50, 50, 1, 1);
+    }
     double getBlockChance();
     default void dealDmg(Combat combatTarget, double damage){
         if (blocked()) {

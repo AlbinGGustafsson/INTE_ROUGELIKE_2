@@ -15,7 +15,6 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
   public Monster(int level){
     super("Monster", Race.MONSTER );
 
-
     if(level < 1){
       throw new IllegalArgumentException();
     }
@@ -23,10 +22,7 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
     setHealth();
   }
 
-  @Override
-  public BaseDamage getBaseDmg() {
-    return null;
-  }
+
 
   @Override
   public double getBlockChance() {
@@ -77,14 +73,12 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
 
   public void battleWithPlayer(Player p){
     monsterSpecificAttack(p);
-    double playerHealth = p.getHp();
-    double playerAttackDamage = 100;
+    double playerAttackDamage = p.getBaseDmg().getPhysDmg();
     boolean battleIsOver = false;
 
     do {
 
-
-      dealDmg(this, playerAttackDamage);
+      p.dealDmg(this, playerAttackDamage);
       if(health < 0){
         printVictoryMessage();
         battleIsOver = true;
@@ -109,8 +103,4 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
     getPrintStream().println("You won the fight!!");
   }
 
-  @Override
-  public String toString() {
-    return "M";
-  }
 }

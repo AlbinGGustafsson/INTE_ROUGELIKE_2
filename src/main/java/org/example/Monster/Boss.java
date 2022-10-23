@@ -1,5 +1,6 @@
 package org.example.Monster;
 
+import org.example.BaseDamage;
 import org.example.Monster.Monster;
 import org.example.characters.Player;
 import org.example.world.Terrain;
@@ -35,4 +36,8 @@ public class Boss extends Monster {
         super.takeDmg(damage);
     }
 
+    @Override
+    public String toString() {
+        return null;
+    }
 }
