@@ -67,11 +67,11 @@ public class CharacterCreationController {
         if (!nameInputIsCorrect()){
             return;
         }
-        new Player(nameTextField.getText(), (Race) raceComboBox.getSelectionModel().getSelectedItem());
+        Player player = new Player(nameTextField.getText(), (Race) raceComboBox.getSelectionModel().getSelectedItem());
 
         World world = new World();
 
-        player.setAppearance(appearanceText);
+        player.setGuiAppearance(appearanceText);
 
         FXMLLoader loader = new FXMLLoader(Game.class.getResource("game.fxml"));
         Parent root = loader.load();

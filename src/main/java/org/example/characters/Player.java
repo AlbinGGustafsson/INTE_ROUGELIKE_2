@@ -17,17 +17,17 @@ public class Player extends MovableCharacter implements Combat {
 
 
 
-    private Text appearance;
+    private Text guiAppearance;
     private int level;
     private int exp;
     private int hp;
 
 
     private final Equipment equipment;
-    private final Inventory inventory;
+    private Inventory inventory;
 
 
-    private final QuestLog questLog;
+    private QuestLog questLog;
 
     public Player(String name, Race race) {
         this(name, race, 1);
@@ -47,10 +47,8 @@ public class Player extends MovableCharacter implements Combat {
 
         //hp = level*10; //Ingen aning about this, eloy kan du titta på detta
         hp = level*2 + 400;
-        appearance = new Text("P");
-        appearance.setStyle(APPEARANCE_CSS_STYLE);
-        appearance.setFill(Color.PURPLE);
 
+        setDefaultGuiAppearance();
     }
 
     private void throwExceptionIfRaceIsWrong() {
@@ -123,7 +121,7 @@ public class Player extends MovableCharacter implements Combat {
     }
 
     public Inventory getInventory() {
-        return (Inventory) inventory.clone();
+        return inventory;
     }
 
     public Equipment getEquipment() {
@@ -239,15 +237,21 @@ public class Player extends MovableCharacter implements Combat {
         return false;
     }
 
-    public void setAppearance(Text appearance) {
-        this.appearance = appearance;
-        appearance.setStyle(APPEARANCE_CSS_STYLE);
+    public void setGuiAppearance(Text guiAppearance) {
+        this.guiAppearance = guiAppearance;
+        guiAppearance.setStyle(APPEARANCE_CSS_STYLE);
+    }
+
+    private void setDefaultGuiAppearance(){
+        guiAppearance = new Text("P");
+        guiAppearance.setStyle(APPEARANCE_CSS_STYLE);
+        guiAppearance.setFill(Color.PURPLE);
     }
 
 
     @Override
     public String toString() {
-        return PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + appearance.getText() + PrintFormatConstants.RESET;
+        return PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + guiAppearance.getText() + PrintFormatConstants.RESET;
     }
 
     public void restartGame(){
@@ -256,7 +260,7 @@ public class Player extends MovableCharacter implements Combat {
 
     @Override
     public Text getText() {
-        return appearance;
+        return guiAppearance;
     }
 }
 

@@ -4,8 +4,6 @@ import org.example.Quest;
 import org.example.Race;
 import org.example.characters.Player;
 import org.example.characters.QuestGiver;
-import org.example.world.Position;
-import org.example.world.World;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -29,19 +27,14 @@ public class QuestGiverTest {
     @BeforeEach
     void setUp(){
 
-        World world = new World();
-
         quest = new Quest("Hitta nemo", "Simma runt lite", 5);
 
-        questGiver = new QuestGiver("name", Race.DWARF, "TestDialog1.txt", quest);
+        questGiver = new QuestGiver("name", Race.DWARF, "TestDialog2.txt", quest);
         player = new Player("name", Race.HUMAN);
 
         output = new ByteArrayOutputStream();
         out = new PrintStream(output);
         questGiver.setPrintStream(out);
-
-        world.getRoom(0).setEntity(questGiver, new Position(5,6));
-        world.getRoom(0).setEntity(player, new Position(5,7));
     }
 
     @Test

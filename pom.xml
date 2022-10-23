@@ -49,6 +49,10 @@
                     <argLine>
                         --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
                     </argLine>
+                    <excludes>
+                        <exclude>**/GameTest.java</exclude>
+                        <exclude>**/Monster/**.java</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
             <plugin>
@@ -59,6 +63,21 @@
                     <release>16</release>
                     <source>16</source>
                     <target>16</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.4</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>src/main/java/</classpathPrefix>
+                            <mainClass>org.example.fx.Game</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
             <plugin>
