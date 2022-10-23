@@ -48,12 +48,6 @@ public class MonsterTest {
         assertFalse(tile.getEntity() instanceof Monster m);
     }
 
-    @Test
-    void playerMovesWhenBattleIsWon(){
-        Tile tile = tileAfterBattle();
-        assertTrue(tile.getEntity() instanceof Player p);
-    }
-
 
     @Test
     void seamonsterCanBePlacedOnWater(){

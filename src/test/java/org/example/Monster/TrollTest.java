@@ -18,7 +18,7 @@ public class TrollTest {
     @Test
     void calculateHealthReturnsCorrectValue() {
         Troll troll = new Troll(CORRECT_LEVEL_VALUE);
-        int expected = 420;
+        int expected = 60;
         assertEquals(expected, troll.getHealth());
     }
 
