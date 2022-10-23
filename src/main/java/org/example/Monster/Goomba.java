@@ -7,8 +7,8 @@ import org.example.world.Water;
 
 public class Goomba extends Monster {
 
-    private static final double GOOMBA_DAMAGE_ADD_ON = 50;
-    private static final int BASE_DAMAGE = 20;
+    private static final double GOOMBA_DAMAGE_ADD_ON = 10;
+    private int baseDamage = 20;
     private boolean isDamageAddOnInAffect;
 
 
@@ -26,25 +26,21 @@ public class Goomba extends Monster {
 
     @Override
     public double attackDamage() {
-        if(isDamageAddOnInAffect){
-            isDamageAddOnInAffect = false;
-            return BASE_DAMAGE * getLevel() + GOOMBA_DAMAGE_ADD_ON;
-        }
-
-        return BASE_DAMAGE*getLevel();
+        return baseDamage*getLevel();
     }
 
     @Override
     public void monsterSpecificAttack(Player p) {
         printBattleMessage();
         pauseExecution();
-        checkIfLevelDifference(p);
+        if(goombaHasHigherLevel(p)){
+            baseDamage += GOOMBA_DAMAGE_ADD_ON;
+        }
     }
 
-    private void checkIfLevelDifference(Player p) {
-        if(p.getLevel() < getLevel()){
-            isDamageAddOnInAffect = true;
-        }
+    private boolean goombaHasHigherLevel(Player p) {
+        return p.getLevel() < getLevel();
+
     }
 
     private void printBattleMessage(){

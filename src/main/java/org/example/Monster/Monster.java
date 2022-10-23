@@ -15,7 +15,6 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
   public Monster(int level){
     super("Monster", Race.MONSTER );
 
-
     if(level < 1){
       throw new IllegalArgumentException();
     }
@@ -23,10 +22,7 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
     setHealth();
   }
 
-  @Override
-  public BaseDamage getBaseDmg() {
-    return null;
-  }
+
 
   @Override
   public double getBlockChance() {
@@ -77,7 +73,7 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
 
   public void battleWithPlayer(Player p){
     monsterSpecificAttack(p);
-    double playerAttackDamage = 100;
+    double playerAttackDamage = p.getBaseDmg().getPhysDmg();
     boolean battleIsOver = false;
 
     do {

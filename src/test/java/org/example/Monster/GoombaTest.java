@@ -36,11 +36,11 @@ public class GoombaTest {
         assertEquals(tile.getEntity(), g);
     }
     @Test
-    void GoombaWithHigherLevelThanPLayerGivesMoreAttackDamage(){
+    void HigherLevelThanPLayerAddsGoombaDamage(){
         Player p = new Player("Name", Race.HUMAN, 1);
         Goomba g = new Goomba(2);
         g.battleWithPlayer(p);
-        double expected = 90;
+        double expected = 60;
         assertEquals(expected, g.attackDamage());
     }
 

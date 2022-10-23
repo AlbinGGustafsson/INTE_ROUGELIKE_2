@@ -49,14 +49,6 @@ public class MonsterTest {
     }
 
 
-    @Test
-    void seamonsterCanBePlacedOnWater(){
-        Tile tile = new Tile(new Water());
-        Seamonster s = new Seamonster(10);
-        tile.setEntity(s);
-
-        assertEquals(tile.getEntity(), s);
-    }
 
 
     private Tile tileAfterBattle(){

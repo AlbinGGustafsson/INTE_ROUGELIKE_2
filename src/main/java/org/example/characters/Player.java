@@ -47,7 +47,6 @@ public class Player extends MovableCharacter implements Combat {
 
         //hp = level*10; //Ingen aning about this, eloy kan du titta på detta
         hp = level*2 + 400;
-
         setDefaultGuiAppearance();
     }
 

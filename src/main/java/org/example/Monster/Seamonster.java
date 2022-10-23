@@ -2,18 +2,18 @@ package org.example.Monster;
 
 import org.example.characters.Player;
 import org.example.world.Floor;
+import org.example.world.PrintFormatConstants;
 import org.example.world.Water;
 
 public class Seamonster extends Monster {
 
-    private static final int LEVEL_ONE_HEALTH = 350;
+    private static final int LEVEL_ONE_HEALTH = 60;
     private static final int COEFFICIENT_FOR_HEALTH_SCALING = 2;
     private static final int LEVEL_ONE_ATTACK_DAMAGE = 20;
     private static final double COEFFICIENT_FOR_ATTACK_DAMAGE_SCALING = 1.45;
 
     public Seamonster(int level) {
         super(level);
-        removeTerrain(Floor.class);
         addTerrain(Water.class);
     }
 
@@ -31,11 +31,28 @@ public class Seamonster extends Monster {
 
     @Override
     public void monsterSpecificAttack(Player p) {
+        changeTileTerrainIfPlayerHasLowerLevel(p);
+        makePlayerAbleToSwim(p);
+    }
 
+    private void changeTileTerrainIfPlayerHasLowerLevel(Player p) {
+        if(isMonsterLevelHigher(p)){
+            getRoom().getTile(getPosition()).setTerrain(new Water());
+        }
+    }
+
+    private boolean isMonsterLevelHigher(Player p) {
+        return getLevel() >= p.getLevel();
+    }
+
+    private void makePlayerAbleToSwim(Player p) {
+        if(isMonsterLevelHigher(p)){
+            p.addTerrain(Water.class);
+        }
     }
 
     @Override
     public String toString() {
-        return null;
+        return PrintFormatConstants.BOLD + PrintFormatConstants.RED + "S" + PrintFormatConstants.RESET;
     }
 }

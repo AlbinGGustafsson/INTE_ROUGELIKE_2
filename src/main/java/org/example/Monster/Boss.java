@@ -1,5 +1,6 @@
 package org.example.Monster;
 
+import org.example.BaseDamage;
 import org.example.Monster.Monster;
 import org.example.characters.Player;
 import org.example.world.Terrain;
