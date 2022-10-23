@@ -51,7 +51,6 @@
                     </argLine>
                     <excludes>
                         <exclude>**/GameTest.java</exclude>
-                        <exclude>**/Monster/**.java</exclude>
                     </excludes>
                 </configuration>
             </plugin>
