@@ -42,7 +42,6 @@ public class Troll extends Monster{
                 p.unequip(shield);
             }
         }
-
     }
 
 

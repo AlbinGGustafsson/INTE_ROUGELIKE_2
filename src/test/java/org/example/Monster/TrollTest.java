@@ -88,6 +88,32 @@ public class TrollTest {
     }
 
     @Test
+    void trollUnEquipesPayersShieldPlayerHasMultipleShields(){
+        Player player = new Player("name", Race.HUMAN, 100);
+        Troll troll = new Troll(1);
+
+
+        Shield s1 = new Shield("shield", "weak", 1, 5);
+        Ring ring = new Ring("Ring", "Strong", 8, 8);
+        Shield s2 = new Shield("second Shield", "weak", 1, 5);
+
+
+        player.addToInventory(s1);
+        player.addToInventory(ring);
+        player.addToInventory(s2);
+        player.equip(s1);
+        player.equip(ring);
+        player.equip(s2);
+
+        assertTrue(player.getEquipment().contains(s1) && player.getEquipment().contains(s2));
+
+        troll.battleWithPlayer(player);
+
+        assertFalse(player.getEquipment().contains(s1) && player.getEquipment().contains(s2));
+
+    }
+
+    @Test
     void tooStringHasCorrectReturnValue(){
         Troll troll = new Troll(CORRECT_LEVEL_VALUE);
         String expected = PrintFormatConstants.BOLD + PrintFormatConstants.RED + "T" + PrintFormatConstants.RESET;
