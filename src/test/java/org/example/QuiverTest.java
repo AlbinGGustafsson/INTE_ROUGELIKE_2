@@ -33,4 +33,10 @@ class QuiverTest {
         Bow b = new Bow("", "", 5, 123);
         assertTrue(q.isCompatibleWith(b));
     }
+    @Test
+    void physDmgIsEqualToRating(){
+
+        Quiver q = new Quiver("", "", 4, 45);
+        assertEquals(q.rating, q.getPhysDmg());
+    }
 }

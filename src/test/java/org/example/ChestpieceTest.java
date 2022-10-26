@@ -16,4 +16,11 @@ public class ChestpieceTest {
     public void creatingTooStrongChespieceThrowsException(){
         assertThrows(IllegalArmorRatingException.class, () -> new Chestpiece("", "", 1, Integer.MAX_VALUE));
     }
+
+    @Test
+    void isCompatibleWithHelmet(){
+        Helmet h = new Helmet("", "", 10, 100);
+        Chestpiece c = new Chestpiece("", "", 1, 100);
+        assertTrue(c.isCompatibleWith(h));
+    }
 }

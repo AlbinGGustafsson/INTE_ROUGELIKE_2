@@ -4,6 +4,7 @@ import org.example.characters.Player;
 import org.example.world.PrintFormatConstants;
 import org.example.world.Tile;
 import org.example.world.Water;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -83,7 +84,7 @@ public class TrollTest {
 
 
     }
-
+    @Disabled //man ska inte kunna equipa 2 shields, testet blir onödgt 🙃
     @Test
     void trollUnEquipesPayersShieldPlayerHasMultipleShields(){
         Player player = new Player("name", Race.HUMAN, 100);
@@ -115,6 +116,13 @@ public class TrollTest {
         Troll troll = new Troll(CORRECT_LEVEL_VALUE);
         String expected = PrintFormatConstants.BOLD + PrintFormatConstants.RED + "T" + PrintFormatConstants.RESET;
         assertEquals(expected, troll.toString());
+    }
+
+    @Test
+    void hasDefaultBaseDmg(){
+        Troll troll = new Troll(CORRECT_LEVEL_VALUE);
+        assertEquals(0,troll.getBaseDmg().getPhysDmg());
+        assertEquals(0,troll.getBaseDmg().getMagicDmg());
     }
 
 
