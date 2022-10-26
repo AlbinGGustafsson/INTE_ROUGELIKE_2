@@ -49,7 +49,6 @@ public class Goomba extends Monster {
         getPrintStream().println("Whom is the fool that dare engage in combat with a Goomba?");
     }
 
-// TODO fixa testfall för samtliga monster
     @Override
     public Text getText() {
         Text text = new Text("G");
