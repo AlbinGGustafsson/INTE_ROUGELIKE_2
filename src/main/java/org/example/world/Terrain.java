@@ -9,7 +9,7 @@ public abstract class Terrain {
     private static PrintStream out = new GamePrintStream();
 
     private int weight;
-    private String typeName;
+    private final String typeName;
     public Terrain(String typeName, int weight) {
 
         if (weight < 1 || weight > 10){
@@ -29,7 +29,7 @@ public abstract class Terrain {
     }
 
     public  void setPrintStream(PrintStream out){
-        this.out = out;
+        Terrain.out = out;
     }
 
     public PrintStream getPrintStream() {

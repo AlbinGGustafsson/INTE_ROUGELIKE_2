@@ -31,4 +31,8 @@ class TomeTest {
         assertFalse(DEFAULT_VALID_TOME.isCompatibleWith(s));
         assertFalse(DEFAULT_VALID_TOME.isCompatibleWith(b));
     }
+    @Test
+    void magicDmgIsEqualToRating(){
+        assertEquals(DEFAULT_VALID_TOME.rating, DEFAULT_VALID_TOME.getMagicDmg());
+    }
 }

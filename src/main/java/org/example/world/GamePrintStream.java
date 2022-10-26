@@ -1,6 +1,5 @@
 package org.example.world;
 
-import java.io.OutputStream;
 import java.io.PrintStream;
 
 public class GamePrintStream extends PrintStream {

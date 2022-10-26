@@ -27,6 +27,20 @@ class EquipmentTest {
         equipment.add(h);
         assertTrue(equipment.contains(h));
     }
+    @Test
+    public void addingRingWorks() {
+        Ring h = new Ring("", "", 12, 5);
+        inventory.add(h);
+        equipment.add(h);
+        assertTrue(equipment.contains(h));
+    }
+    @Test
+    public void addingEarringWorks() {
+        Earring h = new Earring("", "", 12, 5);
+        inventory.add(h);
+        equipment.add(h);
+        assertTrue(equipment.contains(h));
+    }
 
     @Test
     public void addingSecondHelmetOnlyContainsLastHelmet() {
@@ -92,5 +106,7 @@ class EquipmentTest {
         equipment.add(s);
         assertEquals(0.40, equipment.getBlockChance());
     }
+
+
 
 }

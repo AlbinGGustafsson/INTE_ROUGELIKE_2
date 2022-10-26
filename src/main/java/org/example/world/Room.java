@@ -7,11 +7,11 @@ import java.util.Collections;
 import java.util.List;
 
 public class Room {
-    private int roomNumber;
+    private final int roomNumber;
     private World world;
-    private String RoomType;
+    private final String RoomType;
 
-    protected ArrayList<ArrayList<Tile>> roomList;
+    protected final ArrayList<ArrayList<Tile>> roomList;
 
     public Room(ArrayList<ArrayList<Tile>> room, int roomNumber, String roomType) {
         this.roomList = room;

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Tile {
 
-    private ArrayList<Item> items = new ArrayList<>();
+    private final ArrayList<Item> items = new ArrayList<>();
     private Terrain terrain;
     private Entity entity;
 

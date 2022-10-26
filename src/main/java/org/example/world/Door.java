@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class Door extends Entity {
 
-    private Direction direction;
+    private final Direction direction;
 
     private static final Direction[] acceptedDirections = {Direction.LEFT, Direction.RIGHT};
 

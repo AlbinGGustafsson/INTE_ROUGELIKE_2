@@ -1,9 +1,12 @@
 package org.example.character;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.example.Quest;
 import org.example.Race;
 import org.example.characters.Player;
 import org.example.characters.QuestGiver;
+import org.example.world.PrintFormatConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -72,5 +75,28 @@ public class QuestGiverTest {
         output.reset();
         questGiver.interact(player);
         assertThat(output.toString().contains("Do you want to pick up a quest? [Y]"), is(false));
+    }
+
+    @Test
+    void toStringFormattedCorrectly(){
+
+        assertThat(questGiver.toString(), equalTo(PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "Q" + PrintFormatConstants.RESET));
+    }
+
+    @Test
+    void getTextHasRightCharacter(){
+
+        Text text = new Text("Q");
+
+        assertThat(questGiver.getText().getText(), equalTo(text.getText()));
+    }
+
+    @Test
+    void getTextHasRightColor(){
+
+        Text text = new Text("Q");
+        text.setFill(Color.CORNSILK);
+
+        assertThat(questGiver.getText().getFill(), equalTo(text.getFill()));
     }
 }

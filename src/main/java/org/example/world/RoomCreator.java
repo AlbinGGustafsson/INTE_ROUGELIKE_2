@@ -3,10 +3,7 @@ package org.example.world;
 import org.example.Monster.Goomba;
 import org.example.Monster.Seamonster;
 import org.example.Monster.Troll;
-import org.example.Quest;
-import org.example.Race;
 import org.example.characters.NPCCreator;
-import org.example.characters.QuestGiver;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -27,7 +24,7 @@ public class RoomCreator {
 
     private final Random random = new Random();
 
-    private NPCCreator npcCreator = new NPCCreator();
+    private final NPCCreator npcCreator = new NPCCreator();
 
     private int bossRoomChance = 10;
 
@@ -103,8 +100,7 @@ public class RoomCreator {
     protected BufferedReader createBufferedReader(String filePath){
         try {
             FileReader fileReader = new FileReader(filePath);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            return bufferedReader;
+            return new BufferedReader(fileReader);
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found");
         }
@@ -135,62 +131,53 @@ public class RoomCreator {
                 room.add(row);
                 for (int x = 0; x < roomInformation.roomWidth; x++) {
                     Position currentPosition = new Position(x, y);
-                    switch (chars[x]){
-                        case '#':{
+                    switch (chars[x]) {
+                        case '#' -> {
                             row.add(new Tile(new Floor(), new Wall()));
-                            break;
                         }
-                        case 'F':{
+                        case 'F' -> {
                             row.add(new Tile(new Floor()));
-                            break;
                         }
-                        case 'L':{
+                        case 'L' -> {
                             row.add(new Tile(new Floor()));
                             roomInCreation.setEntity(new Door(Direction.LEFT), currentPosition);
-                            break;
                         }
-                        case 'R':{
+                        case 'R' -> {
                             row.add(new Tile(new Floor()));
                             roomInCreation.setEntity(new Door(Direction.RIGHT), currentPosition);
-                            break;
                         }
-                        case 'W':{
+                        case 'W' -> {
                             row.add(new Tile(new Water()));
-                            break;
                         }
-                        case 'T':{
+                        case 'T' -> {
                             row.add(new Tile(new Floor()));
-                            roomInCreation.setEntity(new Troll(roomNumber+1), currentPosition);
-                            break;
+                            roomInCreation.setEntity(new Troll(roomNumber + 1), currentPosition);
                         }
-                        case 'G':{
+                        case 'G' -> {
                             row.add(new Tile(new Floor()));
-                            roomInCreation.setEntity(new Goomba(roomNumber+1), currentPosition);
-                            break;
+                            roomInCreation.setEntity(new Goomba(roomNumber + 1), currentPosition);
                         }
-                        case 'S':{
+                        case 'S' -> {
                             row.add(new Tile(new Floor()));
-                            roomInCreation.setEntity(new Seamonster(roomNumber+1), currentPosition);
-                            break;
+                            roomInCreation.setEntity(new Seamonster(roomNumber + 1), currentPosition);
                         }
-                        case 'Q':{
+                        case 'Q' -> {
                             row.add(new Tile(new Floor()));
                             roomInCreation.setEntity(npcCreator.getQuestGiver(), currentPosition);
-                            break;
                         }
-                        case 'V':{
+                        case 'V' -> {
                             row.add(new Tile(new Floor()));
                             roomInCreation.setEntity(npcCreator.getVendor(), currentPosition);
-                            break;
                         }
-                        case 'N':{
+                        case 'N' -> {
                             row.add(new Tile(new Floor()));
                             roomInCreation.setEntity(npcCreator.getFlavorNPC(), currentPosition);
-                            break;
                         }
                     }
                 }
             }
+
+            bufferedReader.close();
 
             return roomInCreation;
         }catch (IOException e){

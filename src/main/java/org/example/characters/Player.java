@@ -24,10 +24,10 @@ public class Player extends MovableCharacter implements Combat {
 
 
     private final Equipment equipment;
-    private Inventory inventory;
+    private final Inventory inventory;
 
 
-    private QuestLog questLog;
+    private final QuestLog questLog;
 
     public Player(String name, Race race) {
         this(name, race, 1);
@@ -38,7 +38,7 @@ public class Player extends MovableCharacter implements Combat {
 
         gainExpUntilRightLevelIsReached(level);
         throwExceptionIfNameHasWrongFormat();
-        throwExceptionIfRaceIsWrong();
+        //throwExceptionIfRaceIsWrong();
 
 
         inventory = new Inventory();
@@ -50,11 +50,11 @@ public class Player extends MovableCharacter implements Combat {
         setDefaultGuiAppearance();
     }
 
-    private void throwExceptionIfRaceIsWrong() {
-        if(getRace() == null){
-            throw new IllegalArgumentException("race can not be empty");
-        }
-    }
+//    private void throwExceptionIfRaceIsWrong() {
+//        if(getRace() == null){
+//            throw new IllegalArgumentException("race can not be empty");
+//        }
+//    }
 
     private void throwExceptionIfNameHasWrongFormat() {
         if (getName().length() == 0){
@@ -218,20 +218,10 @@ public class Player extends MovableCharacter implements Combat {
             monster.printNonReachableMessage();
             monster.battleWithPlayer(this);
             tile.removeEntity();
-
         }
 
         if (tile.getEntity() instanceof NPC npc) {
-
             npc.interact(this);
-
-            if (tile.getEntity() instanceof Monster monster) {
-                monster.printNonReachableMessage();
-                monster.battleWithPlayer(this);
-                tile.removeEntity();
-
-            }
-
         }
         return false;
     }
