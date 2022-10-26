@@ -60,10 +60,6 @@ public class GameController {
         gameArea.setStyle("-fx-font-family: 'monospaced';-fx-font-size: 20; -fx-background-color: #707070");
         gameArea.setTextAlignment(TextAlignment.CENTER);
 
-//        Runnable runnable = new GameTread();
-//        Thread gameThread = new Thread(runnable);
-//        gameThread.start();
-
     }
 
 
@@ -149,24 +145,6 @@ public class GameController {
         raceLabel.setText(player.getRace().name());
 
     }
-//    class GameTread implements Runnable{
-//
-//        GamePrintStream gamePrintStream = new GamePrintStream();
-//        @Override
-//        public void run() {
-//
-//            while (true){
-//                try {
-//                    Thread.sleep(10);
-//                    //gamePrintStream.println("hej", false);
-//                    Platform.runLater(() -> updateGame());
-//                } catch (InterruptedException e) {
-//                    throw new RuntimeException(e);
-//                }
-//            }
-//        }
-//
-//    }
 }
 
 
