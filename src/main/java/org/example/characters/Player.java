@@ -38,7 +38,7 @@ public class Player extends MovableCharacter implements Combat {
 
         gainExpUntilRightLevelIsReached(level);
         throwExceptionIfNameHasWrongFormat();
-        throwExceptionIfRaceIsWrong();
+        //throwExceptionIfRaceIsWrong();
 
 
         inventory = new Inventory();
@@ -50,11 +50,11 @@ public class Player extends MovableCharacter implements Combat {
         setDefaultGuiAppearance();
     }
 
-    private void throwExceptionIfRaceIsWrong() {
-        if(getRace() == null){
-            throw new IllegalArgumentException("race can not be empty");
-        }
-    }
+//    private void throwExceptionIfRaceIsWrong() {
+//        if(getRace() == null){
+//            throw new IllegalArgumentException("race can not be empty");
+//        }
+//    }
 
     private void throwExceptionIfNameHasWrongFormat() {
         if (getName().length() == 0){
