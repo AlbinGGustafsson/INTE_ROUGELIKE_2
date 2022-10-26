@@ -91,15 +91,8 @@ class PlayerTest {
 
     @Test
     void raceIsNullThrowsException(){
-        assertThrows(IllegalArgumentException.class, () ->{
+        assertThrows(NullPointerException.class, () ->{
             Player player = new Player("Eloy", null, 10);
-        });
-    }
-
-    @Test
-    void djbd(){
-        assertThrows(IllegalArgumentException.class, () ->{
-            Player player = new Player(" Eloy ", null, 10);
         });
     }
 
@@ -110,8 +103,5 @@ class PlayerTest {
         assertEquals(exppectedString, PLAYER.toString());
 
     }
-
-
-
 
 }

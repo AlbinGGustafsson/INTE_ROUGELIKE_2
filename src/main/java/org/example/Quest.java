@@ -2,14 +2,18 @@ package org.example;
 
 public class Quest {
 
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
+    private final int XPReward;
     private boolean complete;
-    private int XPReward;
 
     public Quest(String name, String description, int XPReward) {
         this.name = name;
         this.description = description;
+        if(XPReward < 0){
+
+            throw new IllegalArgumentException("Quest can't have negative XPReward!");
+        }
         this.XPReward = XPReward;
         complete = false;
 

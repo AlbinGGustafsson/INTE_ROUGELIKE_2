@@ -6,8 +6,6 @@ import org.example.world.Tile;
 import org.example.world.Water;
 import org.junit.jupiter.api.Test;
 
-
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TrollTest {

@@ -5,7 +5,6 @@ import javafx.scene.text.Text;
 import org.example.Quest;
 import org.example.Race;
 import org.example.world.PrintFormatConstants;
-import org.example.world.Tile;
 
 public class QuestGiver extends NPC{
 
@@ -23,7 +22,7 @@ public class QuestGiver extends NPC{
         if(availableQuest == null){
             return;
         }
-        showDialogueOption("Do you want to pick up a quest? [Y]");
+        printDialogueOption("Do you want to pick up a quest? [Y]");
         if(!readPlayerInput().equalsIgnoreCase("Y")) {
 
             return;
@@ -33,25 +32,14 @@ public class QuestGiver extends NPC{
     }
 
     @Override
-    protected boolean interactWithTile(Tile tile) {
-        return false;
-    }
-
-    public Quest getAvailableQuest() {
-        return availableQuest;
-    }
-
-
-    @Override
-    public Text getText() {
-        Text text = new Text("Q");
-        text.setFill(Color.GOLD);
-        return text;
-    }
-
-
-    @Override
     public String toString() {
         return PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "Q" + PrintFormatConstants.RESET;
+    }
+    @Override
+    public Text getText() {
+
+        Text text = new Text("Q");
+        text.setFill(Color.CORNSILK);
+        return text;
     }
 }

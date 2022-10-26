@@ -4,7 +4,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
