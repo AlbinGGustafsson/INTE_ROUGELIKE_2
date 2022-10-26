@@ -1,6 +1,6 @@
 package org.example.Monster;
 
-import org.example.BaseDamage;
+
 import org.example.Combat;
 import org.example.characters.Player;
 import org.example.Race;
@@ -68,7 +68,6 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
 
   }
 
-
   public abstract void monsterSpecificAttack(Player p);
 
   public void battleWithPlayer(Player p){
@@ -81,6 +80,7 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
       p.dealDmg(this, playerAttackDamage);
       if(health < 0){
         printVictoryMessage();
+        givePlayerExp(p);
         battleIsOver = true;
 
       }else{
@@ -95,6 +95,15 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
     }while(!battleIsOver);
   }
 
+  private void givePlayerExp(Player p) {
+    p.gainExp(calculateExpGiven());
+  }
+
+  private int calculateExpGiven() {
+    return getLevel() + 7;
+  }
+
+
   private void printDefeatMessage() {
     getPrintStream().println("You died, Game over");
   }
@@ -102,5 +111,4 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
   private void printVictoryMessage() {
     getPrintStream().println("You won the fight!!");
   }
-
 }

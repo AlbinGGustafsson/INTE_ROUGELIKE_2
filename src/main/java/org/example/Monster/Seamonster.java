@@ -1,7 +1,8 @@
 package org.example.Monster;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.example.characters.Player;
-import org.example.world.Floor;
 import org.example.world.PrintFormatConstants;
 import org.example.world.Water;
 
@@ -49,6 +50,13 @@ public class Seamonster extends Monster {
         if(isMonsterLevelHigher(p)){
             p.addTerrain(Water.class);
         }
+    }
+
+    @Override
+    public Text getText() {
+        Text text = new Text("S");
+        text.setFill(Color.RED);
+        return text;
     }
 
     @Override

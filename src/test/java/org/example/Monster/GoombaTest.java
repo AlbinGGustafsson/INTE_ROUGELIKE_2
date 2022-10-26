@@ -67,4 +67,10 @@ public class GoombaTest {
         String expected = PrintFormatConstants.BOLD + PrintFormatConstants.RED + "G" + PrintFormatConstants.RESET;
         assertEquals(expected, g.toString());
     }
+//
+//    @Test
+//    void battleWithPLayerGivesCorrectExp(){
+//        Player player = new Player("namn", Race.HUMAN);
+//        Goomba gomba
+//    }
 }

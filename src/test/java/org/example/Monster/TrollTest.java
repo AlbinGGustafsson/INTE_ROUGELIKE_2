@@ -1,13 +1,12 @@
 package org.example.Monster;
 import org.example.*;
 import org.example.characters.Player;
-import org.example.world.Floor;
 import org.example.world.PrintFormatConstants;
 import org.example.world.Tile;
 import org.example.world.Water;
 import org.junit.jupiter.api.Test;
 
-import java.util.TreeSet;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -84,6 +83,32 @@ public class TrollTest {
         assertTrue(player.getEquipment().contains(ring) && player.getEquipment().contains(helmet));
 
 
+
+    }
+
+    @Test
+    void trollUnEquipesPayersShieldPlayerHasMultipleShields(){
+        Player player = new Player("name", Race.HUMAN, 100);
+        Troll troll = new Troll(1);
+
+
+        Shield s1 = new Shield("shield", "weak", 1, 5);
+        Ring ring = new Ring("Ring", "Strong", 8, 8);
+        Shield s2 = new Shield("second Shield", "weak", 1, 5);
+
+
+        player.addToInventory(s1);
+        player.addToInventory(ring);
+        player.addToInventory(s2);
+        player.equip(s1);
+        player.equip(ring);
+        player.equip(s2);
+
+        assertTrue(player.getEquipment().contains(s1) && player.getEquipment().contains(s2));
+
+        troll.battleWithPlayer(player);
+
+        assertFalse(player.getEquipment().contains(s1) && player.getEquipment().contains(s2));
 
     }
 
