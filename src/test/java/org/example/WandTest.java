@@ -21,6 +21,11 @@ public class WandTest {
     public void creatingNegativeItemLevlWandThrowsException(){
         assertThrows(IllegalItemLevelException.class, () -> new Wand("", "", -1, 123));
     }
+    @Test
+    void wandIsCompatibleWithHelmet(){
+        Helmet h = new Helmet("", "", 12, 123);
+        assertTrue(DEFAULT_VALID_WAND.isCompatibleWith(h));
+    }
 
     @Test
     public void wandIsCompatibleWithTome(){

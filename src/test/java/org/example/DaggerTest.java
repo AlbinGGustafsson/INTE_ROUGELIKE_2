@@ -32,4 +32,9 @@ class DaggerTest {
         assertFalse(DEFUALT_VALID_DAGGER.isCompatibleWith(w));
         assertFalse(DEFUALT_VALID_DAGGER.isCompatibleWith(b));
     }
+
+    @Test
+    void physDmgIsEqualToRating(){
+        assertEquals(DEFUALT_VALID_DAGGER.rating, DEFUALT_VALID_DAGGER.getPhysDmg());
+    }
 }

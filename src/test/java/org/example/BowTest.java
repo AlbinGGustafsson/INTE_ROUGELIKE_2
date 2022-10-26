@@ -33,4 +33,9 @@ class BowTest {
         assertFalse(DEFAULT_VALID_BOW.isCompatibleWith(s));
         assertFalse(DEFAULT_VALID_BOW.isCompatibleWith(d));
     }
+
+    @Test
+    void physDmgIsEqualToRating(){
+        assertEquals(DEFAULT_VALID_BOW.rating, DEFAULT_VALID_BOW.getPhysDmg());
+    }
 }

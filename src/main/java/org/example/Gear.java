@@ -48,11 +48,17 @@ public abstract class Gear extends Item implements Equipable{
 
     @Override
     public int compareTo(Equipable o) {
-        if (o instanceof Gear){
-            if (itemlevel == ((Gear) o).itemlevel){
-                return rating - ((Gear) o).rating;
+        if (o instanceof Gear og){
+
+            if (itemlevel == og.itemlevel){
+               if (rating == og.rating){
+                   if (!this.equals(og)){
+                       return -1;
+                   }
+               }
+               return rating - og.rating;
             }
-            return itemlevel - ((Gear) o).itemlevel;
+            return itemlevel - og.itemlevel;
         }
         return -1;
     }
