@@ -97,13 +97,6 @@ class PlayerTest {
     }
 
     @Test
-    void djbd(){
-        assertThrows(IllegalArgumentException.class, () ->{
-            Player player = new Player(" Eloy ", null, 10);
-        });
-    }
-
-    @Test
     void toString_Returns_Correct_String(){
 
         String exppectedString = PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + "P" + PrintFormatConstants.RESET;

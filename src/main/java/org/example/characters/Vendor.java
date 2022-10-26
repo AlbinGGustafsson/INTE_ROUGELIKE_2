@@ -66,11 +66,4 @@ public class Vendor extends NPC {
         return stock;
     }
 
-    @Override
-    public Text getText() {
-        Text text = new Text("V");
-        text.setFill(Color.GOLD);
-        return text;
-    }
-
 }
