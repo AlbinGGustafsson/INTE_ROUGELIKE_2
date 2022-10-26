@@ -1,4 +1,5 @@
 package org.example.Monster;
+import javafx.scene.paint.Color;
 import org.example.*;
 import org.example.characters.Player;
 import org.example.world.PrintFormatConstants;
@@ -117,6 +118,20 @@ public class TrollTest {
         Troll troll = new Troll(CORRECT_LEVEL_VALUE);
         String expected = PrintFormatConstants.BOLD + PrintFormatConstants.RED + "T" + PrintFormatConstants.RESET;
         assertEquals(expected, troll.toString());
+    }
+
+    @Test
+    void getTextHasCorrectStringApperance(){
+        Troll troll = new Troll(CORRECT_LEVEL_VALUE);
+        String expected = "T";
+        assertEquals(expected, troll.getText().getText());
+    }
+
+    @Test
+    void getTextHasCorrectColorApperance(){
+        Troll troll = new Troll(CORRECT_LEVEL_VALUE);
+        Color color = Color.RED;
+        assertEquals(color,  troll.getText().getFill());
     }
 
 
