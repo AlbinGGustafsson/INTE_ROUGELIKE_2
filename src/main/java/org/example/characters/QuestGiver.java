@@ -1,5 +1,7 @@
 package org.example.characters;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.example.Quest;
 import org.example.Race;
 import org.example.world.PrintFormatConstants;
@@ -38,6 +40,15 @@ public class QuestGiver extends NPC{
     public Quest getAvailableQuest() {
         return availableQuest;
     }
+
+
+    @Override
+    public Text getText() {
+        Text text = new Text("Q");
+        text.setFill(Color.GOLD);
+        return text;
+    }
+
 
     @Override
     public String toString() {
