@@ -4,9 +4,9 @@ StartRoom
 #########
 #FFGFFFW#
 #FFSFFFF#
-#FFFFFFF#
+#FFFFTFF#
 #FFTFFFFR
+#FFQQQFF#
 #FFFFFFF#
-#FFFFFFF#
-#FFFFFFF#
+#FFQFQFF#
 #########
