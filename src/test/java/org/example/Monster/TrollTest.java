@@ -1,13 +1,10 @@
 package org.example.Monster;
 import org.example.*;
 import org.example.characters.Player;
-import org.example.world.Floor;
 import org.example.world.PrintFormatConstants;
 import org.example.world.Tile;
 import org.example.world.Water;
 import org.junit.jupiter.api.Test;
-
-import java.util.TreeSet;
 
 import static org.junit.jupiter.api.Assertions.*;
 

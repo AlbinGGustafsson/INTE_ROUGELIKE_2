@@ -5,7 +5,6 @@ import org.example.Race;
 import org.example.world.*;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 

@@ -95,8 +95,7 @@ public class RoomCreator {
     protected BufferedReader createBufferedReader(String filePath){
         try {
             FileReader fileReader = new FileReader(filePath);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            return bufferedReader;
+            return new BufferedReader(fileReader);
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found");
         }

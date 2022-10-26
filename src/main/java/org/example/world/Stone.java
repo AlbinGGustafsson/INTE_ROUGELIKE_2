@@ -2,7 +2,6 @@ package org.example.world;
 
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import org.example.Helmet;
 
 public class Stone extends Entity{
 

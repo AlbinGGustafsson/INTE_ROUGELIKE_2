@@ -9,7 +9,11 @@ public class VendorItem extends Item {
     public VendorItem(String name, String description, int value){
 
         super(name, description);
-        this.value = Objects.requireNonNull(value);
+        if(value < 0){
+
+            throw new IllegalArgumentException("Item can't have negative value!");
+        }
+        this.value = value;
     }
 
     public int getValue() {

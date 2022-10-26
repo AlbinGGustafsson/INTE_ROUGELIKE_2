@@ -29,7 +29,7 @@ public abstract class Terrain {
     }
 
     public  void setPrintStream(PrintStream out){
-        this.out = out;
+        Terrain.out = out;
     }
 
     public PrintStream getPrintStream() {

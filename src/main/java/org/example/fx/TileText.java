@@ -1,7 +1,6 @@
 package org.example.fx;
 
 import javafx.scene.text.Text;
-import org.example.world.Position;
 import org.example.world.Tile;
 
 public class TileText extends Text {

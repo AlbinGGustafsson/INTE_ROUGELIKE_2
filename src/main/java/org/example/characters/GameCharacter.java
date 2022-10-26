@@ -1,19 +1,18 @@
 package org.example.characters;
 
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-
 import org.example.Race;
 import org.example.world.Entity;
 
+import java.util.Objects;
+
 public abstract class GameCharacter extends Entity {
-    private String name;
+    private final String name;
     private String lore;
-    private Race race;
+    private final Race race;
 
     public GameCharacter(String name, Race race) {
-        this.name = name;
-        this.race = race;
+        this.name = Objects.requireNonNull(name);
+        this.race = Objects.requireNonNull(race);
     }
 
     public String getName() {
