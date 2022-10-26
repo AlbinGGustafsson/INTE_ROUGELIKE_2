@@ -49,7 +49,7 @@ public class Player extends MovableCharacter implements Combat {
         hp = level*2 + 400;
         setDefaultGuiAppearance();
     }
-
+    //TODO skriv klart ekvivalensklasserna och committa
     private void throwExceptionIfRaceIsWrong() {
         if(getRace() == null){
             throw new IllegalArgumentException("race can not be empty");
