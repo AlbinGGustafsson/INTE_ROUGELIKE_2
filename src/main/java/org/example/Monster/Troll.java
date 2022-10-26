@@ -1,5 +1,7 @@
 package org.example.Monster;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.example.Equipable;
 import org.example.Shield;
 import org.example.characters.Player;
@@ -44,6 +46,12 @@ public class Troll extends Monster{
         }
     }
 
+    @Override
+    public Text getText() {
+        Text text = new Text("T");
+        text.setFill(Color.RED);
+        return text;
+    }
 
     public String toString(){
         return PrintFormatConstants.BOLD + PrintFormatConstants.RED + "T" + PrintFormatConstants.RESET;

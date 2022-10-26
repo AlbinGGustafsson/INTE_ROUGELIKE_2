@@ -3,6 +3,6 @@ NormalRoom
 5
 #####
 LFFF#
-#FFF#
+#FSF#
 #FFFR
 #####

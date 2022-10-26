@@ -61,6 +61,7 @@ public class seamonsterTest {
         World world = new World();
         Player player = new Player("Name",  Race.HUMAN, 8);
         world.getRoom(0).setEntity(seamonster, new Position(5, 2));
+        assertFalse(player.getTerrains().contains(Water.class));
         seamonster.battleWithPlayer(player);
 
 

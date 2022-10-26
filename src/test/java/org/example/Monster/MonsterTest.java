@@ -49,8 +49,6 @@ public class MonsterTest {
     }
 
 
-
-
     private Tile tileAfterBattle(){
         Monster troll = new Troll(1);
         Player player = new Player("player", Race.HUMAN, 100);
@@ -59,6 +57,8 @@ public class MonsterTest {
 
         return tile;
     }
+
+
 
 
 

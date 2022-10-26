@@ -1,6 +1,7 @@
 package org.example.world;
 
 import org.example.Monster.Goomba;
+import org.example.Monster.Seamonster;
 import org.example.Monster.Troll;
 
 import java.io.*;
@@ -153,10 +154,17 @@ public class RoomCreator {
                         case 'T':{
                             row.add(new Tile(new Floor()));
                             roomInCreation.setEntity(new Troll(roomNumber+1), currentPosition);
+                            break;
                         }
                         case 'G':{
                             row.add(new Tile(new Floor()));
                             roomInCreation.setEntity(new Goomba(roomNumber+1), currentPosition);
+                            break;
+                        }
+                        case 'S':{
+                            row.add(new Tile(new Floor()));
+                            roomInCreation.setEntity(new Seamonster(roomNumber+1), currentPosition);
+                            break;
                         }
 
                     }

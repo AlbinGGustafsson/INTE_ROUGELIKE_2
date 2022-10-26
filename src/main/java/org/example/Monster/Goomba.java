@@ -1,6 +1,8 @@
 package org.example.Monster;
 
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.example.characters.Player;
 import org.example.world.PrintFormatConstants;
 import org.example.world.Water;
@@ -48,6 +50,12 @@ public class Goomba extends Monster {
     }
 
 
+    @Override
+    public Text getText() {
+        Text text = new Text("G");
+        text.setFill(Color.RED);
+        return text;
+    }
 
     public String toString(){
         return PrintFormatConstants.BOLD + PrintFormatConstants.RED + "G" + PrintFormatConstants.RESET;

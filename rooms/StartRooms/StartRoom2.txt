@@ -7,6 +7,6 @@ StartRoom
 #FGFFFFF#
 #FGFFFFFR
 #FFFFFFF#
-#FFFFFFF#
+#FFSFFFF#
 #FFFFFFF#
 #########
