@@ -1,28 +1,25 @@
 package org.example.characters;
 
 import org.example.Race;
-import org.example.world.MovableCharacter;
 
 import java.io.*;
 import java.util.Scanner;
 
-public abstract class NPC extends MovableCharacter {
+public abstract class NPC extends GameCharacter {
 
-    private File dialogue;
-    private String parsedDialogue;
+    private static final String NPC_DIALOGUE_FOLDER = "NPCFiles/";
+    private final File dialogue;
+    private final String parsedDialogue;
 
     private Scanner scanner = new Scanner(System.in);
-    public NPC(String name, Race race, String dialogueFilePath){
+    protected NPC(String name, Race race, String dialogueFilePath){
         super(name, race);
-        dialogue = new File("NPCFiles/" + dialogueFilePath);
+        dialogue = new File( NPC_DIALOGUE_FOLDER + dialogueFilePath);
         BufferedReader bufferedReader = loadFile();
         parsedDialogue = parseFile(bufferedReader);
     }
 
-    protected void printDialogue(){
 
-        getPrintStream().println(parsedDialogue);
-    }
 
     private BufferedReader loadFile(){
 
@@ -55,9 +52,14 @@ public abstract class NPC extends MovableCharacter {
 
     public abstract void interact(Player player);
 
-    public void showDialogueOption(String option){
+    public void printDialogueOption(String option){
 
         getPrintStream().println(option);
+    }
+
+    public void printDialogue(){
+
+        getPrintStream().println(parsedDialogue);
     }
 
     public void setScanner(InputStream in){
@@ -67,18 +69,15 @@ public abstract class NPC extends MovableCharacter {
 
     public String readPlayerInput(){
 
-        String command = scanner.nextLine();
-
-        return command;
+        return scanner.nextLine();
     }
 
     public String getParsedDialogue() {
         return parsedDialogue;
     }
 
-    public Scanner getScanner(){
-
-        return scanner;
+    public File getDialogue() {
+        return dialogue;
     }
 }
 

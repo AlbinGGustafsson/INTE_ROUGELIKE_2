@@ -8,10 +8,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintStream;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class NPCTest {
 
@@ -32,12 +34,37 @@ public class NPCTest {
         npc.setPrintStream(out);
     }
 
+
+    @Test
+    void nameSetCorrectly(){
+
+        assertThat(npc.getName(), equalTo("name"));
+    }
+
+    @Test
+    void raceSetCorrectly(){
+
+        assertThat(npc.getRace(), equalTo(Race.ELF));
+    }
+
+    @Test
+    void fileNameIsFound(){
+
+        assertThat(npc.getDialogue(), notNullValue());
+    }
     @Test
     void interactionHasCorrectDialogue(){
 
         npc.interact(player);
 
         assertThat(npc.getParsedDialogue().trim(), equalTo(output.toString().trim()));
+
+    }
+
+    @Test
+    void fileNotFoundThrowsException(){
+
+        assertThrows(RuntimeException.class, () -> new FlavorNPC("namn", Race.HUMAN, "FelDialog.txt"));
 
     }
 }

@@ -1,10 +1,14 @@
 package org.example.character;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.example.Inventory;
 import org.example.Race;
 import org.example.VendorItem;
+import org.example.characters.FlavorNPC;
 import org.example.characters.Player;
 import org.example.characters.Vendor;
+import org.example.world.PrintFormatConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +21,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class VendorTest {
 
@@ -125,6 +130,31 @@ public class VendorTest {
 
         vendor.openShop(player);
         assertThat(player.getInventory().getBalance(), equalTo(startBalance));
+    }
+
+    @Test
+    void toStringFormattedCorrectly(){
+
+        assertThat(vendor.toString(), equalTo(PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "V" + PrintFormatConstants.RESET));
+    }
+
+    @Test
+    void getTextFormattedCorrectly(){
+
+        Text text = new Text("V");
+        text.setFill(Color.CADETBLUE);
+
+        assertThat(vendor.getText().getText(), equalTo(text.getText()));
+    }
+
+    @Test
+    void unableToBuyItemThrowsException(){
+
+        String input = "Y\nY";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        vendor.setScanner(in);
+
+        assertThrows(IllegalStateException.class, () -> vendor.openShop(player));
     }
 
 //    @Test

@@ -24,10 +24,10 @@ public class Player extends MovableCharacter implements Combat {
 
 
     private final Equipment equipment;
-    private Inventory inventory;
+    private final Inventory inventory;
 
 
-    private QuestLog questLog;
+    private final QuestLog questLog;
 
     public Player(String name, Race race) {
         this(name, race, 1);

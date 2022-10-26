@@ -25,7 +25,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @ExtendWith(ApplicationExtension.class)
 public class GameTest {
