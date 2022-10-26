@@ -5,6 +5,7 @@ import org.example.Chestpiece;
 import org.example.Helmet;
 import org.example.Race;
 import org.example.characters.Player;
+import org.example.world.PrintFormatConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -100,6 +101,14 @@ class PlayerTest {
         assertThrows(IllegalArgumentException.class, () ->{
             Player player = new Player(" Eloy ", null, 10);
         });
+    }
+
+    @Test
+    void toString_Returns_Correct_String(){
+
+        String exppectedString = PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + "P" + PrintFormatConstants.RESET;
+        assertEquals(exppectedString, PLAYER.toString());
+
     }
 
 
