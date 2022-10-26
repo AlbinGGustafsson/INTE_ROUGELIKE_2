@@ -1,7 +1,12 @@
 package org.example.world;
 
 import org.example.Monster.Goomba;
+import org.example.Monster.Seamonster;
 import org.example.Monster.Troll;
+import org.example.Quest;
+import org.example.Race;
+import org.example.characters.NPCCreator;
+import org.example.characters.QuestGiver;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -21,6 +26,9 @@ public class RoomCreator {
     protected record RoomInformation(int roomHeight, int roomWidth, String roomType){}
 
     private final Random random = new Random();
+
+    private NPCCreator npcCreator = new NPCCreator();
+
     private int bossRoomChance = 10;
 
     public Room loadRoom(int roomNumber) {
@@ -153,12 +161,33 @@ public class RoomCreator {
                         case 'T':{
                             row.add(new Tile(new Floor()));
                             roomInCreation.setEntity(new Troll(roomNumber+1), currentPosition);
+                            break;
                         }
                         case 'G':{
                             row.add(new Tile(new Floor()));
                             roomInCreation.setEntity(new Goomba(roomNumber+1), currentPosition);
+                            break;
                         }
-
+                        case 'S':{
+                            row.add(new Tile(new Floor()));
+                            roomInCreation.setEntity(new Seamonster(roomNumber+1), currentPosition);
+                            break;
+                        }
+                        case 'Q':{
+                            row.add(new Tile(new Floor()));
+                            roomInCreation.setEntity(npcCreator.getQuestGiver(), currentPosition);
+                            break;
+                        }
+                        case 'V':{
+                            row.add(new Tile(new Floor()));
+                            roomInCreation.setEntity(npcCreator.getVendor(), currentPosition);
+                            break;
+                        }
+                        case 'N':{
+                            row.add(new Tile(new Floor()));
+                            roomInCreation.setEntity(npcCreator.getFlavorNPC(), currentPosition);
+                            break;
+                        }
                     }
                 }
             }

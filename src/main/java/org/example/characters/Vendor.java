@@ -1,5 +1,7 @@
 package org.example.characters;
 
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.example.Race;
 import org.example.VendorItem;
 import org.example.world.PrintFormatConstants;
@@ -58,4 +60,12 @@ public class Vendor extends NPC {
     public ArrayList<VendorItem> getStock() {
         return stock;
     }
+
+    @Override
+    public Text getText() {
+        Text text = new Text("V");
+        text.setFill(Color.GOLD);
+        return text;
+    }
+
 }
