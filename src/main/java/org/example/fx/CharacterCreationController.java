@@ -19,7 +19,6 @@ import java.util.Arrays;
 
 public class CharacterCreationController {
 
-
     private static final String CHARACTERS_TO_CHOOSE_FROM = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     @FXML
@@ -43,7 +42,6 @@ public class CharacterCreationController {
 
     Player player;
 
-
     @FXML
     public void initialize() {
 
@@ -61,10 +59,11 @@ public class CharacterCreationController {
         appearanceText.setFill(colorPicker.getValue());
 
     }
+
     @FXML
     void createNewGame(ActionEvent event) throws IOException {
 
-        if (!nameInputIsCorrect()){
+        if (!nameInputIsCorrect()) {
             return;
         }
         Player player = new Player(nameTextField.getText(), (Race) raceComboBox.getSelectionModel().getSelectedItem());
@@ -78,16 +77,14 @@ public class CharacterCreationController {
         GameController gameController = loader.getController();
         Game.setRoot(root);
 
-
         gameController.setGameInformation(world, player);
         gameController.startNewGame();
     }
 
-
-    private boolean nameInputIsCorrect(){
-        try{
+    private boolean nameInputIsCorrect() {
+        try {
             new Player(nameTextField.getText(), (Race) raceComboBox.getSelectionModel().getSelectedItem());
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             Alert nameInputAlert = new Alert(Alert.AlertType.ERROR);
             nameInputAlert.getDialogPane().setId("nameInputDialog");
             nameInputAlert.setHeaderText(e.getMessage());
@@ -96,24 +93,6 @@ public class CharacterCreationController {
         }
         return true;
     }
-
-
-//    private boolean nameInputIsCorrect(){
-//        Alert nameInputAlert = new Alert(Alert.AlertType.ERROR);
-//        nameInputAlert.getDialogPane().setId("nameInputDialog");
-//        if (nameTextField.getText().isBlank()){
-//            nameInputAlert.setHeaderText("name cant be empty");
-//            nameInputAlert.showAndWait();
-//            return false;
-//        }
-//        if (nameTextField.getText().length() > 20){
-//            nameInputAlert.setHeaderText("name can only be 20 characters");
-//            nameInputAlert.showAndWait();
-//            return false;
-//        }
-//        return true;
-//    }
-
 
     @FXML
     void characterChange(ActionEvent event) {

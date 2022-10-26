@@ -5,8 +5,8 @@ import org.example.characters.Player;
 import java.util.ArrayList;
 
 public class World {
-    private RoomCreator roomCreator;
-    private ArrayList<Room> world = new ArrayList<>();
+    private final RoomCreator roomCreator;
+    private final ArrayList<Room> world = new ArrayList<>();
 
     public World() {
         this(new RoomCreator());
@@ -45,13 +45,5 @@ public class World {
             sb.append(stringToAppend);
         }
         return sb.toString();
-
-//        StringBuilder sb = new StringBuilder();
-//        for (Room r : world) {
-//            String stringToAppend;
-//            stringToAppend = r.containsPlayer() ? String.format("(%sP%s)%s ", PrintFormatConstants.PURPLE, PrintFormatConstants.RESET, r.mapString()) : r.mapString() + " ";
-//            sb.append(stringToAppend);
-//        }
-//        return sb.toString();
     }
 }

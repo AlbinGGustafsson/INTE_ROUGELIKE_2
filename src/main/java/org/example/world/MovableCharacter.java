@@ -9,7 +9,7 @@ import java.util.Set;
 
 public abstract class MovableCharacter extends GameCharacter{
 
-    protected HashSet<Class<? extends Terrain>> terrains = new HashSet<>();
+    protected final HashSet<Class<? extends Terrain>> terrains = new HashSet<>();
 
     public MovableCharacter(String name, Race race) {
         super(name, race);
