@@ -87,8 +87,16 @@ public class QuestGiverTest {
     void getTextFormattedCorrectly(){
 
         Text text = new Text("Q");
-        text.setFill(Color.CORNSILK);
 
         assertThat(questGiver.getText().getText(), equalTo(text.getText()));
+    }
+
+    @Test
+    void getTextHasRightColor(){
+
+        Text text = new Text("Q");
+        text.setFill(Color.CORNSILK);
+
+        assertThat(questGiver.getText().getFill(), equalTo(text.getFill()));
     }
 }

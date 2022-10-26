@@ -5,7 +5,6 @@ import javafx.scene.text.Text;
 import org.example.Inventory;
 import org.example.Race;
 import org.example.VendorItem;
-import org.example.characters.FlavorNPC;
 import org.example.characters.Player;
 import org.example.characters.Vendor;
 import org.example.world.PrintFormatConstants;
@@ -142,9 +141,17 @@ public class VendorTest {
     void getTextFormattedCorrectly(){
 
         Text text = new Text("V");
-        text.setFill(Color.CADETBLUE);
 
         assertThat(vendor.getText().getText(), equalTo(text.getText()));
+    }
+
+    @Test
+    void getTextHasRightColor(){
+
+        Text text = new Text("V");
+        text.setFill(Color.CADETBLUE);
+
+        assertThat(vendor.getText().getFill(), equalTo(text.getFill()));
     }
 
     @Test
@@ -156,14 +163,4 @@ public class VendorTest {
 
         assertThrows(IllegalStateException.class, () -> vendor.openShop(player));
     }
-
-//    @Test
-//    void inventoryUnchangedWhenNotBuying(){
-//
-//    }
-//
-//    @Test
-//    void canNotBuyWhenInsufficientFunds(){
-//
-//    }
 }
