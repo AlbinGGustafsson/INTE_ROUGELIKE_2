@@ -51,7 +51,7 @@ public class TestableRoomCreator extends RoomCreator {
                         "LFF###FFR\n" +
                         "#FF###FF#\n" +
                         "#FFFFFFF#\n" +
-                        "#FFFFFTF#\n" +
+                        "#QVNSGTF#\n" +
                         "#########";
 
         private static final String START_ROOM = "StartRoom\n" +
