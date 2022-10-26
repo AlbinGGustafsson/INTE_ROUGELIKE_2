@@ -1,11 +1,16 @@
 package org.example.Monster;
 
+import javafx.css.converter.PaintConverter;
+import javafx.scene.paint.Color;
 import org.example.characters.Player;
 import org.example.Race;
 import org.example.world.PrintFormatConstants;
 import org.example.world.Tile;
 import org.example.world.Water;
 import org.junit.jupiter.api.Test;
+
+import java.awt.*;
+import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -67,10 +72,29 @@ public class GoombaTest {
         String expected = PrintFormatConstants.BOLD + PrintFormatConstants.RED + "G" + PrintFormatConstants.RESET;
         assertEquals(expected, g.toString());
     }
-//
-//    @Test
-//    void battleWithPLayerGivesCorrectExp(){
-//        Player player = new Player("namn", Race.HUMAN);
-//        Goomba gomba
-//    }
+
+        @Test
+     void battleWithPLayerGivesCorrectExp(){
+        Player player = new Player("namn", Race.HUMAN);
+        Goomba gomba = new Goomba(1);
+
+        gomba.battleWithPlayer(player);
+        int expected = 8;
+
+        assertEquals(expected, player.getExp());
+    }
+
+   @Test
+    void getTextHasCorrectStringApperance(){
+        Goomba goomba = new Goomba(CORRECT_GOOMBA_LEVEL);
+        String expected = "G";
+        assertEquals(expected, goomba.getText().getText());
+   }
+
+   @Test
+    void getTextHasCorrectColorApperance(){
+        Goomba goomba = new Goomba(CORRECT_GOOMBA_LEVEL);
+        Color color = Color.RED;
+        assertEquals(color,  goomba.getText().getFill());
+   }
 }

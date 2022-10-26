@@ -1,4 +1,5 @@
 package org.example.Monster;
+import javafx.scene.paint.Color;
 import org.example.Race;
 import org.example.characters.Player;
 import org.example.world.*;
@@ -85,5 +86,18 @@ public class seamonsterTest {
     void correctToStringValue(){
         String expected = PrintFormatConstants.BOLD + PrintFormatConstants.RED + "S" + PrintFormatConstants.RESET;
         assertEquals(expected, seamonster.toString());
+    }
+    @Test
+    void getTextHasCorrectStringApperance(){
+        Seamonster seamonster = new Seamonster(CORRECT_LEVEL_VALUE);
+        String expected = "S";
+        assertEquals(expected, seamonster.getText().getText());
+    }
+
+    @Test
+    void getTextHasCorrectColorApperance(){
+        Seamonster seamonster = new Seamonster(CORRECT_LEVEL_VALUE);
+        Color color = Color.RED;
+        assertEquals(color,  seamonster.getText().getFill());
     }
 }
