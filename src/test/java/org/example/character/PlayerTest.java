@@ -9,6 +9,8 @@ import org.example.world.PrintFormatConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.management.PlatformLoggingMXBean;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerTest {
@@ -76,6 +78,13 @@ class PlayerTest {
     }
 
     @Test
+    void nameIsNullThrowsException(){
+        assertThrows(NullPointerException.class, () ->{
+            Player player = new Player(null, Race.HUMAN, 10);
+        });
+    }
+
+    @Test
     void spaceInStringThrowsException(){
         assertThrows(IllegalArgumentException.class, () ->{
             Player player = new Player("Albin Ganding", Race.HUMAN, 10);
@@ -90,9 +99,31 @@ class PlayerTest {
     }
 
     @Test
+    void StringWithOneCharacterCreatesPlayer() {
+        Player player = new Player("E", Race.HUMAN, 10);
+        String expected = "E";
+        assertEquals(expected, player.getName());
+    }
+
+    @Test
+    void whiteSpaceBeginningOfStringThrowsException(){
+        assertThrows(IllegalArgumentException.class, () ->{
+            Player player = new Player(" Jorvel", Race.HUMAN, 10);
+        });
+    }
+
+    @Test
+    void whiteSpaceEndOfStringThrowsException(){
+        assertThrows(IllegalArgumentException.class, () ->{
+            Player player = new Player("Jorvel ", Race.HUMAN, 10);
+        });
+    }
+
+
+    @Test
     void raceIsNullThrowsException(){
         assertThrows(NullPointerException.class, () ->{
-            Player player = new Player("Eloy", null, 10);
+            Player player = new Player("name", null, 10);
         });
     }
 
