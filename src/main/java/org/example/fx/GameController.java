@@ -1,5 +1,6 @@
 package org.example.fx;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -11,6 +12,7 @@ import org.example.characters.Player;
 import org.example.world.Direction;
 import org.example.world.GamePrintStream;
 import org.example.world.World;
+
 
 public class GameController {
     @FXML
@@ -57,6 +59,11 @@ public class GameController {
         mapTextFlow.setStyle("-fx-font-size: 20;");
         gameArea.setStyle("-fx-font-family: 'monospaced';-fx-font-size: 20; -fx-background-color: #707070");
         gameArea.setTextAlignment(TextAlignment.CENTER);
+
+//        Runnable runnable = new GameTread();
+//        Thread gameThread = new Thread(runnable);
+//        gameThread.start();
+
     }
 
 
@@ -120,7 +127,7 @@ public class GameController {
     }
 
 
-    private void updateGame(){
+    public void updateGame(){
         gameArea.getChildren().clear();
         for (var l : player.getRoom().getRoomList()){
             gameArea.getChildren().add(new Text("\n"));
@@ -142,5 +149,25 @@ public class GameController {
         raceLabel.setText(player.getRace().name());
 
     }
-
+//    class GameTread implements Runnable{
+//
+//        GamePrintStream gamePrintStream = new GamePrintStream();
+//        @Override
+//        public void run() {
+//
+//            while (true){
+//                try {
+//                    Thread.sleep(10);
+//                    //gamePrintStream.println("hej", false);
+//                    Platform.runLater(() -> updateGame());
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        }
+//
+//    }
 }
+
+
+

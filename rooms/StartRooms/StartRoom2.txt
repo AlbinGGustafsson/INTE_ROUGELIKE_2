@@ -6,7 +6,7 @@ StartRoom
 #FFFFFFF#
 #FGFFFFF#
 #FGFFFFFR
-#FFFFFFF#
+#FFFFQFF#
 #FFFFFFF#
 #FFFFFFF#
 #########
