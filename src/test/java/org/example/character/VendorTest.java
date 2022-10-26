@@ -18,6 +18,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.obvj.junit.utils.matchers.AdvancedMatchers.throwsException;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -90,7 +91,7 @@ public class VendorTest {
 
         player.getInventory().increaseBalance(20);
         vendor.openShop(player);
-        assertThat(player.getInventory().containsAll(vendor.getStock()), is(true));
+        assertThat(player.getInventory().contains(spade), is(true));
     }
 
     @Test
@@ -138,7 +139,7 @@ public class VendorTest {
     }
 
     @Test
-    void getTextFormattedCorrectly(){
+    void getTextHasRightCharacter(){
 
         Text text = new Text("V");
 
@@ -161,6 +162,7 @@ public class VendorTest {
         InputStream in = new ByteArrayInputStream(input.getBytes());
         vendor.setScanner(in);
 
-        assertThrows(IllegalStateException.class, () -> vendor.openShop(player));
+        assertThat(()-> vendor.openShop(player), throwsException(IllegalStateException.class));
+//        assertThrows(IllegalStateException.class, () -> vendor.openShop(player));
     }
 }

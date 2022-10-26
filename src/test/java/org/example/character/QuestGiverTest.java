@@ -84,7 +84,7 @@ public class QuestGiverTest {
     }
 
     @Test
-    void getTextFormattedCorrectly(){
+    void getTextHasRightCharacter(){
 
         Text text = new Text("Q");
 

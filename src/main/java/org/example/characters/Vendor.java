@@ -28,20 +28,6 @@ public class Vendor extends NPC {
         openShop(player);
     }
 
-
-    @Override
-    public String toString() {
-        return PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "V" + PrintFormatConstants.RESET;
-    }
-
-    @Override
-    public Text getText() {
-
-        Text text = new Text("V");
-        text.setFill(Color.CADETBLUE);
-        return text;
-    }
-
     public void openShop(Player player){
 
         for(VendorItem i: stock){
@@ -56,11 +42,21 @@ public class Vendor extends NPC {
         }
     }
 
-//    private void sellItem(VendorItem i){
-//
-//        player.addToInventory(i);
-//        player.getInventory().decreaseBalance(i.getValue());
-//    }
+
+    @Override
+    public String toString() {
+        return PrintFormatConstants.BOLD + PrintFormatConstants.CYAN + "V" + PrintFormatConstants.RESET;
+    }
+
+    @Override
+    public Text getText() {
+
+        Text text = new Text("V");
+        text.setFill(Color.CADETBLUE);
+        return text;
+    }
+
+
 
     public ArrayList<VendorItem> getStock() {
         return stock;
