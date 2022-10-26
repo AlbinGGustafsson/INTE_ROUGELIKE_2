@@ -51,7 +51,7 @@ class LevelingPlayerTest {
 
     @Test
     void settingAboveMaxLevelInConstructorSetsMaxLevel(){
-        Player p2 = new Player("name", Race.DWARF, 150);
+        Player p2 = new Player("name", Race.DWARF, 101);
         assertEquals(100, p2.getLevel());
     }
 
