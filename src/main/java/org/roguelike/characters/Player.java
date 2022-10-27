@@ -199,9 +199,6 @@ public class Player extends MovableCharacter implements Combat {
             water.printNonReachableMessage();
         }
 
-        if (tile.getTerrain() instanceof Floor floor && !getTerrains().contains(Floor.class)) {
-            floor.printNonReachableMessage();
-        }
         if (tile.getEntity() instanceof Wall wall) {
             wall.printNonReachableMessage();
         }

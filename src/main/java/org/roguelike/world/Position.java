@@ -23,11 +23,6 @@ public class Position {
     }
 
     public Position getPos(Direction direction){
-
-        if (direction == null){
-            return null;
-        }
-
         switch (direction){
             case UP -> {
                 return new Position(x, y-1);

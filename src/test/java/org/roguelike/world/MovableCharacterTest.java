@@ -1,6 +1,7 @@
 package org.roguelike.world;
 
 import javafx.scene.text.Text;
+import org.roguelike.characters.Player;
 import org.roguelike.gear.Helmet;
 import org.roguelike.inventory.Item;
 import org.roguelike.characters.Race;
@@ -145,36 +146,58 @@ public class MovableCharacterTest {
 
 
     @Test
-    void movableCharacter_Interaction_Entity(){
-        mc.addTerrain(Floor.class);
+    void movableCharacter_Interaction_Stone(){
+        MovableCharacter player = new Player("name", Race.HUMAN);
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(output);
-        mc.setPrintStream(out);
 
         TestableRoomCreator trc = new TestableRoomCreator();
         Room room = trc.loadRoom(0);
         Position spawnPosition = new Position(1,1);
-        room.setEntity(mc, spawnPosition);
-        room.setEntity(new Wall(), new Position(2, 1));
-        mc.move(Direction.RIGHT);
+        room.setEntity(player, spawnPosition);
+
+        Wall wall = new Wall();
+        wall.setPrintStream(out);
+        room.setEntity(wall, new Position(2, 1));
+        player.move(Direction.RIGHT);
 
         String correctOutput = "There is a wall in the way";
-        assertEquals(correctOutput, output.toString());
+        assertEquals(correctOutput, output.toString().trim());
     }
 
     @Test
-    void movableCharacter_Interaction_Terrain(){
-        mc.addTerrain(Floor.class);
+    void movableCharacter_Interaction_Wall(){
+        MovableCharacter player = new Player("name", Race.HUMAN);
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        PrintStream out = new PrintStream(output);
+
+        TestableRoomCreator trc = new TestableRoomCreator();
+        Room room = trc.loadRoom(0);
+        Position spawnPosition = new Position(1,1);
+        room.setEntity(player, spawnPosition);
+
+        Stone stone = new Stone();
+        stone.setPrintStream(out);
+        room.setEntity(stone, new Position(2, 1));
+        player.move(Direction.RIGHT);
+
+        String correctOutput = "There is a stone in the way";
+        assertEquals(correctOutput, output.toString().trim());
+    }
+
+    @Test
+    void movableCharacter_Interaction_Water_Player_Cant_Swim(){
+        MovableCharacter player = new Player("name", Race.HUMAN);
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(output);
-        mc.setPrintStream(out);
 
         TestableRoomCreator trc = new TestableRoomCreator();
         Room room = trc.loadRoom(0);
         Position spawnPosition = new Position(3,1);
-        room.setEntity(mc, spawnPosition);
-        mc.move(Direction.RIGHT);
+        room.setEntity(player, spawnPosition);
+        room.getTile(new Position(3,1)).getTerrain().setPrintStream(out);
+        player.move(Direction.RIGHT);
 
         String correctOutput = "You cant swim";
         assertEquals(correctOutput, output.toString().trim());
@@ -182,21 +205,22 @@ public class MovableCharacterTest {
 
     @Test
     void movableCharacter_Interaction_Item(){
-        mc.addTerrain(Floor.class);
+        MovableCharacter player = new Player("name", Race.HUMAN);
+
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         PrintStream out = new PrintStream(output);
-        mc.setPrintStream(out);
+        player.setPrintStream(out);
 
         Item item = new Helmet("ItemName", "ItemDesc", 1, 1);
         TestableRoomCreator trc = new TestableRoomCreator();
         Room room = trc.loadRoom(0);
         Position spawnPosition = new Position(1,1);
-        room.setEntity(mc, spawnPosition);
+        room.setEntity(player, spawnPosition);
         room.getTile(new Position(2,1)).addItem(item);
-        mc.move(Direction.RIGHT);
+        player.move(Direction.RIGHT);
 
-        String correctOutput = "You found ItemName";
-        assertEquals(correctOutput, output.toString());
+        String correctOutput = "You found I";
+        assertEquals(correctOutput, output.toString().trim());
     }
 
     @Test

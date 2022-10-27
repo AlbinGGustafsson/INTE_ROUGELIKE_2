@@ -5,7 +5,7 @@ import org.roguelike.gear.Chestpiece;
 import org.roguelike.gear.Helmet;
 import org.roguelike.characters.Race;
 import org.roguelike.characters.Player;
-import org.roguelike.world.PrintFormatConstants;
+import org.roguelike.world.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -131,6 +131,31 @@ class PlayerTest {
         String exppectedString = PrintFormatConstants.BOLD + PrintFormatConstants.PURPLE + "P" + PrintFormatConstants.RESET;
         assertEquals(exppectedString, PLAYER.toString());
 
+    }
+
+    @Test
+    void Player_Changing_Room_To_The_Right(){
+        World world = new World(new TestableRoomCreator());
+        world.getRoom(0).setEntity(PLAYER, new Position(4,2));
+        PLAYER.move(Direction.RIGHT);
+
+        Room newRoom = world.getRoom(1);
+        Position newPlayerPosition = newRoom.getDoor(Direction.LEFT).getPosition().getPos(Direction.RIGHT);
+        assertEquals(PLAYER, newRoom.getTile(newPlayerPosition).getEntity());
+        assertFalse(world.getRoom(0).contains(PLAYER));
+    }
+
+    @Test
+    void Player_Changing_Room_To_The_Left(){
+        World world = new World(new TestableRoomCreator());
+        world.addRoom();
+        world.getRoom(1).setEntity(PLAYER, new Position(1,2));
+        PLAYER.move(Direction.LEFT);
+
+        Room newRoom = world.getRoom(0);
+        Position newPlayerPosition = newRoom.getDoor(Direction.RIGHT).getPosition().getPos(Direction.LEFT);
+        assertEquals(PLAYER, newRoom.getTile(newPlayerPosition).getEntity());
+        assertFalse(world.getRoom(1).contains(PLAYER));
     }
 
 }
