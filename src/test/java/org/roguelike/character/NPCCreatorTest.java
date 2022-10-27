@@ -16,9 +16,12 @@ public class NPCCreatorTest {
     void setUp(){
 
         npcCreator = new NPCCreator();
-        npcCreator.clearVendors();
-        npcCreator.clearQuestGivers();
-        npcCreator.clearFlavorNPCs();
+        for(int i = 0;i < 4;i++){
+
+            npcCreator.getVendor();
+            npcCreator.getQuestGiver();
+            npcCreator.getFlavorNPC();
+        }
     }
 
     @Test
