@@ -67,7 +67,7 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
     do {
 
       p.dealDmg(this, playerAttackDamage);
-      if(health < 0){
+      if(health <= 0){
         printVictoryMessage();
         givePlayerExp(p);
         battleIsOver = true;
@@ -75,7 +75,7 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
       }else{
 
         dealDmg(p, attackDamage());
-        if (p.getHp() < 0){
+        if (p.getHp() <= 0){
           printDefeatMessage();
           p.restartGame();
           battleIsOver = true;
