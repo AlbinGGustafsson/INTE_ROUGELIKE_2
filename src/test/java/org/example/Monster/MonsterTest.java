@@ -13,7 +13,23 @@ public class MonsterTest {
 
     private static final int CORRECT_LEVEL_VALUE = 10;
     private static final int TO_LOW_LEVEL_VALUE = -1;
+    private static final int TO_HIGH_LEVEL_VALUE = 101;
 
+    @Test
+    void constructorThrowsExceptionWhenGivenValueIsToLow() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Monster monster = new Troll(TO_LOW_LEVEL_VALUE) {
+            };
+        });
+    }
+
+    @Test
+    void constructorThrowsExceptionWhenGivenTooHighValue(){
+        assertThrows(IllegalArgumentException.class, () -> {
+            Monster monster = new Troll(TO_HIGH_LEVEL_VALUE) {
+            };
+        });
+    }
 
     @Test
     void playerLossesFightPrintsCorrectMessage() {
