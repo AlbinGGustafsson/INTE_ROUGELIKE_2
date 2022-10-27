@@ -6,6 +6,10 @@ import org.roguelike.characters.NPC;
 import org.roguelike.characters.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.roguelike.world.Direction;
+import org.roguelike.world.Position;
+import org.roguelike.world.TestableRoomCreator;
+import org.roguelike.world.World;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -54,9 +58,14 @@ public class NPCTest {
     @Test
     void interactionHasCorrectDialogue(){
 
-        npc.interact(player);
+        World world = new World(new TestableRoomCreator());
 
-        assertThat(npc.getParsedDialogue().trim(), equalTo(output.toString().trim()));
+        world.getRoom(0).setEntity(player, new Position(1, 4));
+        world.getRoom(0).setEntity(npc, new Position(2, 4));
+        player.move(Direction.RIGHT);
+        npc.setPrintStream(out);
+
+        assertThat(output.toString().trim(), equalTo(npc.getParsedDialogue().trim()));
 
     }
 
