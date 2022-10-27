@@ -62,6 +62,8 @@ public class NPCCreator {
 
     private void createVendors() {
         ArrayList<VendorItem> stock = new ArrayList<>();
+        VendorItem vendorItem = new VendorItem("item", "desc", 5);
+        stock.add(vendorItem);
 
         vendors.add(new Vendor("Gucci", Race.ELF, "TestDialog3.txt", stock));
         vendors.add(new Vendor("Baloo", Race.ELF, "TestDialog3.txt", stock));
