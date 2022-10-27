@@ -30,13 +30,6 @@ public class TrollTest {
     }
 
     @Test
-    void constructorThrowsExceptionWhenGivenValueIsToLow() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            Troll troll = new Troll(TO_LOW_LEVEL_VALUE);
-        });
-    }
-
-    @Test
     void trollCanNotBePlacedOnWater(){
         Tile tile = new Tile(new Water());
         Troll troll = new Troll(10);
@@ -67,7 +60,7 @@ public class TrollTest {
     }
 
     @Test
-    void trollDoesNotUnEquipesPayersEquipablesWhenPlayerHasNoShield(){
+    void trollDoesNotUnEquipPayersEquipablesWhenPlayerHasNoShield(){
         Player player = new Player("name", Race.HUMAN, 100);
         Troll troll = new Troll(1);
 
@@ -91,11 +84,9 @@ public class TrollTest {
         Player player = new Player("name", Race.HUMAN, 100);
         Troll troll = new Troll(1);
 
-
         Shield s1 = new Shield("shield", "weak", 1, 5);
         Ring ring = new Ring("Ring", "Strong", 8, 8);
         Shield s2 = new Shield("second Shield", "weak", 1, 5);
-
 
         player.addToInventory(s1);
         player.addToInventory(ring);
