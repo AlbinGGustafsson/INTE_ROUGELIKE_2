@@ -25,7 +25,7 @@ public abstract class GameCharacter extends Entity {
 
     @Override
     public void printNonReachableMessage() {
-        System.out.println("Can't walk on character");
+        getPrintStream().println("Can't walk on character");
     }
 
 }
