@@ -73,7 +73,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>src/main/java/</classpathPrefix>
-                            <mainClass>org.example.fx.Game</mainClass>
+                            <mainClass>org.roguelike.fx.Game</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -88,7 +88,7 @@
                         <!-- Usage: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>org.example.fx.App</mainClass>
+                            <mainClass>org.roguelike.fx.App</mainClass>
                         </configuration>
                     </execution>
                 </executions>
