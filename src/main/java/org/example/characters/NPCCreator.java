@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class NPCCreator {
 
     private static final NPC GENERIC_NPC = new FlavorNPC("FiskarenRuterFem", Race.HUMAN, "TestDialog1.txt");
-    private ArrayList<QuestGiver> questGivers = new ArrayList<>();
-    private ArrayList<Vendor> vendors = new ArrayList<>();
-    private ArrayList<FlavorNPC> flavorNPCs = new ArrayList<>();
+    private final ArrayList<QuestGiver> questGivers = new ArrayList<>();
+    private final ArrayList<Vendor> vendors = new ArrayList<>();
+    private final ArrayList<FlavorNPC> flavorNPCs = new ArrayList<>();
 
     public NPCCreator() {
         createVendors();
@@ -54,7 +54,7 @@ public class NPCCreator {
     }
 
     private void createQuestGivers() {
-        questGivers.add(new QuestGiver("Janne", Race.GOBLIN, "TestDialog2.txt", new Quest("quest1", "desc", 1)));
+        questGivers.add(new QuestGiver("Jompa", Race.GOBLIN, "TestDialog2.txt", new Quest("quest1", "desc", 1)));
         questGivers.add(new QuestGiver("Oboy", Race.GOBLIN, "TestDialog2.txt", new Quest("quest1", "desc", 1)));
         questGivers.add(new QuestGiver("Petrovich", Race.GOBLIN, "TestDialog2.txt", new Quest("quest1", "desc", 1)));
         questGivers.add(new QuestGiver("Abbe", Race.GOBLIN, "TestDialog2.txt", new Quest("quest1", "desc", 1)));
@@ -68,6 +68,5 @@ public class NPCCreator {
         vendors.add(new Vendor("Footbar", Race.ELF, "TestDialog3.txt", stock));
         vendors.add(new Vendor("Krutong", Race.ELF, "TestDialog3.txt", stock));
     }
-
 }
 

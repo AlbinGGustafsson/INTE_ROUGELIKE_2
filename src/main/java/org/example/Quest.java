@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Objects;
+
 public class Quest {
 
     private final String name;
@@ -8,8 +10,8 @@ public class Quest {
     private boolean complete;
 
     public Quest(String name, String description, int XPReward) {
-        this.name = name;
-        this.description = description;
+        this.name = Objects.requireNonNull(name);
+        this.description = Objects.requireNonNull(description);
         if(XPReward < 0){
 
             throw new IllegalArgumentException("Quest can't have negative XPReward!");
@@ -35,8 +37,8 @@ public class Quest {
 
         if(complete) {
 
-            return String.format("%s, %s, %d (Completed)", name, description, XPReward);
+            return String.format("[%s, %s, %d (Completed)]", name, description, XPReward);
         }
-        return String.format("%s, %s, %d", name, description, XPReward);
+        return String.format("[%s, %s, %d]", name, description, XPReward);
     }
 }

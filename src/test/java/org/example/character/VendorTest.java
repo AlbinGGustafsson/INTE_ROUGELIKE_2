@@ -21,7 +21,7 @@ import java.util.List;
 import static net.obvj.junit.utils.matchers.AdvancedMatchers.throwsException;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 public class VendorTest {
 
@@ -44,6 +44,12 @@ public class VendorTest {
         output = new ByteArrayOutputStream();
         out = new PrintStream(output);
         vendor.setPrintStream(out);
+    }
+
+    @Test
+    void newVendorWithEmptyStockThrowsException(){
+
+        assertThat(()-> new Vendor("name", Race.DWARF, "TestDialog3.txt", new ArrayList<>()), throwsException(IllegalStateException.class));
     }
     @Test
     void vendorOffersToSellItems(){
@@ -163,6 +169,5 @@ public class VendorTest {
         vendor.setScanner(in);
 
         assertThat(()-> vendor.openShop(player), throwsException(IllegalStateException.class));
-//        assertThrows(IllegalStateException.class, () -> vendor.openShop(player));
     }
 }

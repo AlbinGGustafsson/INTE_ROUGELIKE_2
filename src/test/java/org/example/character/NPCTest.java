@@ -13,7 +13,6 @@ import java.io.PrintStream;
 import static net.obvj.junit.utils.matchers.AdvancedMatchers.throwsException;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class NPCTest {
 
@@ -50,7 +49,7 @@ public class NPCTest {
     @Test
     void fileNameIsFound(){
 
-        assertThat(npc.getDialogue(), notNullValue());
+        assertThat(npc.getDialogue(), is(notNullValue()));
     }
     @Test
     void interactionHasCorrectDialogue(){
@@ -65,7 +64,5 @@ public class NPCTest {
     void fileNotFoundThrowsException(){
 
         assertThat(()-> new FlavorNPC("namn", Race.HUMAN, "FelDialog.txt"), throwsException(RuntimeException.class));
-//        assertThrows(RuntimeException.class, () -> new FlavorNPC("namn", Race.HUMAN, "FelDialog.txt"));
-
     }
 }
