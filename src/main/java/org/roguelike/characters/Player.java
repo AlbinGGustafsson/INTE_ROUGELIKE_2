@@ -63,7 +63,7 @@ public class Player extends MovableCharacter implements Combat {
             throw new IllegalArgumentException("name can only be 20 characters");
         }
 
-        if(containsWhiteSpace()){
+        if(nameContainsWhiteSpace()){
             throw new IllegalArgumentException("name cant contain whitespace");
         }
     }
@@ -72,8 +72,7 @@ public class Player extends MovableCharacter implements Combat {
         hp = level*2 + 400;
     }
 
-    public boolean containsWhiteSpace(){
-
+    private boolean nameContainsWhiteSpace(){
             for(int i = 0; i < getName().length(); i++){
                 if(Character.isWhitespace(getName().charAt(i))){
                     return true;
