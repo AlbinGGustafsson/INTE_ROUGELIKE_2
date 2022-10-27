@@ -29,16 +29,6 @@ public abstract class Monster extends MovableCharacter implements Combat, PauseE
   }
 
   @Override
-  public void dealDmg(Combat combatTarget, double damage) {
-    Combat.super.dealDmg(combatTarget, damage);
-  }
-
-  @Override
-  public boolean blocked() {
-    return Combat.super.blocked();
-  }
-
-  @Override
   public void takeDmg(double damage) {
     health = health - damage;
   }
