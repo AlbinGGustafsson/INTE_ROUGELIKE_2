@@ -40,8 +40,6 @@ public class CharacterCreationController {
     @FXML
     private Text appearanceText;
 
-    Player player;
-
     @FXML
     public void initialize() {
 
