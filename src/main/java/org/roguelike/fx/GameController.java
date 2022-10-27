@@ -2,6 +2,8 @@ package org.roguelike.fx;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.text.Text;
@@ -12,6 +14,7 @@ import org.roguelike.world.Direction;
 import org.roguelike.world.GamePrintStream;
 import org.roguelike.world.World;
 
+import java.util.Optional;
 
 public class GameController {
     @FXML
@@ -143,6 +146,22 @@ public class GameController {
         hpLabel.setText(String.valueOf(player.getHp()));
         raceLabel.setText(player.getRace().name());
 
+        if (Integer.parseInt(hpLabel.getText()) <= 0){
+            gameOver();
+        }
+
+    }
+
+    private void gameOver() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("Game Over!");
+        alert.setTitle(null);
+        alert.setHeaderText(null);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent()) {
+            System.exit(0);
+        }
     }
 }
 
