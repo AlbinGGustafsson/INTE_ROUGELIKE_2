@@ -14,6 +14,10 @@ public class Vendor extends NPC {
     public Vendor(String name, Race race, String dialogueFilePath, ArrayList<VendorItem> items) {
 
         super(name, race, dialogueFilePath);
+        if(items.isEmpty()) {
+
+            throw new IllegalStateException("Vendor needs to have a supply");
+        }
         stock = items;
     }
 
@@ -55,8 +59,6 @@ public class Vendor extends NPC {
         text.setFill(Color.CADETBLUE);
         return text;
     }
-
-
 
     public ArrayList<VendorItem> getStock() {
         return stock;

@@ -7,7 +7,6 @@ import java.util.Objects;
 
 public abstract class GameCharacter extends Entity {
     private final String name;
-    private String lore;
     private final Race race;
 
     public GameCharacter(String name, Race race) {
@@ -23,9 +22,6 @@ public abstract class GameCharacter extends Entity {
         return race;
     }
 
-    public void setLore(String lore) {
-        this.lore = lore;
-    }
 
     @Override
     public void printNonReachableMessage() {

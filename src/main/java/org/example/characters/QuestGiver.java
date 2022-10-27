@@ -6,13 +6,15 @@ import org.example.Quest;
 import org.example.Race;
 import org.example.world.PrintFormatConstants;
 
+import java.util.Objects;
+
 public class QuestGiver extends NPC{
 
     private Quest availableQuest;
     public QuestGiver(String name, Race race, String dialogueFilePath, Quest quest) {
 
         super(name, race, dialogueFilePath);
-        availableQuest = quest;
+        availableQuest = Objects.requireNonNull(quest);
     }
 
     @Override

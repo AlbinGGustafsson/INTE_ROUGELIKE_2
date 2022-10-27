@@ -15,6 +15,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 
+import static net.obvj.junit.utils.matchers.AdvancedMatchers.throwsException;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
@@ -40,6 +41,11 @@ public class QuestGiverTest {
         questGiver.setPrintStream(out);
     }
 
+    @Test
+    void newQuestGiverWithoutQuestThrowsException(){
+
+        assertThat(()-> new QuestGiver("name", Race.DWARF, "TestDialog3.txt", null), throwsException(NullPointerException.class));
+    }
     @Test
     void questGiverOffersQuest(){
 
