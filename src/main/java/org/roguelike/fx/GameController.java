@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextFlow;
+import javafx.stage.Window;
 import org.roguelike.characters.Player;
 import org.roguelike.world.Direction;
 import org.roguelike.world.GamePrintStream;
@@ -157,6 +158,9 @@ public class GameController {
         alert.setContentText("Game Over!");
         alert.setTitle(null);
         alert.setHeaderText(null);
+
+        Window window = alert.getDialogPane().getScene().getWindow();
+        window.setOnCloseRequest(e -> System.exit(0));
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent()) {
