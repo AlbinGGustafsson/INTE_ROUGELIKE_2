@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Objects;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -54,5 +55,11 @@ public class FlavorNPCTest {
         text.setFill(Color.BLANCHEDALMOND);
 
         assertThat(flavorNPC.getText().getFill(), equalTo(text.getFill()));
+    }
+
+    @Test
+    void hashCodeReturnsCorrectValue(){
+
+        assertThat(flavorNPC.hashCode(), equalTo(Objects.hash(flavorNPC.getName(), flavorNPC.getRace(), flavorNPC.getParsedDialogue())));
     }
 }

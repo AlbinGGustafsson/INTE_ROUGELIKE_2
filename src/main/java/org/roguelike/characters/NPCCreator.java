@@ -69,5 +69,17 @@ public class NPCCreator {
         vendors.add(new Vendor("Footbar", Race.ELF, "TestDialog3.txt", stock));
         vendors.add(new Vendor("Krutong", Race.ELF, "TestDialog3.txt", stock));
     }
+
+    public void clearFlavorNPCs() {
+        flavorNPCs.clear();
+    }
+
+    public void clearQuestGivers() {
+        questGivers.clear();
+    }
+
+    public void clearVendors() {
+        vendors.clear();
+    }
 }
 
